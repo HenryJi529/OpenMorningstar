@@ -53,61 +53,57 @@
 	</a>
 </div>
 
+## ✨ 技术栈:
 
-## ✨ 演示
-**官网**: [https://morningstar529.com](https://morningstar529.com)
-
-
-## 项目技术栈
-* **前端**：CSS、Sass、Bootstrap、JavaScript
-* **后端**：Django
-* **部署**：Docker、Nginx、Fabric
-* **测试**：Coverage、Selenium
-* **集成**：Github Action
-* **数据库**：Redis、SQLite(开发)、MySQL(部署)
-
+- **前端**：CSS, Sass, Tailwindcss, DaisyUI, JavaScript
+- **后端**：Django, Redis, SQLite, MySQL
+- **部署**：Docker, Nginx, Fabric, Supervisor
+- **测试**：Coverage
+- **集成**：Github Action
 
 ## 🚀 部署&开发
 
 ### 源码获取
+
 ```bash
 $ git clone git@github.com:HenryJi529/OpenMorningstar.git
 # or: git clone https://hub.fastgit.xyz/HenryJi529/OpenMorningstar.git
 ```
 
 ### 本地开发
+
 ```bash
-$ virtualenv env
-$ source env/bin/activate
+$ virtualenv VENV
+$ source VENV/bin/activate
 $ pip install -r requirements.txt
 $ python manage.py runserver 0:8000
 ```
 
 ### 远程部署
+
 ```bash
 $ docker-compose -f deploy/docker-compose.yml up --build -d
 ```
 
-
 ## 🤝 维护人员
+
 👤 **[Henry Ji](https://github.com/HenryJi529)**
 
-
 ## 🙈 欢迎支持(~~宗旨是不退款！~~)
-| 微信  | 支付宝 |
-| :---: | :---: |
-| <img src="https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/Morningstar/static/base/img/微信收款码.png" alt="Wechat" width="200"> | <img src="https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/Morningstar/static/base/img/支付宝收款码.png" alt="Alipay" width="200">|
 
+|                                                                    微信                                                                     |                                                                    支付宝                                                                     |
+| :-----------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/Morningstar/static/base/img/微信收款码.png" alt="Wechat" width="200"> | <img src="https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/Morningstar/static/base/img/支付宝收款码.png" alt="Alipay" width="200"> |
 
 ## 📝 许可证
+
 Copyright © 2021 [Henry Ji](https://github.com/HenryJi529).<br/>
 This project is [AGPL v3](https://raw.githubusercontent.com/HenryJi529/OpenMorningstar/main/LICENSE) licensed.
 
-
 ## 🙏 感谢
+
 <a href="https://www.jetbrains.com/">
 	<img width="30%"
 		src="https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/Morningstar/static/base/img/pycharm.svg"
 		alt="pycharm">
 </a>
-

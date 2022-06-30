@@ -85,26 +85,29 @@ JAZZMIN_SETTINGS = {
     "hide_models": [],
 
     # List of apps (and/or models) to base side menu ordering off of (does not need to contain all apps/models)
-    "order_with_respect_to": ["Morningstar", "auth", "blog", "joke", "poll",],
+    "order_with_respect_to": ["Morningstar", "auth", "blog", "joke", "book", "share", "poll",],
 
     # Custom links to append to app groups, keyed on app name
     "custom_links": {
         "blog": [{
             "name": "展示",
-            "url": "https://morningstar529.com/blog/",
+            "url": "https://morningstar529.com/",
             "icon": "fas fa-dragon"
         }]
     },
 
     # Custom icons for side menu apps/models See
+    # https://fontawesome.com/v5/search?m=free&s=solid%2Cbrands
     # https://fontawesome.com/icons?d=gallery&m=free&v=5.0.0,5.0.1,5.0.10,5.0.11,5.0.12,5.0.13,5.0.2,5.0.3,5.0.4,5.0.5,5.0.6,5.0.7,5.0.8,5.0.9,5.1.0,5.1.1,5.2.0,5.3.0,5.3.1,5.4.0,5.4.1,5.4.2,5.13.0,5.12.0,5.11.2,5.11.1,5.10.0,5.9.0,5.8.2,5.8.1,5.7.2,5.7.1,5.7.0,5.6.3,5.5.0,5.4.2
     # for the full list of 5.13.0 free icon classes
     "icons": {
         "auth": "fas fa-users-cog", "auth.Group": "fas fa-users",
         "Morningstar": "fas fa-atom", "Morningstar.user": "far fa-id-card",
-        "joke": "far fa-images", "joke.photo": "far fa-image",
         "blog": "fab fa-blogger-b", "blog.category": "far fa-map", "blog.post": "far fa-file-word", "blog.tag": "fas fa-tag", "blog.comment": "far fa-comment-dots",
+        "book": "fas fa-atlas", "book.book": "fas fa-book", "book.category": "fas fa-box", "book.author": "fas fa-copyright", "book.translator": "fas fa-language",
+        "joke": "far fa-images", "joke.photo": "far fa-image", "joke.text": "fas fa-paragraph",
         "poll": "fas fa-poll", "poll.question": "fas fa-question", "poll.choice": "fas fa-arrow-circle-right",
+        "share": "fas fa-share-alt", "share.item": "fas fa-link",
     },
     # Icons that are used when one is not manually specified
     "default_icon_parents": "fas fa-chevron-circle-right",

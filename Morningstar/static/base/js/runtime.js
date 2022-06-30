@@ -1,17 +1,22 @@
-function show_runtime() {
-    window.setTimeout("show_runtime()", 1000);
-    X = new Date("10/15/2021 10:30:00");
-    Y = new Date();
-    T = (Y.getTime() - X.getTime());
-    M = 24 * 60 * 60 * 1000;
-    a = T / M;
-    A = Math.floor(a);
-    b = (a - A) * 24;
-    B = Math.floor(b);
-    c = (b - B) * 60;
-    C = Math.floor((b - B) * 60);
-    D = Math.floor((c - C) * 60);
-    runtime_span.innerHTML = "不温不火运行: " + A + "天" + B + "小时" + C + "分" + D + "秒"
-}
+setInterval(() => {
+    currentTime = new Date();
+    initialTime = new Date("9/1/2022 7:30:00");
+    interval = currentTime.getTime() - initialTime.getTime();
 
-show_runtime();
+    dayInMillisecond = 1000 * 60 * 60 * 24;
+    dayNum = Math.floor(interval / dayInMillisecond);
+
+    hourInMillisecond = 1000 * 60 * 60;
+    hourNum = Math.floor((interval % dayInMillisecond) / hourInMillisecond);
+
+    minuteInMillisecond = 1000 * 60;
+    minuteNum = Math.floor((interval % hourInMillisecond) / minuteInMillisecond);
+
+    secondInMillisecond = 1000;
+    secondNum = Math.floor((interval % minuteInMillisecond) / secondInMillisecond);
+
+    runtime_span.innerHTML = "不温不火运行: " + dayNum + " 天 "
+        + hourNum + " 小时 "
+        + minuteNum + " 分 "
+        + secondNum + " 秒";
+}, 1000);

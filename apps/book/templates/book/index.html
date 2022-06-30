@@ -1,3 +1,5 @@
+{% load compress %}
+{% load matomo_tags %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -8,76 +10,122 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" href="{% static 'book/img/favicon.ico' %}">
-
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@latest/pace-theme-default.min.css">
-	<script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
-	<title>我的书单</title>
-
+	<!--https://fontawesome.com/v6/icons?m=free-->
+	<link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="{% static 'node_modules/pace-js/pace-theme-default.min.css' %}">
+	<script src="{% static 'node_modules/pace-js/pace.min.js' %}"></script>
+	<title>Book - 我的书单</title>
+	<meta name="description" content="时不时会分享刚读完的好书">
+	{% compress css %}
 	<link rel="stylesheet" href="{% static 'book/css/base.css' %}">
-	<link rel="stylesheet" href="{% static 'book/css/list.css' %}">
-	<link rel="stylesheet" href="{% static 'book/css/search.css' %}">
+	{% endcompress %}
+	{% tracking_code %}
 </head>
 
-<body>
-	<div class="portainer">
-		<header>
-			<div class="title">我的书单<input type="button" value="🔍" id="searchButton"></input></div>
-		</header>
-
-		{% for category in categories %}
-		<p class="category-name">分类：<span>{{ category.name }}</span></p>
-		<ul class="category">
-			{% for book in category.books %}
-			<li class="item">
-				{{ book.name }} | <a href="{{ book.url }}" target="_blank" style="text-decoration: none;">下载</a><br>
-				{% if book.translator%}
-				作者：{{ book.author }} &nbsp; 译者：{{ book.translator }} <br>
-				{% else %}
-				作者：{{book.author}} <br>
-				{% endif %}
-			</li>
-			{% endfor %}
-		</ul>
-		{% if not forloop.last %}
-		<hr>
-		{% endif %}
-		{% endfor %}
+<body class="min-h-screen">
+	<div class="modals">
+		<div>
+			<input type="checkbox" id="my-modal" class="modal-toggle" />
+			<div class="modal">
+				<div class="modal-box relative p-8" id="myModalBox">
+					<label for="my-modal" class="btn btn-sm btn-circle absolute right-2 top-2"
+						id="myModalToggle">✕</label>
+					<div class="text-4xl text-center font-bold">下载</div>
+					<form action="{% url 'book:index' %}" method="POST" class="mt-5">
+						{% csrf_token %}
+						{{ verify_form.captcha }}
+						<style>
+							.g-recaptcha {
+								display: flex;
+								justify-content: center;
+							}
+						</style>
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
 
-	<div id="fade"></div>
+	<div class="container mx-auto">
+		<header class="flex space-x-2 justify-center items-center text-4xl pt-6">
+			<span class="text-4xl">我的书单</span>
+			<i class="fa-brands fa-searchengin cursor-pointer" id="searchButton"></i>
+		</header>
+		<div class="overflow-x-auto mt-4">
+			<table class="table table-zebra w-full">
+				<thead>
+					<tr>
+						<th class="text-lg">编号</th>
+						<th class="text-lg">书名</th>
+						<th class="text-lg">分类</th>
+						<th class="text-lg">作者</th>
+						<th class="text-lg">译者</th>
+						<th class="text-lg">下载</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for book in books %}
+					<tr>
+						<th>{{ forloop.counter }}</th>
+						<td class="font-bold">{{ book.book_name }}</td>
+						<td>{{ book.category.name }}</td>
+						<td>{{ book.author.name }}</td>
+						<td>
+							{% if book.translator.name %}
+							{{ book.translator.name }}
+							{% else %}
+							<span>/</span>
+							{% endif %}
+						</td>
+						<th>
+							<label for="my-modal" class="modal-button" data-bookId="{{ book.id }}">
+								{% if book.foreign_url %}
+								<div class="text-lime-500">外链下载</div>
+								{% else %}
+								<div class="text-red-500">站内下载</div>
+								{% endif %}
+							</label>
+						</th>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
 
-	<div id="float">
-		<form class="search-form">
-			<input type="text" class="search" placeholder="书名/作者">
-			<ul class="suggestions">
-				<li>这里会显示推荐的书目</li>
+	<div id="fade" class="hidden w-screen h-screen z-40 absolute top-0 bg-gray-400/50"></div>
+	<div id="float" class="hidden w-screen z-50 absolute top-1/4">
+		<form class="w-screen max-w-2xl mx-auto px-8">
+			<input type="text" placeholder="书名/作者" id="searchInput"
+				class="w-full p-4 text-center text-3xl rounded-3xl outline-none border-solid border-slate-300 border-8">
+			<ul class="w-full px-4" id="suggestionList">
+				<li class="p-4">这里会显示推荐的书目</li>
 			</ul>
 		</form>
 	</div>
 </body>
 
-<script src="https://cdn.jsdelivr.net/npm/canvas-nest.js/dist/canvas-nest.js"></script>
-
-<script type="text/javascript" src="https://www.cornify.com/js/cornify.js"></script>
-
-
-<script data-href="https://github.com/HenryJi529/OpenMorningstar" src="{% static 'base/js/github.js'%}"></script>
-<script src="{% static 'book/js/cornify.js' %}"></script>
+<script src="{% static 'node_modules/canvas-nest.js/dist/canvas-nest.js' %}"></script>
+<script data-href="https://github.com/HenryJi529/OpenMorningstar"
+	src="{% static 'node_modules/github-corners/dist/embed.min.js' %}"></script>
 
 <script>
+	const csrfToken = "{{ csrf_token }}";
 	const endpoint = "{{ endpoint }}";
-	const searchButton = document.querySelector("#searchButton");
-	searchButton.addEventListener('click', e => {
-		document.querySelector("#float").style.display = "block";
-		document.querySelector("#fade").style.display = "block";
+	const verifyUrl = "{% url 'book:index' %}";
+	document.querySelector("#searchButton").addEventListener('click', e => {
+		document.querySelector("#float").classList.remove("hidden");
+		document.querySelector("#fade").classList.remove("hidden");
 	})
-	document.querySelector("#fade").click(function () {
-		document.getElementById("float").style.display = 'none';
-		document.getElementById("fade").style.display = 'none';
-	});
-
+	document.querySelector("#fade").addEventListener('click', e => {
+		document.querySelector("#float").classList.add("hidden");
+		document.querySelector("#fade").classList.add('hidden');
+	})
 </script>
 
-<script src="{%static 'book/js/search.js' %}"></script>
+{% compress js %}
+<script src="{% static 'book/js/search.js' %}"></script>
+<script src="{% static 'book/js/verify.js' %}"></script>
+{% endcompress %}
 
 </html>

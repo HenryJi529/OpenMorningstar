@@ -1,11 +1,12 @@
 from django.urls import path
-import os
+from Morningstar.settings.common import CACHE_TIMEOUT
 from django.views.decorators.cache import cache_page
+
 from . import views
 
 
 app_name = 'book'
 urlpatterns = [
-    path('', cache_page(60*5)(views.index), name="index"),
-    path('api/', cache_page(60*5)(views.api), name="api"),
+    path('', cache_page(CACHE_TIMEOUT)(views.IndexView.as_view()), name="index"),
+    path('api/', cache_page(CACHE_TIMEOUT)(views.BookListView.as_view()), name="api"),
 ]

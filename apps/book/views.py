@@ -1,30 +1,46 @@
+import json
+
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.core.mail import send_mail
 from django.shortcuts import render, reverse
-from Morningstar.settings.common import MEDIA_ROOT
-import os
-import json
-JSON_FILE =  os.path.join( MEDIA_ROOT, "book/data.json") 
+from django.views import View
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
+from Morningstar.views.base import fix_fetched_post
+from .models import Book
+from .serializers import BookSerializer
+from .forms import VerifyForm
 
 
-def index(request):
-    def get_data(json_file):
-        with open(json_file) as f:
-            data = dict(json.load(f))
-        return data
-    data = get_data(JSON_FILE)
-    categories = data['categories']
-    if os.environ['DJANGO_SETTINGS_MODULE'] == 'Morningstar.settings.dev':
-        endpoint = "http://" + request.META["HTTP_HOST"] + "/book/api/"
-    else:
-        endpoint = "https://" + request.META["HTTP_HOST"] + "/book/api/"
-    return render(request, "book/index.html", locals())
+class IndexView(View):
+    def get(self, request):
+        def get_endpoint(request):
+            protocol = "https://" if request.is_secure() else "http://"
+            endpoint = protocol + request.get_host() + reverse("book:api")
+            return endpoint
+        verify_form = VerifyForm()
+        books = Book.objects.all()
+        endpoint = get_endpoint(request)
+        return render(request, "book/index.html", locals())
+
+    def post(self, request):
+        request = fix_fetched_post(request)
+        form = VerifyForm(request.POST)
+        if form.is_valid():
+            book = Book.objects.get(id=int(request.POST["bookId"]))
+            return JsonResponse({
+                "status": "success",
+                "book_name": book.book_name,
+                "author": book.author.name,
+                "uri": book.uri,
+            })
+        else:
+            return JsonResponse({"status": "failure"})
 
 
-def api(request):
-    def get_data(json_file):
-        with open(json_file) as f:
-            data = dict(json.load(f))
-        return data
-    data = get_data(JSON_FILE)
-    return JsonResponse(data)
+class BookListView(APIView):
+    def get(self, request):
+        book_serializers = BookSerializer(Book.objects.all(), many=True)
+        return Response(book_serializers.data)

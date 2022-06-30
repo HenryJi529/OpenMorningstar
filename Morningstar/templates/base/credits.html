@@ -1,40 +1,43 @@
 {% extends 'base/base.html' %}
 {% load static %}
+{% load compress %}
 
 {% block title %}
 Credits
 {% endblock %}
 
 {% block custom_css %}
-<link rel="stylesheet" href="{% static 'base/css/credits.css' %}">
 {% endblock %}
 
 {% block content %}
-<h1>Credits</h1>
-<div class="products">
-	{% for item in items %}
-	<div class="product">
-		<div class="info">
-			<div class="name">
-				<spam>{{item.name}}</spam>
-			</div>
-			<div class="link">
-				<div class="license" data-license-url="{{item.license_url}}" data-text-hide="true">
-					show license
+<div class="container min-h-screen p-4">
+	<h1 class="text-5xl">Credits</h1>
+	<div>
+		{% for item in items %}
+		<div class="rounded-2xl px-8 my-4 bg-amber-100">
+			<div class="flex justify-between items-center">
+				<div class="font-bold">
+					<spam>{{item.name}}</spam>
 				</div>
-				-
-				<div class="homepage" data-homepage-url="{{item.homepage_url}}">
-					homepage
-				</div> 
+				<div class="flex justify-between p-4 w-60">
+					<div class="license cursor-pointer" data-license-url="{{item.license_url}}" data-text-hide="true">
+						show license
+					</div>
+					-
+					<div class="homepage link link-hover cursor-pointer" data-homepage-url="{{item.homepage_url}}">
+						homepage
+					</div>
+				</div>
 			</div>
+			<div class="license-text text-sm"></div>
 		</div>
-		<div class="license-text"></div>
+		{% endfor %}
 	</div>
-	{% endfor %}
 </div>
-
 {% endblock %}
 
 {% block custom_js %}
+{% compress js %}
 <script src="{% static 'base/js/credits.js' %}"></script>
+{% endcompress %}
 {% endblock %}

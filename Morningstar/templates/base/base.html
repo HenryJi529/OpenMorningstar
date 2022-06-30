@@ -1,50 +1,58 @@
+{% load matomo_tags %}
 {% load static %}
+{% load compress %}
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="二代青雉的个人网站">
-    <meta property="og:title" content="二代青雉的个人网站" />
-    <meta name="twitter:description" content="啦啦啦啦" />
-    <meta name="twitter:title" content="二代青雉的个人网站">
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@HenryJi529" />
-    <meta name="twitter:image"
-        content="https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/Morningstar/static/base/img/favicon.png" />
-    <meta name="twitter:url" content="https://morningstar529.com" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        crossorigin="anonymous">
-    <!--https://icons.getbootstrap.com/-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
     <link rel="icon" href="{% static 'base/img/favicon.ico' %}">
     <title>{% block title %} {% endblock %}</title>
+    {% compress css %}
     <link rel="stylesheet" href="{% static 'base/css/base.css' %}">
+    {% endcompress %}
     {% block custom_css %}{% endblock %}
+    {% tracking_code %}
 </head>
 
-<body>
-    <main>
+<body class="bg-no-repeat bg-gradient-to-b from-cyan-100 to-cyan-50 relative">
+    <main class="flex justify-center items-center">
         {% block content %}{% endblock %}
     </main>
 
-    <footer>
-        <p>
-            <span id="runtime_span"></span><br>
-            <span style="font-family: monospace">© 2021 <a href="https://twitter.com/HenryJi529">Henry Ji</a></span> /
-            <span style="font-family: monospace">License: <a
-                    href="https://www.gnu.org/licenses/agpl-3.0.en.html">AGPLv3</a></span> /
-            <span style="font-family: monospace">Powered by <a href="https://cloud.google.com/">Google Cloud</a></span>
-        </p>
+    <footer id="footer" class="absolute bottom-2 w-screen">
+        <div class="text-center text-zinc-400">
+            <div id="runtime_span"></div>
+            <div id="copyright">
+                <span>© 2021 <a href="{% url 'me' %}" class="font-bold text-zinc-500">Henry Ji</a></span>
+                <span>/</span>
+                <span>License:
+                    <a href="https://www.gnu.org/licenses/agpl-3.0.en.html" class="font-bold text-zinc-500">AGPLv3</a>
+                </span>
+                <span>/</span>
+                <span>Powered by <a href="https://cloud.google.com/" class="font-bold text-zinc-500">GCloud</a></span>
+            </div>
+        </div>
+        {% compress js %}
+        <script src="{% static 'base/js/runtime.js' %}"></script>
+        {% endcompress %}
     </footer>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-<script src="{% static 'base/js/runtime.js' %}"></script>
-<script data-href="https://github.com/HenryJi529/OpenMorningstar" src="{% static 'base/js/github.js'%}"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    crossorigin="anonymous"></script>
+<!-- 移动端适配 -->
+<script>
+    const footer = document.querySelector("#footer");
+    const isMobile = /Android|iPhone/i.test(navigator.userAgent) ? true : false;
+    if (isMobile) {
+        footer.classList.remove("absolute");
+    }
+</script>
+
+<script data-href="https://github.com/HenryJi529/OpenMorningstar"
+    src="{% static 'node_modules/github-corners/dist/embed.min.js' %}"></script>
+
 {% block custom_js %}{% endblock %}
 
 </html>

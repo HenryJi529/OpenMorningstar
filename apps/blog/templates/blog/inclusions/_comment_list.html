@@ -1,22 +1,50 @@
-<h3>评论区: 共 <span style='font-size:1.5rem'>{{ comment_count }}</span> 条评论</h3>
-<ul class="comment-list list-unstyled">
+<div class="space-y-4">
 	{% for comment in comment_list %}
-	<li class="comment-item">
-		<div>
-			昵称：<span class="name" style="font-weight: bold; font-size:1.1rem">{{ comment.name }}</span>
-			{% if comment.email %}
-			<span class="email">({{comment.email}})</span>
-			{% endif %}
+	<div class="flex space-x-4 w-full">
+		<div class="btn btn-ghost btn-circle avatar">
+			<div class="w-14 rounded-full">
+				<img src="/media/{{ comment.user.avatar }}" alt="{{ comment.user.username }}'s avatar">
+			</div>
 		</div>
-		<div>
-			更新于<span style="font-weight: bold;">{{comment.updated|timesince}}</span>前
+		<div class="flex-1 rounded-xl border-2">
+			<div class="flex justify-between bg-slate-100 dark:bg-slate-600 rounded-t-xl p-2">
+				<div class="flex space-x-2">
+					<span class="font-bold">{{ comment.user.username }}</span>
+					<div>评论于<span>{{comment.updated|timesince}}</span>前</div>
+				</div>
+				<form action="{% url 'blog:thumbs' %}" method="post" class="flex space-x-2 items-center">
+					{% csrf_token %}
+					<i class="thumbs-up fa-solid fa-thumbs-up cursor-pointer {% if user in comment.thumbs_up.all %}text-amber-600 text-lg{% else %}{% endif %}"
+						data-comment_id="{{comment.id}}"
+						data-action="{% if user in comment.thumbs_up.all %}undo{% else %}do{% endif %}"></i>
+					<i class="thumbs-down fa-solid fa-thumbs-down cursor-pointer {% if user in comment.thumbs_down.all %}text-amber-600 text-lg{% else %}{% endif %}"
+						data-comment_id="{{comment.id}}"
+						data-action="{% if user in comment.thumbs_down.all %}undo{% else %}do{% endif %}"></i>
+				</form>
+			</div>
+			<div class="p-2">
+				{{ comment.html|safe }}
+			</div>
+
+			<div id="commentCountPanel{{comment.id}}"
+				class="flex justify-start items-center p-2 pt-1 space-x-2 border-t-2 border-stone-300 dark:border-stone-600 {% if not comment.thumbs_up.all.count and not comment.thumbs_down.all.count %}hidden{% endif %}">
+				<div>
+					<i class="fa-solid fa-thumbs-up"></i>
+					<span data-comment_count="{{comment.id}}-up">{{comment.thumbs_up.all.count}}</span>
+				</div>
+				<div>
+					<i class="fa-solid fa-thumbs-down"></i>
+					<span id="id_thumbsDown_count"
+						data-comment_count="{{comment.id}}-down">{{comment.thumbs_down.all.count}}</span>
+				</div>
+			</div>
 		</div>
-		<div class="text" style="border: 2px black dashed; padding: 0.5rem; margin-top: 0.3rem; border-radius: 0.5rem;">
-			{{ comment.body|linebreaks }}
-		</div>
-		<hr>
-	</li>
+	</div>
 	{% empty %}
-	暂无评论
 	{% endfor %}
-</ul>
+</div>
+<script>
+	const thumbs_endpoint = "{% url 'blog:thumbs' %}";
+	const csrfToken = "{{ csrf_token }}";
+</script>
+<script src="{% static 'blog/js/commentThumbs.js' %}"></script>

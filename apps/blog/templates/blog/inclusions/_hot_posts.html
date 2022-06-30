@@ -1,0 +1,15 @@
+<div class="widget p-2 relative">
+    <input class="widget-toggle hidden absolute w-full" type="checkbox" />
+    <div class="widget-title text-2xl">最热</div>
+    <ul class="widget-list">
+        {% for post in hot_post_list %}
+        <li>
+            <i class="fa-solid fa-fire"></i>
+            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+        </li>
+        {% empty %}
+        暂无文章！
+        {% endfor %}
+    </ul>
+</div>
+<div class="divider"></div>

@@ -2,24 +2,21 @@
 
 
 {% block main %}
-<style>
-	#contact-form .row .area {
-		padding: 0.3em 0.5em;
-	}
-</style>
-<h1 class="page-title" style="text-align:center;font-size:2rem;">联系站长</h1>
-
-<article class="post">
-	<div class="entry-content clearfix">
-		<form id="contact-form" action="{% url 'blog:contact' %}" method="POST" class="contact-form">
-			{% csrf_token %}
-			<div class="row col-md-8" style="margin: 0 auto;">
-				<input class="area" type="email" name="email" placeholder="Email" required>
-				<input class="area" type="text" name="subject" placeholder="Subject" required>
-				<textarea class="area" name="message" rows="7" placeholder="Your Message" required></textarea>
-				<button class="btn-primary"><span>发送</span></button>
-			</div>
-		</form>
-	</div>
-</article>
+<div class="p-4">
+	<div class="text-3xl pb-3">联系站长</div>
+	<article>
+		<div>
+			<form id="contactForm" action="{% url 'blog:contact' %}" method="POST">
+				{% csrf_token %}
+				<div>
+					<input type="email" placeholder="邮箱" class="input input-ghost w-full" name="email" required />
+					<input type="text" placeholder="主题" class="input input-ghost w-full" name="subject" required />
+					<textarea class="textarea w-full" rows="7" name="message" placeholder="你的网站太棒了呢(字数太少站长收不到哟～)"
+						required></textarea>
+					<button class="btn"><span>发送</span></button>
+				</div>
+			</form>
+		</div>
+	</article>
+</div>
 {% endblock main %}

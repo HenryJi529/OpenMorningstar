@@ -1,0 +1,57 @@
+$base-font-size: 10px;
+
+* {
+  font-size: $base-font-size;
+  font-family: monospace;
+}
+
+/* 一寸照片 */
+.photo {
+  width: 25mm;
+  height: 35mm;
+}
+
+/* 打印页面 */
+.print {
+  /* 页面尺寸  210mm×297mm */
+  width: 70.70707070707071vh;
+  // height: 100vh;
+
+  /* 居中打印 */
+  margin: 0 auto;
+
+  /* 保留边框 */
+  padding: 2rem 3rem;
+}
+
+.section {
+  margin: 0.3rem 0;
+  padding: 0.5rem;
+
+  .title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .items {
+    .item {
+      margin-bottom: 0.3rem;
+      padding: 0.2rem;
+      .name {
+        font-weight: bold;
+        font-size: 1.25rem;
+      }
+      .time {
+        float: right;
+        font-weight: bold;
+        color: gray;
+      }
+      .desc {
+        padding-left: 1rem;
+        .process {
+          padding-left: 1rem;
+        }
+      }
+    }
+  }
+}

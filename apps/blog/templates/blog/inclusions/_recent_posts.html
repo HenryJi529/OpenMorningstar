@@ -1,9 +1,10 @@
-<div class="widget widget-recent-posts">
-	<h3 class="widget-title">最新</h3>
-	<ul class="no-padding">
+<div class="widget p-2 relative">
+	<input class="widget-toggle hidden absolute w-full" type="checkbox" />
+	<div class="widget-title text-2xl">最新</div>
+	<ul class="widget-list">
 		{% for post in recent_post_list %}
 		<li>
-			<i class="icofont-page"></i>
+			<i class="fa-solid fa-file-word"></i>
 			<a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
 		</li>
 		{% empty %}
@@ -11,3 +12,4 @@
 		{% endfor %}
 	</ul>
 </div>
+<div class="divider"></div>

@@ -17,50 +17,82 @@
 
 {% block main %}
 {% if query %}
+
+
+
 {% for result in page.object_list %}
-<article class="post post-{{ result.object.pk }}">
-	<header class="entry-header">
-		<h1 class="entry-title">
-			<a href="{{ result.object.get_absolute_url }}">
-				{% highlight result.object.title with query html_tag "span" css_class "highlight_me_please"%}</a>
-		</h1>
-		<div class="entry-meta">
-			<span class="post-category">
-				<a href="{% url 'blog:category' result.object.category.pk %}">
-					{{ result.object.category.name }}</a></span>
-			<span class="post-date"><a href="#">
-					<time class="entry-date" datetime="{{ result.object.created }}">
-						{{ result.object.created }}</time></a></span>
-			<span class="comments-link">
-				<a href="{{ result.object.get_absolute_url }}#comment-area">
-					{{ result.object.comment_set.count }} 评论</a></span>
-			<span class="views-count"><a href="{{ result.object.get_absolute_url }}">{{ result.object.views }}
-					阅读</a></span>
+
+{% with post=result.object %}
+<article class="p-4 m-3">
+	<div class="flex flex-col items-center">
+		<a class="text-center text-2xl block" href="{{ post.get_absolute_url }}">
+			{% highlight post.title with query html_tag "span" css_class "highlight_me_please"%}
+		</a>
+		<div class="flex justify-center text-sm text-center space-x-2">
+			<span>
+				<i class="fa-solid fa-box-archive"></i>
+				<a href="{% url 'blog:category' post.category.pk %}">{{post.category.name}}</a>
+			</span>
+			<span>
+				<i class="fa-solid fa-comment"></i>
+				<a href="{{ post.get_absolute_url }}#comment-area">{{post.comment_set.count}}</a></span>
+			<span>
+				<i class="fa-solid fa-eye"></i>
+				<a href="{% url 'blog:detail' post.pk %}">{{post.views}}</a></span>
+			<span>
+				<i class="fa-solid fa-pen"></i>
+				<time>{{ post.updated|date:"Y-m-d" }}</time>
+			</span>
 		</div>
-	</header>
-	<div class="entry-content clearfix">
-		<p>{% highlight result.object.body with query html_tag "span" css_class "highlight_me_please" %}</p>
-		<!-- <p>{% highlight result.object.body with query %}</p> -->
-		<div class="read-more cl-effect-14">
-			<a href="{{ result.object.get_absolute_url }}" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
+	</div>
+	<div>
+		<p>{% highlight post.excerpt with query html_tag "span" css_class "highlight_me_please" %}</p>
+		<div class="flex justify-center">
+			<a href="{{ post.get_absolute_url }}" class="italic">继续阅读 <span>→</span></a>
 		</div>
 	</div>
 </article>
+{% endwith %}
+
 {% empty %}
-<div class="no-post">没有搜索到你想要的结果！</div>
+
+<div>没有搜索到你想要的结果！</div>
+
 {% endfor %}
 
-{% if page.has_previous or page.has_next %}
-<div class="text-center" style="margin-top: 30px">
-	{% if page.has_previous %}
-	<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous
-		{% if page.has_previous %}</a>{% endif %}
-	<span style="margin: 0 10px">|</span>
-	{% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next
-		&raquo;{% if page.has_next %}</a>{% endif %}
+
+{% with page_obj=page %}
+<div class="flex justify-between text-left">
+	<div class="flex-1 text-left text-lg">
+		{% if page_obj.has_previous %}
+		<a href="?q={{ query }}&amp;page={{ page_obj.previous_page_number }}">
+			<i class="fa-solid fa-angles-left"></i>上一页
+		</a>
+		{% else %}
+		<div class="invisible"></div>
+		{% endif %}
+	</div>
+
+	<a href="#" class="current font-bold flex-1 text-center text-lg">
+		{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+	</a>
+
+	<div class="flex-1 text-right text-lg">
+		{% if page_obj.has_next %}
+		<a href="?q={{ query }}&amp;page={{ page_obj.next_page_number }}">
+			下一页 <i class="fa-solid fa-angles-right"></i>
+		</a>
+		{% else %}
+		<div class="invisible"></div>
+		{% endif %}
+	</div>
 </div>
-{% endif %}
+{% endwith %}
+
+
 {% else %}
+
 请输入搜索关键词，例如 django
+
 {% endif %}
 {% endblock main %}

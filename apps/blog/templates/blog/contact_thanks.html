@@ -1,16 +1,42 @@
+{% load compress %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="zh-CN">
 
 <head>
 	<meta charset="UTF-8">
-	<meta http-equiv="refresh" content="5; url={% url 'blog:contact' %}">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>感谢联系</title>
+	<link rel="stylesheet" href="{% static 'blog/css/base.css' %}">
+	<title>Contact - 感谢联系</title>
 </head>
 
 <body>
-	感谢联系
+	<div class="container p-8 mt-8">
+		<div class="text-5xl text-center mb-8">
+			感谢联系
+		</div>
+		<div class="flex justify-center">
+			<div class="radial-progress text-3xl" style="--value:0;--size:12rem;" id="radialProgress">0%</div>
+		</div>
+	</div>
 </body>
+
+{% compress js %}
+<script src="{% static 'blog/js/toggleTheme.js' %}"></script>
+{% endcompress %}
+
+<script>
+	const radialProgress = document.querySelector('#radialProgress');
+	const progressInterval = setInterval(() => {
+		const currentValue = Number(radialProgress.style.getPropertyValue('--value'));
+		radialProgress.style.setProperty('--value', currentValue + 10);
+		radialProgress.innerText = `${currentValue + 10}%`;
+		if (currentValue === 90) {
+			clearInterval(progressInterval);
+			window.location.href = "{% url 'blog:contact' %}";
+		}
+	}, 500);
+</script>
 
 </html>

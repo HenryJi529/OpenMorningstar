@@ -1,0 +1,45 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load compress %}
+
+{% block title %}
+Dev - 访客信息
+{% endblock %}
+
+{% block custom_css %}
+{% endblock %}
+
+{% block content %}
+<div class="container min-h-screen p-4">
+    <div class="text-3xl">屏幕/浏览器尺寸:</div>
+    <ul>
+        <li>screen.height = <span id="screen-height"></span></li>
+        <li>screen.width = <span id="screen-width"></span></li>
+        <li>screen.availHeight * window.devicePixelRatio =
+            <span id="screen-availHeight-window-devicePixelRatio"></span>
+        </li>
+        <li>screen.availWidth * window.devicePixelRatio =
+            <span id="screen-availWidth-window-devicePixelRatio"></span>
+        </li>
+        <li>window.outerHeight = <span id="window-outerHeight"></span></li>
+        <li>window.outerWidth = <span id="window-outerWidth"></span></li>
+        <li>window.innerHeight = <span id="window-innerHeight"></span></li>
+        <li>window.innerWidth = <span id="window-innerWidth"></span></li>
+    </ul>
+</div>
+
+{% endblock %}
+
+
+{% block custom_js %}
+<script>
+    document.querySelector('#screen-height').textContent = screen.height;
+    document.querySelector('#screen-width').textContent = screen.width;
+    document.querySelector('#screen-availHeight-window-devicePixelRatio').textContent = screen.availHeight * window.devicePixelRatio;
+    document.querySelector('#screen-availWidth-window-devicePixelRatio').textContent = screen.availWidth * window.devicePixelRatio;
+    document.querySelector('#window-outerHeight').textContent = window.outerHeight;
+    document.querySelector('#window-outerWidth').textContent = window.outerWidth;
+    document.querySelector('#window-innerHeight').textContent = window.innerHeight;
+    document.querySelector('#window-innerWidth').textContent = window.innerWidth;
+</script>
+{% endblock custom_js %}

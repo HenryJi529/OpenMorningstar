@@ -39,4 +39,5 @@ class AllPostsRssFeed(Feed):
 
     # 聚合器中显示的内容条目的描述
     def item_description(self, item):
-        return item.body_html
+        return item.html
+        # return item.excerpt

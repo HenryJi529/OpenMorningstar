@@ -16,7 +16,8 @@ DATABASES = {
 """邮件"""
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-
+"""缓存"""
+CACHE_TIMEOUT = 5
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
@@ -31,15 +32,18 @@ CACHES = {
     }
 }
 
-# 采用本地的静态文件
+""" 采用本地的静态文件"""
 STATIC_URL = "/static/"
 
-# RECAPTCHA-V2
+""" RECAPTCHA-V2"""
 RECAPTCHA_DOMAIN = 'www.recaptcha.net'
 RECAPTCHA_PUBLIC_KEY = '6Le20wwdAAAAAKjy3eAJ8BPLN59KDRrRBeslsqpw'
 RECAPTCHA_PRIVATE_KEY = '6Le20wwdAAAAAIyF33a5fiD-PJ7uioonJQ9ycilI'
 
-# 添加测试环境的配置
+"""压缩css/js"""
+COMPRESS_ENABLED = False
+
+""" 添加测试环境的配置 """
 try:
     from .test import *
 except:

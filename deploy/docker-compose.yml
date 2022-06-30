@@ -1,17 +1,18 @@
-# 空闲端口: 6003、6005、6006
-# 占用端口: 6379、3307、7777、5299、20、21、21100-21110、80、443、6000、6001、6002、6004、6007、6008、6009、6010
+# 空闲端口: 6002、6005、6006
+# 占用端口: 6379、3307、7777、5299、20、21、21100-21110、80、443、6000、6001、6002、6003、6004、6007、6008、6009、6010
 version: "3.6"
 volumes:
   morningstar_django_static: null
   morningstar_django_media: null
   morningstar_nginx_data: null
   morningstar_db1_data: null
+  morningstar_db2_data: null
+  morningstar_matomo_data: null
   morningstar_beancount_data: null
   morningstar_tshock_data: null
   morningstar_frps_data: null
   morningstar_ftp_data: null
   morningstar_ftp_log: null
-  morningstar_dockerhub_data: null
   morningstar_gitea_data: null
   morningstar_portainer_data: null
   morningstar_send_data: null
@@ -68,6 +69,35 @@ services:
       - morningstar_db1_data:/var/lib/mysql
     ports:
       - 3307:3306
+
+  matomo:
+    image: matomo
+    container_name: morningstar_matomo
+    restart: always
+    ports:
+      - 6003:80
+    environment:
+      - MATOMO_DATABASE_HOST=db2
+      - MATOMO_DATABASE_TABLES_PREFIX=mat_
+      - MATOMO_DATABASE_USERNAME=matomo
+      - MATOMO_DATABASE_PASSWORD=matomo
+      - MATOMO_DATABASE_DBNAME=matomo
+    volumes:
+      - morningstar_matomo_data:/var/www/html
+    links:
+      - db2:db2
+
+  db2:
+    image: yobasystems/alpine-mariadb:latest
+    container_name: morningstar_db2
+    restart: always
+    environment:
+      MYSQL_DATABASE: matomo
+      MYSQL_USER: matomo
+      MYSQL_PASSWORD: matomo
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - morningstar_db2_data:/var/lib/mysql
 
   tshock:
     build:
@@ -144,17 +174,6 @@ services:
       - morningstar_beancount_data:/root/beancount
     ports:
       - "6001:5000"
-
-  dockerhub:
-    image: docker.io/registry
-    container_name: morningstar_dockerhub
-    working_dir: /root
-    tty: true
-    restart: unless-stopped
-    volumes:
-      - morningstar_dockerhub_data:/var/lib/registry
-    ports:
-      - "6002:5000"
 
   gitea:
     image: gitea/gitea:latest

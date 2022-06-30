@@ -3,13 +3,19 @@ branch = True
 source = . 
 data_file = scripts/coverage/.coverage
 omit =
+	manage.py
 	Morningstar/asgi.py
 	Morningstar/wsgi.py
-	manage.py
+	Morningstar/cron.py
+	Morningstar/settings/production.py
+	Morningstar/whoosh_cn_backend.py
+	Morningstar/middleware/maintenance.py
+	Morningstar/settings/common.py
+	Morningstar/lib/tencentsms/*
 
 [report]
 show_missing = True
 skip_covered = True
 
 [html]
-directory = _vercel/_coverage
+directory = vercel/_coverage

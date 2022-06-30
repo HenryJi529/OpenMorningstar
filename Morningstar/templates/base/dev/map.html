@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load compress %}
+
+{% block title %}
+Dev - 地图工具
+{% endblock %}
+
+{% block custom_css %}
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+{% endblock %}
+
+{% block content %}
+<div class="container min-h-screen mb-16">
+    <div id='map' class="w-full h-screen"></div>
+</div>
+{% endblock %}
+
+
+{% block custom_js %}
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiaGVucnlqaTUyOSIsImEiOiJja3o5NzNqb2YxcnNwMm9wMXc3MXB2bXZ0In0.QIUMMheHBgqlOwX29qJuGg';
+    const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [118.7815, 31.915],
+        zoom: 15
+    });
+</script>
+{% endblock custom_js %}

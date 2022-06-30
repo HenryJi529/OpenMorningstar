@@ -1,0 +1,14 @@
+<div class="widget p-2 relative">
+    <input class="widget-toggle hidden absolute w-full" type="checkbox" />
+    <div class="widget-title text-2xl">其他</div>
+    <ul class="widget-list">
+        <li>
+            <i class="fa-solid fa-square-rss"></i>
+            <a href="{% url 'blog:feed' %}" target="_blank">博客订阅</a>
+        </li>
+        <li>
+            <i class="fa-solid fa-sitemap"></i>
+            <a href="{% url 'sitemap' %}" target="_blank">站点地图</a>
+        </li>
+    </ul>
+</div>

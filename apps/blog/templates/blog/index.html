@@ -2,72 +2,77 @@
 
 {% block main %}
 {% for post in post_list %}
-<article class="post post-{{ post.pk }}">
-    <div class="entry-header">
-        <a class="entry-title index-title" href="{{ post.get_absolute_url }}">
+<article class="p-4 m-3">
+    <div class="flex flex-col items-center">
+        <a class="text-center text-2xl block" href="{{ post.get_absolute_url }}">
             {{ post.title }}
         </a>
-        <div class="entry-meta">
-            <span class="post-category">类别:<a href="{% url 'blog:category' post.category.pk %}"
-                    style="font-weight:bold">{{post.category.name}}</a>;
+        <div class="flex justify-center text-sm text-center space-x-2">
+            <span>
+                <i class="fa-solid fa-box-archive"></i>
+                <a href="{% url 'blog:category' post.category.pk %}">{{ post.category.name }}</a>
             </span>
-            <span class="comments-link">
-                评论:<a href="{{ post.get_absolute_url }}#comment-area"
-                    style="font-weight:bold">{{post.comment_set.count}}</a>;</span>
-            <span class="views-count">
-                阅读: <a href="{% url 'blog:detail' post.pk %}" style="font-weight:bold">{{post.views}}</a>;</span>
-            <span class="post-date">更新:
-                <time class="entry-date" style="font-weight:bold">{{post.updated}}</time>
+            {% if post.tags.all %}
+            <span>
+                <i class="fa-solid fa-tag"></i>
+                {% for tag in post.tags.all %}
+                <a href="{% url 'blog:tag' tag.pk %}">{{ tag.name }}</a>
+                {% if not forloop.last %}
+                <span>|</span>
+                {% endif %}
+                {% endfor %}
+            </span>
+            {% endif %}
+            <span>
+                <i class="fa-solid fa-comment"></i>
+                <a href="{{ post.get_absolute_url }}#comment-area">{{ post.comment_set.count }}</a>
+            </span>
+            <span>
+                <i class="fa-solid fa-eye"></i>
+                <a href="{% url 'blog:detail' post.pk %}">{{ post.views }}</a></span>
+            <span>
+                <i class="fa-solid fa-pen"></i>
+                <time>{{ post.updated|date:"Y-m-d" }}</time>
+            </span>
+            <span>
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <time>{{ post.readtime }}min</time>
             </span>
         </div>
     </div>
     <div>
         <p>{{ post.excerpt }}...</p>
-        <div style="text-align:center">
-            <a href="{{ post.get_absolute_url }}" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
+        <div class="flex justify-center">
+            <a href="{{ post.get_absolute_url }}" class="italic">继续阅读 <span>→</span></a>
         </div>
-
     </div>
 </article>
-<hr>
 {% empty %}
-<div class="no-post">暂时还没有发布的文章！</div>
+<div>暂时还没有发布的文章！</div>
 {% endfor %}
 
 {% if is_paginated %}
-<div class="text-center pagination" style="width: 100%">
-    <ul>
+<div class="flex justify-between text-left">
+    <div class="flex-1 text-left text-lg">
         {% if page_obj.has_previous %}
-        <li><a href="?{{ page_obj.previous_page_number.querystring }}" class="prev">&lsaquo;&lsaquo; </a></li>
+        <a href="?page={{ page_obj.previous_page_number }}"><i class="fa-solid fa-angles-left"></i> 上一页</a>
         {% else %}
-        <li><span class="disabled prev">&lsaquo;&lsaquo; </span></li>
+        <div class="invisible"></div>
         {% endif %}
+    </div>
 
-        {% for num in page_obj.paginator.page_range %}
+    <a href="#" class="current font-bold flex-1 text-center text-lg">
+        {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+    </a>
 
-        {% if num %}
-        {% if num == page_obj.number %}
-        <li class="current"><a href="#">{{ num }}</a></li>
-        {% else %}
-        <li><a href="?page={{ num }}" class="page">{{ num }}</a></li>
-        {% endif %}
-
-        {% else %}
-        ...
-        {% endif %}
-
-        {% endfor %}
-
+    <div class="flex-1 text-right text-lg">
         {% if page_obj.has_next %}
-        <li><a href="?{{ page_obj.next_page_number.querystring }}" class="next"> &rsaquo;&rsaquo;</a>
-        </li>
+        <a href="?page={{ page_obj.next_page_number }}">下一页 <i class="fa-solid fa-angles-right"></i></a>
         {% else %}
-        <li><span class="disabled next"> &rsaquo;&rsaquo;</span></li>
+        <div class="invisible"></div>
         {% endif %}
-
-    </ul>
+    </div>
 </div>
 {% endif %}
-
 
 {% endblock main %}
