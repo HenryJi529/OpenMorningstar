@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=400, user-scalable=0">
+	<title>toTheMax</title>
+	<link rel="shortcut icon" href="{% static 'lover/img/favicon.ico' %}" type="image/x-icon">
+	<link rel="stylesheet" href="{% static 'lover/css/index.css' %}">
+</head>
+
+<body>
+	<div class="container">
+		<div class="prompt">
+			loading...
+		</div>
+	</div>
+	<footer>
+		谨以此页献给我的爱人范巧玲～
+	</footer>
+</body>
+<script src="{% static 'lover/js/app.js' %}"></script>
+<script data-href="https://github.com/HenryJi529/OpenMorningstar" src="{% static 'base/js/github.js' %}"></script>
+
+<!-- 初始化 -->
+<script>
+	const isMobile = /Android|iPhone/i.test(navigator.userAgent) ? true : false;
+	const api = "{% url 'lover:api' %}" + `?isMobile=${isMobile}`;
+	let trigger = isMobile ? "touchenter" : "mousemove";
+	let fills;
+	let maxLevel = 7;
+	let svg;
+
+	fetch(api,
+		{
+			"method": "GET",
+		}
+	).then(res => res.json()).
+		then(data => {
+			// 暂存数据
+			fills = data["fills"].map(x => transformColorHex2Dec(x));
+
+			// 初始化面板
+			const container = document.querySelector(".container");
+			const promptElement = document.querySelector(".prompt");
+			container.removeChild(promptElement);
+
+			// 创建svg图形
+			svg = document.createElementNS("http://www.w3.org/2000/svg", 'svg')
+			svg.setAttribute("width", 2 ** maxLevel * 3)
+			svg.setAttribute("height", 2 ** maxLevel * 4)
+			container.appendChild(svg)
+
+			// 创建touchEnter事件
+			let touchEnterEvent = new Event("touchenter");
+			const elementContains = (parent, child) => parent !== child && parent.contains(child);
+			document.dispatchEvent(touchEnterEvent);
+			document.addEventListener("touchmove", (e) => {
+				let el = document.elementFromPoint(e.touches[0].clientX, e.touches[0].clientY);
+				if (!el) {
+					return;
+				} else {
+					if (elementContains(svg, el)) {
+						el.dispatchEvent(touchEnterEvent);
+					};
+				}
+			}
+			)
+
+			// 创建基础椭圆
+			let initialCx = 2 ** maxLevel * 3 / 2;
+			let initialCy = 2 ** maxLevel * 4 / 2;
+			let initialLevel = maxLevel;
+			let initialFill = getCurrentFill(initialCx, initialCy, initialLevel);
+			let initialRx = getCurrentRx(initialLevel);
+			let initialRy = getCurrentRy(initialLevel);
+			let initialEllipse = createEllipse(initialCx, initialCy, initialRx, initialRy, initialFill, initialLevel);
+
+			// 自动完成功能
+			const autoCheck = setInterval(() => {
+				console.log(`已完成数量: ${svg.childNodes.length}`);
+				if (svg.childNodes.length >= 1500) {
+					clearInterval(autoCheck);
+					autoFinish();
+				}
+			}, 1000);
+		})
+</script>
+
+
+</html>

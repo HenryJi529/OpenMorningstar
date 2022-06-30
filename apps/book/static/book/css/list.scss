@@ -1,0 +1,59 @@
+ul.category {
+	padding-left: 2em;
+
+	li {
+		margin-bottom: 0.5rem;
+	}
+}
+
+ol {
+	padding-left: 2em;
+}
+
+.portainer {
+	width: 60%;
+	margin: 0 auto;
+}
+
+header {
+	padding-top: 1rem;
+	text-align: center;
+}
+
+.title {
+	font-size: 2rem;
+	text-align: center;
+	display: inline-block;
+	font-weight: bold;
+	flex: 10;
+
+	#searchButton {
+		font-size: 2rem;
+		padding: 0 5px;
+		border: 1px solid #f7f7f7;
+		border-radius: 10px;
+	}
+}
+
+p.category-name {
+	margin-top: 1rem;
+	font-size: 1.5rem;
+	text-indent: 1em;
+
+	span {
+		font-weight: bold;
+		font-size: inherit;
+	}
+
+	ul.category {
+		margin-bottom: 1rem;
+	}
+
+	input[type="button"] {
+		border: none;
+		font-size: 1em;
+		border-radius: 2px;
+		padding-left: 0.2em;
+		padding-right: 0.2em;
+	}
+}

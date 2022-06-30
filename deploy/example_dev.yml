@@ -1,0 +1,21 @@
+version: "3"
+
+volumes:
+  dev_dir:
+
+services:
+  ubuntu_dev:
+    build:
+      context: .
+      dockerfile: dev/Dockerfile
+    image: henry529/dev:latest
+    container_name: dev
+    user: ubuntu
+    working_dir: /home/ubuntu/dev
+    volumes:
+      - dev_dir:/home/ubuntu/dev
+    hostname: ubuntu-dev
+    privileged: true
+    tty: true
+    restart: unless-stopped
+    network_mode: "host"

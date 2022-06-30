@@ -1,0 +1,35 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+
+body {
+	display: flex;
+	height: 100vh;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+}
+
+footer {
+	font-size: 20px;
+	position: fixed;
+	bottom: 10px;
+	color: pink;
+}
+
+
+.container {
+	// background-color: antiquewhite;
+
+	.prompt {
+		font-size: 5em;
+		text-align: center;
+		font-weight: bold;
+		text-align: center;
+		padding: 30px;
+		border-radius: 20px;
+		border: 10px rgb(209, 75, 75) double;
+	}
+}

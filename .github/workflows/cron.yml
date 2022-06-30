@@ -1,0 +1,36 @@
+name: Cron Task
+on:
+  schedule:
+    - cron: "0 9 * * 6"
+jobs:
+  upgrade:
+    name: upgrade
+    runs-on: ubuntu-latest
+    steps:
+      - name: upgrade system with ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: 35.220.252.85
+          username: ${{ secrets.GCLOUD_USERNAME }}
+          password: ${{ secrets.GCLOUD_PASSWORD }}
+          port: 22
+          script: |
+            env
+            sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get autoremove
+            sudo snap refresh
+  test-speed:
+    name: test github accelerator
+    runs-on: ubuntu-latest
+    steps:
+      - name: ping jsdelivr
+        uses: appleboy/ssh-action@master
+        with:
+          host: 35.220.252.85
+          username: ${{ secrets.GCLOUD_USERNAME }}
+          password: ${{ secrets.GCLOUD_PASSWORD }}
+          port: 22
+          script: |
+            ping -c 20 cdn.jsdelivr.net
+      - name: clone repo with fastgit
+        run: |
+          git clone https://hub.fastgit.xyz/HenryJi529/OpenMorningstar.git

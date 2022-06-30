@@ -1,0 +1,47 @@
+# OS
+.DS_Store
+
+# IDE
+.idea/
+.VSCodeCounter/
+
+# C
+*.exe
+
+# Python
+env/
+__pycache__/
+
+# Sass
+*.css.map
+
+# Coverage
+.coverage
+
+# node
+node_modules/
+
+# Django
+/Morningstar/settings/test.py
+/database/
+/whoosh_index/
+*.log
+
+# secret
+.env
+secret.sh
+gcloud_instances.txt
+
+# release
+release/
+
+# media
+# NOTE: /media/*/*
+/media/avatar/*
+!/media/avatar/default.svg
+/media/photo/*
+!/media/photo/default.jpeg
+
+# others
+.vercel/
+TEMP/

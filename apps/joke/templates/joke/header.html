@@ -1,0 +1,57 @@
+<!-- 导航栏 -->
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+	<div class="container">
+		<!-- 标志 -->
+		<a class="navbar-brand" href="#" data-bs-toggle="modal" data-bs-target="#login">
+			<h2 style="line-height:2.5rem; height:2.5rem;">
+				神兔笑话
+			</h2>
+		</a>
+		<!-- 上传+号 -->
+		{% if user.is_superuser %}
+		<ul class="navbar-nav">
+			<li class="nav-item">
+				<h2>
+					<a id="addButton" class="nav-link active" href="#" data-bs-toggle="modal" data-bs-target="#upload">
+						+
+					</a>
+				</h2>
+			</li>
+		</ul>
+		{% endif %}
+	</div>
+</nav>
+
+{% if user.is_superuser %}
+<!-- 上传模态窗 -->
+<div class="modal fade" id="upload">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h5 class="modal-title">上传图片</h5>
+				<form action="{% url 'joke:upload' %}" method="POST" enctype="multipart/form-data">
+					{% csrf_token %}
+					<div class="col py-2">
+						<label for="images" style="font-weight: bold;">本地图片:</label><br>
+						<input class="form-control" type="file" id="images" name="images" multiple="multiple"
+							accept="image/*">
+						<label for="foreignUrl" style="font-weight: bold;">在线图片:</label><br>
+						<input type="text" id="foreignUrl" name="foreignUrl" style="width: 100%"
+							placeholder="e.g. jsDelivr, 七牛云">
+					</div>
+					<button type="submit" class="btn btn-primary">提交</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endif %}
+
+
+<style>
+	@media screen and (max-width:800px) {
+		#addButton {
+			width: 5rem;
+		}
+	}
+</style>

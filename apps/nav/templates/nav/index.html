@@ -1,0 +1,119 @@
+{% load static %}
+{% load nav_extras %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="refresh" content="1800;/">
+	<title>Nav - 晨星导航</title>
+	<link rel="shortcut icon" href="{% static 'nav/img/favicon.ico' %}" />
+	<!--https://icons.getbootstrap.com/-->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+	<!--https://fontawesome.com/v6/icons?m=free-->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+	<!-- <script src="https://kit.fontawesome.com/50c2c253e1.js" crossorigin="anonymous"></script> -->
+	<link rel="stylesheet" href="{% static 'nav/css/style.css' %}">
+	<script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@latest/pace-theme-default.min.css">
+</head>
+
+<body>
+	<div id="container">
+		<div id="headBar">
+			<div class="title">
+				晨星导航
+			</div>
+			<nav class="nav">
+				{% for category in categories %}
+				<a href="#{{ category.slug }}"><span class="{{ category.icon }}"></span></a>
+				{% endfor %}
+				<a href="{% url 'blog:contact' %}" target="_blank" class="email">
+					<span class="fa-solid fa-at"> </span></a>
+			</nav>
+		</div>
+
+		<div id="leftBar">
+			<div class="title">
+				晨星导航
+			</div>
+			<nav class="nav">
+				<ul class="nav-item" id="navItem">
+					{% for category in categories %}
+					<li>
+						<a href="#{{ category.slug }}">
+							<span class="{{ category.icon }}" style="font-weight: bold;"> {{ category.name }}</span></a>
+					</li>
+					{% endfor %}
+				</ul>
+			</nav>
+			<div class="command">
+				{% if request.user.is_authenticated %}
+				<div class="username">
+					<span style="font-weight: bold;">UserName: </span>
+					<span style="font-weight: bold;color:rgb(160, 233, 233);">{{request.user.username}}</span>
+				</div>
+				{% endif %}
+
+				<a href="{% url 'blog:contact' %}" target="_blank" class="email">
+					<span class="fa-solid fa-at"> 留言</span></a>
+				{% if request.user.is_authenticated %}
+				<a href="/" class="switch"><span class="bi bi-house-fill"> 主页</span></a>
+				{% else %}
+				<a href="/?next=/nav/" class="login" target="_blank"><span class="fa-solid fa-right-to-bracket">
+						登录</span></a>
+				{% endif %}
+			</div>
+		</div>
+
+		<div id="main">
+			{% for category in categories %}
+			<section class="box">
+				<a href="#" id="{{ category.slug }}"></a>
+				<div class="category">
+					<span class="{{category.icon}}" style="font-weight: bold;"> {{category.name}}</span>
+				</div>
+				<div class="item-list" style="display: grid;">
+					{% for item in category.items %}
+					{% if item.display == "hide" %}
+					{% else %}
+					<a class="item" target="_blank" href="{{item.url}}">
+						<div class="{% if item.image %} logo {% else %} no-logo {% endif %}">
+							{% if item.image %}
+							{% if item.image|slice:"0:4" == "http" %}
+							<img src="{{ item.image }}" alt="{{item.name}}的图片">
+							{% else %}
+							<img src="/media{{ item.image }}" alt="{{item.name}}的图片">
+							{% endif %}
+							{% endif %}
+							<div class="item-name"><abbr title="{{item.pk}}"
+									style="text-decoration:none">{{item.name}}</abbr></div>
+							<div class="edits">
+								<span class="delete"><i class="delete-icon fa-solid fa-circle-minus"></i></span>
+								<span class="add"><i class="add-icon fa-solid fa-circle-plus"></i></span>
+							</div>
+						</div>
+						{% if item.desc %}
+						<div class="desc">{{item.desc}}</div>
+						{% endif %}
+					</a>
+					{% endif %}
+					{% endfor %}
+				</div>
+			</section>
+			{% endfor %}
+
+			<footer>
+				<div class="copyright">
+					<span style="font-family: 'Lora';">Copyright © 2020 - 3020</span>
+					<a href="{% url 'nav:me'%}"><span style="font-family: 'Pacifico';">Henry Ji</span></a>
+				</div>
+			</footer>
+		</div>
+	</div>
+</body>
+<script src="{% static 'nav/js/app.js' %}"></script>
+<script data-href="https://github.com/HenryJi529/OpenMorningstar" src="{% static 'base/js/github.js'%}"></script>
+
+</html>

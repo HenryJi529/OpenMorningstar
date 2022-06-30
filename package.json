@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "live-server": "^1.2.1",
+    "vercel": "^24.0.1"
+  }
+}

@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="icon" href="{% static 'registry/img/favicon.ico' %}">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dockerhub</title>
+	<style>
+		* {
+			font-family: monospace;
+		}
+	</style>
+</head>
+
+<body>
+	<div>
+		域名：{{ data.domain }}
+	</div>
+	{% for repo in data.repos %}
+	<div>
+		{{repo.name}}: [ <br>
+		{% for tag in repo.tags %}
+		&nbsp; {{tag}}, <br>
+		{% endfor %}
+		]
+	</div>
+	{% endfor %}
+</body>
+
+</html>

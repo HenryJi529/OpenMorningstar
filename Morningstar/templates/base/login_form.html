@@ -1,0 +1,40 @@
+<form id="login_form" action="/" method="post" autocomplete="on">
+	{% csrf_token %}
+	{% for field in login_form %}
+	<div class="mb-2">
+		<div style="float:right;color:coral" id="{{ field.name }}_check"></div>
+		<label for="{{ field.id_for_label }}">{{ field.label }}：</label>
+		{% if field.name == 'image_captcha' %}
+		<div id="id_image_captcha_box" class="d-flex justify-content-between overflow-hidden">
+			<div style="width: 60%">
+				{{ field }}
+			</div>
+			<div>
+				<img src="{% url 'get_image_captcha' %}" alt="图片验证码" title="点击刷新,60s有效" id="image_code">
+			</div>
+		</div>
+		{% else %}
+		{{ field }}
+		{% endif %}
+	</div>
+	{% endfor %}
+	<div class="cmd mb-3">
+		<input type="reset" value="重置" class="btn btn-warning">
+		<div></div>
+		<div></div>
+		<input name="next" value="{{request.GET.next}}" hidden></input>
+		<div></div>
+		<div></div>
+		<input type="submit" value="登录" class="btn btn-primary">
+	</div>
+	<p class="mb-1 text-center">
+		<input type="button" value="忘记密码" id="change_password_button" class="btn btn-sm btn-light">
+		<input type="button" value="点此注册" id="register_button" class="btn btn-sm btn-secondary">
+	</p>
+</form>
+
+<script>
+	const changePasswordUrl = "{% url 'change_password' %}";
+</script>
+
+<script src="{% static 'base/js/login.js' %}"></script>

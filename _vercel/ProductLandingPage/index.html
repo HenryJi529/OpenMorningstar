@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Product Landing Page</title>
+	<link rel="icon" href="favicon.ico">
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<div id="page-wrapper">
+		<header id="header">
+			<div class="logo">
+				<img id="header-img"
+					src="https://cdn.freecodecamp.org/testable-projects-fcc/images/product-landing-page-logo.png"
+					alt="original trombones logo" />
+			</div>
+
+			<nav id="nav-bar">
+				<ul>
+					<li><a class="nav-link" href="#features">特征</a></li>
+					<li><a class="nav-link" href="#how-it-works">使用说明</a></li>
+					<li><a class="nav-link" href="#pricing">价格</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<section id="hero">
+			<h2>手工制作，自制杰作</h2>
+			<form id="form" action="https://www.freecodecamp.com/email-submit">
+				<input name="email" id="email" type="email" placeholder="Enter your email address" required />
+				<input id="submit" type="submit" value="Get Started" class="btn" />
+			</form>
+		</section>
+
+		<div class="container">
+			<section id="features">
+				<div class="grid">
+					<div class="icon"><i class="fa fa-3x fa-fire"></i></div>
+					<div class="desc">
+						<h2>优质材料</h2>
+						<p>
+							我们的长号使用当地采购的最闪亮的黄铜。 这将增加产品的寿命。
+						</p>
+					</div>
+				</div>
+				<div class="grid">
+					<div class="icon"><i class="fa fa-3x fa-truck"></i></div>
+					<div class="desc">
+						<h2>快速送货</h2>
+						<p>
+							我们确保您在制作完成后立即收到您的长号。 如果您不满意，我们还提供免费退货。
+						</p>
+					</div>
+				</div>
+				<div class="grid">
+					<div class="icon">
+						<i class="fa fa-3x fa-battery-full" aria-hidden="true"></i>
+					</div>
+					<div class="desc">
+						<h2>品质保证</h2>
+						<p>
+							对于每次购买，我们都将确保没有损坏或故障，我们将检查和测试您乐器的音高。
+						</p>
+					</div>
+				</div>
+			</section>
+			<section id="how-it-works">
+				<iframe id="video" height="315"
+					src="https://www.youtube-nocookie.com/embed/y8Yv4pnO7qc?rel=0&amp;controls=0&amp;showinfo=0"
+					frameborder="0" allowfullscreen></iframe>
+			</section>
+			<section id="pricing">
+				<div class="product" id="tenor">
+					<div class="level">次中音长号</div>
+					<h2>$600</h2>
+					<ol>
+						<li>Lorem ipsum.</li>
+						<li>Lorem ipsum.</li>
+						<li>Lorem ipsum dolor.</li>
+						<li>Lorem ipsum.</li>
+					</ol>
+					<button class="btn">选择</button>
+				</div>
+				<div class="product" id="bass">
+					<div class="level">低音长号</div>
+					<h2>$900</h2>
+					<ol>
+						<li>Lorem ipsum.</li>
+						<li>Lorem ipsum.</li>
+						<li>Lorem ipsum dolor.</li>
+						<li>Lorem ipsum.</li>
+					</ol>
+					<button class="btn">选择</button>
+				</div>
+				<div class="product" id="valve">
+					<div class="level">电子管长号</div>
+					<h2>$1200</h2>
+					<ol>
+						<li>类似于小号的演奏</li>
+						<li>非常适合爵士乐队</li>
+						<li>Lorem ipsum dolor.</li>
+						<li>Lorem ipsum.</li>
+					</ol>
+					<button class="btn">选择</button>
+				</div>
+			</section>
+			<footer>
+				<ul>
+					<li><a href="#">Privacy</a></li>
+					<li><a href="#">Terms</a></li>
+					<li><a href="#">Contact</a></li>
+				</ul>
+				<span>Copyright 2016, Original Trombones</span>
+			</footer>
+		</div>
+	</div>
+
+</body>
+
+</html>

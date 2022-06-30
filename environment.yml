@@ -1,0 +1,53 @@
+# updated: 2022.6.30
+qcloudsms-py: 0.1.4  # 已停止维护, 需适配py3.9 https://github.com/qcloudsms/qcloudsms_py
+django-jazzmin: 2.5.0  # 需要手动更新 https://github.com/farridav/django-jazzmin
+django-crontab: 0.7.1  # 已停止维护 https://github.com/kraiz/django-crontab
+#----------------------------
+beautifulsoup4: 4.11.1  # 处理HTML
+colorama: 0.4.5  # 彩色print
+coverage: 6.4.1  # 计算覆盖率
+Django: 4.0.5  # 基础框架
+djangorestframework: 3.13.1  # restful框架
+django-cors-headers: 3.13.0  # 跨域访问之headers
+django-cors-middleware: 1.5.0  # 跨域访问之middleware
+django-debug-toolbar: 3.5.0  # 调试工具
+django-filter: 22.1  # 筛选字段
+django-haystack: 3.2.1  # 全局搜索
+django-import-export: 2.8.0  # 数据导入导出
+django-pure-pagination: 0.3.0  # 分页
+django-recaptcha: 3.0.0  # Google Recaptcha验证 
+django-redis: 5.2.0  # django的全局redis
+django-user-agents: 0.4.0  # 用户代理处理
+fabric: 2.7.0  # 自动化管理项目
+Faker: 13.14.0  # 测试数据生成
+fake-useragent: 0.1.11  # 用户代理模拟
+gunicorn: 20.1.0  # 动态web服务器
+ipython: 8.4.0  # 交互式python
+jieba: 0.42.1  # 中文分词
+jupyter: 1.0.0  # 交互式笔记
+lanzou-api: 2.6.7.1  # 蓝奏云API
+lxml: 4.9.0  # 用作bs4的解析器
+matplotlib: 3.5.2  # 绘图库
+Markdown: 3.3.7  # markdown支持
+mysqlclient: 2.1.1  # mysql的pythonAPI
+mysql-connector-python: 8.0.29  # mysql API
+mysql-to-sqlite3: 1.4.13  # mysql -> sqlite3 
+numpy: 1.23.0  # 矩阵计算
+pandas: 1.4.3  # 数据处理
+Pillow: 9.1.1  # 图像处理
+pipdeptree: 2.2.1  # 获取python依赖关系
+pydub: 0.25.1  # 音频处理库
+python-dotenv: 0.20.0  # 环境变量获取
+qiniu: 7.8.0  # 七牛云SDK
+qrcode: 7.3.1  # 二维码
+redis: 4.3.4  # redisAPI
+requests: 2.28.1  # web请求
+scipy: 1.8.1  # 科学计算
+selenium: 4.3.0  # 自动化测试
+sh: 1.14.2  # 执行shell命令
+SpeechRecognition: 3.8.1  # 语音识别
+sqlite3-to-mysql: 1.4.15  # sqlite迁移到mysql
+webdriver-manager: 3.7.1  # 浏览器驱动管理
+Whoosh: 2.7.4  # 站内搜索
+xlrd: 2.0.1  # NOTE: 被django-import-export所依赖
+xlwt: 1.3.0  # NOTE: 被django-import-export所依赖

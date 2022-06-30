@@ -1,0 +1,25 @@
+<form id="register_form" action="/" method="post" autocomplete="on" class="d-none">
+	{% csrf_token %}
+	{% for field in register_form %}
+	<div class="mb-2">
+		<div style="float:right;color:coral" id="{{ field.name }}_check"></div>
+		<label for="{{ field.id_for_label }}">{{ field.label }}: </label>
+		{{ field }}
+	</div>
+	{% endfor %}
+	<div class="cmd mb-3">
+		<input type="reset" value="重置" class="btn btn-warning">
+		<div></div>
+		<div></div>
+		<input name="next" id="next" value="{{request.GET.next}}" hidden></input>
+		<div></div>
+		<div></div>
+		<input type="button" value="注册" class="btn btn-primary" id="submit_button">
+	</div>
+	<p class="mb-2 text-center">
+		<input type="button" value="联系客服" id="contact_button" class="btn btn-sm btn-light">
+		<input type="button" value="点此登录" id="login_button" class="btn btn-sm btn-secondary">
+	</p>
+</form>
+
+<script src="{% static 'base/js/register.js' %}"></script>

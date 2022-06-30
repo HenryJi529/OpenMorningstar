@@ -1,0 +1,216 @@
+{
+	"appName": "book",
+	"categories": [
+		{
+			"name": "技艺",
+			"books": [
+				{
+					"name": "现代JavaScript教程.zip",
+					"author": "LeviDing",
+					"url": "https://henry529.lanzoub.com/ieaFq06xiepc",
+					"url_backup": "https://zh.javascript.info/download/1p4wct1/tutorial.zip"
+				},
+				{
+					"name": "写给大家看的设计书(第3版).epub",
+					"author": "罗宾·威廉姆斯",
+					"url": "https://henry529.lanzoub.com/ivYQf042wg5a"
+				}
+			]
+		},
+		{
+			"name": "杂文",
+			"books": [
+				{
+					"name": "沉默的大多数.epub",
+					"author": "王小波",
+					"url": "https://henry529.lanzoub.com/iNGaz042wuti"
+				},
+				{
+					"name": "胡适演讲集.epub",
+					"author": "胡适",
+					"url": "https://henry529.lanzoub.com/i9ZQE042wv9e"
+				},
+				{
+					"name": "一只特立独行的猪.epub",
+					"author": "王小波",
+					"url": "https://henry529.lanzoub.com/ij5MRznyaeb"
+				},
+				{
+					"name": "王朔文集.epub",
+					"author": "王朔",
+					"url": "https://henry529.lanzoub.com/iPGZD042wwef"
+				},
+				{
+					"name": "容忍与自由.epub",
+					"author": "胡适",
+					"url": "https://henry529.lanzoub.com/iMAx5042x1ri"
+				},
+				{
+					"name": "思维的乐趣.epub",
+					"author": "王小波",
+					"url": "https://henry529.lanzoub.com/i1cHSznyd3i"
+				}
+			]
+		},
+		{
+			"name": "幻想",
+			"books": [
+				{
+					"name": "哈利波特.epub",
+					"author": "J·K·罗琳",
+					"url": "https://henry529.lanzoub.com/ibP1Pznyfmj"
+				},
+				{
+					"name": "刘慈欣作品集.epub",
+					"author": "刘慈欣",
+					"url": "https://henry529.lanzoub.com/iA9vrznyelc"
+				},
+				{
+					"name": "三体.epub",
+					"author": "刘慈欣",
+					"url": "https://henry529.lanzoub.com/iifwi042x2xa"
+				}
+			]
+		},
+		{
+			"name": "传记",
+			"books": [
+				{
+					"name": "生命不息，折腾不止.epub",
+					"author": "罗永浩",
+					"url": "https://henry529.lanzouw.com/i3Qdpznyd9e"
+				},
+				{
+					"name": "天生有罪.epub",
+					"author": "特雷弗·诺亚",
+					"url": "https://henry529.lanzoub.com/iaApu042wluf"
+				},
+				{
+					"name": "命运：文在寅自传.epub",
+					"author": "文在寅",
+					"url": "https://henry529.lanzoub.com/iL9neznyeij"
+				},
+				{
+					"name": "史蒂夫·乔布斯传.epub",
+					"author": "沃尔特·艾萨克森",
+					"url": "https://henry529.lanzoub.com/imD4E042whab"
+				},
+				{
+					"name": "清华园日记.epub",
+					"author": "季羡林",
+					"url": "https://henry529.lanzoub.com/i0cXz042xdjc"
+				}
+			]
+		},
+		{
+			"name": "政史",
+			"books": [
+				{
+					"name": "君主论.epub",
+					"author": "马基雅维利",
+					"url": "https://henry529.lanzouw.com/iuufOznyene"
+				},
+				{
+					"name": "美国种族简史.epub",
+					"author": "托马斯·索威尔",
+					"url": "https://henry529.lanzoub.com/iPBxlznyeja"
+				},
+				{
+					"name": "1984.epub",
+					"author": "乔治·奥威尔",
+					"url": "https://henry529.lanzoub.com/iLTkOznyg6j"
+				},
+				{
+					"name": "光荣与梦想.epub",
+					"author": "威廉·曼彻斯特",
+					"url": "https://henry529.lanzoub.com/i9L4pznyfob"
+				},
+				{
+					"name": "历史的先声.epub",
+					"author": "笑蜀",
+					"url": "https://henry529.lanzoub.com/iYAlGznyemd"
+				},
+				{
+					"name": "如果这是宋史.epub",
+					"author": "高天流云",
+					"url": "https://henry529.lanzoub.com/i3BeC042wjgj"
+				},
+				{
+					"name": "全球通史.epub",
+					"author": "L·S·斯塔夫里阿诺斯",
+					"url": "https://henry529.lanzoub.com/iZWQo06xj28j"
+				},
+				{
+					"name": "品三国.epub",
+					"author": "易中天",
+					"url": "https://henry529.lanzoub.com/iWOBv06xj52b"
+				},
+				{
+					"name": "杀戮与文化.epub",
+					"author": "维克托·戴维斯·汉森",
+					"url": "https://henry529.lanzoub.com/iqX8p042xjsh"
+				}
+			]
+		},
+		{
+			"name": "财经",
+			"books": [
+				{
+					"name": "小狗钱钱.epub",
+					"author": "博多·舍费尔",
+					"url": "https://henry529.lanzouw.com/ik3Q4znyajg"
+				},
+				{
+					"name": "怪诞行为学(1-6).zip",
+					"author": "丹·艾瑞里",
+					"url": "https://henry529.lanzoub.com/iSaG7042wanc"
+				},
+				{
+					"name": "经济学原理.epub",
+					"author": "N·格里高利·曼昆",
+					"url": "https://henry529.lanzoub.com/iLm0dznyfif"
+				}
+			]
+		},
+		{
+			"name": "小说",
+			"books": [
+				{
+					"name": "黄金时代.epub",
+					"author": "王小波",
+					"url": "https://henry529.lanzoub.com/iuWx4znyfjg"
+				}
+			]
+		},
+		{
+			"name": "文化",
+			"books": [
+				{
+					"name": "中国文脉.epub",
+					"author": "余秋雨",
+					"url": "https://henry529.lanzoub.com/ibRum06xim9e"
+				}
+			]
+		},
+		{
+			"name": "思维",
+			"books": [
+				{
+					"name": "思考,快与慢.epub",
+					"author": "丹尼尔•卡尼曼",
+					"url": "https://henry529.lanzoub.com/iFXy4znyd4j"
+				},
+				{
+					"name": "囚徒的困境.epub",
+					"author": "威廉·庞德斯通",
+					"url": "https://henry529.lanzoub.com/isFEcznyefg"
+				},
+				{
+					"name": "纳什均衡与博弈论.epub",
+					"author": "汤姆•齐格弗里德",
+					"url": "https://henry529.lanzoub.com/iLLKjznyehi"
+				}
+			]
+		}
+	]
+}

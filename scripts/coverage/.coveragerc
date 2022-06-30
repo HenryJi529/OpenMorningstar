@@ -1,0 +1,15 @@
+[run]
+branch = True
+source = . 
+data_file = scripts/coverage/.coverage
+omit =
+	Morningstar/asgi.py
+	Morningstar/wsgi.py
+	manage.py
+
+[report]
+show_missing = True
+skip_covered = True
+
+[html]
+directory = _vercel/_coverage

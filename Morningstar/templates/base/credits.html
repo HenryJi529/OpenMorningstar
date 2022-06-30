@@ -1,0 +1,40 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}
+Credits
+{% endblock %}
+
+{% block custom_css %}
+<link rel="stylesheet" href="{% static 'base/css/credits.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1>Credits</h1>
+<div class="products">
+	{% for item in items %}
+	<div class="product">
+		<div class="info">
+			<div class="name">
+				<spam>{{item.name}}</spam>
+			</div>
+			<div class="link">
+				<div class="license" data-license-url="{{item.license_url}}" data-text-hide="true">
+					show license
+				</div>
+				-
+				<div class="homepage" data-homepage-url="{{item.homepage_url}}">
+					homepage
+				</div> 
+			</div>
+		</div>
+		<div class="license-text"></div>
+	</div>
+	{% endfor %}
+</div>
+
+{% endblock %}
+
+{% block custom_js %}
+<script src="{% static 'base/js/credits.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'blog/base.html' %}
+
+{% block main %}
+{% for post in post_list %}
+<article class="post post-{{ post.pk }}">
+    <div class="entry-header">
+        <a class="entry-title index-title" href="{{ post.get_absolute_url }}">
+            {{ post.title }}
+        </a>
+        <div class="entry-meta">
+            <span class="post-category">类别:<a href="{% url 'blog:category' post.category.pk %}"
+                    style="font-weight:bold">{{post.category.name}}</a>;
+            </span>
+            <span class="comments-link">
+                评论:<a href="{{ post.get_absolute_url }}#comment-area"
+                    style="font-weight:bold">{{post.comment_set.count}}</a>;</span>
+            <span class="views-count">
+                阅读: <a href="{% url 'blog:detail' post.pk %}" style="font-weight:bold">{{post.views}}</a>;</span>
+            <span class="post-date">更新:
+                <time class="entry-date" style="font-weight:bold">{{post.updated}}</time>
+            </span>
+        </div>
+    </div>
+    <div>
+        <p>{{ post.excerpt }}...</p>
+        <div style="text-align:center">
+            <a href="{{ post.get_absolute_url }}" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
+        </div>
+
+    </div>
+</article>
+<hr>
+{% empty %}
+<div class="no-post">暂时还没有发布的文章！</div>
+{% endfor %}
+
+{% if is_paginated %}
+<div class="text-center pagination" style="width: 100%">
+    <ul>
+        {% if page_obj.has_previous %}
+        <li><a href="?{{ page_obj.previous_page_number.querystring }}" class="prev">&lsaquo;&lsaquo; </a></li>
+        {% else %}
+        <li><span class="disabled prev">&lsaquo;&lsaquo; </span></li>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+
+        {% if num %}
+        {% if num == page_obj.number %}
+        <li class="current"><a href="#">{{ num }}</a></li>
+        {% else %}
+        <li><a href="?page={{ num }}" class="page">{{ num }}</a></li>
+        {% endif %}
+
+        {% else %}
+        ...
+        {% endif %}
+
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <li><a href="?{{ page_obj.next_page_number.querystring }}" class="next"> &rsaquo;&rsaquo;</a>
+        </li>
+        {% else %}
+        <li><span class="disabled next"> &rsaquo;&rsaquo;</span></li>
+        {% endif %}
+
+    </ul>
+</div>
+{% endif %}
+
+
+{% endblock main %}

@@ -1,0 +1,171 @@
+@import 'lib';
+@import 'config';
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+.header {
+	@include flex-between;
+	background-color: white;
+	height: $header-height;
+
+	&-left {
+		@include temporary-border(black);
+		width: $header-left-width;
+		box-sizing: border-box;
+		padding: 0 5px;
+		@include flex-between;
+
+		.menu,
+		.logo {
+			height: 30px;
+		}
+
+	}
+
+	&-center {
+		@include temporary-border(rgb(143, 220, 43));
+		flex: 1;
+		max-width: $header-center-maxwidth;
+		@include flex-center;
+		height: 100%;
+		padding: 0 20px;
+
+		.search-text {
+			flex: 1;
+			height: $header-center-item-height;
+		}
+
+		.search-button {
+			width: 60px;
+			height: $header-center-item-height;
+			background-color: rgb(240, 240, 240);
+			border: 1px solid black;
+			margin-left: -1px;
+			@include flex-center;
+
+			svg {
+				height: 70% !important;
+			}
+		}
+
+		.voice-button {
+			width: $header-center-item-height;
+			display: inline-block;
+			height: $header-center-item-height;
+			border: 1px solid black;
+			border-radius: 100%;
+			background-color: rgb(250, 250, 250);
+			margin-left: 10px;
+			@include flex-center;
+
+			svg {
+				height: 70% !important;
+			}
+		}
+	}
+
+	&-right {
+		@include temporary-border(rgb(217, 30, 30));
+		width: $header-right-width;
+	}
+
+}
+
+.main {
+	height: 100%;
+	display: grid;
+	grid-template-columns: $sidebar-width 1fr;
+
+	.leftbar {
+		@include temporary-border(blue);
+		overflow-y: hidden;
+
+		.bar-item {
+			height: 50px;
+			padding: 5px 25px;
+			@include flex-between;
+
+			.bar-item-icon {
+				height: 25px;
+			}
+
+			.bar-item-text {
+				width: 140px;
+				height: 30px;
+				line-height: 30px;
+			}
+		}
+	}
+
+	.content {
+		@include temporary-border(black);
+		display: grid;
+
+		@media (max-width: $large-screen) {
+			grid-template-columns: repeat(3, 1fr);
+		}
+
+		@media (max-width: $media-screen) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		grid-template-columns: repeat(4, 1fr);
+		column-gap: 16px;
+		row-gap: 40px;
+		padding: 20px 40px;
+
+		.video {
+			.yt-image {
+				position: relative;
+
+				.thumbnail {
+					width: 100%;
+				}
+
+				.video-length {
+					position: absolute;
+					font-weight: bold;
+					background-color: black;
+					color: white;
+					bottom: 8px;
+					right: 5px;
+				}
+			}
+
+			.info {
+				display: flex;
+
+				.channel-picture {
+					width: 48px;
+
+					img {
+						width: 100%;
+						border-radius: 100%;
+					}
+				}
+
+				.video-info {
+					flex: 1;
+
+					.video-title {
+						font-weight: bold;
+						margin-bottom: 4px;
+					}
+
+					.video-channel {
+						color: #606060;
+						margin-bottom: 2px;
+					}
+
+					.video-stats {
+						color: #606060;
+					}
+				}
+			}
+		}
+	}
+}

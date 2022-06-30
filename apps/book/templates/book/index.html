@@ -1,0 +1,83 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="{% static 'book/img/favicon.ico' %}">
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@latest/pace-theme-default.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
+	<title>我的书单</title>
+
+	<link rel="stylesheet" href="{% static 'book/css/base.css' %}">
+	<link rel="stylesheet" href="{% static 'book/css/list.css' %}">
+	<link rel="stylesheet" href="{% static 'book/css/search.css' %}">
+</head>
+
+<body>
+	<div class="portainer">
+		<header>
+			<div class="title">我的书单<input type="button" value="🔍" id="searchButton"></input></div>
+		</header>
+
+		{% for category in categories %}
+		<p class="category-name">分类：<span>{{ category.name }}</span></p>
+		<ul class="category">
+			{% for book in category.books %}
+			<li class="item">
+				{{ book.name }} | <a href="{{ book.url }}" target="_blank" style="text-decoration: none;">下载</a><br>
+				{% if book.translator%}
+				作者：{{ book.author }} &nbsp; 译者：{{ book.translator }} <br>
+				{% else %}
+				作者：{{book.author}} <br>
+				{% endif %}
+			</li>
+			{% endfor %}
+		</ul>
+		{% if not forloop.last %}
+		<hr>
+		{% endif %}
+		{% endfor %}
+	</div>
+
+	<div id="fade"></div>
+
+	<div id="float">
+		<form class="search-form">
+			<input type="text" class="search" placeholder="书名/作者">
+			<ul class="suggestions">
+				<li>这里会显示推荐的书目</li>
+			</ul>
+		</form>
+	</div>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-nest.js/dist/canvas-nest.js"></script>
+
+<script type="text/javascript" src="https://www.cornify.com/js/cornify.js"></script>
+
+
+<script data-href="https://github.com/HenryJi529/OpenMorningstar" src="{% static 'base/js/github.js'%}"></script>
+<script src="{% static 'book/js/cornify.js' %}"></script>
+
+<script>
+	const endpoint = "{{ endpoint }}";
+	const searchButton = document.querySelector("#searchButton");
+	searchButton.addEventListener('click', e => {
+		document.querySelector("#float").style.display = "block";
+		document.querySelector("#fade").style.display = "block";
+	})
+	document.querySelector("#fade").click(function () {
+		document.getElementById("float").style.display = 'none';
+		document.getElementById("fade").style.display = 'none';
+	});
+
+</script>
+
+<script src="{%static 'book/js/search.js' %}"></script>
+
+</html>

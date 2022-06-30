@@ -1,0 +1,218 @@
+# 空闲端口: 6003、6005、6006
+# 占用端口: 6379、3307、7777、5299、20、21、21100-21110、80、443、6000、6001、6002、6004、6007、6008、6009、6010
+version: "3.6"
+volumes:
+  morningstar_django_static: null
+  morningstar_django_media: null
+  morningstar_nginx_data: null
+  morningstar_db1_data: null
+  morningstar_beancount_data: null
+  morningstar_tshock_data: null
+  morningstar_frps_data: null
+  morningstar_ftp_data: null
+  morningstar_ftp_log: null
+  morningstar_dockerhub_data: null
+  morningstar_gitea_data: null
+  morningstar_portainer_data: null
+  morningstar_send_data: null
+  morningstar_redis_data: null
+
+services:
+  redis:
+    container_name: morningstar_redis
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - morningstar_redis_data:/data
+    command: redis-server --requirepass ${REDIS_PASSWORD} --loglevel warning
+
+  django:
+    build:
+      context: .
+      dockerfile: django/Dockerfile
+    image: henry529/django
+    tty: true
+    container_name: morningstar_django
+    restart: unless-stopped
+    working_dir: /app
+    volumes:
+      - morningstar_django_static:/app/static
+      - morningstar_django_media:/app/media
+      - ../:/app
+    environment:
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
+      - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}
+      - TENCENT_SMS_APP_KEY=${TENCENT_SMS_APP_KEY}
+      - RECAPTCHA_PUBLIC_KEY=${RECAPTCHA_PUBLIC_KEY}
+      - RECAPTCHA_PRIVATE_KEY=${RECAPTCHA_PRIVATE_KEY}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+    ports:
+      - 6000:8000
+    depends_on:
+      - db1
+    command: bash
+
+  db1:
+    image: mysql:latest
+    container_name: morningstar_db1
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password --mysqlx=0
+    environment:
+      - MYSQL_HOST=localhost
+      - MYSQL_PORT=3306
+      - MYSQL_DATABASE=djangodb
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - morningstar_db1_data:/var/lib/mysql
+    ports:
+      - 3307:3306
+
+  tshock:
+    build:
+      context: .
+      dockerfile: tshock/Dockerfile
+    image: henry529/tshock:latest
+    container_name: morningstar_tshock
+    working_dir: /root
+    privileged: true
+    tty: true
+    restart: unless-stopped
+    volumes:
+      - morningstar_tshock_data:/root/.local/share/Terraria
+    ports:
+      - "7777:7777"
+    command: bash
+
+  frps:
+    image: snowdreamtech/frps
+    container_name: morningstar_frps
+    working_dir: /root
+    tty: true
+    restart: always
+    volumes:
+      - morningstar_frps_data:/etc/frp
+    network_mode: "host"
+
+  ftp:
+    image: fauria/vsftpd
+    container_name: morningstar_ftp
+    environment:
+      FTP_USER: ftp
+      FTP_PASS: 1234asdw
+      PASV_MIN_PORT: 21100
+      PASV_MAX_PORT: 21110
+      PASV_ADDRESS: 35.220.252.85
+    tty: true
+    restart: always
+    volumes:
+      - morningstar_ftp_data:/home/vsftpd
+      - morningstar_ftp_log:/var/log/vsftpd
+    ports:
+      - "20:20"
+      - "21:21"
+      - "21100-21110:21100-21110"
+
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    image: henry529/nginx
+    tty: true
+    container_name: morningstar_nginx
+    volumes:
+      - morningstar_nginx_data:/etc/letsencrypt
+      - morningstar_django_static:/apps/django/static
+      - morningstar_django_media:/apps/django/media
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+
+  beancount:
+    build:
+      context: .
+      dockerfile: beancount/Dockerfile
+    image: henry529/beancount:latest
+    container_name: morningstar_beancount
+    hostname: henry-beancount
+    working_dir: /root
+    tty: true
+    restart: unless-stopped
+    volumes:
+      - morningstar_beancount_data:/root/beancount
+    ports:
+      - "6001:5000"
+
+  dockerhub:
+    image: docker.io/registry
+    container_name: morningstar_dockerhub
+    working_dir: /root
+    tty: true
+    restart: unless-stopped
+    volumes:
+      - morningstar_dockerhub_data:/var/lib/registry
+    ports:
+      - "6002:5000"
+
+  gitea:
+    image: gitea/gitea:latest
+    container_name: morningstar_gitea
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+    restart: always
+    volumes:
+      - morningstar_gitea_data:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "6004:3000"
+      - "222:22"
+
+  portainer:
+    image: portainer/portainer:latest
+    container_name: morningstar_portainer
+    working_dir: /root
+    tty: true
+    restart: unless-stopped
+    volumes:
+      - morningstar_portainer_data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "6007:9000"
+
+  rsshub:
+    image: diygod/rsshub
+    container_name: morningstar_rsshub
+    tty: true
+    restart: unless-stopped
+    ports:
+      - "6008:1200"
+
+  send:
+    image: registry.gitlab.com/timvisee/send:latest
+    container_name: morningstar_send
+    tty: true
+    restart: unless-stopped
+    environment:
+      DETECT_BASE_URL: "true"
+      BASE_URL: https://send.morningstar529.com
+      MAX_EXPIRE_SECONDS: 157680000
+      DEFAULT_EXPIRE_SECONDS: 86400
+      MAX_FILE_SIZE: 10747904000
+      EXPIRE_TIMES_SECONDS: 86400,3600,86400,604800,2592000,31536000,157680000
+      DOWNLOAD_COUNTS: 1,2,5,10,15,25,50,100,1000,10000,100000,250000
+    volumes:
+      - morningstar_send_data:/uploads
+    ports:
+      - "6009:1443"
+
+  ssh:
+    image: niruix/sshwifty:latest
+    container_name: morningstar_ssh
+    tty: true
+    restart: always
+    ports:
+      - "6010:8182"

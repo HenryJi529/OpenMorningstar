@@ -1,0 +1,14 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}
+晨星小站
+{% endblock %}
+
+{% block custom_css %}
+<link rel="stylesheet" href="{% static 'base/css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1>Hello "{{request.user.username}}"</h1>
+{% endblock %}

@@ -1,0 +1,45 @@
+{
+	"files.exclude": {
+		"**/__pycache__": true,
+		"**/.DS_Store": true,
+		"**/.git": true,
+		"**/env": false,
+		"**/node_modules": true,
+		"**/.idea/": true,
+		"whoosh_index": true
+	},
+	"search.exclude": {
+		"TEMP/": true
+	},
+	/****Todo Tree****/
+	"todo-tree.filtering.excludeGlobs": [
+		"**/env/**",
+		"**/node_modules",
+		"**/README.md",
+		"**/scripts/coverage"
+	],
+	"todo-tree.general.tags": [
+		"TODO",
+		"FIXME",
+		"BUG"
+	],
+	/****live Sass Compile****/
+	"liveSassCompile.settings.formats": [
+		{
+			"extensionName": ".css",
+			"format": "compressed"
+		}
+	],
+	"liveSassCompile.settings.generateMap": false,
+	/***VSCode Counter***/
+	"VSCodeCounter.useGitignore": true,
+	"VSCodeCounter.outputPreviewType": "markdown",
+	"VSCodeCounter.history": 2,
+	/****Github Copilot****/
+	"github.copilot.enable": {
+		"*": true,
+		"yaml": false,
+		"plaintext": false,
+		"markdown": true
+	}
+}
