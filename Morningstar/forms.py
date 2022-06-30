@@ -16,16 +16,21 @@ FAKE_PASSWORD = "********"
 
 class LoginForm(forms.Form):
     identity = forms.CharField(
-        label="账户", initial="", required=True, widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "用户名/邮箱/手机号"}))
+        label="账户", initial="", required=True, widget=forms.TextInput(attrs={"placeholder": "用户名/邮箱/手机号", "class": "w-full"}))
     password_login = forms.CharField(
-        label="密码", widget=forms.PasswordInput(attrs={"class": "form-control", "placeholder": "********"}, render_value=True), required=True)
+        label="密码", widget=forms.PasswordInput(attrs={"placeholder": "********", "class": "w-full"}, render_value=True), required=True)
     image_captcha = forms.CharField(label='人机验证',required=True,
-        widget=forms.TextInput(attrs={"class": "form-control"},)
+        widget=forms.TextInput(attrs={"placeholder": "XXXXXX", "class": "w-full"},)
     )
 
     def __init__(self, request, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.request = request
+        for name, field in self.fields.items():
+            if 'class' in field.widget.attrs:
+                field.widget.attrs['class'] += ' input'
+            else:
+                field.widget.attrs['class'] = 'input'
 
     def clean_identity(self):
         identity = self.cleaned_data['identity']
@@ -100,14 +105,14 @@ class SendSmsForm(forms.Form):
 
 class RegisterForm(forms.Form):
     username = forms.CharField(
-        label="用户名", required=True, widget=forms.TextInput(attrs={"placeholder": FAKE_USERNAME}))
+        label="用户名", required=True, widget=forms.TextInput(attrs={"placeholder": FAKE_USERNAME, "class": "w-full"}))
 
     email = forms.EmailField(label="邮箱", required=True, 
-        widget=forms.EmailInput(attrs={"placeholder": FAKE_EMAIL}),
+        widget=forms.EmailInput(attrs={"placeholder": FAKE_EMAIL, "class": "w-full"}),
         validators=[RegexValidator(r'^[0-9a-zA-Z_.-]+[@][0-9a-zA-Z_.-]+([.][a-zA-Z]+){1,2}$', '邮箱格式错误'),])
 
     password = forms.CharField(label='密码', required=True, 
-        widget=forms.PasswordInput(attrs={"placeholder": FAKE_PASSWORD}),
+        widget=forms.PasswordInput(attrs={"placeholder": FAKE_PASSWORD, "class": "w-full"}),
         validators=[RegexValidator(r'^[\w_]*$', '密码中只能包含数字、字母下划线'),],
         min_length=6,
         max_length=16,
@@ -118,7 +123,7 @@ class RegisterForm(forms.Form):
         )
 
     confirm_password = forms.CharField( label='重复密码',required=True,
-        widget=forms.PasswordInput(attrs={"placeholder": FAKE_PASSWORD}),
+        widget=forms.PasswordInput(attrs={"placeholder": FAKE_PASSWORD, "class": "w-full"}),
         min_length=6,
         max_length=16,
         error_messages={
@@ -133,9 +138,9 @@ class RegisterForm(forms.Form):
         super().__init__(*args,**kwargs)
         for name, field in self.fields.items():
             if 'class' in field.widget.attrs:
-                field.widget.attrs['class'] += ' form-control'
+                field.widget.attrs['class'] += ' input'
             else:
-                field.widget.attrs['class'] = 'form-control'
+                field.widget.attrs['class'] = 'input'
 
     def clean_username(self):
         username = self.cleaned_data['username']

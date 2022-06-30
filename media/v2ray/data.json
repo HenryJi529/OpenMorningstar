@@ -10,20 +10,16 @@
       "url": "vmess://ewoidiI6ICIyIiwKInBzIjogIjIzM3YyLmNvbV8zNC45Mi4yMTEuMjIzIiwKImFkZCI6ICIzNC45Mi4yMTEuMjIzIiwKInBvcnQiOiAiMzM1NDciLAoiaWQiOiAiYmRmMWQ1MzItZjgzYy00MTA5LTk4MzctOTM1MGY0NTI5MTA3IiwKImFpZCI6ICIwIiwKIm5ldCI6ICJ0Y3AiLAoidHlwZSI6ICJub25lIiwKImhvc3QiOiAiIiwKInBhdGgiOiAiIiwKInRscyI6ICIiCn0K"
     },
     {
+      "name": "Morningstar_HK3",
+      "url": "vmess://ewoidiI6ICIyIiwKInBzIjogIjIzM3YyLmNvbV8zNS4yNDEuMTE3LjE5NSIsCiJhZGQiOiAiMzUuMjQxLjExNy4xOTUiLAoicG9ydCI6ICIzNDk1NSIsCiJpZCI6ICI4MWNkZjY5My0wYTQ4LTQ4MDMtYTA5MS02OTRhNjg4ODEzMGEiLAoiYWlkIjogIjAiLAoibmV0IjogInRjcCIsCiJ0eXBlIjogIm5vbmUiLAoiaG9zdCI6ICIiLAoicGF0aCI6ICIiLAoidGxzIjogIiIKfQo="
+    },
+    {
       "name": "Morningstar_TW1",
-      "url": "vmess://ewoidiI6ICIyIiwKInBzIjogIjIzM3YyLmNvbV8xMzAuMjExLjI1NS4xMjYiLAoiYWRkIjogIjEzMC4yMTEuMjU1LjEyNiIsCiJwb3J0IjogIjMxNTgwIiwKImlkIjogIjc4NjgwNzVmLTU3ODktNDNiMy1iY2QwLTkyN2IyNjI0NGMwYSIsCiJhaWQiOiAiMCIsCiJuZXQiOiAidGNwIiwKInR5cGUiOiAibm9uZSIsCiJob3N0IjogIiIsCiJwYXRoIjogIiIsCiJ0bHMiOiAiIgp9Cg=="
+      "url": "vmess://ewoidiI6ICIyIiwKInBzIjogIjIzM3YyLmNvbV8zNC44MS4xNjAuMTQ2IiwKImFkZCI6ICIzNC44MS4xNjAuMTQ2IiwKInBvcnQiOiAiMjczMTIiLAoiaWQiOiAiNmJhYTc5ZDAtOTY0ZS00ZWU0LThmOWQtNjYwNzk5YWRiODUzIiwKImFpZCI6ICIwIiwKIm5ldCI6ICJ0Y3AiLAoidHlwZSI6ICJub25lIiwKImhvc3QiOiAiIiwKInBhdGgiOiAiIiwKInRscyI6ICIiCn0K"
     },
     {
       "name": "Morningstar_TW2",
-      "url": "vmess://ewoidiI6ICIyIiwKInBzIjogIjIzM3YyLmNvbV8zNS4yMjkuMTQwLjk3IiwKImFkZCI6ICIzNS4yMjkuMTQwLjk3IiwKInBvcnQiOiAiNjMwMDgiLAoiaWQiOiAiYzkyNGIyM2QtZTA0My00YzE1LWE3NzQtN2QyNTJkYjhiYTU0IiwKImFpZCI6ICIwIiwKIm5ldCI6ICJ0Y3AiLAoidHlwZSI6ICJub25lIiwKImhvc3QiOiAiIiwKInBhdGgiOiAiIiwKInRscyI6ICIiCn0K"
-    },
-    {
-      "name": "Morningstar_JP1",
-      "url": "vmess://ewoidiI6ICIyIiwKInBzIjogIjIzM3YyLmNvbV8zNC4xNDYuMjQ4LjciLAoiYWRkIjogIjM0LjE0Ni4yNDguNyIsCiJwb3J0IjogIjQzMzM5IiwKImlkIjogIjNhMmQ0MTQ1LWY5MjQtNDE5Ni04NDJkLTE2MWU5NzRlNWNhOCIsCiJhaWQiOiAiMCIsCiJuZXQiOiAidGNwIiwKInR5cGUiOiAibm9uZSIsCiJob3N0IjogIiIsCiJwYXRoIjogIiIsCiJ0bHMiOiAiIgp9Cg=="
-    },
-    {
-      "name": "Morningstar_JP2",
-      "url": "vmess://ewoidiI6ICIyIiwKInBzIjogIjIzM3YyLmNvbV8zNC4xNDYuMjMxLjI0NCIsCiJhZGQiOiAiMzQuMTQ2LjIzMS4yNDQiLAoicG9ydCI6ICI0NDgwMiIsCiJpZCI6ICIzZTAwNDZlMS1lZDk2LTQzYWMtYTMxOS01MmY2NGI4ZDc3NzUiLAoiYWlkIjogIjAiLAoibmV0IjogInRjcCIsCiJ0eXBlIjogIm5vbmUiLAoiaG9zdCI6ICIiLAoicGF0aCI6ICIiLAoidGxzIjogIiIKfQo="
+      "url": "vmess://ewoidiI6ICIyIiwKInBzIjogIjIzM3YyLmNvbV8zNC44MC4xOTYuMTkwIiwKImFkZCI6ICIzNC44MC4xOTYuMTkwIiwKInBvcnQiOiAiNDU4NjAiLAoiaWQiOiAiODk3YmJlNjAtNzBhNi00MTk4LWI2ZTUtZTNlMjZiYzNmNGJmIiwKImFpZCI6ICIwIiwKIm5ldCI6ICJ0Y3AiLAoidHlwZSI6ICJub25lIiwKImhvc3QiOiAiIiwKInBhdGgiOiAiIiwKInRscyI6ICIiCn0K"
     }
   ]
 }

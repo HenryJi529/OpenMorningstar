@@ -1,22 +1,22 @@
-<h3>评论区: 共 <span style='font-size:1.5rem'>{{ comment_count }}</span> 条评论</h3>
-<ul class="comment-list list-unstyled">
+<!-- <div>评论区: 共 <span>{{ comment_count }}</span> 条评论</div> -->
+<div class="px-2">
 	{% for comment in comment_list %}
-	<li class="comment-item">
+	<div class="mb-2">
 		<div>
-			昵称：<span class="name" style="font-weight: bold; font-size:1.1rem">{{ comment.name }}</span>
+			昵称：<span>{{ comment.name }}</span>
 			{% if comment.email %}
-			<span class="email">({{comment.email}})</span>
+			<span>({{comment.email}})</span>
 			{% endif %}
 		</div>
 		<div>
-			更新于<span style="font-weight: bold;">{{comment.updated|timesince}}</span>前
+			更新于<span>{{comment.updated|timesince}}</span>前
 		</div>
-		<div class="text" style="border: 2px black dashed; padding: 0.5rem; margin-top: 0.3rem; border-radius: 0.5rem;">
+		<div class="p-2">
 			{{ comment.body|linebreaks }}
 		</div>
 		<hr>
-	</li>
+	</div>
 	{% empty %}
-	暂无评论
+	<div class="text-xl">暂无评论～</div>
 	{% endfor %}
-</ul>
+</div>

@@ -24,7 +24,6 @@ django.utils.encoding.force_text = force_str
 
 # 加载第三方配置文件
 from .jazzmin import *
-from .pure_pagination import *
 from .haystack import *
 # NOTE: 本项目的密钥保存方法如下
 # 1. 开发与部署环境密钥相同时，开发密钥通过.env加载，部署密钥通过环境变量加载
@@ -52,20 +51,19 @@ INSTALLED_APPS = [
     'apps.lover.apps.LoverConfig',  # 爱人
     'apps.nav.apps.NavConfig',  # 导航
     'apps.poll.apps.PollConfig',  # 投票
-    'apps.tool.apps.ToolConfig',  # 工具
+    'apps.rss.apps.RssConfig',  # RSS
     'apps.v2ray.apps.V2RayConfig',  # 代理
 
-    'jazzmin',  # UI定制 
-    'pure_pagination',  # 分页
-    'haystack',  # 搜索
     'captcha',  # google recaptcha
-    'django_user_agents',  # 获取客户端代理类型
-    'rest_framework',  # restful api
-    'django_filters',  # 过滤器
-    'import_export',  # 导入导出
+    'compressor',  # 压缩js
     'corsheaders',  # 处理跨域访问
     'debug_toolbar',  # 调试工具
     'django_crontab', # 定时任务
+    'django_user_agents',  # 获取客户端代理类型
+    'fontawesomefree',  # 字体图标
+    'haystack',  # 搜索
+    'import_export',  # 导入导出
+    'jazzmin',  # UI定制
 
     'django.contrib.humanize',  # {% load humanize %}
     'django.contrib.admin',
@@ -256,11 +254,11 @@ LOGGING = {
             'style': '{',
         },
         'django.server-info': {
-            'format': colorama.Fore.YELLOW + colorama.Style.BRIGHT + '{levelname}: [{server_time}] {message}' + colorama.Style.RESET_ALL,
+            'format': colorama.Fore.YELLOW + colorama.Style.BRIGHT + '{levelname}: [{asctime}] {message}' + colorama.Style.RESET_ALL,
             'style': '{',
         },
         'django.server-warning': {
-            'format': colorama.Fore.RED + colorama.Style.BRIGHT + '{levelname}: [{server_time}] {message}' + colorama.Style.RESET_ALL,
+            'format': colorama.Fore.RED + colorama.Style.BRIGHT + '{levelname}: [{asctime}] {message}' + colorama.Style.RESET_ALL,
             'style': '{',
         },
     },
@@ -344,3 +342,15 @@ CRONJOBS =  [
 """媒体设置"""
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = "/media/"
+
+"""压缩css/js"""
+COMPRESS_ROOT = BASE_DIR / 'static'
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # other finders..
+    'compressor.finders.CompressorFinder',
+)
+
+"""缓存"""
+CACHE_TIMEOUT = 60*5 if os.environ.get('DJANGO_SETTINGS_MODULE','Morningstar.settings.dev') == 'Morningstar.settings.production'else 5

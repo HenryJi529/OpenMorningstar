@@ -1,14 +1,16 @@
-<div class="widget widget-tag-cloud">
-	<h3 class="widget-title">标签</h3>
-	<ul class="no-padding">
+<div class="widget p-2">
+	<input class="widget-toggle hidden" type="checkbox" />
+	<div class="widget-title text-2xl">标签</div>
+	<ul class="widget-list">
 		{% for tag in tag_list %}
 		<li>
-			<i class="icofont-tags"></i>
+			<i class="fa-solid fa-tag"></i>
 			<a href="{% url 'blog:tag' tag.pk %}">{{ tag.name }}
-				<span class="post-count">[{{ tag.num_posts }}]</span></a>
+				<span>[{{ tag.num_posts }}]</span></a>
 		</li>
 		{% empty %}
 		暂无标签！
 		{% endfor %}
 	</ul>
 </div>
+<div class="divider"></div>

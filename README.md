@@ -54,17 +54,12 @@
 </div>
 
 
-## ✨ 演示
-**官网**: [https://morningstar529.com](https://morningstar529.com)
-
-
-## 项目技术栈
-* **前端**：CSS、Sass、Bootstrap、JavaScript
-* **后端**：Django
-* **部署**：Docker、Nginx、Fabric
-* **测试**：Coverage、Selenium
+## ✨ 技术栈:
+* **前端**：CSS, Sass, Tailwind, DaisyUI, JavaScript
+* **后端**：Django, Redis, SQLite, MySQL
+* **部署**：Docker, Nginx, Fabric, Supervisor
+* **测试**：Coverage, Selenium
 * **集成**：Github Action
-* **数据库**：Redis、SQLite(开发)、MySQL(部署)
 
 
 ## 🚀 部署&开发
@@ -77,8 +72,8 @@ $ git clone git@github.com:HenryJi529/OpenMorningstar.git
 
 ### 本地开发
 ```bash
-$ virtualenv env
-$ source env/bin/activate
+$ virtualenv VENV
+$ source VENV/bin/activate
 $ pip install -r requirements.txt
 $ python manage.py runserver 0:8000
 ```

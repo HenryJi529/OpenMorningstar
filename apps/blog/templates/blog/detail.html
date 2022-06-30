@@ -1,45 +1,94 @@
 {% extends 'blog/base.html' %}
+{% load compress %}
 {% load comments_extras %}
+
+{% block custom_css %}
+
+{% compress css %}
+<link rel="stylesheet" href="{% static 'node_modules/highlight.js/styles/github.css' %}">
+{% endcompress %}
+
+{% endblock custom_css %}
+
 {% block main %}
-<article class="post post-{{ post.pk }}">
-    <header class="entry-header">
-        <div class="entry-title detail-title">{{ post.title }}</div>
-        <div class="entry-meta">
-            <span class="post-category">类别: <a href="{% url 'blog:category' post.category.pk %}"
-                    style="font-weight:bold">{{post.category.name}}</a>;</span>
-            <span class="comments-link">
-                评论:<a href="{{ post.get_absolute_url }}#comment-area"
-                    style="font-weight:bold">{{post.comment_set.count}}</a>;</span>
-            <span class="views-count">
-                阅读: <a href="{% url 'blog:detail' post.pk %}" style="font-weight:bold">{{post.views}}</a>;</span>
-            <span class="post-date">更新:
-                <time class="entry-date" style="font-weight:bold">{{post.updated}}</time>
+<article class="post">
+    <div class="post-header flex flex-col items-center">
+        <a class="text-center text-4xl block pb-2" href="{{ post.get_absolute_url }}">
+            {{ post.title }}
+        </a>
+        <div class="flex justify-center text-sm text-center space-x-2">
+            <span>
+                <i class="fa-solid fa-box-archive"></i>
+                <a href="{% url 'blog:category' post.category.pk %}">{{ post.category.name }}</a>
+            </span>
+            {% if post.tags.all %}
+            <span>
+                <i class="fa-solid fa-tag"></i>
+                {% for tag in post.tags.all %}
+                <a href="{% url 'blog:tag' tag.pk %}">{{ tag.name }}</a>
+                {% if not forloop.last %}
+                <span>|</span>
+                {% endif %}
+                {% endfor %}
+            </span>
+            {% endif %}
+            <span>
+                <i class="fa-solid fa-comment"></i>
+                <a href="{{ post.get_absolute_url }}#comment-area">{{ post.comment_set.count }}</a></span>
+            <span>
+                <i class="fa-solid fa-eye"></i>
+                <a href="{% url 'blog:detail' post.pk %}">{{ post.views }}</a></span>
+            <span>
+                <i class="fa-solid fa-pen"></i>
+                <time>{{ post.updated|date:"Y-m-d" }}</time>
+            </span>
+            <span>
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <time>{{ post.readtime }}min</time>
             </span>
         </div>
-    </header>
-    <div class="entry-content clearfix">
+    </div>
+
+    <div class="post-body">
         {{ post.body_html|safe }}
     </div>
 </article>
-<section class="comment-area" id="comment-area">
-    <hr>
-    <h3>发表评论</h3>
-    {% show_comment_form post %}
-    <div class="comment-list-panel">
+
+<div class="divider"></div>
+
+<section class="" id="comment-area">
+    <div class="text-4xl mb-2">评论区</div>
+    <div class="pb-4">
         {% show_comments post %}
+    </div>
+    <div class="pb-4">
+        <div class="text-2xl pb-2">发表评论</div>
+        {% if user.is_authenticated %}
+        {% show_comment_form post %}
+        {% else %}
+        <div class="text-xl text-amber-500">发表评论需要登录哦～</div>
+        {% endif %}
     </div>
 </section>
 {% endblock main %}
 
 {% block toc %}
 {% if post.toc %}
-<div class="widget widget-content">
-    <h3 class="widget-title">目录</h3>
-    <div class="toc">
-        <ul>
-            {{ post.toc|safe }}
-        </ul>
+<div class="widget p-2">
+    <input class="widget-toggle hidden" type="checkbox" />
+    <h3 class="widget-title text-2xl">目录</h3>
+    <div class="widget-list toc">
+        {{ post.toc|safe }}
     </div>
 </div>
+<div class="divider"></div>
 {% endif %}
 {% endblock toc %}
+
+{% block custom_js %}
+
+{% compress js %}
+<script src="{% static 'blog/dist/highlight.bundle.js' %}"></script>
+{% endcompress %}
+
+{% endblock custom_js %}

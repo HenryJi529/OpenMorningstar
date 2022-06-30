@@ -15,9 +15,10 @@ def index(request):
     data = get_data(JSON_FILE)
     categories = data['categories']
     if os.environ['DJANGO_SETTINGS_MODULE'] == 'Morningstar.settings.dev':
-        endpoint = "http://" + request.META["HTTP_HOST"] + "/book/api/"
+        protocol = "http://"
     else:
-        endpoint = "https://" + request.META["HTTP_HOST"] + "/book/api/"
+        protocol = "https://"
+    endpoint = protocol + request.META["HTTP_HOST"] + "/book/api/"
     return render(request, "book/index.html", locals())
 
 

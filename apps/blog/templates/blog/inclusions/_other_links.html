@@ -1,0 +1,26 @@
+<div class="widget p-2">
+    <input class="widget-toggle hidden" type="checkbox" />
+    <div class="widget-title text-2xl">其他</div>
+    <ul class="widget-list">
+        <li>
+            <i class="fa-solid fa-compass"></i>
+            <a href="{% url 'nav:index' %}">晨星导航</a>
+        </li>
+        <li>
+            <i class="fa-solid fa-globe"></i>
+            <a href="{% url 'v2ray:index' %}">科学上网</a>
+        </li>
+        <li>
+            <i class="fa-solid fa-images"></i>
+            <a href="{% url 'joke:index' %}">神兔相册</a>
+        </li>
+        <li>
+            <i class="fa-solid fa-rss"></i>
+            <a href="{% url 'blog:rss' %}">聚合阅读</a>
+        </li>
+        <li>
+            <i class="fa-solid fa-book"></i>
+            <a href="{% url 'book:index' %}">我的书单</a>
+        </li>
+    </ul>
+</div>

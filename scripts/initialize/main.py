@@ -66,21 +66,21 @@ def init_blog():
     """ 创建博文 """
     print('create a markdown sample post')
     blog.models.Post.objects.create(
-        title='Markdown 与代码高亮测试',
+        title='Nginx 学习笔记',
         body=pathlib.Path(BASE_DIR).joinpath(
             'scripts', 'initialize', 'md.sample').read_text(encoding='utf-8'),
         category=blog.models.Category.objects.create(name='Markdown测试'),
     )
     print('create some faked posts published within the past year')
-    # 一百篇英文
+    # 50篇英文
     fake = faker.Faker()
-    for _ in range(10):
+    for _ in range(50):
         tags = blog.models.Tag.objects.order_by('?')
         tag1 = tags.first()
         tag2 = tags.last()
         cate = blog.models.Category.objects.order_by('?').first()
         created = fake.date_time_between(start_date='-1y', end_date="now",
-                                         tzinfo=timezone.get_current_timezone())
+                                        tzinfo=timezone.get_current_timezone())
         post = blog.models.Post.objects.create(
             title=fake.sentence().rstrip('.'),
             body='\n\n'.join(fake.paragraphs(10)),
@@ -89,15 +89,15 @@ def init_blog():
         )
         post.tags.add(tag1, tag2)
         post.save()
-    # 一百篇中文
+    # 50篇中文
     fake = faker.Faker('zh_CN')
-    for _ in range(10):  # Chinese
+    for _ in range(50):  # Chinese
         tags = blog.models.Tag.objects.order_by('?')
         tag1 = tags.first()
         tag2 = tags.last()
         cate = blog.models.Category.objects.order_by('?').first()
         created = fake.date_time_between(start_date='-1y', end_date="now",
-                                         tzinfo=timezone.get_current_timezone())
+                                        tzinfo=timezone.get_current_timezone())
         post = blog.models.Post.objects.create(
             title=fake.sentence().rstrip('.'),
             body='\n\n'.join(fake.paragraphs(10)),
@@ -109,7 +109,7 @@ def init_blog():
 
     """ 添加评论 """
     print('create some comments')
-    for post in blog.models.Post.objects.all()[:20]:
+    for post in blog.models.Post.objects.all()[:90]:
         post_created = post.created
         delta_in_days = '-' + \
             str((timezone.now() - post_created).days) + 'd'

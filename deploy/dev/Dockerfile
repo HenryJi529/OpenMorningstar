@@ -35,8 +35,8 @@ RUN sh -c "$(wget -O - https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@ma
 
 # Git
 RUN mkdir /home/ubuntu/.ssh/
-COPY dev/id_rsa_ai /home/ubuntu/.ssh/id_rsa
-COPY dev/id_rsa_ai.pub /home/ubuntu/.ssh/id_rsa.pub
+COPY dev/config/id_rsa_ai /home/ubuntu/.ssh/id_rsa
+COPY dev/config/id_rsa_ai.pub /home/ubuntu/.ssh/id_rsa.pub
 USER root
 RUN chown -R ubuntu /home/ubuntu/.ssh/
 USER ubuntu

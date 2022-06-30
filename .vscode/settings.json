@@ -3,20 +3,19 @@
 		"**/__pycache__": true,
 		"**/.DS_Store": true,
 		"**/.git": true,
-		"**/env": false,
-		"**/node_modules": true,
+		"**/VENV": true,
+		"**/node_modules": false,
 		"**/.idea/": true,
 		"whoosh_index": true
 	},
 	"search.exclude": {
-		"TEMP/": true
+		"TEMP/": true,
+		"**/*.csv": true
 	},
 	/****Todo Tree****/
 	"todo-tree.filtering.excludeGlobs": [
-		"**/env/**",
+		"**/VENV/**",
 		"**/node_modules",
-		"**/README.md",
-		"**/scripts/coverage"
 	],
 	"todo-tree.general.tags": [
 		"TODO",
@@ -27,7 +26,7 @@
 	"liveSassCompile.settings.formats": [
 		{
 			"extensionName": ".css",
-			"format": "compressed"
+			"format": "expanded",
 		}
 	],
 	"liveSassCompile.settings.generateMap": false,

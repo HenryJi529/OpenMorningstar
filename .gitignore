@@ -2,46 +2,51 @@
 .DS_Store
 
 # IDE
-.idea/
 .VSCodeCounter/
 
 # C
 *.exe
 
 # Python
-env/
+VENV/
 __pycache__/
+environment.bak
 
 # Sass
 *.css.map
 
+# Log
+*.log
+
 # Coverage
 .coverage
 
-# node
+# Vercel
+.vercel/
+
+# Node
 node_modules/
 
-# Django
-/Morningstar/settings/test.py
+# database
 /database/
 /whoosh_index/
-*.log
-
-# secret
-.env
-secret.sh
-gcloud_instances.txt
 
 # release
 release/
 
+# static
+/static/
+
 # media
-# NOTE: /media/*/*
 /media/avatar/*
 !/media/avatar/default.svg
 /media/photo/*
 !/media/photo/default.jpeg
 
+# secret
+.env
+secret.sh
+/Morningstar/settings/test.py
+
 # others
-.vercel/
 TEMP/

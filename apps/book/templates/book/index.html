@@ -1,3 +1,4 @@
+{% load compress %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -8,14 +9,17 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" href="{% static 'book/img/favicon.ico' %}">
-
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@latest/pace-theme-default.min.css">
-	<script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
-	<title>我的书单</title>
-
+	<!--https://fontawesome.com/v6/icons?m=free-->
+	<link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="{% static 'node_modules/pace-js/pace-theme-default.min.css' %}">
+	<script src="{% static 'node_modules/pace-js/pace.min.js' %}"></script>
+	<title>Book - 我的书单</title>
+	<meta name="description" content="时不时会分享刚读完的好书">
+	{% compress css %}
 	<link rel="stylesheet" href="{% static 'book/css/base.css' %}">
 	<link rel="stylesheet" href="{% static 'book/css/list.css' %}">
 	<link rel="stylesheet" href="{% static 'book/css/search.css' %}">
+	{% endcompress %}
 </head>
 
 <body>
@@ -29,7 +33,7 @@
 		<ul class="category">
 			{% for book in category.books %}
 			<li class="item">
-				{{ book.name }} | <a href="{{ book.url }}" target="_blank" style="text-decoration: none;">下载</a><br>
+				{{ book.name }} | <a href="{{ book.url_lanzou }}" target="_blank">下载</a><br>
 				{% if book.translator%}
 				作者：{{ book.author }} &nbsp; 译者：{{ book.translator }} <br>
 				{% else %}
@@ -56,28 +60,24 @@
 	</div>
 </body>
 
-<script src="https://cdn.jsdelivr.net/npm/canvas-nest.js/dist/canvas-nest.js"></script>
-
-<script type="text/javascript" src="https://www.cornify.com/js/cornify.js"></script>
-
-
-<script data-href="https://github.com/HenryJi529/OpenMorningstar" src="{% static 'base/js/github.js'%}"></script>
-<script src="{% static 'book/js/cornify.js' %}"></script>
+<script src="{% static 'node_modules/canvas-nest.js/dist/canvas-nest.js' %}"></script>
+<script data-href="https://github.com/HenryJi529/OpenMorningstar"
+	src="{% static 'node_modules/github-corners/dist/embed.min.js' %}"></script>
 
 <script>
 	const endpoint = "{{ endpoint }}";
-	const searchButton = document.querySelector("#searchButton");
-	searchButton.addEventListener('click', e => {
+	document.querySelector("#searchButton").addEventListener('click', e => {
 		document.querySelector("#float").style.display = "block";
 		document.querySelector("#fade").style.display = "block";
 	})
-	document.querySelector("#fade").click(function () {
-		document.getElementById("float").style.display = 'none';
-		document.getElementById("fade").style.display = 'none';
-	});
-
+	document.querySelector("#fade").addEventListener('click', e => {
+		document.querySelector("#float").style.display = 'none';
+		document.querySelector("#fade").style.display = 'none';
+	})
 </script>
 
+{% compress js %}
 <script src="{%static 'book/js/search.js' %}"></script>
+{% endcompress %}
 
 </html>

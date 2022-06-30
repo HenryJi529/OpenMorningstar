@@ -1,3 +1,4 @@
+{% load compress %}
 {% load static %}
 {% load blog_extras %}
 <!DOCTYPE html>
@@ -5,42 +6,159 @@
 
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>嘉鱼居</title>
+	<meta name="viewport" content="width=480">
+	<title>Blog - 晨星博客</title>
+	<meta name="description" content="专注于Web开发和无信通信的个人博客">
 	<link rel="icon" href="{% static 'blog/img/favicon.ico' %}">
-	<!--https://icofont.com/icons-->
-	<link rel="stylesheet" href="https://icofont.morningstar529.com/icofont.min.css">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-	<!-- <link href="https://cdn.bootcss.com/highlight.js/11.3.1/styles/github.min.css" rel="stylesheet"> -->
-	<link href="https://cdn.jsdelivr.net/npm/highlight.js@11.3.1/styles/github-dark.css" rel="stylesheet">
-	<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/monokai.min.css" rel="stylesheet"> -->
-	<link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
-	<script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/green/pace-theme-loading-bar.css">
+	<!--https://fontawesome.com/v6/icons?m=free-->
+	<link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+	{% compress css %}
+	<link rel="stylesheet" href="{% static 'blog/css/base.css' %}">
+	{% endcompress %}
+
 	{% block custom_css %}
 	{% endblock %}
 </head>
 
 <body>
-	<div id="wrapper">
-		<header>
-			<div id="siteHeader">
-				<div id="logo">
-					<img src="{% static 'blog/img/favicon.ico' %}" alt="图标">
-					<a href="{% url 'blog:index' %}">嘉鱼居</a>
-				</div>
-				<nav id="navBar">
-					<div id="navItems">
-						<a href="{% url 'blog:index' %}">首页</a>
-						<a href="{% url 'nav:index' %}">导航</a>
-						<a href="{% url 'index'%}">关于</a>
-						<a href="{% url 'blog:contact' %}">联系</a>
-					</div>
-					<form id="searchForm" role="search" method="get" action="{% url 'blog:search' %}">
-						<input type="search" name="q" placeholder="搜索" required>
-						<button type="submit"><span class="icofont-search-2"></span></button>
+	<div class="modals">
+		{% if not user.is_authenticated %}
+		<div class="login-modal-content">
+			<input type="checkbox" id="loginModal" class="modal-toggle" />
+			<label for="loginModal" class="modal cursor-pointer">
+				<label class="modal-box relative" for="">
+					<div class="text-2xl font-bold text-center">登录</div>
+					<form id="login_form" action="{% url 'blog:login' %}" method="post" autocomplete="on">
+						{% csrf_token %}
+						{% for field in login_form %}
+						<div class="mb-2">
+							<div id="{{ field.name }}_check"></div>
+							<label for="{{ field.id_for_label }}">{{ field.label }}: </label>
+							{% if field.name == 'image_captcha' %}
+							<div id="id_image_captcha_box" class="flex justify-between items-center">
+								<div class="w-7/12">
+									{{ field }}
+								</div>
+								<div class="w-5/12 flex justify-end items-center">
+									<img src="{% url 'get_image_captcha' %}" alt="图片验证码" title="点击刷新,60s有效"
+										id="image_code">
+								</div>
+							</div>
+							{% else %}
+							{{ field }}
+							{% endif %}
+						</div>
+						{% endfor %}
+						<div class="flex justify-evenly items-center mb-3">
+							<input type="reset" value="重置" class="btn shadow-md shadow-gray-500">
+							<div></div>
+							<input name="next" value="{% url 'blog:index' %}" hidden></input>
+							<div></div>
+							<input type="submit" value="登录" class="btn shadow-md shadow-gray-500">
+						</div>
 					</form>
-				</nav>
+				</label>
+			</label>
+		</div>
+		<div class="register-modal-content">
+			<input type="checkbox" id="registerModal" class="modal-toggle" />
+			<label for="registerModal" class="modal cursor-pointer">
+				<label class="modal-box relative" for="">
+					<div class="text-2xl font-bold text-center">注册</div>
+					<form id="register_form" action="{% url 'blog:register' %}" method="post" autocomplete="on">
+						{% csrf_token %}
+						{% for field in register_form %}
+						<div class="mb-2">
+							<div id="{{ field.name }}_check"></div>
+							<label for="{{ field.id_for_label }}">{{ field.label }}: </label>
+							{{ field }}
+						</div>
+						{% endfor %}
+						<div class="flex justify-evenly items-center mb-3">
+							<input type="reset" value="重置" class="btn shadow-md shadow-gray-500">
+							<div></div>
+							<input name="next" id="next" value="{% url 'blog:index' %}" hidden></input>
+							<div></div>
+							<input type="submit" value="注册" class="btn shadow-md shadow-gray-500" id="submit_button">
+						</div>
+					</form>
+				</label>
+			</label>
+		</div>
+		{% endif %}
+		<div class="server-modal-content">
+			<input type="checkbox" id="serverModal" class="modal-toggle" />
+			<div class="modal">
+				<div class="modal-box relative">
+					<label for="serverModal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+					<h3 class="text-lg font-bold">Congratulations random Internet user!</h3>
+					<p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia
+						for free!</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container m-auto">
+		<div class="fixed top-4 left-4 md:hidden" id="menuButton">
+			<label class="btn btn-circle swap swap-rotate">
+				<!-- this hidden checkbox controls the state -->
+				<input type="checkbox" class="invisible" id="toggleMobileMenuCheckbox" />
+				<!-- hamburger icon -->
+				<i class="fa-solid fa-bars swap-off fill-current text-2xl"></i>
+				<!-- close icon -->
+				<i class="fa-solid fa-xmark swap-on fill-current text-2xl"></i>
+			</label>
+		</div>
+
+		<header>
+			<div class="navbar bg-base-100 flex-col md:flex-row gap-4 md:gap-10 md:justify-between">
+				<div class="flex-none">
+					<a class="btn btn-ghost normal-case text-5xl" href="{% url 'blog:index' %}">晨星小站</a>
+				</div>
+				<div class="flex-none">
+					<form id="searchForm" class="flex gap-2 input input-bordered" role="search" method="get"
+						action="{% url 'blog:search' %}">
+						<button type="submit"><i class="fa-brands fa-searchengin text-2xl"></i></button>
+						<input type="search" placeholder="搜索" class="bg-transparent border-none" name="q" required>
+					</form>
+					<div class="flex justify-center p-2" id="toggleThemeButton">
+						<i class="fa-solid text-2xl" id="themeIcon"></i>
+					</div>
+					<div class="flex justify-center p-2" id="githubButton">
+						<a href="https://github.com/HenryJi529/OpenMorningstar" target="_blank"
+							class="fa-brands text-2xl fa-github"></a>
+					</div>
+					<div class="flex justify-center p-2" id="serverButton">
+						<label for="serverModal" class="modal-button cursor-pointer">
+							<i class="fa-solid text-2xl fa-server"></i>
+						</label>
+					</div>
+					<div class="flex justify-center p-2" id="contactButton">
+						<a href="{% url 'blog:contact' %}" class="fa-solid text-2xl fa-paper-plane"></a>
+					</div>
+					<div class="dropdown dropdown-end" id="profileButton">
+						<label tabindex="0" class="btn btn-ghost btn-circle avatar">
+							{% if user.is_authenticated %}
+							<div class="w-10 rounded-full">
+								<img src="{{ user.avatar.url }}" class="w-full" />
+							</div>
+							{% else %}
+							<i class="fa-solid text-3xl fa-user"></i>
+							{% endif %}
+						</label>
+						<ul tabindex="0"
+							class="mt-1 p-1 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-20">
+							{% if user.is_authenticated %}
+							<li><a>档案</a></li>
+							<li><a href="{% url 'blog:logout' %}">登出</a></li>
+							{% else %}
+							<li><label for="loginModal" class="modal-button">登录</label></li>
+							<li><label for="registerModal" class="modal-button">注册</label></li>
+							{% endif %}
+						</ul>
+					</div>
+				</div>
 			</div>
 			{% if messages %}
 			{% for message in messages %}
@@ -52,64 +170,53 @@
 		</header>
 
 		<main>
-			<div class="row">
-				<div class="col-md-8" style="padding: 1rem">
+			<div class="md:flex md:px-2">
+				<div id="mainContent" class="w-full md:w-2/3 p-2 md:p-4 lg:p-6 xl:p-8 2xl:p-10">
 					{% block main %}
 					{% endblock main %}
 				</div>
-				<div class="col-md-4" style="padding: 1rem">
+				<div id="sideContent" class="hidden md:block w-full md:w-1/3 p-2 md:p-4 lg:p-6 xl:p-8 2xl:p-10">
 					{% block toc %}
 					{% endblock toc %}
 
-					{% show_recent_posts 10 %}
+					{% show_hot_posts 5 %}
+					{% show_recent_posts 5 %}
 					{% show_archives %}
 					{% show_categories %}
 					{% show_tags %}
-
-					<div class="widget">
-						<h3 class="widget-title">其他</h3>
-						<div class="rss">
-							<span class="icofont-rss-feed"></span><a href="{% url 'blog:rss' %}"> RSS订阅</a>
-						</div>
-						<div class="joke">
-							<span class="icofont-image"></span><a href="{% url 'joke:index' %}"> 神兔笑话</a>
-						</div>
-						<div class="book">
-							<span class="icofont-book"></span><a href="{% url 'book:index' %}"> 我的书单</a>
-						</div>
-						<div class="v2ray">
-							<span class="icofont-web"></span><a href="{% url 'v2ray:index' %}"> 科学上网</a>
-						</div>
-					</div>
+					{% show_other_links %}
 				</div>
 			</div>
 		</main>
 
 		<footer>
-			<p>
-				<span id="runtime_span"></span><br>
-				<span style="font-family: monospace">© 2021
-					<a href="https://twitter.com/HenryJi529" style="text-decoration: underline; font-weight:bold">Henry
-						Ji</a></span> /
-				<span style="font-family: monospace">License: <a href="https://www.gnu.org/licenses/agpl-3.0.en.html"
-						style="text-decoration: underline; font-weight:bold">AGPLv3</a></span> /
-				<span style="font-family: monospace">Powered by <a href="https://cloud.google.com/"
-						style="text-decoration: underline; font-weight:bold">Google
-						Cloud</a></span>
-			</p>
+			<div class="text-center">
+				<div id="runtime_span"></div>
+				<div id="copyright">
+					<span>© 2021
+						<a href="{% url 'me' %}" class="font-bold" style="font-family: Lora">Henry Ji</a>
+					</span>
+					<span class="brightness-0">/</span>
+					<span>License: <a href="https://www.gnu.org/licenses/agpl-3.0.en.html"
+							class="font-bold">AGPLv3</a></span>
+					<span class="brightness-0">/</span>
+					<span>Powered by <a href="https://cloud.google.com/" class="font-bold">GCloud</a></span>
+				</div>
+			</div>
+			{% compress js %}
+			<script src="{% static 'base/js/runtime.js' %}"></script>
+			{% endcompress %}
 		</footer>
 	</div>
-
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.3.1/build/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
-<script>
-	hljs.highlightAll()
-	hljs.initLineNumbersOnLoad();
-</script>
 
-<script src="{% static 'base/js/runtime.js' %}"></script>
-<script data-href="https://github.com/HenryJi529/OpenMorningstar" src="{% static 'base/js/github.js'%}"></script>
+{% compress js %}
+<script src="{% static 'node_modules/localstorage-slim/dist/localstorage-slim.js' %}"></script>
+<script src="{% static 'blog/js/toggleMobileMenu.js' %}"></script>
+<script src="{% static 'blog/js/toggleTheme.js' %}"></script>
+{% endcompress %}
+
+{% block custom_js %}
+{% endblock custom_js %}
 
 </html>

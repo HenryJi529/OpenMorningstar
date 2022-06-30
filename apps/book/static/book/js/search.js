@@ -24,7 +24,7 @@ function displayMatches() {
 		const bookAuthor = book.author.replace(regex, `<span class="hl">${this.value.toUpperCase()}</span>`);
 		return `
 	<li>
-		<span class="name"><a href="${book.url}"><i class="fa-solid fa-download space"></i></a> ${bookName}</span>
+		<span class="name"><a href="${book.url_lanzou}"><i class="fa-solid fa-download space"></i></a> ${bookName}</span>
 		<span class="author">${bookAuthor}</span>
 	</li>
 	`;

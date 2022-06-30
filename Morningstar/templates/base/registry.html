@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load compress %}
+
+{% block title %}
+Docker Registry
+{% endblock %}
+
+{% block custom_css %}
+<style>
+	* {
+		font-family: monospace;
+		font-size: 16px;
+	}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container min-h-screen p-4">
+	<div class="text-3xl">
+		域名：{{ data.domain }}
+	</div>
+	{% for repo in data.repos %}
+	<div>
+		{{repo.name}}: [ <br>
+		{% for tag in repo.tags %}
+		&nbsp; {{tag}}, <br>
+		{% endfor %}
+		]
+	</div>
+	{% endfor %}
+</div>
+{% endblock %}
+
+{% block custom_js %}
+{% endblock %}
