@@ -8,6 +8,5 @@ if (isMobile) {
 			document.querySelector('#headBar .title').style.display = 'block';
 			document.querySelector('#headBar .nav').style.marginTop = "0";
 		}
-	}, 500);
-
-} 
+	}, 200);
+}

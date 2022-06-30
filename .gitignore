@@ -2,7 +2,6 @@
 .DS_Store
 
 # IDE
-.idea/
 .VSCodeCounter/
 
 # C
@@ -25,15 +24,15 @@ node_modules/
 /Morningstar/settings/test.py
 /database/
 /whoosh_index/
-*.log
 
-# secret
-.env
-secret.sh
-gcloud_instances.txt
+# log
+*.log
 
 # release
 release/
+
+# static
+/static/
 
 # media
 # NOTE: /media/*/*
@@ -41,6 +40,11 @@ release/
 !/media/avatar/default.svg
 /media/photo/*
 !/media/photo/default.jpeg
+
+# secret
+.env
+secret.sh
+gcloud_instances.txt
 
 # others
 .vercel/

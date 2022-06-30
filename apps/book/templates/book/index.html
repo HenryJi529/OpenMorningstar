@@ -1,3 +1,4 @@
+{% load compress %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -12,10 +13,11 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@latest/pace-theme-default.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
 	<title>我的书单</title>
-
+	{% compress css %}
 	<link rel="stylesheet" href="{% static 'book/css/base.css' %}">
 	<link rel="stylesheet" href="{% static 'book/css/list.css' %}">
 	<link rel="stylesheet" href="{% static 'book/css/search.css' %}">
+	{% endcompress %}
 </head>
 
 <body>
@@ -60,9 +62,10 @@
 
 <script type="text/javascript" src="https://www.cornify.com/js/cornify.js"></script>
 
-
+{% compress js %}
 <script data-href="https://github.com/HenryJi529/OpenMorningstar" src="{% static 'base/js/github.js'%}"></script>
 <script src="{% static 'book/js/cornify.js' %}"></script>
+{% endcompress %}
 
 <script>
 	const endpoint = "{{ endpoint }}";
@@ -75,9 +78,10 @@
 		document.getElementById("float").style.display = 'none';
 		document.getElementById("fade").style.display = 'none';
 	});
-
 </script>
 
+{% compress js %}
 <script src="{%static 'book/js/search.js' %}"></script>
+{% endcompress %}
 
 </html>

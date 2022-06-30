@@ -52,6 +52,7 @@ def credits(request):
     ]
     return render(request, "base/credits.html", context={"items": items})
 
+
 def login(request):
     auth.logout(request)
     login_form = LoginForm(request)

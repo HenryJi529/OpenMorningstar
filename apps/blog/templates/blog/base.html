@@ -1,3 +1,4 @@
+{% load compress %}
 {% load static %}
 {% load blog_extras %}
 <!DOCTYPE html>
@@ -14,7 +15,9 @@
 	<!-- <link href="https://cdn.bootcss.com/highlight.js/11.3.1/styles/github.min.css" rel="stylesheet"> -->
 	<link href="https://cdn.jsdelivr.net/npm/highlight.js@11.3.1/styles/github-dark.css" rel="stylesheet">
 	<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/monokai.min.css" rel="stylesheet"> -->
+	{% compress css %}
 	<link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+	{% endcompress %}
 	<script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/green/pace-theme-loading-bar.css">
 	{% block custom_css %}
@@ -108,8 +111,9 @@
 	hljs.highlightAll()
 	hljs.initLineNumbersOnLoad();
 </script>
-
+{% compress js %}
 <script src="{% static 'base/js/runtime.js' %}"></script>
 <script data-href="https://github.com/HenryJi529/OpenMorningstar" src="{% static 'base/js/github.js'%}"></script>
+{% endcompress %}
 
 </html>

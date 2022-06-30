@@ -1,4 +1,5 @@
 {% load static %}
+{% load compress %}
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -20,7 +21,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
     <link rel="icon" href="{% static 'base/img/favicon.ico' %}">
     <title>{% block title %} {% endblock %}</title>
+    {% compress css %}
     <link rel="stylesheet" href="{% static 'base/css/base.css' %}">
+    {% endcompress %}
     {% block custom_css %}{% endblock %}
 </head>
 
@@ -40,9 +43,10 @@
     </footer>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+{% compress js %}
 <script src="{% static 'base/js/runtime.js' %}"></script>
 <script data-href="https://github.com/HenryJi529/OpenMorningstar" src="{% static 'base/js/github.js'%}"></script>
-
+{% endcompress %}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     crossorigin="anonymous"></script>
 {% block custom_js %}{% endblock %}

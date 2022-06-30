@@ -1,13 +1,9 @@
 from django.shortcuts import redirect
 
+
 def shortcut(request, name):
-    # VPS托管服务
-    if name in ["frps", "beancount", "code", "dockerhub", "gitea", "portainer", "rsshub", "send", "ssh"]:
-        if name == 'dockerhub':
-            return redirect("https://dockerhub.morningstar529.com/v2/_catalog")
-        return redirect("https://" + name + ".morningstar529.com/")
     # 第三方托管服务
-    elif name in ["icofont"]:
+    if name in ["icofont"]:
         return redirect("https://" + name + ".morningstar529.com/")
     # 项目快捷链接
     elif name in ["issue", "auto", "src", "src-mirror", "host", "vercel", "domain", "namecheap", "license", "coverage", "task", "resume", "mailbox"]:

@@ -1,12 +1,15 @@
 {% extends 'base/base.html' %}
 {% load static %}
+{% load compress %}
 
 {% block title %}
 Credits
 {% endblock %}
 
 {% block custom_css %}
+{% compress css %}
 <link rel="stylesheet" href="{% static 'base/css/credits.css' %}">
+{% endcompress %}
 {% endblock %}
 
 {% block content %}
@@ -25,7 +28,7 @@ Credits
 				-
 				<div class="homepage" data-homepage-url="{{item.homepage_url}}">
 					homepage
-				</div> 
+				</div>
 			</div>
 		</div>
 		<div class="license-text"></div>
@@ -36,5 +39,7 @@ Credits
 {% endblock %}
 
 {% block custom_js %}
+{% compress js %}
 <script src="{% static 'base/js/credits.js' %}"></script>
+{% endcompress %}
 {% endblock %}

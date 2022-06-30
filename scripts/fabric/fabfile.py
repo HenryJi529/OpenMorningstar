@@ -70,6 +70,7 @@ def update(c):
         c.run('docker exec -it morningstar_django service supervisor start')
     except:
         c.run('docker exec -it morningstar_django service supervisor status')
+        raise Exception("supervisor error")
 
     # 一系列任务
     c.run('docker exec -it morningstar_django bash /production.sh')
@@ -172,6 +173,7 @@ def upgrade(c):
             c.run('docker exec -it morningstar_django service supervisor start')
         except:
             c.run('docker exec -it morningstar_django service supervisor status')
+            raise Exception("supervisor error")
 
         # 确保数据库无连接错误并执行一系列任务
         c.run('docker exec -it morningstar_django supervisorctl restart django')
@@ -180,7 +182,7 @@ def upgrade(c):
         # 配置frps
         c.run("docker cp ~/morningstar/deploy/_config/frp/frps.ini morningstar_frps:/etc/frp/frps.ini && docker restart morningstar_frps")
 
-        # 配置nginx
+        # 配置HTTPS
         c.run('docker exec morningstar_nginx bash /start.sh')
         c.run('docker exec -it morningstar_nginx certbot --nginx')
 
@@ -227,8 +229,7 @@ def updatePackage(c):
         for package in packages:
             try:
                 c.run(f'docker rmi ghcr.io/henryji529/morningstar-{package}')
-                c.run(
-                    f'docker rmi dockerhub.morningstar529.com/morningstar-{package}')
+                c.run(f'docker rmi dockerhub.morningstar529.com/morningstar-{package}')
             except:
                 pass
             c.run(

@@ -1,3 +1,4 @@
+{% load compress %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -13,8 +14,10 @@
 		crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" crossorigin="anonymous"
 		async></script>
+	{% compress css %}
 	<link rel="stylesheet" href="{% static 'joke/css/hover.css' %}">
 	<link rel="stylesheet" href="{% static 'joke/css/style.css' %}">
+	{% endcompress %}
 </head>
 
 <body>
@@ -28,6 +31,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 	crossorigin="anonymous"></script>
 
-{% block scripts %}{% endblock scripts %}
+{% block js %}{% endblock %}
 
 </html>

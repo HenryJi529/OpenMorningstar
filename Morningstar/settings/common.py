@@ -52,20 +52,22 @@ INSTALLED_APPS = [
     'apps.lover.apps.LoverConfig',  # 爱人
     'apps.nav.apps.NavConfig',  # 导航
     'apps.poll.apps.PollConfig',  # 投票
-    'apps.tool.apps.ToolConfig',  # 工具
+    'apps.rss.apps.RssConfig',  # RSS
+    'apps.sanguosha.apps.SanguoshaConfig',  # 三国杀
     'apps.v2ray.apps.V2RayConfig',  # 代理
 
-    'jazzmin',  # UI定制 
-    'pure_pagination',  # 分页
-    'haystack',  # 搜索
     'captcha',  # google recaptcha
-    'django_user_agents',  # 获取客户端代理类型
-    'rest_framework',  # restful api
-    'django_filters',  # 过滤器
-    'import_export',  # 导入导出
+    'compressor',  # 压缩js
     'corsheaders',  # 处理跨域访问
     'debug_toolbar',  # 调试工具
     'django_crontab', # 定时任务
+    'django_filters',  # 过滤器
+    'django_user_agents',  # 获取客户端代理类型
+    'haystack',  # 搜索
+    'import_export',  # 导入导出
+    'jazzmin',  # UI定制 
+    'pure_pagination',  # 分页
+    'rest_framework',  # restful api
 
     'django.contrib.humanize',  # {% load humanize %}
     'django.contrib.admin',
@@ -344,3 +346,12 @@ CRONJOBS =  [
 """媒体设置"""
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = "/media/"
+
+"""压缩css/js"""
+COMPRESS_ROOT = BASE_DIR / 'static'
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # other finders..
+    'compressor.finders.CompressorFinder',
+)

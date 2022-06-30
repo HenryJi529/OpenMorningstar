@@ -1,3 +1,4 @@
+{% load compress %}
 <form id="register_form" action="/" method="post" autocomplete="on" class="d-none">
 	{% csrf_token %}
 	{% for field in register_form %}
@@ -21,5 +22,6 @@
 		<input type="button" value="点此登录" id="login_button" class="btn btn-sm btn-secondary">
 	</p>
 </form>
-
+{% compress js %}
 <script src="{% static 'base/js/register.js' %}"></script>
+{% endcompress %}

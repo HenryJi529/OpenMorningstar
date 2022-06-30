@@ -1,11 +1,14 @@
 {% extends 'base/base.html' %}
 {% load static %}
+{% load compress %}
 {% block title %}
 登录/注册
 {% endblock %}
 
 {% block custom_css %}
+{% compress css %}
 <link rel="stylesheet" href="{% static 'base/css/login_register.css' %}">
+{% endcompress %}
 {% endblock %}
 
 

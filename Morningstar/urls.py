@@ -52,8 +52,8 @@ urlpatterns = [
     path('lover/', include('lover.urls')),
     path('nav/', include('nav.urls')),
     path('poll/', include('poll.urls')),
+    path('rss/', include('rss.urls')),
     path('sanguosha/', include('sanguosha.urls')),
-    path('tool/', include('tool.urls')),
     path('v2ray/', include('v2ray.urls')),
 
     # 其他

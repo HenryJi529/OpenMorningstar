@@ -3,6 +3,7 @@ branch = True
 source = . 
 data_file = scripts/coverage/.coverage
 omit =
+	**/migrations/*
 	Morningstar/asgi.py
 	Morningstar/wsgi.py
 	manage.py

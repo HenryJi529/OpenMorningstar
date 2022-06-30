@@ -7,12 +7,6 @@
 			"icon": "fa-solid fa-rocket",
 			"items": [
 				{
-					"name": "仿油管官网",
-					"url": "https://youtube-homepage-clone.vercel.app",
-					"image": "/nav/img/Work/仿油管官网.png",
-					"desc": "仿油管官网前端界面～"
-				},
-				{
 					"name": "在线画板",
 					"url": "https://online-canvas.vercel.app/",
 					"image": "/nav/img/Work/在线画板.png",
@@ -35,18 +29,6 @@
 					"url": "https://survey-form-lemon.vercel.app/",
 					"image": "/nav/img/Work/调查问卷.png",
 					"desc": "只完成了前端样式～"
-				},
-				{
-					"name": "简易文档",
-					"url": "https://technical-documentation-page-puce.vercel.app/",
-					"image": "/nav/img/Work/简易文档.png",
-					"desc": "基础的单页文档～"
-				},
-				{
-					"name": "产品销售页",
-					"url": "https://product-landing-page-zeta.vercel.app/",
-					"image": "/nav/img/Work/产品销售页.png",
-					"desc": "长号在售！"
 				},
 				{
 					"name": "神兔笑话",
@@ -83,6 +65,12 @@
 					"url": "https://morningstar529.com/book/",
 					"image": "/nav/img/Work/book.png",
 					"desc": "只提供检索与下载功能"
+				},
+				{
+					"name": "RSS源",
+					"url": "https://morningstar529.com/rss/",
+					"image": "/nav/img/Work/rss.png",
+					"desc": "仿照Feed43生成RSS源"
 				}
 			]
 		},
@@ -767,6 +755,10 @@
 					"url": "https://withpinbox.com/items/"
 				},
 				{
+					"name": "字幕拼图",
+					"url": "https://tool.lu/stitch/"
+				},
+				{
 					"name": "PDF处理",
 					"url": "https://www.ilovepdf.com/zh-cn"
 				},
@@ -805,6 +797,10 @@
 				{
 					"name": "二维码",
 					"url": "https://cli.im/deqr"
+				},
+				{
+					"name": "随机字符串",
+					"url": "https://www.rapidtables.com/tools/password-generator.html"
 				},
 				{
 					"name": "聚合阅读",
@@ -847,7 +843,7 @@
 				},
 				{
 					"name": "正则测试",
-					"url": "https://tool.oschina.net/regex"
+					"url": "https://regex101.com/"
 				},
 				{
 					"name": "前端展示",
@@ -856,6 +852,10 @@
 				{
 					"name": "Gitignore",
 					"url": "https://www.toptal.com/developers/gitignore/"
+				},
+				{
+					"name": "Gitmoji",
+					"url": "https://gitmoji.dev/"
 				},
 				{
 					"name": "项目保护",
@@ -868,6 +868,10 @@
 				{
 					"name": "KeyCode",
 					"url": "https://keycode.info/"
+				},
+				{
+					"name": "Base64",
+					"url": "https://www.rapidtables.com/web/tools/base64-decode.html"
 				},
 				{
 					"name": "网站托管",
@@ -1229,24 +1233,20 @@
 			"title": "网站模版",
 			"items": [
 				{
-					"name": "W3cschool",
-					"url": "https://www.w3schools.com/w3css/w3css_templates.asp"
-				},
-				{
 					"name": "Bootswatch",
 					"url": "https://bootswatch.com/"
-				},
-				{
-					"name": "HTML5UP",
-					"url": "https://html5up.net/"
 				},
 				{
 					"name": "Themeforest",
 					"url": "https://themeforest.net/"
 				},
 				{
-					"name": "Nicepage",
-					"url": "https://nicepage.com/html-templates"
+					"name": "Tailwind Awesome",
+					"url": "https://www.tailwindawesome.com/?type=template"
+				},
+				{
+					"name": "Themesberg",
+					"url": "https://themesberg.com/templates/free"
 				}
 			]
 		},

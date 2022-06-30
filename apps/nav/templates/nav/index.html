@@ -1,3 +1,4 @@
+{% load compress %}
 {% load static %}
 {% load nav_extras %}
 <!DOCTYPE html>
@@ -9,12 +10,12 @@
 	<meta http-equiv="refresh" content="1800;/">
 	<title>Nav - 晨星导航</title>
 	<link rel="shortcut icon" href="{% static 'nav/img/favicon.ico' %}" />
-	<!--https://icons.getbootstrap.com/-->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 	<!--https://fontawesome.com/v6/icons?m=free-->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
 	<!-- <script src="https://kit.fontawesome.com/50c2c253e1.js" crossorigin="anonymous"></script> -->
+	{% compress css %}
 	<link rel="stylesheet" href="{% static 'nav/css/style.css' %}">
+	{% endcompress %}
 	<script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@latest/pace-theme-default.min.css">
 </head>
@@ -113,7 +114,9 @@
 		</div>
 	</div>
 </body>
+{% compress js %}
 <script src="{% static 'nav/js/app.js' %}"></script>
 <script data-href="https://github.com/HenryJi529/OpenMorningstar" src="{% static 'base/js/github.js'%}"></script>
+{% endcompress %}
 
 </html>

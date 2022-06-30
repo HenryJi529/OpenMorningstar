@@ -66,7 +66,8 @@ restoreProd() {
 
 # 生成压缩包
 archiveMain() {
-	git archive --format=tar main | gzip >release/main.tar.gz
+	time=$(date "+%Y-%m-%d")
+	git archive --format=tar main | gzip >release/main_${time}.tar.gz
 }
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

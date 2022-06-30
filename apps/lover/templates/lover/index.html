@@ -1,3 +1,4 @@
+{% load compress %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +8,9 @@
 	<meta name="viewport" content="width=400, user-scalable=0">
 	<title>toTheMax</title>
 	<link rel="shortcut icon" href="{% static 'lover/img/favicon.ico' %}" type="image/x-icon">
+	{% compress css %}
 	<link rel="stylesheet" href="{% static 'lover/css/index.css' %}">
+	{% endcompress %}
 </head>
 
 <body>
@@ -20,9 +23,10 @@
 		谨以此页献给我的爱人范巧玲～
 	</footer>
 </body>
+{% compress js %}
 <script src="{% static 'lover/js/app.js' %}"></script>
 <script data-href="https://github.com/HenryJi529/OpenMorningstar" src="{% static 'base/js/github.js' %}"></script>
-
+{% endcompress %}
 <!-- 初始化 -->
 <script>
 	const isMobile = /Android|iPhone/i.test(navigator.userAgent) ? true : false;

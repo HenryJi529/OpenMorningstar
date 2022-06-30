@@ -5,4 +5,5 @@ from . import views
 app_name = 'v2ray'
 urlpatterns = [
     path('', views.index, name='index'),
+    path('config/',views.config, name='config'),
 ]

@@ -44,7 +44,7 @@ function transformColorDec2Hex(decColor) {
 			if (hex === "0") {
 				hex += hex;
 			}
-			hex = hex.length == 1 ? '0' + hex : hex;
+			hex = hex.length === 1 ? '0' + hex : hex;
 			strHex += hex;
 		}
 		return strHex;
@@ -69,7 +69,7 @@ function getAverageColor(fills) {
 
 function getCurrentFill(currentCx, currentCy, currentLevel) {
 	let i, j, ind;
-	if (currentLevel == 0) {
+	if (currentLevel === 0) {
 		i = Math.floor(currentCx / 3);
 		j = Math.floor(currentCy / 4);
 		ind = j * 2 ** maxLevel + i;
