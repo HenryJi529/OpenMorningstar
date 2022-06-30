@@ -8,12 +8,12 @@ WORKDIR /app
 # COPY ./_mirror_cn/tuna-sources.list /etc/apt/sources.list
 
 RUN apt-get update
-RUN apt-get install -y iputils-ping net-tools vim
-RUN apt-get install -y python3-pip mysql-client libmysqlclient-dev 
+RUN apt-get install -y iputils-ping net-tools vim rsync
+RUN apt-get install -y python3-pip mysql-client libmysqlclient-dev
+RUN apt-get install -y nodejs npm
 RUN apt-get install -y cron
 RUN apt-get install -y supervisor
 COPY ./django/requirements.txt /app/requirements.txt
-RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install -r /app/requirements.txt
 
 # 解决timezone依赖

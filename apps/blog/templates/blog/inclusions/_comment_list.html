@@ -1,22 +1,26 @@
-<h3>评论区: 共 <span style='font-size:1.5rem'>{{ comment_count }}</span> 条评论</h3>
-<ul class="comment-list list-unstyled">
+<div class="space-y-4">
 	{% for comment in comment_list %}
-	<li class="comment-item">
-		<div>
-			昵称：<span class="name" style="font-weight: bold; font-size:1.1rem">{{ comment.name }}</span>
-			{% if comment.email %}
-			<span class="email">({{comment.email}})</span>
-			{% endif %}
+	<div class="flex space-x-4 w-full">
+		<div class="btn btn-ghost btn-circle avatar">
+			<div class="w-14 rounded-full">
+				<img src="/media/{{ comment.user.avatar }}" alt="{{ comment.user.username }}'s avatar">
+			</div>
 		</div>
-		<div>
-			更新于<span style="font-weight: bold;">{{comment.updated|timesince}}</span>前
+		<div class="flex-1 rounded-xl border-2">
+			<div class="flex bg-slate-100 dark:bg-slate-600 space-x-4 rounded-t-xl p-2">
+				<div>
+					<span class="font-bold">{{ comment.user.username }}</span>
+				</div>
+				<div>评论于<span>{{comment.updated|timesince}}</span>前</div>
+			</div>
+			<div class="p-2">
+				{{ comment.html|safe }}
+			</div>
+			<div class="flex justify-end p-2 pt-0">
+			</div>
 		</div>
-		<div class="text" style="border: 2px black dashed; padding: 0.5rem; margin-top: 0.3rem; border-radius: 0.5rem;">
-			{{ comment.body|linebreaks }}
-		</div>
-		<hr>
-	</li>
+	</div>
 	{% empty %}
-	暂无评论
+	<div class="text-xl">暂无评论～</div>
 	{% endfor %}
-</ul>
+</div>

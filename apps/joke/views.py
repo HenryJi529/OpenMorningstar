@@ -1,21 +1,17 @@
+import random
+
 from django.shortcuts import render, HttpResponse, redirect
-from .models import Photo
+from .models import Photo, Text
 
 
 def index(request):
-    photos = Photo.objects.all()
-    context = {'photos': photos}
-    return render(request, 'joke/list.html', context)
+    photo_list = [ {"type": "photo", "content" : content} for content in list(Photo.objects.all())]
+    text_list = [ {"type": "text", "content" : content} for content in list(Text.objects.all())]
+    try:
+        joke_list = random.sample(photo_list+text_list, 50)
+    except ValueError:
+        joke_list = photo_list + text_list
+        random.shuffle(joke_list)
+    context = {'joke_list': joke_list}
+    return render(request, 'joke/index.html', context=context)
 
-
-def upload(request):
-    if request.method == 'POST' and request.user.is_superuser:
-        if request.POST["foreignUrl"]:
-            photo = Photo(foreignUrl=request.POST["foreignUrl"])
-            photo.save()
-            return redirect('joke:index')
-        images = request.FILES.getlist('images')
-        for i in images:
-            photo = Photo(image=i)
-            photo.save()
-    return redirect('joke:index')

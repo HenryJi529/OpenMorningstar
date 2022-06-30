@@ -5,7 +5,7 @@ import sh
 import subprocess
 from dotenv import load_dotenv
 import colorama
-# NOTE: 因为.env的路径问题，所以本脚本只能通过shortcut.sh在根目录执行
+# NOTE: 因为.env的路径问题，所以本脚本只能通过task.sh在根目录执行
 
 
 def runcmd1(command):
@@ -48,7 +48,7 @@ def check(c):
 def update(c):
     project_root_path = '~/morningstar'
 
-    # 从Git拉取最新代码
+    better_print("更新代码...")
     try:
         with c.cd(project_root_path):
             c.run('git checkout .')
@@ -57,22 +57,77 @@ def update(c):
         c.run('sudo rm -rf ~/morningstar/')
         c.run('git clone https://github.com/HenryJi529/OpenMorningstar.git ~/morningstar')
 
-    # 暂停所有任务
+    better_print("暂停所有任务...")
     c.run('docker restart morningstar_django')
 
-    # 更新依赖，转移媒体文件
-    c.run('docker exec -it morningstar_django python3 -m pip install --upgrade pip')
+    better_print("更新Python依赖...")
     c.run('docker exec -it morningstar_django python3 -m pip install -r /app/requirements.txt')
+
+    better_print("更新并迁移JavaScript依赖...")
+    c.run('docker exec -it morningstar_django npm install --production')
+    c.run('docker exec -it morningstar_django test -d "/app/static" || mkdir /app/static')
+    c.run('docker exec -it morningstar_django rsync -a /app/node_modules /app/static')
+
+    better_print("转移媒体文件...")
     c.run('docker cp ~/morningstar/media morningstar_django:/app')
 
-    # 重启
-    try:
-        c.run('docker exec -it morningstar_django service supervisor start')
-    except:
-        c.run('docker exec -it morningstar_django service supervisor status')
-
-    # 一系列任务
+    better_print("启动supervisor管理Django进程...")
+    c.run('docker exec -it morningstar_django service supervisor start')
     c.run('docker exec -it morningstar_django bash /production.sh')
+
+    print("Done!!")
+
+
+@task()
+def upgrade(c):
+    home_path = "~/"
+    with c.cd(home_path):
+        """更新项目"""
+        better_print("更新代码...")
+        c.run('sudo rm -rf ~/morningstar/')
+        c.run('git clone https://github.com/HenryJi529/OpenMorningstar.git ~/morningstar')
+        
+        def update_file_with_secret():
+            c.run(
+                "source ~/.zshrc && echo \"\nenvironment=DJANGO_SECRET_KEY='${DJANGO_SECRET_KEY}',EMAIL_HOST_PASSWORD='${EMAIL_HOST_PASSWORD}',TENCENT_SMS_APP_KEY='${TENCENT_SMS_APP_KEY}',RECAPTCHA_PUBLIC_KEY='${RECAPTCHA_PUBLIC_KEY}',RECAPTCHA_PRIVATE_KEY='${RECAPTCHA_PRIVATE_KEY}',MYSQL_ROOT_PASSWORD='${MYSQL_ROOT_PASSWORD}',REDIS_PASSWORD='${REDIS_PASSWORD}'\" >> ~/morningstar/deploy/django/supervise.conf")
+            c.run(
+                'source ~/.zshrc && sed -i "s/MORNINGSTAR_USERNAME/${MORNINGSTAR_USERNAME}/" ~/morningstar/deploy/_config/frp/frps.ini')
+            c.run(
+                'source ~/.zshrc && sed -i "s/MORNINGSTAR_PASSWORD/${MORNINGSTAR_PASSWORD}/" ~/morningstar/deploy/_config/frp/frps.ini')
+        better_print("添加密钥...")
+        update_file_with_secret()
+
+        better_print("清理docker(除volume)...")
+        try:
+            c.run('docker rm -f $(docker ps -aq | tr "\\n" " ")')
+        except:
+            pass
+        c.run('docker system prune -af')
+
+        better_print("部署容器...")
+        c.run('source ~/.zshrc && cd ~/morningstar/deploy; docker-compose build && docker-compose up -d')
+        
+        better_print("配置frps...")
+        c.run("docker cp ~/morningstar/deploy/_config/frp/frps.ini morningstar_frps:/etc/frp/frps.ini && docker restart morningstar_frps")
+
+        better_print("更新并迁移JavaScript依赖...")
+        c.run('docker exec -it morningstar_django npm install --production')
+        c.run('docker exec -it morningstar_django test -d "/app/static" || mkdir /app/static')
+        c.run('docker exec -it morningstar_django rsync -a /app/node_modules /app/static')
+
+        better_print("转移媒体文件...")
+        c.run('docker cp ~/morningstar/media morningstar_django:/app')
+
+        better_print("启动supervisor管理Django进程...")
+        c.run('docker exec -it morningstar_django service supervisor start')
+        # NOTE: 重启Django确保数据库无连接错误
+        c.run('docker exec -it morningstar_django supervisorctl restart django')
+        c.run('docker exec -it morningstar_django bash /production.sh')
+
+        better_print("配置HTTPS...")
+        c.run('docker exec morningstar_nginx bash /start.sh')
+        # c.run('docker exec -it morningstar_nginx certbot --nginx -n --domains morningstar529.com')
+        c.run('docker exec -it morningstar_nginx certbot --nginx')
 
     print("Done!!")
 
@@ -102,88 +157,6 @@ def restore(c):
         c.run('sshpass -p ' + DEV_PASSWORD +
             ' scp -P 1022 henry529@frp.morningstar529.com:~/Projects/OpenMorningstar/database/all.json ~/morningstar/database')
         c.run('docker exec -it morningstar_django bash -c "python3 manage.py loaddata --settings=Morningstar.settings.production database/all.json"')
-    print("Done!!")
-
-
-@task()
-def upgrade(c):
-    home_path = "~/"
-    with c.cd(home_path):
-        """更新项目"""
-        # 从Git拉取最新代码
-        c.run('sudo rm -rf ~/morningstar/')
-        c.run('git clone https://github.com/HenryJi529/OpenMorningstar.git ~/morningstar')
-        print("更新代码...")
-
-        def update_file_with_secret():
-            c.run(
-                "source ~/.zshrc && echo \"\nenvironment=DJANGO_SECRET_KEY='${DJANGO_SECRET_KEY}',EMAIL_HOST_PASSWORD='${EMAIL_HOST_PASSWORD}',TENCENT_SMS_APP_KEY='${TENCENT_SMS_APP_KEY}',RECAPTCHA_PUBLIC_KEY='${RECAPTCHA_PUBLIC_KEY}',RECAPTCHA_PRIVATE_KEY='${RECAPTCHA_PRIVATE_KEY}',MYSQL_ROOT_PASSWORD='${MYSQL_ROOT_PASSWORD}',REDIS_PASSWORD='${REDIS_PASSWORD}'\" >> ~/morningstar/deploy/django/supervise.conf")
-            c.run(
-                'source ~/.zshrc && sed -i "s/MORNINGSTAR_USERNAME/${MORNINGSTAR_USERNAME}/" ~/morningstar/deploy/_config/frp/frps.ini')
-            c.run(
-                'source ~/.zshrc && sed -i "s/MORNINGSTAR_PASSWORD/${MORNINGSTAR_PASSWORD}/" ~/morningstar/deploy/_config/frp/frps.ini')
-        update_file_with_secret()
-        print("添加密钥...")
-
-        # 更新容器
-        try:
-            c.run('docker rm -f $(docker ps -aq | tr "\\n" " ")')  # NOTE: 删除全部容器
-        except:
-            pass
-
-        order = input("是否同时更新所有包(Y/n): ")
-        images_host = ["henry529/django", "henry529/nginx", "henry529/beancount", "henry529/tshock"]
-        for image in images_host:
-            try:
-                c.run(f'docker rmi {image}')
-            except:
-                pass
-
-        if order == 'n':
-            pass
-        else:
-            images_others = ["niruix/sshwifty", "diygod/rsshub", "gitea/gitea", "snowdreamtech/frps", "mysql", "registry.gitlab.com/timvisee/send",
-                    "registry", "portainer/portainer", "fauria/vsftpd", "redis", "alpine", "nginx", "ubuntu",]
-            for image in images_others:
-                try:
-                    c.run(f'docker rmi {image}')
-                except:
-                    pass
-
-        c.run('docker system prune -a')
-
-        if order == 'n':
-            pass
-        else:
-            for image in images_others:
-                try:
-                    c.run(f'docker pull {image}')
-                except:
-                    pass
-
-        c.run('source ~/.zshrc && cd ~/morningstar/deploy; docker-compose build && docker-compose up -d')
-        print("部署项目...")
-
-        # 转移媒体文件
-        c.run('docker cp ~/morningstar/media morningstar_django:/app')
-        
-        # 重启
-        try:
-            c.run('docker exec -it morningstar_django service supervisor start')
-        except:
-            c.run('docker exec -it morningstar_django service supervisor status')
-
-        # 确保数据库无连接错误并执行一系列任务
-        c.run('docker exec -it morningstar_django supervisorctl restart django')
-        c.run('docker exec -it morningstar_django bash /production.sh')
-
-        # 配置frps
-        c.run("docker cp ~/morningstar/deploy/_config/frp/frps.ini morningstar_frps:/etc/frp/frps.ini && docker restart morningstar_frps")
-
-        # 配置nginx
-        c.run('docker exec morningstar_nginx bash /start.sh')
-        c.run('docker exec -it morningstar_nginx certbot --nginx')
-
     print("Done!!")
 
 
@@ -227,8 +200,7 @@ def updatePackage(c):
         for package in packages:
             try:
                 c.run(f'docker rmi ghcr.io/henryji529/morningstar-{package}')
-                c.run(
-                    f'docker rmi dockerhub.morningstar529.com/morningstar-{package}')
+                c.run(f'docker rmi dockerhub.morningstar529.com/morningstar-{package}')
             except:
                 pass
             c.run(

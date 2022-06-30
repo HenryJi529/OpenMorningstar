@@ -1,7 +1,3 @@
-- [Security Policy](#security-policy)
-  - [Supported Versions](#supported-versions)
-  - [Reporting a Vulnerability](#reporting-a-vulnerability)
-    
 # Security Policy
 
 ## Supported Versions
@@ -10,8 +6,8 @@ We release patches for security vulnerabilities.
 
 | Version   | Supported          |
 | --------  | ------------------ |
-| 0.0.1     | :white_check_mark: |
-| < 0.0.1   | :x:                |
+| 0.1.x     | ✅                 |
+| < 0.1.0   | ❌                 |
 
 ## Reporting a Vulnerability
 

@@ -1,0 +1,20 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+}
+
+div {
+	z-index: 2;
+	position: absolute;
+	top: 0;
+}
+
+input[type=button] {
+	width: 100px;
+	padding: 10px;
+	outline: none;
+	border: 4px solid gray;
+	border-radius: 10px;
+	font-weight: bold;
+}

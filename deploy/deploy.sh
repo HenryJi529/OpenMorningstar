@@ -4,6 +4,10 @@ source ~/secret.sh
 IGNORE="echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections && "
 DEBIAN_FRONTEND=noninteractive
 
+function echo_important {
+  echo "\033[47;31m$1\033[0m"
+}
+
 change_password() {
   echo "root:$GCLOUD_ROOT_PASSWORD" | sudo chpasswd
   echo "$GCLOUD_USERNAME:$GCLOUD_PASSWORD" | sudo chpasswd
@@ -76,6 +80,7 @@ export CR_PAT='${CR_PAT}'
 alias clone_morningstar='git clone https://github.com/HenryJi529/OpenMorningstar.git ~/morningstar'
 alias login_ghcr='echo $CR_PAT | docker login ghcr.io -u HenryJi529 --password-stdin'
 alias certbot_remain='docker exec morningstar_nginx certbot certificates'
+alias certbot_renew='docker exec morningstar_nginx certbot renew'
 " >>~/.zshrc
 }
 

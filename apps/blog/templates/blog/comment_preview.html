@@ -2,5 +2,5 @@
 {% load comments_extras %}
 
 {% block main %}
-{% show_comment_form post form %}
+{% show_comment_form post request.user form %}
 {% endblock main %}

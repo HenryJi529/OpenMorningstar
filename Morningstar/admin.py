@@ -5,7 +5,7 @@ from Morningstar.models import User
 from import_export import resources
 from import_export.formats import base_formats
 from import_export.fields import Field
-from import_export.admin import ImportExportModelAdmin, ImportMixin, ExportMixin, ImportExportActionModelAdmin
+from import_export.admin import ImportExportModelAdmin
 
 from .models import User
 
@@ -20,15 +20,13 @@ class UserResource(resources.ModelResource):
 
     class Meta:
         model = User
-        fields = ('username', 'password',
-                  'phone', 'email', 'bio', 'avatar')
-        export_order = ('username', 'password',
-                        'phone', 'email', 'bio', 'avatar')
+        fields = ('username', 'password', 'phone', 'email', 'bio', 'avatar')
+        export_order = ('username', 'password', 'phone', 'email', 'bio', 'avatar')
         import_id_fields = ('username',)
 
 
 @admin.register(User)
-class UserAdmin(ImportExportActionModelAdmin):
+class UserAdmin(ImportExportModelAdmin):
     formats = (base_formats.CSV, base_formats.XLS)
     resource_class = UserResource
     list_display = ('id', 'username', '全名', 'email', 'phone', 'is_staff',

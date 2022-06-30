@@ -1,119 +1,176 @@
+{% load compress %}
+{% load matomo_tags %}
 {% load static %}
 {% load nav_extras %}
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<meta http-equiv="refresh" content="1800;/">
 	<title>Nav - 晨星导航</title>
+	<meta name="description" content="这是个为在校Web开发者打造的导航页">
 	<link rel="shortcut icon" href="{% static 'nav/img/favicon.ico' %}" />
-	<!--https://icons.getbootstrap.com/-->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 	<!--https://fontawesome.com/v6/icons?m=free-->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
-	<!-- <script src="https://kit.fontawesome.com/50c2c253e1.js" crossorigin="anonymous"></script> -->
+	<link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+	{% compress css %}
 	<link rel="stylesheet" href="{% static 'nav/css/style.css' %}">
-	<script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@latest/pace-theme-default.min.css">
+	{% endcompress %}
+	<link rel="stylesheet" href="{% static 'node_modules/pace-js/pace-theme-default.min.css' %}">
+	{% tracking_code %}
 </head>
 
 <body>
 	<div id="container">
-		<div id="headBar">
-			<div class="title">
+		<!-- headBar -->
+		<div class="sticky top-0 w-full flex-col items-center flex md:hidden text-orange-400">
+			<div id="headBarTitle" class="title text-center text-3xl">
 				晨星导航
 			</div>
-			<nav class="nav">
+			<nav id="headBarNav" class="nav flex justify-between w-10/12">
 				{% for category in categories %}
-				<a href="#{{ category.slug }}"><span class="{{ category.icon }}"></span></a>
+				<a href="#{{ category.slug }}" class="text-lg">
+					<i class="{{ category.icon }}"></i>
+				</a>
 				{% endfor %}
-				<a href="{% url 'blog:contact' %}" target="_blank" class="email">
-					<span class="fa-solid fa-at"> </span></a>
+				<a href="{% url 'blog:contact' %}" target="_blank" class="text-lg">
+					<i class="fa-solid fa-at"></i>
+				</a>
 			</nav>
 		</div>
 
-		<div id="leftBar">
-			<div class="title">
+		<!-- leftBar -->
+		<div class="w-1/6 hidden md:block md:fixed h-screen bg-gray-400 py-4 text-center">
+			<div class="text-2xl lg:text-3xl xl:text-4xl text-green-500">
 				晨星导航
 			</div>
-			<nav class="nav">
-				<ul class="nav-item" id="navItem">
+			<nav>
+				<ul>
 					{% for category in categories %}
-					<li>
+					<li class="my-2">
 						<a href="#{{ category.slug }}">
-							<span class="{{ category.icon }}" style="font-weight: bold;"> {{ category.name }}</span></a>
+							<span
+								class="{{ category.icon }} text-base lg:text-lg xl:text-xl font-bold hover:text-cyan-400">
+								{{ category.name }}
+							</span>
+						</a>
 					</li>
 					{% endfor %}
 				</ul>
 			</nav>
-			<div class="command">
-				{% if request.user.is_authenticated %}
-				<div class="username">
-					<span style="font-weight: bold;">UserName: </span>
-					<span style="font-weight: bold;color:rgb(160, 233, 233);">{{request.user.username}}</span>
+			<div class="absolute bottom-4 w-full">
+				{% if user.is_authenticated %}
+				<div class="text-lg font-bold">
+					<span>UserName: </span>
+					<span>{{user.username}}</span>
 				</div>
 				{% endif %}
 
-				<a href="{% url 'blog:contact' %}" target="_blank" class="email">
-					<span class="fa-solid fa-at"> 留言</span></a>
-				{% if request.user.is_authenticated %}
-				<a href="/" class="switch"><span class="bi bi-house-fill"> 主页</span></a>
+				<a href="{% url 'blog:contact' %}" target="_blank">
+					<span class="fa-solid fa-at">留言</span>
+				</a>
+				{% if user.is_authenticated %}
+				<a href="{% url 'blog:index' %}" target="_blank">
+					<span class="fa-solid fa-house">主页</span>
+				</a>
 				{% else %}
-				<a href="/?next=/nav/" class="login" target="_blank"><span class="fa-solid fa-right-to-bracket">
-						登录</span></a>
+				<a href="/?next=/nav/" target="_blank">
+					<span class="fa-solid fa-right-to-bracket">登录</span>
+				</a>
 				{% endif %}
 			</div>
 		</div>
+		<div class="flex">
+			<!-- 实现margin-1/6 -->
+			<div class="w-1/6 hidden md:block"></div>
+			<div id="main" class="w-full md:w-5/6">
+				{% for category in categories %}
+				<section class="py-4">
+					<a href="#" id="{{ category.slug }}"></a>
+					<div class="category mb-3 pl-6">
+						<span class="{{category.icon}} text-2xl"> {{category.name}}</span>
+					</div>
+					<div
+						class="grid justify-around grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pr-8 pl-4">
+						{% for item in category.items %}
 
-		<div id="main">
-			{% for category in categories %}
-			<section class="box">
-				<a href="#" id="{{ category.slug }}"></a>
-				<div class="category">
-					<span class="{{category.icon}}" style="font-weight: bold;"> {{category.name}}</span>
-				</div>
-				<div class="item-list" style="display: grid;">
-					{% for item in category.items %}
-					{% if item.display == "hide" %}
-					{% else %}
-					<a class="item" target="_blank" href="{{item.url}}">
-						<div class="{% if item.image %} logo {% else %} no-logo {% endif %}">
-							{% if item.image %}
-							{% if item.image|slice:"0:4" == "http" %}
-							<img src="{{ item.image }}" alt="{{item.name}}的图片">
-							{% else %}
-							<img src="/media{{ item.image }}" alt="{{item.name}}的图片">
-							{% endif %}
-							{% endif %}
-							<div class="item-name"><abbr title="{{item.pk}}"
-									style="text-decoration:none">{{item.name}}</abbr></div>
-							<div class="edits">
-								<span class="delete"><i class="delete-icon fa-solid fa-circle-minus"></i></span>
-								<span class="add"><i class="add-icon fa-solid fa-circle-plus"></i></span>
-							</div>
+						{% if item.display == "hide" %}
+
+						{% elif item.display == "modal" %}
+						<div class="neumorphism rounded-3xl">
+							<label for="modal-{{ item.slug }}"
+								class="modal-button cursor-pointer w-full block py-4 pl-8 font-bold text-lg">
+								{{ item.name}}
+							</label>
+							<input type="checkbox" id="modal-{{ item.slug }}" class="modal-toggle" />
+							<label for="modal-{{ item.slug }}" class="modal cursor-pointer">
+								<div class="modal-box">
+									<h1 class="text-3xl font-bold">{{ item.name }}</h1>
+									<ul class="pl-8 py-4">
+										{% for entry in item.entries %}
+										<li class="hover:text-lime-400 custom-list-style">
+											<a href="{{ entry.link }}" target="_blank" class="cursor-pointer text-lg">
+												{{ entry.name}}
+											</a>
+										</li>
+										{% endfor %}
+									</ul>
+									<div class="modal-action">
+										<label for="modal-{{ item.slug }}" class="btn">Yay!</label>
+									</div>
+								</div>
+							</label>
 						</div>
-						{% if item.desc %}
-						<div class="desc">{{item.desc}}</div>
+						{% else %}
+						<a class="neumorphism rounded-3xl hover:translate-x-2 transition duration-300 delay-75 ease-linear"
+							target="_blank" href="{{item.url}}">
+							<div class="flex items-center pl-6 py-4">
+								{% if item.image %}
+								<img src="{{ item.image }}" alt="{{item.name}}的图片" class="rounded-full w-10 h-10">
+								{% endif %}
+								<div class="font-bold text-lg pl-2">{{item.name}}</div>
+							</div>
+							{% if item.desc %}
+							<div class="desc relative bottom-2 indent-4">{{item.desc}}</div>
+							{% endif %}
+						</a>
 						{% endif %}
-					</a>
-					{% endif %}
-					{% endfor %}
-				</div>
-			</section>
-			{% endfor %}
 
-			<footer>
-				<div class="copyright">
-					<span style="font-family: 'Lora';">Copyright © 2020 - 3020</span>
-					<a href="{% url 'nav:me'%}"><span style="font-family: 'Pacifico';">Henry Ji</span></a>
-				</div>
-			</footer>
+						{% endfor %}
+					</div>
+				</section>
+				{% endfor %}
+
+				<footer>
+					<div class="text-center">
+						<div id="runtime_span"></div>
+						<div id="copyright">
+							<span>© 2021
+								<a href="{% url 'me' %}" class="font-bold" style="font-family: Lora">Henry Ji</a>
+							</span>
+							<span class="brightness-0">/</span>
+							<span>License: <a href="https://www.gnu.org/licenses/agpl-3.0.en.html"
+									class="font-bold">AGPLv3</a></span>
+							<span class="brightness-0">/</span>
+							<span>Powered by <a href="https://cloud.google.com/" class="font-bold">GCloud</a></span>
+						</div>
+					</div>
+					{% compress js %}
+					<script src="{% static 'base/js/runtime.js' %}"></script>
+					{% endcompress %}
+				</footer>
+			</div>
 		</div>
 	</div>
 </body>
+
+{% compress js %}
 <script src="{% static 'nav/js/app.js' %}"></script>
-<script data-href="https://github.com/HenryJi529/OpenMorningstar" src="{% static 'base/js/github.js'%}"></script>
+{% endcompress %}
+
+<script src="{% static 'node_modules/pace-js/pace.min.js' %}"></script>
+<script data-href="https://github.com/HenryJi529/OpenMorningstar"
+	src="{% static 'node_modules/github-corners/dist/embed.min.js' %}"></script>
 
 </html>

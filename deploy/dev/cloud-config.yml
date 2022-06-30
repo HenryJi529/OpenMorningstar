@@ -1,0 +1,39 @@
+# 创建镜像:
+# multipass launch --name master --cpus 2 --mem 2G --disk 10G --cloud-init cloud-config.yml
+# 挂载目录:
+# multipass mount ./data master:/home/ubuntu/data
+
+password: 1234asdw
+chpasswd: { expire: False }
+ssh_pauth: True
+
+apt:
+  primary:
+    - arches: [default]
+      uri: https://mirrors.tuna.tsinghua.edu.cn/ubuntu/
+
+apt_upgrade: true
+
+packages:
+  - tldr
+  - python3-pip
+  - virtualenv
+  - nginx
+  - nodejs
+  - npm
+
+write_files:
+  - path: /home/ubuntu/.pip/pip.conf
+    content: "[global]\n# index-url = https://pypi.tuna.tsinghua.edu.cn/simple\nindex-url = https://pypi.doubanio.com/simple/"
+  - path: /home/ubuntu/install/install_docker.sh
+    content: "curl -fsSL https://get.docker.com | sudo bash -s docker --mirror Aliyun\nsudo gpasswd -a ubuntu docker\nsudo systemctl restart docker\nsudo chmod a+rw /var/run/docker.sock\nsudo apt install -qq docker-compose"
+
+runcmd:
+  # apt
+  - export DEBIAN_FRONTEND=noninteractive
+  - apt-get -qq update
+  - apt-get -qq upgrade
+  - apt-get -qq -y autoremove
+  # ssh
+  - sed -i "s/PasswordAuthentication no/PasswordAuthentication yes/" /etc/ssh/sshd_config
+  - systemctl restart ssh

@@ -3,14 +3,14 @@ from django.contrib import admin
 from import_export import resources
 from import_export.formats import base_formats
 from import_export.fields import Field
-from import_export.admin import ImportExportModelAdmin, ImportMixin, ExportMixin, ImportExportActionModelAdmin
+from import_export.admin import ImportExportModelAdmin
 from .models import Post, Category, Tag, Comment
 
 
 @admin.register(Post)
 class PostAdmin(ImportExportModelAdmin):
-    list_display = ['title', 'category', 'created', 'updated', ]
-    fields = ['title', 'body', 'excerpt', 'category', 'tags', ]
+    list_display = ['title', 'category', 'created', 'updated', 'readtime']
+    fields = ['title', 'body', 'category', 'tags', 'readtime']
     search_fields = ('title', 'category',)
 
     def save_model(self, request, obj, form, change):
@@ -28,8 +28,11 @@ class PostAdmin(ImportExportModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(ImportExportModelAdmin):
-    list_display = ['name', 'email', 'post', 'created', 'updated']
-    fields = ['name', 'email', 'body', 'post']
+    list_display = ['user', '摘要', 'thumbs_up', 'thumbs_down', 'created', 'updated']
+    fields = ['user', 'body', 'post']
+
+    def 摘要(self, obj):
+        return obj.body[:20]
 
 
 @admin.register(Category)

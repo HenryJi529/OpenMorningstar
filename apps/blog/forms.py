@@ -8,16 +8,15 @@ from .models import Comment
 class CommentForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['name'].widget.attrs.update(
-            {'style': 'width:90%; padding: 0.2em;'})
-        self.fields['email'].widget.attrs.update(
-            {'style': 'width:90%; padding: 0.2em;'})
-        self.fields['body'].widget.attrs.update(
-            {'style': 'width:100%; padding: 0.5em;'})
+        self.fields['body'].widget.attrs.update({
+            'class': 'auto-expend form-control rounded-xl w-full p-2 border-slate-200 bg-transparent',
+            "placeholder": "留条评论呗～",
+            "rows": "4",
+        })
 
     class Meta:
         model = Comment
-        fields = ['name', 'email', 'body']
+        fields = ['body']
 
 
 class ContactForm(forms.Form):

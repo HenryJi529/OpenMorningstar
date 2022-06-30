@@ -1,3 +1,5 @@
 # 指明要搜索的字段
 {{ object.title }}
 {{ object.body }}
+{{ object.category }}
+{{ object.tags }}

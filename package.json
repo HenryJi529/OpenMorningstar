@@ -1,6 +1,43 @@
 {
+  "scripts": {
+    "build_highlightjs_bundle": "npx browserify apps/blog/static/blog/js/highlight.js -o apps/blog/static/blog/dist/highlight.bundle.js",
+    "base_tailwind": "npx tailwindcss -c Morningstar/tailwind.config.js -i Morningstar/static/base/css/_build.css -o Morningstar/static/base/css/_tailwind.css --watch",
+    "base_base": "while true; do npx sass Morningstar/static/base/css/base.scss Morningstar/static/base/css/base.css --no-source-map --style compressed && echo '✔︎ build base/base.css'; sleep 5; done;",
+    "blog_tailwind": "npx tailwindcss -c apps/blog/tailwind.config.js -i apps/blog/static/blog/css/_build.css -o apps/blog/static/blog/css/_tailwind.css --watch",
+    "blog_base": "while true; do npx sass apps/blog/static/blog/css/base.scss apps/blog/static/blog/css/base.css --no-source-map --style compressed && echo '✔︎ build blog/base.css'; sleep 5; done;",
+    "book_tailwind": "npx tailwindcss -c apps/book/tailwind.config.js -i apps/book/static/book/css/_build.css -o apps/book/static/book/css/_tailwind.css --watch",
+    "book_base": "while true; do npx sass apps/book/static/book/css/base.scss apps/book/static/book/css/base.css --no-source-map --style compressed && echo '✔︎ build book/base.css'; sleep 5; done;",
+    "joke_tailwind": "npx tailwindcss -c apps/joke/tailwind.config.js -i apps/joke/static/joke/css/_build.css -o apps/joke/static/joke/css/_tailwind.css --watch",
+    "joke_style": "while true; do npx sass apps/joke/static/joke/css/style.scss apps/joke/static/joke/css/style.css --no-source-map --style compressed && echo '✔︎ build joke/style.css'; sleep 5; done;",
+    "lover_tailwind": "npx tailwindcss -c apps/lover/tailwind.config.js -i apps/lover/static/lover/css/_build.css -o apps/lover/static/lover/css/_tailwind.css --watch",
+    "lover_style": "while true; do npx sass apps/lover/static/lover/css/style.scss apps/lover/static/lover/css/style.css --no-source-map --style compressed && echo '✔︎ build lover/style.css'; sleep 5; done;",
+    "nav_tailwind": "npx tailwindcss -c apps/nav/tailwind.config.js -i apps/nav/static/nav/css/_build.css -o apps/nav/static/nav/css/_tailwind.css --watch",
+    "nav_style": "while true; do npx sass apps/nav/static/nav/css/style.scss apps/nav/static/nav/css/style.css --no-source-map --style compressed && echo '✔︎ build nav/style.css'; sleep 5; done;",
+    "rss_tailwind": "npx tailwindcss -c apps/rss/tailwind.config.js -i apps/rss/static/rss/css/_build.css -o apps/rss/static/rss/css/_tailwind.css --watch",
+    "build_css": "npx concurrently \"npm run base_tailwind\" \"npm run base_base\" \"npm run blog_tailwind\" \"npm run blog_base\"  \"npm run book_tailwind\" \"npm run book_base\" \"npm run joke_tailwind\" \"npm run joke_style\" \"npm run lover_tailwind\" \"npm run lover_style\" \"npm run nav_tailwind\" \"npm run nav_style\"  \"npm run rss_tailwind\""
+  },
+  "devDependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.0",
+    "@tailwindcss/forms": "^0.5.2",
+    "@tailwindcss/line-clamp": "^0.4.0",
+    "@tailwindcss/typography": "^0.5.4",
+    "browserify": "^17.0.0",
+    "concurrently": "^7.3.0",
+    "daisyui": "^2.24.0",
+    "live-server": "^1.2.2",
+    "npm-check-updates": "^16.0.6",
+    "sass": "^1.54.8",
+    "tailwindcss": "^3.1.8",
+    "vercel": "^28.2.0"
+  },
   "dependencies": {
-    "live-server": "^1.2.1",
-    "vercel": "^24.0.1"
+    "canvas-nest.js": "^2.0.4",
+    "github-corners": "^0.1.0",
+    "highlight.js": "^11.6.0",
+    "highlightjs-copy": "^1.0.3",
+    "highlightjs-line-numbers.js": "^2.8.0",
+    "localstorage-slim": "^2.2.0",
+    "masonry-layout": "^4.2.2",
+    "pace-js": "^1.2.4"
   }
 }

@@ -3,7 +3,7 @@ from django.contrib import admin
 from import_export import resources
 from import_export.formats import base_formats
 from import_export.fields import Field
-from import_export.admin import ImportExportModelAdmin, ImportMixin, ExportMixin, ImportExportActionModelAdmin
+from import_export.admin import ImportExportModelAdmin
 from .models import Choice, Question
 
 
@@ -17,8 +17,7 @@ class ChoiceInline(admin.TabularInline):
 class QuestionAdmin(ImportExportModelAdmin):
     fieldsets = [
         (None,               {'fields': ['question_text']}),
-        ('Date information', {'fields': [
-         'pub_date'], 'classes': ['collapse']}),
+        ('Date information', {'fields': ['pub_date'], 'classes': ['collapse']}),
     ]
     inlines = [ChoiceInline]
     list_filter = ['pub_date']

@@ -37,6 +37,7 @@ DATABASES = {
 }
 
 """缓存"""
+CACHE_TIMEOUT = 60 * 5
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
@@ -62,7 +63,9 @@ RECAPTCHA_PRIVATE_KEY = os.environ['RECAPTCHA_PRIVATE_KEY']
 
 """维护中站点列表"""
 MAINTENANCE_URL_LIST = [
-    "/joke/",
-    "/sanguosha/",
-    "tool"
+    "/share/",
 ]
+
+"""压缩css/js"""
+COMPRESS_ENABLED = True
+

@@ -7,10 +7,6 @@ from Morningstar.settings.common import MEDIA_ROOT
 JSON_FILE = os.path.join(MEDIA_ROOT, "nav/data.json")
 
 
-def me(request):
-    return HttpResponseRedirect("https://linktr.ee/Henry529")
-
-
 def __get_data(json_file):
     with open(json_file) as f:
         data = dict(json.load(f))
@@ -26,17 +22,3 @@ def index(request):
                 categories.remove(category)
     return render(request, "nav/index.html", context={"categories": categories})
 
-
-def resource(request, name):
-    data = __get_data(JSON_FILE)
-    resource_pages = data["resource_pages"]
-    for resource_page in resource_pages:
-        if name == resource_page["name"]:
-            title = resource_page["title"]
-            items = resource_page["items"]
-            return render(request, "nav/resource.html", context={
-                "title": title,
-                "items": items,
-                })
-
-    return HttpResponse("？？？没这个资源")

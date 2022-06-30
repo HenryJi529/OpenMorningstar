@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 扩展组件 */
+/* .morningstar-btn {
+    @apply btn text-3xl;
+} */
