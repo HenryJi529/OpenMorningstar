@@ -3,7 +3,7 @@
 		"**/__pycache__": true,
 		"**/.DS_Store": true,
 		"**/.git": true,
-		"**/env": false,
+		"**/VENV": true,
 		"**/node_modules": true,
 		"**/.idea/": true,
 		"whoosh_index": true
@@ -13,10 +13,8 @@
 	},
 	/****Todo Tree****/
 	"todo-tree.filtering.excludeGlobs": [
-		"**/env/**",
+		"**/VENV/**",
 		"**/node_modules",
-		"**/README.md",
-		"**/scripts/coverage"
 	],
 	"todo-tree.general.tags": [
 		"TODO",

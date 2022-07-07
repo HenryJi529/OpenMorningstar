@@ -1,0 +1,13 @@
+<div class="widget widget-recent-posts">
+    <h3 class="widget-title">最热</h3>
+    <ul class="no-padding">
+        {% for post in hot_post_list %}
+        <li>
+            <i class="fa-solid fa-fire"></i>
+            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+        </li>
+        {% empty %}
+        暂无文章！
+        {% endfor %}
+    </ul>
+</div>

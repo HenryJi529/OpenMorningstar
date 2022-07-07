@@ -8,7 +8,7 @@
 *.exe
 
 # Python
-env/
+VENV/
 __pycache__/
 
 # Sass

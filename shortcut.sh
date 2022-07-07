@@ -20,7 +20,7 @@ dev() {
 
 # 代码测试
 coverage() {
-	COVERAGE=$(pwd)/env/bin/coverage
+	COVERAGE=$(pwd)/VENV/bin/coverage
 	${COVERAGE} erase --rcfile=scripts/coverage/.coveragerc
 	${COVERAGE} run --rcfile=scripts/coverage/.coveragerc manage.py test Morningstar/ apps/ --failfast --keepdb
 	${COVERAGE} report --rcfile=scripts/coverage/.coveragerc
@@ -31,6 +31,7 @@ coverage() {
 # 更新依赖
 updateDep() {
 	echo "更新pip版本..."
+	sed "s/: /==/" environment.yml >environment.bak
 	pip install -U pip
 	# gcc scripts/dep/updateOutdatedDep.c -lpthread -o scripts/dep/updateOutdatedDep.exe
 	echo "更新依赖..."
@@ -135,7 +136,7 @@ read -p "输入序号(a-e|0-8): " order
 start_time=$(date +%s)
 
 # NOTE: 虚拟环境几乎是必须的
-source $(pwd)/env/bin/activate
+source $(pwd)/VENV/bin/activate
 
 case $order in
 a) backupDockerVolume ;;

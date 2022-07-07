@@ -35,3 +35,10 @@ def show_tags(context):
     return {
         'tag_list': tag_list,
     }
+
+@register.inclusion_tag('blog/inclusions/_hot_posts.html', takes_context=True)
+def show_hot_posts(context,num=5):
+    hot_post_list = Post.objects.order_by('-views')[:num]
+    return {
+        'hot_post_list': hot_post_list,
+    }

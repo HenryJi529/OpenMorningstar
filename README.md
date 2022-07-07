@@ -77,8 +77,8 @@ $ git clone git@github.com:HenryJi529/OpenMorningstar.git
 
 ### 本地开发
 ```bash
-$ virtualenv env
-$ source env/bin/activate
+$ virtualenv VENV
+$ source VENV/bin/activate
 $ pip install -r requirements.txt
 $ python manage.py runserver 0:8000
 ```

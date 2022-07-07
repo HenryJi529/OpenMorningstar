@@ -37,6 +37,7 @@ DATABASES = {
 }
 
 """缓存"""
+CACHE_TIMEOUT = 60 * 5
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",

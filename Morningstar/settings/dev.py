@@ -16,7 +16,8 @@ DATABASES = {
 """邮件"""
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-
+"""缓存"""
+CACHE_TIMEOUT = 5
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",

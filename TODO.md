@@ -1,14 +1,14 @@
 # ✅ 代办事项
-
-- data analysis网课
-- django & webpack
-- 缓存机制: django & nginx
-- 全面测试
-- 移除不必要的bootstrap
+- **data analysis网课**
+- **django & webpack**
+- **缓存机制: nginx**
+- **清理bootstrap**
 	- blog
 	- Morningstar
+	- joke
 
 ## _base
+- 全面测试
 - 网页基础模版: https://www.ahhhhfs.com/
 - 本站服务页面
 - 个人介绍页面
@@ -25,23 +25,23 @@
 
 ## blog
 - 多作者
-- daisyUI适配
+- 界面设计
+	- daisyUI适配
+	- 暗黑模式
 - 完整的评论功能，
-	- 发表回复评论(多层级评论)
+	- 发表回复评论(多层级评论Thread)
 	- 评论的邮件提醒
 	- 支持 Markdown
 	- 支持Github登录评论
 - media/blog博客导入
-- 最多阅读
 - 代码点击复制功能
 - 简单的 SEO 功能，新建文章等会自动通知 Google。
-- 集成了简单的图床功能。
-- 三种皮肤自由切换
 - 多目标源博文分享(微信/QQ/Twitter)
 - 部分数据增加缓存(如配置信息)。
 - 优化了部分视图函数查询的方法(重复的查询操作抽取到 models 了)。
 - 适配主题: https://github.com/xugaoyi/vuepress-theme-vdoing
 - 博客后台(参考博客园)
+	- 集成了简单的图床功能。
 - about页面
 - 支持个人设置(如设置头像，个人介绍)
 - 相关文章推荐(根据相似标签)
