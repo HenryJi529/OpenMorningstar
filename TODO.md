@@ -1,7 +1,6 @@
 # ✅ 代办事项
 - **data analysis网课**
 - **django & webpack**
-- **缓存机制: nginx**
 - **清理bootstrap**
 	- blog
 	- Morningstar
