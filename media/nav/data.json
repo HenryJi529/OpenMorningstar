@@ -190,24 +190,6 @@
 					"desc": "国外编程相关的IT技术问答网站"
 				},
 				{
-					"name": "Fiverr",
-					"url": "https://www.fiverr.com/?source=top_nav",
-					"image": "/nav/img/Community/Fiverr.png",
-					"desc": "有品位的外包平台"
-				},
-				{
-					"name": "鱼C论坛",
-					"url": "https://fishc.com.cn/",
-					"image": "/nav/img/Community/FC.png",
-					"desc": "只为白鹤报恩～"
-				},
-				{
-					"name": "MATLAB中文社区",
-					"url": "https://www.ilovematlab.cn/",
-					"image": "/nav/img/Community/MatLab中文社区.png",
-					"desc": "可以赚点外快～"
-				},
-				{
 					"name": "LaTeX工作室",
 					"url": "https://ask.latexstudio.net/ask/",
 					"image": "/nav/img/Community/LaTex问答社区.png",
@@ -318,11 +300,6 @@
 					"name": "Python",
 					"url": "https://www.liaoxuefeng.com/wiki/1016959663602400",
 					"image": "/nav/img/Manual/Python.jpeg"
-				},
-				{
-					"name": "Pandas",
-					"url": "https://www.pypandas.cn/",
-					"image": "/nav/img/Manual/Pandas.png"
 				},
 				{
 					"name": "Django",

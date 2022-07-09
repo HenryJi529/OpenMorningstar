@@ -35,7 +35,7 @@ def get_items(site):
         link = match[site["feed"]["link_index"]-1]
         title = match[site["feed"]["title_index"]-1]
         pubDate = match[site["feed"]["pubDate_index"]-1]
-        description = site["feed"]["description"].replace('{#pubDate}', pubDate).replace('{#title}', title).replace('{#link}', link)
+        description = site["feed"]["description"].format(pubDate=pubDate, title=title, link=link)
 
         item = {
             "link": link,

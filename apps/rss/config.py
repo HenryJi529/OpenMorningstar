@@ -9,7 +9,7 @@ SITES = [
             "link_index": 1,
             "title_index": 2,
             "pubDate_index": 3,
-            "description": "通知时间: {#pubDate}<br>\n公告内容: {#title}"
+            "description": "通知时间: {pubDate}<br>\n公告内容: {title}"
         }
 
     },
@@ -23,7 +23,7 @@ SITES = [
             "link_index": 1,
             "title_index": 2,
             "pubDate_index": 3,
-            "description": "通知时间: {#pubDate}<br>\n公告内容: {#title}"
+            "description": "通知时间: {pubDate}<br>\n公告内容: {title}"
         }
     }
 ]
