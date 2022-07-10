@@ -27,7 +27,7 @@ function processData(data) {
 			"method": "POST",
 			"headers": {
 				"X-CSRFToken": csrfToken,
-				"content-type": "application/x-www-form-urlencoded",
+				"content-type": "application/json",
 			},
 			"body": JSON.stringify({
 				"csrfmiddlewaretoken": csrfToken,
