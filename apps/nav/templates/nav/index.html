@@ -31,7 +31,7 @@
 				<a href="#{{ category.slug }}"><span class="{{ category.icon }}"></span></a>
 				{% endfor %}
 				<a href="{% url 'blog:contact' %}" target="_blank" class="email">
-					<span class="fa-solid fa-at"> </span></a>
+					<i class="fa-solid fa-at"></i></a>
 			</nav>
 		</div>
 
@@ -58,12 +58,12 @@
 				{% endif %}
 
 				<a href="{% url 'blog:contact' %}" target="_blank" class="email">
-					<span class="fa-solid fa-at"> 留言</span></a>
+					<span class="fa-solid fa-at">留言</span></a>
 				{% if request.user.is_authenticated %}
-				<a href="/" class="switch"><span class="bi bi-house-fill"> 主页</span></a>
+				<a href="/" class="switch"><span class="fa-solid fa-house">主页</span></a>
 				{% else %}
-				<a href="/?next=/nav/" class="login" target="_blank"><span class="fa-solid fa-right-to-bracket">
-						登录</span></a>
+				<a href="/?next=/nav/" class="login" target="_blank"><span
+						class="fa-solid fa-right-to-bracket">登录</span></a>
 				{% endif %}
 			</div>
 		</div>

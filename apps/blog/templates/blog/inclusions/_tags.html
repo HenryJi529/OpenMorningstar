@@ -3,7 +3,7 @@
 	<ul class="no-padding">
 		{% for tag in tag_list %}
 		<li>
-			<i class="icofont-tags"></i>
+			<i class="fa-solid fa-tag"></i>
 			<a href="{% url 'blog:tag' tag.pk %}">{{ tag.name }}
 				<span class="post-count">[{{ tag.num_posts }}]</span></a>
 		</li>

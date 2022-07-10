@@ -2,11 +2,8 @@ from django.shortcuts import redirect
 
 
 def shortcut(request, name):
-    # 第三方托管服务
-    if name in ["icofont"]:
-        return redirect("https://" + name + ".morningstar529.com/")
     # 项目快捷链接
-    elif name in ["issue", "auto", "src", "src-mirror", "host", "vercel", "domain", "namecheap", "license", "coverage", "task", "resume", "mailbox"]:
+    if name in ["issue", "auto", "src", "src-mirror", "host", "vercel", "domain", "namecheap", "license", "coverage", "task", "resume", "mailbox"]:
         if name == 'issue':
             return redirect("https://github.com/HenryJi529/OpenMorningstar/issues")
         elif name == "auto":
@@ -43,15 +40,13 @@ def shortcut(request, name):
         else:
             pass
     # 速查表链接
-    elif name in ["html", "css", "js", "bootstrap", "bash", "sass"]:
+    elif name in ["html", "css", "js", "bash", "sass"]:
         if name == "html":
             return redirect("https://man.ilovefishc.com/html5/")
         elif name == "css":
             return redirect("https://man.ilovefishc.com/css3/")
         elif name == "js":
             return redirect("https://zh.javascript.info/")
-        elif name == "bootstrap":
-            return redirect("https://v5.bootcss.com/docs/5.1/getting-started/introduction/")
         elif name == "bash":
             return redirect("https://wsgzao.github.io/post/bash/")
         elif name == "sass":

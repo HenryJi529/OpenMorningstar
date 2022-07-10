@@ -3,7 +3,7 @@
 	<ul class="no-padding">
 		{% for date in date_list %}
 		<li style="list-style: none">
-			<i class="icofont-archive"></i>
+			<i class="fa-solid fa-box-archive"></i>
 			<a href="{% url 'blog:archive' date.year date.month %}">
 				{{ date.year}} 年 {{ date.month }} 月</a>
 		</li>

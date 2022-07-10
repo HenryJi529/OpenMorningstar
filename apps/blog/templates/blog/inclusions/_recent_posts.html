@@ -3,7 +3,7 @@
 	<ul class="no-padding">
 		{% for post in recent_post_list %}
 		<li>
-			<i class="icofont-page"></i>
+			<i class="fa-solid fa-file-word"></i>
 			<a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
 		</li>
 		{% empty %}
