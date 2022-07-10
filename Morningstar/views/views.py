@@ -33,12 +33,18 @@ logger = logging.getLogger("django")
 
 
 def fix_fetched_post(request):
-    post_data = json.loads(request.body.decode("utf-8"))
-    request.POST._mutable = True
-    request.POST.pop(request.body.decode("utf-8"))
-    for key, value in post_data.items():
-        request.POST[key] = value
-    request.POST._mutable = False
+    body_str = request.body.decode("utf-8")
+    try:
+        # fetch请求
+        post_data = json.loads(body_str)
+        request.POST._mutable = True
+        request.POST.pop(body_str)
+        for key, value in post_data.items():
+            request.POST[key] = value
+        request.POST._mutable = False
+    except:
+        # 基本请求
+        pass
     return request
 
 
