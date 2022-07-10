@@ -32,6 +32,16 @@ from Morningstar.settings.common import TENCENT_SMS_TEMPLATE
 logger = logging.getLogger("django")
 
 
+def fix_fetched_post(request):
+    post_data = json.loads(request.body.decode("utf-8"))
+    request.POST._mutable = True
+    request.POST.pop(request.body.decode("utf-8"))
+    for key, value in post_data.items():
+        request.POST[key] = value
+    request.POST._mutable = False
+    return request
+
+
 def credits(request):
     items = [
         {
@@ -68,6 +78,7 @@ def index(request):
         return render(request, "base/index.html")
     else:
         if request.method == "POST":
+            request = fix_fetched_post(request)
             # 判断confirm_password是否在POST中，如果在则判断为注册
             if "confirm_password" in request.POST:
                 form = RegisterForm(request.POST)
