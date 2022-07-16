@@ -40,7 +40,7 @@ runcmd:
   - sed -i "s/PasswordAuthentication no/PasswordAuthentication yes/" /etc/ssh/sshd_config
   - systemctl restart ssh
   # docker
-  - curl -fsSL https://get.docker.com | bash -s docker
+  - curl -fsSL https://get.docker.com | bash -s docker  # NOTE: update from https://get.docker.com
   - gpasswd -a ubuntu docker
   - systemctl restart docker
   - chmod a+rw /var/run/docker.sock
