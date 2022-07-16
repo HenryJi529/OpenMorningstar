@@ -64,7 +64,6 @@ RECAPTCHA_PRIVATE_KEY = os.environ['RECAPTCHA_PRIVATE_KEY']
 """维护中站点列表"""
 MAINTENANCE_URL_LIST = [
     "/joke/",
-    "/sanguosha/"
 ]
 
 """压缩css/js"""

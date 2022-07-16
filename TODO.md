@@ -1,12 +1,16 @@
 # ✅ 代办事项
-- **django & webpack**
-	- 每个app内构建src、dist、
-- **清理bootstrap**(主要是栅格系统)
+- **通过tailwind重构ui**
+	- base
 	- blog
-	- Morningstar
+	- book
 	- joke
-- **完善readme**
+	- nav: transition
+	- poll
 - 全面测试
+- 本站运行时间
+
+----
+
 ## _base
 - 联系客服
 - 网页基础模版: https://www.ahhhhfs.com/
@@ -16,10 +20,6 @@
 	- 修改(密码，昵称等)【短信，邮箱】
 	- 绑定oauth账号
 - oauth2: github, google
-- 七牛SDK: 
-	- py: https://developer.qiniu.com/kodo/sdk/python
-	- js: https://developer.qiniu.com/kodo/1283/javascript
-- 蓝奏SDK
 
 ----
 
@@ -44,24 +44,28 @@
 - about页面
 - 支持个人设置(如设置头像，个人介绍)
 - 相关文章推荐(根据相似标签)
+- 博客内容:
+	- 正则表达式原理及使用: 
+		- javascript版本: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions
+	- Nginx使用手册:
+		- 匹配规则: https://moonbingbing.gitbooks.io/openresty-best-practices/content/ngx/nginx_local_pcre.html
+		- 手册: https://www.freecodecamp.org/news/the-nginx-handbook/
+	- requests: https://requests.readthedocs.io/en/latest/
+	- matplotlib: https://matplotlib.org/stable/gallery/index
+	- numpy:
+		- 一千题: https://github.com/rougier/numpy-100
+		- 文档: https://numpy.org/doc/stable/index.html
+	- pandas: 
+		- 101题: https://www.machinelearningplus.com/python/101-pandas-exercises-python/
 
 ----
 
 ## joke
-- 全面适配Bootstrap5
 - 完全采用 drf 实现
 - 文字也生成图片
 - 实现 feed 订阅
 - 界面设计
 	- 手机端：类似tinder
 	- PC端：下拉刷新方式
+- 素材: https://www.tumblr.com/blog/view/morningstar529
 
-----
-
-## sanguosha
-- 按照三国杀十周年设定武将强度
-- 游戏模式:
-	- 主从武将模式(1v1模式)
-	- 身份场(5,6,8)
-	- 2v2
-	- 3v3

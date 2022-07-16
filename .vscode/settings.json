@@ -25,7 +25,7 @@
 	"liveSassCompile.settings.formats": [
 		{
 			"extensionName": ".css",
-			"format": "expanded"
+			"format": "expanded",
 		}
 	],
 	"liveSassCompile.settings.generateMap": false,

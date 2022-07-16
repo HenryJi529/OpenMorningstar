@@ -11,10 +11,21 @@ check() {
 
 # 本地开发
 dev() {
-	# python scripts/initialize/main.py # 开发测试数据生成
+	# echo "开发测试数据生成..."
+	# python scripts/initialize/main.py
+	# echo "==================================="
+	echo "迁移模型到数据库..."
 	python manage.py makemigrations && python manage.py migrate
+	echo "==================================="
+	echo "重建索引..."
 	python manage.py rebuild_index --noinput
-	# python manage.py crontab add # 启动定时任务
+	echo "==================================="
+	# echo "启动定时任务..."
+	# python manage.py crontab add
+	# echo "==================================="
+	echo "编译tailwind库..."
+	npm run tailwind_blog &
+	echo "启动django-server..."
 	python manage.py runserver 0:8000
 }
 
@@ -30,17 +41,25 @@ coverage() {
 
 # 更新依赖
 updateDep() {
-	echo "更新pip版本..."
+	echo "保存当前版本..."
 	sed "s/: /==/" environment.yml >environment.bak
+	echo "==================================="
+	echo "更新pip版本..."
 	pip install -U pip
+	echo "==================================="
+	# echo "编译包更新工具..."
 	# gcc scripts/dep/updateOutdatedDep.c -lpthread -o scripts/dep/updateOutdatedDep.exe
+	# echo "==================================="
 	echo "更新依赖..."
 	./scripts/dep/updateOutdatedDep.exe
 	read -s -n1 -p "按任意键继续..."
 	echo ""
+	echo "==================================="
 	echo "保存依赖配置..."
 	pip freeze >requirements.txt && pip freeze >deploy/django/requirements.txt
 	pipdeptree -fl >pipdeptree.txt
+	echo "DONE!!!"
+
 }
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -84,8 +103,10 @@ restoreDockerVolume() {
 publicPackage() {
 	echo "更新生产环境下的容器..."
 	runCommand updatePackage
-	echo "更新开发环境下的容器..."
 	read -s -n1 -p "按任意键继续..."
+	echo ""
+	echo "==================================="
+	echo "更新开发环境下的容器..."
 	docker compose -f deploy/example_dev.yml up --build -d
 	docker push henry529/dev
 	docker tag henry529/dev ghcr.io/henryji529/morningstar-dev && docker push ghcr.io/henryji529/morningstar-dev

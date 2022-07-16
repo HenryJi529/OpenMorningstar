@@ -11,8 +11,7 @@
 	<title>Nav - 晨星导航</title>
 	<link rel="shortcut icon" href="{% static 'nav/img/favicon.ico' %}" />
 	<!--https://fontawesome.com/v6/icons?m=free-->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
-	<!-- <script src="https://kit.fontawesome.com/50c2c253e1.js" crossorigin="anonymous"></script> -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css">
 	{% compress css %}
 	<link rel="stylesheet" href="{% static 'nav/css/style.css' %}">
 	{% endcompress %}
@@ -44,7 +43,7 @@
 					{% for category in categories %}
 					<li>
 						<a href="#{{ category.slug }}">
-							<span class="{{ category.icon }}" style="font-weight: bold;"> {{ category.name }}</span></a>
+							<span class="{{ category.icon }}"> {{ category.name }}</span></a>
 					</li>
 					{% endfor %}
 				</ul>
@@ -52,8 +51,8 @@
 			<div class="command">
 				{% if request.user.is_authenticated %}
 				<div class="username">
-					<span style="font-weight: bold;">UserName: </span>
-					<span style="font-weight: bold;color:rgb(160, 233, 233);">{{request.user.username}}</span>
+					<span>UserName: </span>
+					<span>{{request.user.username}}</span>
 				</div>
 				{% endif %}
 
@@ -73,9 +72,9 @@
 			<section class="box">
 				<a href="#" id="{{ category.slug }}"></a>
 				<div class="category">
-					<span class="{{category.icon}}" style="font-weight: bold;"> {{category.name}}</span>
+					<span class="{{category.icon}}"> {{category.name}}</span>
 				</div>
-				<div class="item-list" style="display: grid;">
+				<div class="item-list">
 					{% for item in category.items %}
 					{% if item.display == "hide" %}
 					{% else %}
@@ -88,8 +87,7 @@
 							<img src="/media{{ item.image }}" alt="{{item.name}}的图片">
 							{% endif %}
 							{% endif %}
-							<div class="item-name"><abbr title="{{item.pk}}"
-									style="text-decoration:none">{{item.name}}</abbr></div>
+							<div class="item-name"><abbr title="{{item.pk}}">{{item.name}}</abbr></div>
 							<div class="edits">
 								<span class="delete"><i class="delete-icon fa-solid fa-circle-minus"></i></span>
 								<span class="add"><i class="add-icon fa-solid fa-circle-plus"></i></span>
@@ -107,8 +105,8 @@
 
 			<footer>
 				<div class="copyright">
-					<span style="font-family: 'Lora';">Copyright © 2020 - 3020</span>
-					<a href="{% url 'nav:me'%}"><span style="font-family: 'Pacifico';">Henry Ji</span></a>
+					<span>Copyright © 2020 - 3020</span>
+					<a href="{% url 'nav:me'%}"><span>Henry Ji</span></a>
 				</div>
 			</footer>
 		</div>

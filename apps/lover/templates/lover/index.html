@@ -36,11 +36,7 @@
 	let maxLevel = 7;
 	let svg;
 
-	fetch(api,
-		{
-			"method": "GET",
-		}
-	).then(res => res.json()).
+	fetch(api).then(res => res.json()).
 		then(data => {
 			// 暂存数据
 			fills = data["fills"].map(x => transformColorHex2Dec(x));

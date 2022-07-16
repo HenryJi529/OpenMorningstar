@@ -45,4 +45,3 @@ runcmd:
   - systemctl restart docker
   - chmod a+rw /var/run/docker.sock
   - apt install -qq docker-compose
-

@@ -130,9 +130,9 @@
 				},
 				{
 					"name": "任务管理",
-					"url": "https://morningstar529.com/task/",
+					"url": "https://morningstar529.com/shortcut/task/",
 					"image": "/nav/img/Admin/任务管理.png",
-					"desc": "通过Issue实现任务管理"
+					"desc": "通过ticktick实现任务管理"
 				}
 			]
 		},
@@ -259,11 +259,11 @@
 				{
 					"name": "Nginx",
 					"url": "https://chinese.freecodecamp.org/news/the-nginx-handbook/",
-					"image": "/nav/img/Manual/Nginx.png"
+					"image": "/nav/img/Manual/Nginx.svg"
 				},
 				{
 					"name": "SQL",
-					"url": "https://github.com/CyC2018/CS-Notes/tree/master/notes",
+					"url": "http://www.cyc2018.xyz/#数据库",
 					"image": "/nav/img/Manual/SQL.png"
 				},
 				{
@@ -277,19 +277,24 @@
 					"image": "/nav/img/Manual/CSS.png"
 				},
 				{
+					"name": "Tailwindcss",
+					"url": "https://tailwindcss.com/",
+					"image": "/nav/img/Manual/Tailwindcss.svg"
+				},
+				{
+					"name": "DaisyUI",
+					"url": "https://daisyui.com/",
+					"image": "/nav/img/Manual/DaisyUI.png"
+				},
+				{
 					"name": "Sass",
 					"url": "https://www.sass.hk/docs/",
-					"image": "/nav/img/Manual/Sass.png"
+					"image": "/nav/img/Manual/Sass.svg"
 				},
 				{
 					"name": "Javascript",
 					"url": "https://zh.javascript.info/",
 					"image": "/nav/img/Manual/JavaScript.png"
-				},
-				{
-					"name": "ES6",
-					"url": "https://es6.ruanyifeng.com/",
-					"image": "/nav/img/Manual/ES6.png"
 				},
 				{
 					"name": "Web API",
@@ -299,23 +304,12 @@
 				{
 					"name": "Python",
 					"url": "https://www.liaoxuefeng.com/wiki/1016959663602400",
-					"image": "/nav/img/Manual/Python.jpeg"
+					"image": "/nav/img/Manual/Python.svg"
 				},
 				{
 					"name": "Django",
-					"url": "https://docs.djangoproject.com/en/3.2/py-modindex/",
-					"image": "/nav/img/Manual/Django.png"
-				},
-				{
-					"name": "NodeJS",
-					"url": "https://blog.poetries.top/node-learning-notes/",
-					"image": "/nav/img/Manual/NodeJS.png",
-					"display": "hide"
-				},
-				{
-					"name": "Bootstrap",
-					"url": "https://v5.bootcss.com/",
-					"image": "/nav/img/Manual/Bootstrap.png"
+					"url": "https://docs.djangoproject.com/en/4.0/py-modindex/",
+					"image": "/nav/img/Manual/Django.svg"
 				},
 				{
 					"name": "MDN",
@@ -491,18 +485,6 @@
 					"desc": "专业的英语词汇学习网站"
 				},
 				{
-					"name": "扇贝英语",
-					"url": "https://web.shanbay.com/web/main/index",
-					"image": "/nav/img/Learn/扇贝英语.png",
-					"desc": "国内最好的英语学习平台"
-				},
-				{
-					"name": "Wolfram U",
-					"url": "https://www.wolfram.com/wolfram-u/",
-					"image": "/nav/img/Learn/WorlframU.png",
-					"desc": "基于Mathematica的笔记"
-				},
-				{
 					"name": "FreeCodeCamp",
 					"url": "https://chinese.freecodecamp.org/learn",
 					"image": "/nav/img/Learn/FreeCodeCamp.png",
@@ -519,12 +501,6 @@
 					"url": "https://leetcode.com/",
 					"image": "/nav/img/Learn/LeetCode.png",
 					"desc": "笔试刷题"
-				},
-				{
-					"name": "JetBrains Academy",
-					"url": "https://hyperskill.org/",
-					"image": "/nav/img/Learn/JetBrainsAcademy.png",
-					"desc": "JB出品, 项目驱动!"
 				}
 			]
 		},
@@ -619,11 +595,6 @@
 					"image": "/nav/img/Recreation/Instagram.jpeg"
 				},
 				{
-					"name": "Apple Music",
-					"url": "https://beta.music.apple.com/cn/browse",
-					"image": "/nav/img/Recreation/AppleMusic.png"
-				},
-				{
 					"name": "三国杀",
 					"url": "https://web.sanguosha.com/",
 					"image": "/nav/img/Recreation/三国杀.png"
@@ -649,11 +620,6 @@
 					"image": "/nav/img/Recreation/喜马拉雅.png"
 				},
 				{
-					"name": "Tumblr",
-					"url": "https://www.tumblr.com/blog/view/morningstar529",
-					"image": "/nav/img/Recreation/Tumblr.png"
-				},
-				{
 					"name": "Pixiv",
 					"url": "https://www.pixiv.net/discovery",
 					"image": "/nav/img/Recreation/Pixiv.png"
@@ -665,6 +631,10 @@
 			"slug": "utility",
 			"icon": "fa-solid fa-screwdriver-wrench",
 			"items": [
+				{
+					"name": "口红选购",
+					"url": "https://github.com/rentianle2022/LipsticksGeek-BackEnd"
+				},
 				{
 					"name": "论文排版",
 					"url": "https://cn.overleaf.com/"
@@ -695,7 +665,7 @@
 				},
 				{
 					"name": "流程设计",
-					"url": "https://www.draw.io/"
+					"url": "https://app.diagrams.net/"
 				},
 				{
 					"name": "网页收藏",
@@ -1024,28 +994,24 @@
 					"url": "https://fonts.google.com/icons/"
 				},
 				{
-					"name": "可定制的开源SVG图标",
-					"url": "https://tablericons.com/"
-				},
-				{
 					"name": "icons8",
 					"url": "https://icons8.com/icons"
 				},
 				{
-					"name": "Bootstrap自带图标",
-					"url": "https://icons.getbootstrap.com/"
+					"name": "Vector Logo Zone",
+					"url": "https://www.vectorlogo.zone/index.html"
+				},
+				{
+					"name": "Devicon",
+					"url": "https://devicon.dev/"
 				},
 				{
 					"name": "Tabler Icons",
 					"url": "https://tablericons.com/"
 				},
 				{
-					"name": "MacOS图标",
+					"name": "MacOS Icons",
 					"url": "https://macosicons.com/"
-				},
-				{
-					"name": "Readme专用svg图标",
-					"url": "https://www.vectorlogo.zone/"
 				}
 			]
 		},

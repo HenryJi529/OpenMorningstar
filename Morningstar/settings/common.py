@@ -53,7 +53,6 @@ INSTALLED_APPS = [
     'apps.nav.apps.NavConfig',  # 导航
     'apps.poll.apps.PollConfig',  # 投票
     'apps.rss.apps.RssConfig',  # RSS
-    'apps.sanguosha.apps.SanguoshaConfig',  # 三国杀
     'apps.v2ray.apps.V2RayConfig',  # 代理
 
     'captcha',  # google recaptcha
@@ -258,11 +257,11 @@ LOGGING = {
             'style': '{',
         },
         'django.server-info': {
-            'format': colorama.Fore.YELLOW + colorama.Style.BRIGHT + '{levelname}: [{server_time}] {message}' + colorama.Style.RESET_ALL,
+            'format': colorama.Fore.YELLOW + colorama.Style.BRIGHT + '{levelname}: [{asctime}] {message}' + colorama.Style.RESET_ALL,
             'style': '{',
         },
         'django.server-warning': {
-            'format': colorama.Fore.RED + colorama.Style.BRIGHT + '{levelname}: [{server_time}] {message}' + colorama.Style.RESET_ALL,
+            'format': colorama.Fore.RED + colorama.Style.BRIGHT + '{levelname}: [{asctime}] {message}' + colorama.Style.RESET_ALL,
             'style': '{',
         },
     },

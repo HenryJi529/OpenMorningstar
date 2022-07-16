@@ -5,15 +5,14 @@
     <header class="entry-header">
         <div class="entry-title detail-title">{{ post.title }}</div>
         <div class="entry-meta">
-            <span class="post-category">类别: <a href="{% url 'blog:category' post.category.pk %}"
-                    style="font-weight:bold">{{post.category.name}}</a>;</span>
+            <span class="post-category">类别: <a
+                    href="{% url 'blog:category' post.category.pk %}">{{post.category.name}}</a>;</span>
             <span class="comments-link">
-                评论:<a href="{{ post.get_absolute_url }}#comment-area"
-                    style="font-weight:bold">{{post.comment_set.count}}</a>;</span>
+                评论:<a href="{{ post.get_absolute_url }}#comment-area">{{post.comment_set.count}}</a>;</span>
             <span class="views-count">
-                阅读: <a href="{% url 'blog:detail' post.pk %}" style="font-weight:bold">{{post.views}}</a>;</span>
+                阅读: <a href="{% url 'blog:detail' post.pk %}">{{post.views}}</a>;</span>
             <span class="post-date">更新:
-                <time class="entry-date" style="font-weight:bold">{{post.updated}}</time>
+                <time class="entry-date">{{post.updated}}</time>
             </span>
         </div>
     </header>

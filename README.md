@@ -55,12 +55,11 @@
 
 
 ## ✨ 技术栈:
-* **前端**：CSS、Sass、Bootstrap、JavaScript
-* **后端**：Django
-* **部署**：Docker、Nginx、Fabric
-* **测试**：Coverage、Selenium
+* **前端**：CSS, Sass, Tailwind, DaisyUI, JavaScript
+* **后端**：Django, Redis, SQLite, MySQL
+* **部署**：Docker, Nginx, Fabric, Supervisor
+* **测试**：Coverage, Selenium
 * **集成**：Github Action
-* **数据库**：Redis、SQLite(开发)、MySQL(部署)
 
 
 ## 🚀 部署&开发

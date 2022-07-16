@@ -10,6 +10,7 @@
 # Python
 VENV/
 __pycache__/
+environment.bak
 
 # Sass
 *.css.map

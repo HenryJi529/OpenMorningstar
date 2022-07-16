@@ -3,7 +3,7 @@
 	{% csrf_token %}
 	{% for field in register_form %}
 	<div class="mb-2">
-		<div style="float:right;color:coral" id="{{ field.name }}_check"></div>
+		<div id="{{ field.name }}_check"></div>
 		<label for="{{ field.id_for_label }}">{{ field.label }}: </label>
 		{{ field }}
 	</div>

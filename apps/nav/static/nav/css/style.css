@@ -198,7 +198,6 @@
   #container #leftBar .title {
     font-size: 1.5rem;
   }
-
   #container #main section.box .item-list {
     padding-right: 1rem;
     grid-template-columns: repeat(3, 31%);
@@ -208,7 +207,6 @@
   #container #leftBar {
     display: none;
   }
-
   #container #main {
     position: relative;
     top: 5rem;
@@ -219,7 +217,6 @@
   #container #main section.box .item-list {
     padding-right: 0;
   }
-
   #container #main section.box .item-list {
     grid-template-columns: repeat(2, 45%);
   }

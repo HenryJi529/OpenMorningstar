@@ -31,7 +31,7 @@
 		<ul class="category">
 			{% for book in category.books %}
 			<li class="item">
-				{{ book.name }} | <a href="{{ book.url }}" target="_blank" style="text-decoration: none;">下载</a><br>
+				{{ book.name }} | <a href="{{ book.url }}" target="_blank">下载</a><br>
 				{% if book.translator%}
 				作者：{{ book.author }} &nbsp; 译者：{{ book.translator }} <br>
 				{% else %}

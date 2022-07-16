@@ -60,6 +60,7 @@ void *routine(void *arg)
 int update_outdated_packages(struct Package *packages, int length)
 {
 	FILE *stream;
+	char package_name_with_newline[80];
 	char command[80];
 	char version[VERSION_SIZE];
 	char packages_outdated[PACKAGES_OUTDATED_SIZE];
@@ -79,7 +80,9 @@ int update_outdated_packages(struct Package *packages, int length)
 		{
 			continue;
 		}
-		if (strstr(packages_outdated, packages[i].name) != NULL)
+		strcat(package_name_with_newline, packages[i].name);
+		strcat(package_name_with_newline, "\n");
+		if (strstr(packages_outdated, package_name_with_newline) != NULL)
 		{
 			if (not_empty_flag == 0)
 			{
@@ -87,6 +90,8 @@ int update_outdated_packages(struct Package *packages, int length)
 				printf("更新列表: \n");
 				printf("==============================\n");
 				not_empty_flag = 1;
+				// printf("%s", packages[i].name);
+				// printf("%s", packages_outdated);
 			}
 			if (pthread_create(&tids[i], NULL, routine, packages[i].name) != 0)
 			{
@@ -97,6 +102,7 @@ int update_outdated_packages(struct Package *packages, int length)
 				perror("pthread_join error");
 			}
 		}
+		package_name_with_newline[0] = '\0';
 	}
 
 	if (not_empty_flag == 0)

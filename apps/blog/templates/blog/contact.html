@@ -7,13 +7,13 @@
 		padding: 0.3em 0.5em;
 	}
 </style>
-<h1 class="page-title" style="text-align:center;font-size:2rem;">联系站长</h1>
+<h1 class="page-title">联系站长</h1>
 
 <article class="post">
 	<div class="entry-content clearfix">
 		<form id="contact-form" action="{% url 'blog:contact' %}" method="POST" class="contact-form">
 			{% csrf_token %}
-			<div class="row col-md-8" style="margin: 0 auto;">
+			<div class="row col-md-8">
 				<input class="area" type="email" name="email" placeholder="Email" required>
 				<input class="area" type="text" name="subject" placeholder="Subject" required>
 				<textarea class="area" name="message" rows="7" placeholder="Your Message" required></textarea>

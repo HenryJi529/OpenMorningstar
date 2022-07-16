@@ -1,0 +1,21 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "install",
+			"group": "none",
+			"problemMatcher": [],
+			"label": "npm: install",
+			"detail": "install dependencies from package"
+		},
+		{
+			"type": "npm",
+			"script": "tailwind_blog",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: tailwind_blog",
+			"detail": "tailwindcss -c apps/blog/tailwind.config.js -i apps/blog/static/blog/css/_build.css -o apps/blog/static/blog/css/_tailwind.css --watch"
+		}
+	]
+}
