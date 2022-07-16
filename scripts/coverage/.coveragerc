@@ -13,4 +13,4 @@ show_missing = True
 skip_covered = True
 
 [html]
-directory = _vercel/_coverage
+directory = vercel/_coverage

@@ -36,7 +36,7 @@ coverage() {
 	${COVERAGE} run --rcfile=scripts/coverage/.coveragerc manage.py test Morningstar/ apps/ --failfast --keepdb
 	${COVERAGE} report --rcfile=scripts/coverage/.coveragerc
 	${COVERAGE} html --rcfile=scripts/coverage/.coveragerc
-	live-server _vercel/_coverage
+	live-server vercel/_coverage
 }
 
 # 更新依赖
@@ -114,7 +114,7 @@ publicPackage() {
 }
 
 publicVercel() {
-	path="_vercel"
+	path="vercel"
 	for project in $(ls $path); do
 		echo "updating \"$project\"..."
 		cd $path/$project
