@@ -15,19 +15,21 @@ environment.bak
 # Sass
 *.css.map
 
+# Log
+*.log
+
 # Coverage
 .coverage
 
-# node
+# Vercel
+.vercel/
+
+# Node
 node_modules/
 
-# Django
-/Morningstar/settings/test.py
+# database
 /database/
 /whoosh_index/
-
-# log
-*.log
 
 # release
 release/
@@ -36,7 +38,6 @@ release/
 /static/
 
 # media
-# NOTE: /media/*/*
 /media/avatar/*
 !/media/avatar/default.svg
 /media/photo/*
@@ -46,7 +47,8 @@ release/
 .env
 secret.sh
 gcloud_instances.txt
+/Morningstar/settings/test.py
 
 # others
-.vercel/
+TODO.md
 TEMP/
