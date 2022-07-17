@@ -15,20 +15,20 @@ apt:
 apt_upgrade: true
 
 packages:
+  - tldr
   - python3-pip
   - virtualenv
   - nginx
   - nodejs
   - npm
-  - yarn
 
 write_files:
   -
-    path: /home/ubuntu/test.sh
-    content: 'echo "Hello World"'
-  -
     path: /home/ubuntu/.pip/pip.conf
     content: "[global]\n# index-url = https://pypi.tuna.tsinghua.edu.cn/simple\nindex-url = https://pypi.doubanio.com/simple/"
+  - 
+    path: /home/ubuntu/install/install_docker.sh
+    content: "curl -fsSL https://get.docker.com | sudo bash -s docker --mirror Aliyun\nsudo gpasswd -a ubuntu docker\nsudo systemctl restart docker\nsudo chmod a+rw /var/run/docker.sock\nsudo apt install -qq docker-compose"
 
 runcmd:
   # apt
@@ -39,9 +39,3 @@ runcmd:
   # ssh
   - sed -i "s/PasswordAuthentication no/PasswordAuthentication yes/" /etc/ssh/sshd_config
   - systemctl restart ssh
-  # docker
-  - curl -fsSL https://get.docker.com | bash -s docker  # NOTE: update from https://get.docker.com
-  - gpasswd -a ubuntu docker
-  - systemctl restart docker
-  - chmod a+rw /var/run/docker.sock
-  - apt install -qq docker-compose
