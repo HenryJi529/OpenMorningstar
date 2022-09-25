@@ -40,7 +40,7 @@ def shortcut(request, name):
         else:
             pass
     # 速查表链接
-    elif name in ["gist", "html", "css", "js", "bash", "sass"]:
+    elif name in ["gist", "html", "css", "js", "bash", "sass", "icon", "tailwind", "daisy"]:
         if name == "gist":
             return redirect("https://gist.github.com/HenryJi529")
         elif name == "html":
@@ -53,6 +53,12 @@ def shortcut(request, name):
             return redirect("https://wsgzao.github.io/post/bash/")
         elif name == "sass":
             return redirect("https://www.sass.hk/docs/")
+        elif name == "icon":
+            return redirect("https://fontawesome.com/icons")
+        elif name == "tailwind":
+            return redirect("https://tailwindcss.com/")
+        elif name == "daisy":
+            return redirect("https://daisyui.com/components/")
         else:
             pass
     # 其他快捷链接
