@@ -9,5 +9,5 @@ from .models import Item
 
 @admin.register(Item)
 class ItemAdmin(ImportExportModelAdmin):
-    pass
+    list_display = ('id', 'url',)
 
