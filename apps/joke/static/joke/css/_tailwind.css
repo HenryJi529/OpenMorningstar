@@ -1970,6 +1970,10 @@ html {
   margin-right: auto;
 }
 
+.inline-block {
+  display: inline-block;
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
