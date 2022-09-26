@@ -14,7 +14,6 @@
 
 ## blog
 
-- 投票: 修改成 ManyToManyField
 - 评论：https://utteranc.es/
   - 引用
   - 列表
