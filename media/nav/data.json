@@ -901,6 +901,10 @@
 			"icon": "fa-solid fa-screwdriver-wrench",
 			"items": [
 				{
+					"name": "几何绘图",
+					"url": "https://www.geogebra.org/calculator"
+				},
+				{
 					"name": "口红选购",
 					"url": "https://github.com/rentianle2022/LipsticksGeek-BackEnd"
 				},
