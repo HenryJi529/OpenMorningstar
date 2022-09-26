@@ -100,7 +100,7 @@
 				},
 				{
 					"name": "赠金余额",
-					"url": "https://console.cloud.google.com/billing/015264-F41DBD-A6F513?project=crafty-nova-249804",
+					"url": "https://console.cloud.google.com/billing/01CCBD-0C5E72-E23C90?project=crafty-nova-249804&supportedpurview=project",
 					"image": "/media/nav/img/Admin/赠金余额.png",
 					"desc": "谷歌云结算账号管理"
 				},
