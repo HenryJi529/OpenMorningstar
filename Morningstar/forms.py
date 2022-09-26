@@ -173,7 +173,7 @@ class RegisterForm(forms.Form):
 class InfoForm(forms.Form):
     nickname = forms.CharField(label='昵称', widget=forms.TextInput(attrs={"class": "w-full"}))
     bio = forms.CharField(label='个人介绍', widget=forms.Textarea(attrs={"class": "textarea w-full", "rows": 4}))
-    avatar = forms.ImageField(label='头像', widget=forms.FileInput(attrs={"class": "absolute cursor-pointer w-full", "style": "opacity: 0;"}))
+    avatar = forms.ImageField(label='头像', required=False, widget=forms.FileInput(attrs={"class": "absolute cursor-pointer w-full", "style": "opacity: 0;"}))
     # phone = forms.CharField(label='手机号', validators=[RegexValidator(r'^(1[3|4|5|6|7|8|9])\d{9}$', '手机号格式错误'), ], widget=forms.TextInput(attrs={"class": "w-full"}))
 
     def __init__(self, *args, **kwargs):

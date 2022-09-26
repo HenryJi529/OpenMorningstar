@@ -193,7 +193,8 @@ def updateProfile(request):
         if info_form.is_valid():
             request.user.nickname = info_form.cleaned_data['nickname']
             request.user.bio = info_form.cleaned_data['bio']
-            request.user.avatar = info_form.cleaned_data['avatar']
+            if info_form.cleaned_data['avatar']:
+                request.user.avatar = info_form.cleaned_data['avatar']
             request.user.save()
             messages.add_message(request, messages.INFO, "档案更新成功...")
         else:
