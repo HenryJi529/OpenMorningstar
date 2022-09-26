@@ -107,3 +107,8 @@ This project is [AGPL v3](https://raw.githubusercontent.com/HenryJi529/OpenMorni
 		src="https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/Morningstar/static/base/img/pycharm.svg"
 		alt="pycharm">
 </a>
+<a href="https://cloud.google.com/">
+	<img width="30%"
+		src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg"
+		alt="pycharm">
+</a>
