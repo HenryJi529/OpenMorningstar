@@ -16,7 +16,7 @@ django-crontab==0.7.1
   Django==4.1.1
     asgiref==3.5.2
     sqlparse==0.4.2
-django-debug-toolbar==3.6.0
+django-debug-toolbar==3.7.0
   Django==4.1.1
     asgiref==3.5.2
     sqlparse==0.4.2
@@ -63,7 +63,7 @@ django-user-agents==0.4.0
     sqlparse==0.4.2
   user-agents==2.2.0
     ua-parser==0.15.0
-djangorestframework==3.13.1
+djangorestframework==3.14.0
   Django==4.1.1
     asgiref==3.5.2
     sqlparse==0.4.2
@@ -84,7 +84,7 @@ fabric==2.7.1
   pathlib2==2.3.7.post1
     six==1.16.0
 fake-useragent==0.1.11
-Faker==14.2.0
+Faker==14.2.1
   python-dateutil==2.8.2
     six==1.16.0
 fontawesomefree==6.2.0
