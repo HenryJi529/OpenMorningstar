@@ -45,14 +45,14 @@ et-xmlfile==1.1.0
 executing==0.8.3
 fabric==2.7.1
 fake-useragent==0.1.11
-Faker==14.2.1
+Faker==15.0.0
 fastjsonschema==2.16.1
 fontawesomefree==6.2.0
 fonttools==4.34.4
 gunicorn==20.1.0
 idna==3.3
 invoke==1.7.1
-ipykernel==6.15.3
+ipykernel==6.16.0
 ipython==8.5.0
 ipython-genutils==0.2.0
 ipywidgets==7.7.1

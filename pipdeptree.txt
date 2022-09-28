@@ -84,7 +84,7 @@ fabric==2.7.1
   pathlib2==2.3.7.post1
     six==1.16.0
 fake-useragent==0.1.11
-Faker==14.2.1
+Faker==15.0.0
   python-dateutil==2.8.2
     six==1.16.0
 fontawesomefree==6.2.0
@@ -92,7 +92,7 @@ gunicorn==20.1.0
   setuptools==62.6.0
 jieba==0.42.1
 jupyter==1.0.0
-  ipykernel==6.15.3
+  ipykernel==6.16.0
     appnope==0.1.3
     debugpy==1.6.2
     ipython==8.5.0
@@ -135,7 +135,7 @@ jupyter==1.0.0
     tornado==6.2
     traitlets==5.3.0
   ipywidgets==7.7.1
-    ipykernel==6.15.3
+    ipykernel==6.16.0
       appnope==0.1.3
       debugpy==1.6.2
       ipython==8.5.0
@@ -206,7 +206,7 @@ jupyter==1.0.0
           argon2-cffi-bindings==21.2.0
             cffi==1.15.1
               pycparser==2.21
-        ipykernel==6.15.3
+        ipykernel==6.16.0
           appnope==0.1.3
           debugpy==1.6.2
           ipython==8.5.0
@@ -332,7 +332,7 @@ jupyter==1.0.0
         tornado==6.2
         traitlets==5.3.0
   jupyter-console==6.4.4
-    ipykernel==6.15.3
+    ipykernel==6.16.0
       appnope==0.1.3
       debugpy==1.6.2
       ipython==8.5.0
@@ -463,7 +463,7 @@ jupyter==1.0.0
       argon2-cffi-bindings==21.2.0
         cffi==1.15.1
           pycparser==2.21
-    ipykernel==6.15.3
+    ipykernel==6.16.0
       appnope==0.1.3
       debugpy==1.6.2
       ipython==8.5.0
@@ -589,7 +589,7 @@ jupyter==1.0.0
     tornado==6.2
     traitlets==5.3.0
   qtconsole==5.3.1
-    ipykernel==6.15.3
+    ipykernel==6.16.0
       appnope==0.1.3
       debugpy==1.6.2
       ipython==8.5.0
