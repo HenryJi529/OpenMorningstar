@@ -16,9 +16,9 @@
 </head>
 
 <body class="flex justify-center items-center">
-    <div class="container flex flex-col justify-between items-center min-h-screen p-4">
+    <div class="container flex flex-col justify-between items-center min-h-screen">
         {% if items %}
-        <div>
+        <div class="pt-4">
             <div class="text-5xl pb-4 text-center">RSS源列表</div>
             <div class="overflow-x-auto">
                 <table class="table table-zebra w-full">
@@ -53,7 +53,7 @@
         </div>
         {% endif %}
 
-        <footer>
+        <footer class="pb-2">
             <div class="text-center">
                 <div id="runtime_span"></div>
                 <div id="copyright">
