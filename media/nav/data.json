@@ -381,7 +381,8 @@
 					"name": "微学术",
 					"url": "https://w.s99s.top/lit/",
 					"image": "/media/nav/img/Research/微学术.png",
-					"desc": "别问，问就是镜像～"
+					"desc": "别问，问就是镜像～",
+					"display": "hide"
 				},
 				{
 					"name": "谷歌学术",
@@ -436,6 +437,12 @@
 					"url": "https://www.connectedpapers.com/",
 					"image": "/media/nav/img/Research/ConnectedPapers.jpeg",
 					"desc": "论文观点对比"
+				},
+				{
+					"name": "DeepL Translator",
+					"url": "https://www.deepl.com/translator",
+					"image": "/media/nav/img/Research/DeepL.svg",
+					"desc": "学术翻译工具"
 				},
 				{
 					"name": "学术词汇",
