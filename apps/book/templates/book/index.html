@@ -46,12 +46,12 @@
 		</div>
 	</div>
 
-	<div class="min-h-screen container mx-auto relative">
+	<div class="min-h-screen container mx-auto">
 		<header class="flex space-x-2 justify-center items-center text-4xl pt-6">
 			<span class="text-4xl">我的书单</span>
 			<i class="fa-brands fa-searchengin cursor-pointer" id="searchButton"></i>
 		</header>
-		<div class="overflow-x-auto mt-4">
+		<div class="overflow-x-auto mt-4 mb-8 relative">
 			<table class="table table-zebra w-full">
 				<thead>
 					<tr>
@@ -91,7 +91,7 @@
 				</tbody>
 			</table>
 		</div>
-		<footer class="absolute bottom-2 w-full">
+		<footer class="mb-2">
 			<div class="text-center">
 				<div id="runtime_span"></div>
 				<div id="copyright">
@@ -109,6 +109,7 @@
 			<script src="{% static 'base/js/runtime.js' %}"></script>
 			{% endcompress %}
 		</footer>
+
 	</div>
 
 	<div id="fade" class="hidden w-screen h-screen z-40 absolute top-0 bg-gray-400/50"></div>
