@@ -3,13 +3,11 @@ from django.shortcuts import render, HttpResponse, reverse
 from .lib import get_data, get_sources_num, get_title_from_index, get_link_from_index
 
 def index(request):
-    items = []
-    for index in range(get_sources_num()):
-        items.append({
-            'title': get_title_from_index(index),
-            'link': get_link_from_index(index),
-            'rss': reverse("rss:get_xml", kwargs={'pk': index+1})
-        })
+    items = [{
+                'title': get_title_from_index(index),
+                'link': get_link_from_index(index),
+                'rss': reverse("rss:get_xml", kwargs={'pk': index+1}),
+            } for index in range(get_sources_num())]
     return render(request, "rss/index.html", locals())
 
 

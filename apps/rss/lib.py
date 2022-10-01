@@ -22,17 +22,14 @@ def get_link_from_index(index):
 
 def get_items(site):
     def get_text(link):
-        try:
-            r = requests.get(link, timeout=10)
-            r.raise_for_status()
-            r.encoding = r.apparent_encoding
-            return r.text
-        except:
-            pass
+        r = requests.get(link, timeout=10)
+        r.raise_for_status()
+        r.encoding = r.apparent_encoding
+        return r.text
+
+    items = []
     text = get_text(site['link'])
     pattern = site["feed"]["pattern"]
-    items = []
-    
     p = re.compile(pattern)
     matches = p.findall(text)
     for match in matches:
