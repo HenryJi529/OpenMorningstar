@@ -29,11 +29,8 @@ class UserResource(resources.ModelResource):
 class UserAdmin(ImportExportModelAdmin):
     formats = (base_formats.CSV, base_formats.XLS)
     resource_class = UserResource
-    list_display = ('id', 'username', '全名', 'email', 'phone', 'is_staff',
+    list_display = ('id', 'username', 'email', 'phone', 'is_staff',
                     'is_active', 'is_superuser', 'last_login', 'date_joined')
-
-    def 全名(self, obj):
-        return obj.first_name + ' ' + obj.last_name
 # admin.site.register(User, UserAdmin)
 
 
