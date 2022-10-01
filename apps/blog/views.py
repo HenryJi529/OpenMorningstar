@@ -198,6 +198,6 @@ def updateProfile(request):
             request.user.save()
             messages.add_message(request, messages.INFO, "档案更新成功...")
         else:
-            better_print(info_form.errors)
+            print(better_print(info_form.errors))
             messages.add_message(request, messages.ERROR, "档案更新失败...")
         return redirect(reverse('blog:index'))
