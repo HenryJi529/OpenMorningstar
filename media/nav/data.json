@@ -344,6 +344,11 @@
 					"image": "/media/nav/img/Manual/NumPy.svg"
 				},
 				{
+					"name": "Pandas",
+					"url": "https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html",
+					"image": "/media/nav/img/Manual/Pandas.svg"
+				},
+				{
 					"name": "SciPy",
 					"url": "https://docs.scipy.org/doc/scipy/",
 					"image": "/media/nav/img/Manual/SciPy.svg"
