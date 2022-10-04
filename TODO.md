@@ -15,11 +15,7 @@
 
 - 评论：https://utteranc.es/
   - 引用
-  - 列表
-    - 折叠列表
-    - 支持 Markdown
-  - 表单
-    - 预览
-    - 图片 base64 存储
-    - 支持 Markdown
     - 评论的邮件提醒
+    - @标记
+  - 表单
+    - 图片 base64 存储
