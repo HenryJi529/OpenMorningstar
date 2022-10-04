@@ -2411,10 +2411,6 @@ body[dir="rtl"] .checkbox:checked,
   top: 0.5rem;
 }
 
-.bottom-2 {
-  bottom: 0.5rem;
-}
-
 .top-0 {
   top: 0px;
 }
