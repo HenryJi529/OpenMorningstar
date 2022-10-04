@@ -1,6 +1,12 @@
 <div class="space-y-4">
 	{% for comment in comment_list %}
-	<div class="flex space-x-4 w-full">
+	{% if comment_list.count > 13 and forloop.counter == 6 %}
+	<div class="divider py-6" id="showAllCommentButton">
+		<button class="btn bg-gray-500 dark:bg-zinc-900">隐藏了{{comment_list.count|add:-11}}个评论</button>
+	</div>
+	{% endif %}
+	<div
+		class="comment-item flex space-x-4 w-full {% if comment_list.count > 13 and forloop.counter > 5 and comment_list.count|add:-5 > forloop.counter %}hidden{% endif %}">
 		<div class="btn btn-ghost btn-circle avatar">
 			<div class="w-14 rounded-full">
 				<img src="/media/{{ comment.user.avatar }}" alt="{{ comment.user.username }}'s avatar">
@@ -22,7 +28,7 @@
 						data-action="{% if user in comment.thumbs_down.all %}undo{% else %}do{% endif %}"></i>
 				</form>
 			</div>
-			<div class="p-2">
+			<div class="comment-body p-2">
 				{{ comment.html|safe }}
 			</div>
 
@@ -47,4 +53,5 @@
 	const thumbs_endpoint = "{% url 'blog:thumbs' %}";
 	const csrfToken = "{{ csrf_token }}";
 </script>
+<script src="{% static 'blog/js/commentShowAll.js' %}"></script>
 <script src="{% static 'blog/js/commentThumbs.js' %}"></script>

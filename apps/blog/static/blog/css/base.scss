@@ -51,10 +51,6 @@ $post-link-color: #5660f1;
                 color: rgb(107 114 128);
                 // @extend .mr-2;
                 margin-right: 0.5rem;
-
-                // &:hover {
-                //     text-decoration: dashed;
-                // }
             }
 
         }
@@ -220,6 +216,189 @@ $post-link-color: #5660f1;
                         li {
                             list-style-type: "\1F449";
                         }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+#commentPreview, 
+.comment-body {
+    h1 {
+        // @extend .text-2xl;
+        font-size: 1.5rem;
+        line-height: 2rem;
+
+        margin-top: 0.8rem;
+        margin-bottom: 0.4rem;
+
+        text-decoration-style: dashed;
+
+        &::before {
+            content: "#";
+            // @extend .text-gray-500;
+            color: rgb(107 114 128);
+            margin-right: 0.25rem;
+        }
+
+    }
+
+    h2 {
+        // @extend .text-xl;
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+
+        margin-top: 0.65rem;
+        margin-bottom: 0.25rem;
+
+        &::before {
+            content: "##";
+            // @extend .text-gray-500;
+            color: rgb(107 114 128);
+            margin-right: 0.2rem;
+        }
+    }
+
+    h3 {
+        // @extend .text-lg;
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+
+        margin-top: 0.5rem;
+        margin-bottom: 0.2rem;
+
+        &::before {
+            content: "###";
+            // @extend .text-gray-500;
+            color: rgb(107 114 128);
+            margin-right: 0.15rem;
+        }
+    }
+
+    p {
+        // @extend.mb-4;
+        margin-bottom: 1rem;
+    }
+
+    a {
+        color: $post-link-color;
+        font-weight: bold;
+        text-decoration: {
+            line: underline;
+            thickness: 2px;
+        }
+        margin: {
+            left: 0.2rem;
+            right: 0.2rem;
+        }
+        &:hover {
+            color: cyan;
+        }
+    }
+
+    code {
+        font-family: monospace;
+        font-size: 1.2rem;
+        color: $post-inline-code-color;
+        margin-left: 0.3rem;
+        margin-right: 0.3rem;
+    }
+
+    pre {
+        margin-bottom: 0.35rem;
+        border: {
+            radius: 1.2rem;
+            width: 0.35rem;
+            style: solid;
+        }
+        position: relative;
+
+        .hljs-copy-button {
+            display: block;
+            position: absolute;
+            top: 0.25rem;
+            right: 1rem;
+        }
+
+        code {
+            // @extend .overflow-scroll;
+            overflow: scroll;
+            // @extend .max-w-full;
+            max-width: 100%;
+            // @extend .block;
+            display: block;
+            // @extend .text-lg;
+            font-size: 1.125rem;
+            line-height: 1.75rem;
+            // @extend .bg-transparent;
+            background-color: transparent;
+
+            padding: 0.5rem !important;
+            .hljs-ln-n {
+                padding: 0 0.25rem;
+                margin-right: 0.25rem;
+            }
+        }
+
+    }
+
+    img {
+        // @extend .block;
+        display: block;
+        // @extend .w-10/12;
+        width: 83.333333%;
+        
+        margin: {
+            // @extend .mx-auto;
+            left: auto;
+            right: auto;
+            // @extend .my-2;
+            top: 0.5rem;
+            bottom: 0.5rem;
+        }
+    }
+
+    strong {
+        font-weight: bold;
+    }
+
+    em {
+        font-style: italic;
+    }
+
+    ol,
+    ul {
+        padding-left: 2rem;
+    }
+
+    ol {
+        li {
+            list-style-type: decimal;
+            margin-bottom: 0.2rem;
+            li {
+                list-style-type: lower-roman;
+                li {
+                    list-style-type: lower-alpha;
+                    li {
+                        list-style-type: lower-greek;
+                    }
+                }
+            }
+        }
+    }
+
+    ul {
+        li {
+            list-style-type: disc;
+            margin-bottom: 0.2rem;
+            li {
+                list-style-type: circle;
+                li {
+                    list-style-type: square;
+                    li {
+                        list-style-type: "\1F449";
                     }
                 }
             }
