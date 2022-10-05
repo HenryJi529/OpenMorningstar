@@ -112,7 +112,7 @@ def contact(request):
                 subject,
                 message,
                 from_email,
-                ['admin@morningstar529.com'],
+                ['jeep.jipu@gmail.com'],
             )
             return render(request, 'blog/contact_thanks.html')
     return render(request, 'blog/contact.html')

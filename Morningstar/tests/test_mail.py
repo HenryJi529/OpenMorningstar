@@ -11,7 +11,7 @@ class EmailTest(TestCase):
             "这是主题",
             "这是消息",
             from_email,
-            ['admin@morningstar529.com'],
+            ['jeep.jipu@gmail.com'],
             fail_silently=False,
         )
         # Test that one message has been sent.

@@ -190,10 +190,10 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'morningstar1.gcp@gmail.com'
 SERVER_EMAIL = 'morningstar1.gcp@gmail.com'
 # 500
-ADMINS = [('Henry', 'admin@morningstar529.com')]
+ADMINS = [('Henry', 'jeep.jipu@gmail.com')]
 # ADMINS = [('Ai', 'morningstar1.gcp@gmail.com')]
 # 404
-MANAGERS = [('Henry', 'admin@morningstar529.com')]
+MANAGERS = [('Henry', 'jeep.jipu@gmail.com')]
 # MANAGERS = [('Ai', 'morningstar1.gcp@gmail.com')]
 
 
