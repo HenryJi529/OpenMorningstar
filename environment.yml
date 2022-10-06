@@ -1,12 +1,12 @@
-# updated: 2022.10.04
+# updated: 2022.10.07
 qcloudsms-py: 0.1.4 # 已停止维护, 需适配py3.9 https://github.com/qcloudsms/qcloudsms_py
 django-crontab: 0.7.1 # 已停止维护, https://github.com/kraiz/django-crontab
 mysql-connector-python: 8.0.29 # 被依赖特定的版本, mysql API
 #----------------------------
 beautifulsoup4: 4.11.1 # 处理HTML
 colorama: 0.4.5 # 彩色print
-coverage: 6.4.4 # 计算覆盖率
-Django: 4.1.1 # 基础框架
+coverage: 6.5.0 # 计算覆盖率
+Django: 4.1.2 # 基础框架
 djangorestframework: 3.14.0 # REST framework for Django
 django-compressor: 4.1 # 压缩css/js
 django-cors-headers: 3.13.0 # 跨域访问之headers

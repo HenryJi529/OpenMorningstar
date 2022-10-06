@@ -1,54 +1,54 @@
 colorama==0.4.5
-coverage==6.4.4
+coverage==6.5.0
 django-compressor==4.1
   django-appconf==1.0.5
-    Django==4.1.1
+    Django==4.1.2
       asgiref==3.5.2
       sqlparse==0.4.2
   rcssmin==1.1.0
   rjsmin==1.2.0
 django-cors-headers==3.13.0
-  Django==4.1.1
+  Django==4.1.2
     asgiref==3.5.2
     sqlparse==0.4.2
 django-cors-middleware==1.5.0
 django-crontab==0.7.1
-  Django==4.1.1
+  Django==4.1.2
     asgiref==3.5.2
     sqlparse==0.4.2
 django-debug-toolbar==3.7.0
-  Django==4.1.1
+  Django==4.1.2
     asgiref==3.5.2
     sqlparse==0.4.2
   sqlparse==0.4.2
 django-filter==22.1
-  Django==4.1.1
+  Django==4.1.2
     asgiref==3.5.2
     sqlparse==0.4.2
 django-haystack==3.2.1
-  Django==4.1.1
+  Django==4.1.2
     asgiref==3.5.2
     sqlparse==0.4.2
 django-import-export==2.9.0
   diff-match-patch==20200713
-  Django==4.1.1
+  Django==4.1.2
     asgiref==3.5.2
     sqlparse==0.4.2
   tablib==3.2.1
 django-jazzmin==2.5.0
-  Django==4.1.1
+  Django==4.1.2
     asgiref==3.5.2
     sqlparse==0.4.2
 django-matomo==0.1.6
-  Django==4.1.1
+  Django==4.1.2
     asgiref==3.5.2
     sqlparse==0.4.2
 django-recaptcha==3.0.0
-  Django==4.1.1
+  Django==4.1.2
     asgiref==3.5.2
     sqlparse==0.4.2
 django-redis==5.2.0
-  Django==4.1.1
+  Django==4.1.2
     asgiref==3.5.2
     sqlparse==0.4.2
   redis==4.3.4
@@ -58,13 +58,13 @@ django-redis==5.2.0
     packaging==21.3
       pyparsing==3.0.9
 django-user-agents==0.4.0
-  Django==4.1.1
+  Django==4.1.2
     asgiref==3.5.2
     sqlparse==0.4.2
   user-agents==2.2.0
     ua-parser==0.15.0
 djangorestframework==3.14.0
-  Django==4.1.1
+  Django==4.1.2
     asgiref==3.5.2
     sqlparse==0.4.2
   pytz==2022.1
