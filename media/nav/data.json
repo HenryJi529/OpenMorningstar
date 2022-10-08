@@ -52,7 +52,7 @@
 					"name": "个人博客",
 					"url": "/blog/",
 					"image": "/media/nav/img/Work/blog.png",
-					"desc": "专注于WEB开发与运维"
+					"desc": "专注于WEB全栈,无线通信,复杂网络的个人博客"
 				},
 				{
 					"name": "科学上网",
@@ -1002,7 +1002,7 @@
 						{
 							"name": "图片处理(尺寸,裁剪,水印,转换)",
 							"link": "https://www.iloveimg.com/zh-cn"
-						},		
+						},
 						{
 							"name": "图片去底",
 							"link": "https://www.aigei.com/bgremover"
