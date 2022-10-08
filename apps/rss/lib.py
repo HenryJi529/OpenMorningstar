@@ -22,7 +22,7 @@ def get_link_from_index(index):
 
 def get_items(site):
     def get_text(link):
-        r = requests.get(link, timeout=120)  # 针对反爬，需要增加timeout
+        r = requests.get(link, timeout=120, verify=False)  # 针对反爬，需要增加timeout
         r.raise_for_status()
         r.encoding = r.apparent_encoding
         return r.text
