@@ -11,7 +11,7 @@ class ShortCutViewTest(TestCase):
 
     def test_redirect(self):
         SLUGS = [
-            "issue", "auto", "src", "src-mirror", "host", "vercel", "domain", "namecheap", "license", "coverage", "task", "resume", "mailbox",
+            "issue", "auto", "src", "src-mirror", "host", "vercel", "domain", "namecheap", "license", "coverage", "task", "resume", "wechatpp",
             "qiniu", "lanzou",
             "gist", "html", "css", "js", "bash", "sass",
             "sgs", "cook", "news"
