@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 
 def shortcut(request, name):
     # 项目快捷链接
-    if name in ["issue", "auto", "src", "src-mirror", "host", "vercel", "domain", "namecheap", "license", "coverage", "task", "resume", "mailbox"]:
+    if name in ["issue", "auto", "src", "src-mirror", "host", "vercel", "domain", "namecheap", "license", "coverage", "task", "resume", "wechatpp"]:
         if name == 'issue':
             return redirect("https://github.com/HenryJi529/OpenMorningstar/issues")
         elif name == "auto":
@@ -27,8 +27,8 @@ def shortcut(request, name):
             return redirect("https://ticktick.com/webapp#m/all/matrix")
         elif name == "resume":
             return redirect("https://resume.morningstar529.com/")
-        elif name == "mailbox":
-            return redirect("https://privateemail.com/appsuite/#!!&app=io.ox/mail&folder=default0/INBOX")
+        elif name == "wechatpp":
+            return redirect("https://mp.weixin.qq.com/cgi-bin/home")
         else:
             pass
     # 静态资源管理

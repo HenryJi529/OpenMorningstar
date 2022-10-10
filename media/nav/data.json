@@ -151,6 +151,12 @@
 					"url": "https://morningstar529.com/shortcut/task/",
 					"image": "/media/nav/img/Admin/任务管理.png",
 					"desc": "通过ticktick实现任务管理"
+				},
+				{
+					"name": "微信公众号",
+					"url": "https://mp.weixin.qq.com/cgi-bin/home",
+					"image": "/media/nav/img/Admin/微信公众号.png",
+					"desc": "嘉鱼居的微信公众号后台"
 				}
 			]
 		},
