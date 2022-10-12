@@ -6,6 +6,12 @@ runCommand() {
 	fab -H jeep_jipu@server.${DOMAIN} -r scripts/fabric -p $1
 }
 
+# 简单运行
+serve() {
+	echo "启动django-server..."
+	python manage.py runserver 0:8000
+}
+
 # 检视信息
 check() {
 	runCommand check --prompt-for-login-password
@@ -151,8 +157,9 @@ b. restoreDockerVolume();
 c. publicPackage();
 d. publicVercel();
 e. publicLedger();
+f. check();
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
-0. check();
+0. serve();
 1. dev();
 2. initialize();
 3. coverage();
@@ -163,7 +170,7 @@ e. publicLedger();
 8. restoreProd();
 9. archiveMain();
 "
-read -p "输入序号(a-e|0-9): " order
+read -p "输入序号(a-f|0-9): " order
 
 start_time=$(date +%s)
 
@@ -176,8 +183,9 @@ b) restoreDockerVolume ;;
 c) publicPackage ;;
 d) publicVercel ;;
 e) publicLedger ;;
+f) check ;;
 # ==========================
-0) check ;;
+0) serve ;;
 1) dev ;;
 2) initialize ;;
 3) coverage ;;
