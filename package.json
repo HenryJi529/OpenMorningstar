@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "canvas-nest.js": "^2.0.4",
+    "echarts": "^5.4.0",
     "github-corners": "^0.1.0",
     "highlight.js": "^11.6.0",
     "highlightjs-copy": "^1.0.3",
