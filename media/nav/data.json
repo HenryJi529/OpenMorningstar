@@ -320,6 +320,11 @@
 					"image": "/media/nav/img/Manual/JavaScript.png"
 				},
 				{
+					"name": "ECharts",
+					"url": "https://echarts.apache.org/en/index.html",
+					"image": "/media/nav/img/Manual/ECharts.png"
+				},
+				{
 					"name": "Web API",
 					"url": "https://wangdoc.com/webapi/",
 					"image": "/media/nav/img/Manual/WebAPI.png"
