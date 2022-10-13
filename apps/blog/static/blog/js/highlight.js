@@ -25,7 +25,7 @@ window.hljs = hljs;
 
 // NOTE: 原始的包没有导出
 // const highlightjsCopy = require('highlightjs-copy')
-const plugins = require('./_plugins.js')
+const plugins = require('./highlightPlugins.js')
 
 require('highlightjs-line-numbers.js')
 

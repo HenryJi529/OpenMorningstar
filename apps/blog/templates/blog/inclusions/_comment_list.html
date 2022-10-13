@@ -5,8 +5,8 @@
 		<button class="btn bg-gray-500 dark:bg-zinc-900">隐藏了{{comment_list.count|add:-11}}个评论</button>
 	</div>
 	{% endif %}
-	<div
-		class="comment-item flex space-x-4 w-full {% if comment_list.count > 13 and forloop.counter > 5 and comment_list.count|add:-5 > forloop.counter %}hidden{% endif %}">
+	<div class="comment-item flex space-x-4 w-full {% if comment_list.count > 13 and forloop.counter > 5 and comment_list.count|add:-5 > forloop.counter %}hidden{% endif %}"
+		id="comment-{{comment.id}}">
 		<div class="btn btn-ghost btn-circle avatar">
 			<div class="w-14 rounded-full">
 				<img src="/media/{{ comment.user.avatar }}" alt="{{ comment.user.username }}'s avatar">
@@ -18,17 +18,20 @@
 					<span class="font-bold">{{ comment.user.username }}</span>
 					<div>评论于<span>{{comment.updated|timesince}}</span>前</div>
 				</div>
-				<form action="{% url 'blog:thumbs' %}" method="post" class="flex space-x-2 items-center">
-					{% csrf_token %}
-					<i class="thumbs-up fa-solid fa-thumbs-up cursor-pointer {% if user in comment.thumbs_up.all %}text-amber-600 text-lg{% else %}{% endif %}"
-						data-comment_id="{{comment.id}}"
-						data-action="{% if user in comment.thumbs_up.all %}undo{% else %}do{% endif %}"></i>
-					<i class="thumbs-down fa-solid fa-thumbs-down cursor-pointer {% if user in comment.thumbs_down.all %}text-amber-600 text-lg{% else %}{% endif %}"
-						data-comment_id="{{comment.id}}"
-						data-action="{% if user in comment.thumbs_down.all %}undo{% else %}do{% endif %}"></i>
-				</form>
+				<div class="flex items-center space-x-2">
+					<form action="{% url 'blog:thumbs' %}" method="post" class="flex space-x-2 items-center">
+						{% csrf_token %}
+						<i class="thumbs-up fa-solid fa-thumbs-up cursor-pointer {% if user in comment.thumbs_up.all %}text-amber-600 text-lg{% else %}{% endif %}"
+							data-comment_id="{{comment.id}}"
+							data-action="{% if user in comment.thumbs_up.all %}undo{% else %}do{% endif %}"></i>
+						<i class="thumbs-down fa-solid fa-thumbs-down cursor-pointer {% if user in comment.thumbs_down.all %}text-amber-600 text-lg{% else %}{% endif %}"
+							data-comment_id="{{comment.id}}"
+							data-action="{% if user in comment.thumbs_down.all %}undo{% else %}do{% endif %}"></i>
+					</form>
+					<i class="reply-button fa-solid fa-reply cursor-pointer" data-comment_id="{{comment.id}}"></i>
+				</div>
 			</div>
-			<div class="comment-body p-2">
+			<div class=" comment-body p-2">
 				{{ comment.html|safe }}
 			</div>
 
@@ -55,3 +58,4 @@
 </script>
 <script src="{% static 'blog/js/commentShowAll.js' %}"></script>
 <script src="{% static 'blog/js/commentThumbs.js' %}"></script>
+<script src="{% static 'blog/js/commentReply.js' %}"></script>

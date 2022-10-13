@@ -32,28 +32,4 @@
 	</div>
 </form>
 <script src="{% static 'node_modules/marked/marked.min.js' %}"></script>
-<script>
-	let textarea = document.querySelector('textarea.auto-expend');
-	let commentPreview = document.querySelector('#commentPreview');
-	textarea.addEventListener('keydown', (e) => {
-		setTimeout(() => {
-			// for box-sizing other than "content-box" use:
-			// el.style.cssText = '-moz-box-sizing:content-box';
-			if (e.target.scrollHeight > 112) {
-				e.target.style.height = e.target.scrollHeight + 'px';
-			}
-		}, 0);
-	});
-	document.querySelector('#editorButton').addEventListener('click', (evt) => {
-		textarea.classList.remove('hidden');
-		commentPreview.classList.add('hidden');
-	})
-	document.querySelector('#previewButton').addEventListener('click', (evt) => {
-		textarea.classList.add('hidden');
-		commentPreview.classList.remove('hidden');
-	})
-	setInterval(() => {
-		commentPreview.innerHTML = marked.parse(textarea.value);
-	}, 500);
-
-</script>
+<script src="{% static 'blog/js/commentPreview.js' %}"></script>
