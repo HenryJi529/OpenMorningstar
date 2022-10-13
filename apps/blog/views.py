@@ -1,3 +1,5 @@
+import re
+
 from django.shortcuts import get_object_or_404, redirect, render, reverse
 from django.http import HttpResponseRedirect, HttpResponse, Http404, JsonResponse
 from django.urls import reverse
@@ -14,10 +16,12 @@ from django.core.mail import send_mail
 from haystack import views as haystack_views
 
 from Morningstar.views.base import handle_login, handle_register
+from Morningstar.views.base import fix_fetched_post
 from Morningstar.settings.common import EMAIL_HOST_USER
 from Morningstar.forms import LoginForm, RegisterForm, InfoForm
 from Morningstar.lib.print import better_print
-from Morningstar.views.base import fix_fetched_post
+from Morningstar.lib.mail import send_mail_from_host
+from Morningstar.models import User
 
 from .models import Category, Post, Tag, Comment
 from .forms import CommentForm, ContactForm
@@ -130,8 +134,26 @@ def comment(request, post_pk):
         comment.save()
         # 重定向到 post 的详情页，实际上当 redirect 函数接收一个模型的实例时，它会调用这个模型实例的 get_absolute_url 方法，
         # 然后重定向到 get_absolute_url 方法返回的 URL。
-        messages.add_message(request, messages.SUCCESS,
-                            '评论发表成功！', extra_tags='success')
+        messages.add_message(request, messages.SUCCESS, '评论发表成功！', extra_tags='success')
+        
+        # 检测是否有回复他人
+        pattern = re.compile(r'\[@[\w-]*?\]\(#comment-\d*?\)',re.M)
+        matches = pattern.findall(request.POST['body'])
+        if matches:
+            for match in matches:
+                # 获取回复的用户
+                username = re.search(r'\[@([\w-]*?)\]', match).group(1)
+                comment_id = re.search(r'\(#comment-(\d*?)\)', match).group(1)
+                if Comment.objects.get(id=comment_id).user.username == username:
+                    # 发送邮件通知
+                    subject = "您在晨星小站的评论有了新的回复"
+                    post = Comment.objects.get(id=comment_id).post
+                    message = f"您在《{post.title}》的评论中有了新的回复, 点击链接查看: \nhttps://morningstar529.com{post.get_absolute_url()}\n"
+                    from_email = EMAIL_HOST_USER
+                    to_email = User.objects.get(username=username).email
+                    send_mail_from_host(subject, message, [to_email])
+        else:
+            pass
         return redirect(post)
 
     # 检查到数据不合法，我们渲染一个预览页面，用于展示表单的错误。

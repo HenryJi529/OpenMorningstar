@@ -12,6 +12,7 @@ from ..models import User
 from ..settings.common import TENCENT_SMS_TEMPLATE
 from ..forms import LoginForm, RegisterForm, SendSmsForm
 from ..lib.sms import send_sms_single
+from ..lib.mail import send_mail_from_host
 
 from .base import fix_fetched_post, handle_login, handle_register
 

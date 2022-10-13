@@ -10,11 +10,3 @@
   - profile 界面
 
 - 全面测试
-
-## blog
-
-- 评论：https://utteranc.es/
-  - 引用
-    - 评论的邮件提醒
-  - 表单
-    - 图片 base64 存储
