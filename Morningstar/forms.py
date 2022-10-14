@@ -15,13 +15,9 @@ FAKE_PASSWORD = "********"
 
 
 class LoginForm(forms.Form):
-    identity = forms.CharField(
-        label="账户", initial="", required=True, widget=forms.TextInput(attrs={"placeholder": "用户名/邮箱/手机号", "class": "w-full"}))
-    password_login = forms.CharField(
-        label="密码", widget=forms.PasswordInput(attrs={"placeholder": "********", "class": "w-full"}, render_value=True), required=True)
-    image_captcha = forms.CharField(label='人机验证',required=True,
-        widget=forms.TextInput(attrs={"placeholder": "XXXXXX", "class": "w-full"},)
-    )
+    identity = forms.CharField(label="账户", initial="", required=True, widget=forms.TextInput(attrs={"placeholder": "用户名/邮箱/手机号", "class": "w-full"}))
+    password_login = forms.CharField(label="密码", widget=forms.PasswordInput(attrs={"placeholder": "********", "class": "w-full"}, render_value=True), required=True)
+    image_captcha = forms.CharField(label='人机验证',required=True, widget=forms.TextInput(attrs={"placeholder": "XXXXXX", "class": "w-full"},))
 
     def __init__(self, request, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -68,7 +64,6 @@ class SendSmsForm(forms.Form):
     def __init__(self, request, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.request = request
-
 
     def clean_phone(self):
         """ 手机号校验的钩子 """
@@ -174,12 +169,11 @@ class InfoForm(forms.Form):
     nickname = forms.CharField(label='昵称', widget=forms.TextInput(attrs={"class": "w-full"}))
     bio = forms.CharField(label='个人介绍', widget=forms.Textarea(attrs={"class": "textarea w-full", "rows": 4}))
     avatar = forms.ImageField(label='头像', required=False, widget=forms.FileInput(attrs={"class": "absolute cursor-pointer w-full", "style": "opacity: 0;"}))
-    # phone = forms.CharField(label='手机号', validators=[RegexValidator(r'^(1[3|4|5|6|7|8|9])\d{9}$', '手机号格式错误'), ], widget=forms.TextInput(attrs={"class": "w-full"}))
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for name, field in self.fields.items():
-            if name == "bio" or name == "avatar":
+            if name in ["bio", "avatar"]:
                 continue
             if 'class' in field.widget.attrs:
                 field.widget.attrs['class'] += ' input input-bordered'

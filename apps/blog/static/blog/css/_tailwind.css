@@ -2289,6 +2289,10 @@ body[dir="rtl"] .checkbox:checked,
   border-radius: var(--rounded-box, 1rem);
 }
 
+.artboard.phone {
+  width: 320px;
+}
+
 .btn-sm {
   height: 2rem;
   padding-left: 0.75rem;
@@ -2546,6 +2550,11 @@ body[dir="rtl"] .checkbox:checked,
   margin: 0.75rem;
 }
 
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -2568,6 +2577,18 @@ body[dir="rtl"] .checkbox:checked,
 
 .mb-8 {
   margin-bottom: 2rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
 }
 
 .block {
