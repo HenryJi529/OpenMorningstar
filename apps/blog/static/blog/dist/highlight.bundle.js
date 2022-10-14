@@ -1,4 +1,44 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+const hljs = require('highlight.js/lib/core');
+
+hljs.registerLanguage('bash', require('highlight.js/lib/languages/bash'));
+hljs.registerLanguage('css', require('highlight.js/lib/languages/css'));
+hljs.registerLanguage('django', require('highlight.js/lib/languages/django'));
+hljs.registerLanguage('dockerfile', require('highlight.js/lib/languages/dockerfile'));
+hljs.registerLanguage('ini', require('highlight.js/lib/languages/ini'));
+hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'));
+hljs.registerLanguage('json', require('highlight.js/lib/languages/json'));
+hljs.registerLanguage('latex', require('highlight.js/lib/languages/latex'));
+hljs.registerLanguage('makefile', require('highlight.js/lib/languages/makefile'));
+hljs.registerLanguage('markdown', require('highlight.js/lib/languages/markdown'));
+hljs.registerLanguage('matlab', require('highlight.js/lib/languages/matlab'));
+hljs.registerLanguage('mathematica', require('highlight.js/lib/languages/mathematica'));
+hljs.registerLanguage('nginx', require('highlight.js/lib/languages/nginx'));
+hljs.registerLanguage('plaintext', require('highlight.js/lib/languages/plaintext'));
+hljs.registerLanguage('python', require('highlight.js/lib/languages/python'));
+hljs.registerLanguage('scss', require('highlight.js/lib/languages/scss'));
+hljs.registerLanguage('sql', require('highlight.js/lib/languages/sql'));
+hljs.registerLanguage('typescript', require('highlight.js/lib/languages/typescript'));
+hljs.registerLanguage('xml', require('highlight.js/lib/languages/xml'));
+hljs.registerLanguage('yaml', require('highlight.js/lib/languages/yaml'));
+
+window.hljs = hljs;
+
+// NOTE: 原始的包没有导出
+// const highlightjsCopy = require('highlightjs-copy')
+const plugins = require('./highlightPlugins.js')
+
+require('highlightjs-line-numbers.js')
+
+hljs.configure({
+    ignoreUnescapedHTML: true,
+});
+hljs.initLineNumbersOnLoad();
+hljs.addPlugin(new plugins.CopyButtonPlugin());
+document.addEventListener('DOMContentLoaded', (event) => {
+    hljs.highlightAll();
+});
+},{"./highlightPlugins.js":2,"highlight.js/lib/core":3,"highlight.js/lib/languages/bash":4,"highlight.js/lib/languages/css":5,"highlight.js/lib/languages/django":6,"highlight.js/lib/languages/dockerfile":7,"highlight.js/lib/languages/ini":8,"highlight.js/lib/languages/javascript":9,"highlight.js/lib/languages/json":10,"highlight.js/lib/languages/latex":11,"highlight.js/lib/languages/makefile":12,"highlight.js/lib/languages/markdown":13,"highlight.js/lib/languages/mathematica":14,"highlight.js/lib/languages/matlab":15,"highlight.js/lib/languages/nginx":16,"highlight.js/lib/languages/plaintext":17,"highlight.js/lib/languages/python":18,"highlight.js/lib/languages/scss":19,"highlight.js/lib/languages/sql":20,"highlight.js/lib/languages/typescript":21,"highlight.js/lib/languages/xml":22,"highlight.js/lib/languages/yaml":23,"highlightjs-line-numbers.js":24}],2:[function(require,module,exports){
 // <link rel="stylesheet" href="{% static 'node_modules/highlightjs-copy/dist/highlightjs-copy.min.css' %}">
 
 exports.CopyButtonPlugin = class CopyButtonPlugin {
@@ -67,42 +107,7 @@ exports.CopyButtonPlugin = class CopyButtonPlugin {
 }
 
 
-},{}],2:[function(require,module,exports){
-const hljs = require('highlight.js/lib/core');
-
-hljs.registerLanguage('bash', require('highlight.js/lib/languages/bash'));
-hljs.registerLanguage('css', require('highlight.js/lib/languages/css'));
-hljs.registerLanguage('django', require('highlight.js/lib/languages/django'));
-hljs.registerLanguage('dockerfile', require('highlight.js/lib/languages/dockerfile'));
-hljs.registerLanguage('ini', require('highlight.js/lib/languages/ini'));
-hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'));
-hljs.registerLanguage('json', require('highlight.js/lib/languages/json'));
-hljs.registerLanguage('latex', require('highlight.js/lib/languages/latex'));
-hljs.registerLanguage('makefile', require('highlight.js/lib/languages/makefile'));
-hljs.registerLanguage('markdown', require('highlight.js/lib/languages/markdown'));
-hljs.registerLanguage('matlab', require('highlight.js/lib/languages/matlab'));
-hljs.registerLanguage('mathematica', require('highlight.js/lib/languages/mathematica'));
-hljs.registerLanguage('nginx', require('highlight.js/lib/languages/nginx'));
-hljs.registerLanguage('plaintext', require('highlight.js/lib/languages/plaintext'));
-hljs.registerLanguage('python', require('highlight.js/lib/languages/python'));
-hljs.registerLanguage('scss', require('highlight.js/lib/languages/scss'));
-hljs.registerLanguage('sql', require('highlight.js/lib/languages/sql'));
-hljs.registerLanguage('typescript', require('highlight.js/lib/languages/typescript'));
-hljs.registerLanguage('xml', require('highlight.js/lib/languages/xml'));
-hljs.registerLanguage('yaml', require('highlight.js/lib/languages/yaml'));
-
-window.hljs = hljs;
-
-// NOTE: 原始的包没有导出
-// const highlightjsCopy = require('highlightjs-copy')
-const plugins = require('./_plugins.js')
-
-require('highlightjs-line-numbers.js')
-
-hljs.highlightAll();
-hljs.initLineNumbersOnLoad();
-hljs.addPlugin(new plugins.CopyButtonPlugin());
-},{"./_plugins.js":1,"highlight.js/lib/core":3,"highlight.js/lib/languages/bash":4,"highlight.js/lib/languages/css":5,"highlight.js/lib/languages/django":6,"highlight.js/lib/languages/dockerfile":7,"highlight.js/lib/languages/ini":8,"highlight.js/lib/languages/javascript":9,"highlight.js/lib/languages/json":10,"highlight.js/lib/languages/latex":11,"highlight.js/lib/languages/makefile":12,"highlight.js/lib/languages/markdown":13,"highlight.js/lib/languages/mathematica":14,"highlight.js/lib/languages/matlab":15,"highlight.js/lib/languages/nginx":16,"highlight.js/lib/languages/plaintext":17,"highlight.js/lib/languages/python":18,"highlight.js/lib/languages/scss":19,"highlight.js/lib/languages/sql":20,"highlight.js/lib/languages/typescript":21,"highlight.js/lib/languages/xml":22,"highlight.js/lib/languages/yaml":23,"highlightjs-line-numbers.js":24}],3:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 var deepFreezeEs6 = {exports: {}};
 
 function deepFreeze(obj) {
@@ -15987,4 +15992,4 @@ module.exports = yaml;
 
 }(window, document));
 
-},{}]},{},[2]);
+},{}]},{},[1]);

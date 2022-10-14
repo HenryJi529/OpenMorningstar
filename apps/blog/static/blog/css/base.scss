@@ -101,14 +101,17 @@ $post-link-color: #5660f1;
         a {
             color: $post-link-color;
             font-weight: bold;
+
             text-decoration: {
                 line: underline;
                 thickness: 2px;
             }
+
             margin: {
                 left: 0.2rem;
                 right: 0.2rem;
             }
+
             &:hover {
                 color: cyan;
             }
@@ -124,11 +127,13 @@ $post-link-color: #5660f1;
 
         pre {
             margin-bottom: 0.5rem;
+
             border: {
-                radius: 2rem;
-                width: 0.5rem;
+                radius: 1.2rem;
+                width: 0.4rem;
                 style: solid;
             }
+
             position: relative;
 
             .hljs-copy-button {
@@ -152,6 +157,8 @@ $post-link-color: #5660f1;
                 // @extend .bg-transparent;
                 background-color: transparent;
 
+                padding: 0.5rem !important;
+
                 .hljs-ln-n {
                     padding: 0 0.25rem;
                     margin-right: 0.25rem;
@@ -165,7 +172,7 @@ $post-link-color: #5660f1;
             display: block;
             // @extend .w-10/12;
             width: 83.333333%;
-            
+
             margin: {
                 // @extend .mx-auto;
                 left: auto;
@@ -193,10 +200,13 @@ $post-link-color: #5660f1;
             li {
                 list-style-type: decimal;
                 margin-bottom: 0.2rem;
+
                 li {
                     list-style-type: lower-roman;
+
                     li {
                         list-style-type: lower-alpha;
+
                         li {
                             list-style-type: lower-greek;
                         }
@@ -209,10 +219,13 @@ $post-link-color: #5660f1;
             li {
                 list-style-type: disc;
                 margin-bottom: 0.2rem;
+
                 li {
                     list-style-type: circle;
+
                     li {
                         list-style-type: square;
+
                         li {
                             list-style-type: "\1F449";
                         }
@@ -224,7 +237,7 @@ $post-link-color: #5660f1;
 }
 
 
-#commentPreview, 
+#commentPreview,
 .comment-body {
     h1 {
         // @extend .text-2xl;
@@ -285,14 +298,17 @@ $post-link-color: #5660f1;
     a {
         color: $post-link-color;
         font-weight: bold;
+
         text-decoration: {
             line: underline;
             thickness: 2px;
         }
+
         margin: {
             left: 0.2rem;
             right: 0.2rem;
         }
+
         &:hover {
             color: cyan;
         }
@@ -308,11 +324,13 @@ $post-link-color: #5660f1;
 
     pre {
         margin-bottom: 0.35rem;
+
         border: {
             radius: 1.2rem;
             width: 0.35rem;
             style: solid;
         }
+
         position: relative;
 
         .hljs-copy-button {
@@ -336,6 +354,7 @@ $post-link-color: #5660f1;
             background-color: transparent;
 
             padding: 0.5rem !important;
+
             .hljs-ln-n {
                 padding: 0 0.25rem;
                 margin-right: 0.25rem;
@@ -349,7 +368,7 @@ $post-link-color: #5660f1;
         display: block;
         // @extend .w-10/12;
         width: 83.333333%;
-        
+
         margin: {
             // @extend .mx-auto;
             left: auto;
@@ -377,10 +396,13 @@ $post-link-color: #5660f1;
         li {
             list-style-type: decimal;
             margin-bottom: 0.2rem;
+
             li {
                 list-style-type: lower-roman;
+
                 li {
                     list-style-type: lower-alpha;
+
                     li {
                         list-style-type: lower-greek;
                     }
@@ -393,10 +415,13 @@ $post-link-color: #5660f1;
         li {
             list-style-type: disc;
             margin-bottom: 0.2rem;
+
             li {
                 list-style-type: circle;
+
                 li {
                     list-style-type: square;
+
                     li {
                         list-style-type: "\1F449";
                     }

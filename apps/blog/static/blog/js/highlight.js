@@ -29,6 +29,11 @@ const plugins = require('./highlightPlugins.js')
 
 require('highlightjs-line-numbers.js')
 
-hljs.highlightAll();
+hljs.configure({
+    ignoreUnescapedHTML: true,
+});
 hljs.initLineNumbersOnLoad();
 hljs.addPlugin(new plugins.CopyButtonPlugin());
+document.addEventListener('DOMContentLoaded', (event) => {
+    hljs.highlightAll();
+});

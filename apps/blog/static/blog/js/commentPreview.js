@@ -16,6 +16,15 @@ document.querySelector('#previewButton').addEventListener('click', (evt) => {
     textarea.classList.add('hidden');
     commentPreview.classList.remove('hidden');
 })
+
+let lastTextareaValue;
 setInterval(() => {
-    commentPreview.innerHTML = marked.parse(textarea.value);
+    if (textarea.value != lastTextareaValue) {
+        commentPreview.innerHTML = marked.parse(textarea.value);
+        commentPreview.querySelectorAll('pre code').forEach((el) => {
+            hljs.highlightElement(el);
+        });
+        lastTextareaValue = textarea.value;
+    }
 }, 500);
+
