@@ -375,6 +375,11 @@
 					"image": "/media/nav/img/Manual/Networkx.svg"
 				},
 				{
+					"name": "igraph",
+					"url": "https://igraph.org/python/versions/latest/",
+					"image": "/media/nav/img/Manual/igraph.ico"
+				},
+				{
 					"name": "印记中文",
 					"url": "https://docschina.org/",
 					"image": "/media/nav/img/Manual/印记中文.png",
