@@ -91,8 +91,8 @@ $ docker-compose -f deploy/docker-compose.yml up --build -d
 
 ## 🙈 欢迎支持(~~宗旨是不退款！~~)
 
-|                                                                    微信                                                                     |                                                                    支付宝                                                                     |
-| :-----------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: |
+|    微信    |    支付宝    |
+| :-------: | :-------: |
 | <img src="https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/Morningstar/static/base/img/微信收款码.png" alt="Wechat" width="200"> | <img src="https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/Morningstar/static/base/img/支付宝收款码.png" alt="Alipay" width="200"> |
 
 ## 📝 许可证
@@ -101,14 +101,19 @@ Copyright © 2021 [Henry Ji](https://github.com/HenryJi529).<br/>
 This project is [AGPL v3](https://raw.githubusercontent.com/HenryJi529/OpenMorningstar/main/LICENSE) licensed.
 
 ## 🙏 感谢
-
+<a href="https://www.freecodecamp.org/">
+	<img width="20%"
+		src="https://cdn.jsdelivr.net/gh/fizzed/font-mfizz@master/src/svg/freecodecamp.svg"
+		alt="pycharm">
+</a>
 <a href="https://www.jetbrains.com/">
-	<img width="30%"
+	<img width="20%"
 		src="https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/Morningstar/static/base/img/pycharm.svg"
 		alt="pycharm">
 </a>
 <a href="https://cloud.google.com/">
-	<img width="30%"
+	<img width="20%"
 		src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg"
 		alt="pycharm">
 </a>
+
