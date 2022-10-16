@@ -1,8 +1,12 @@
-from PIL import Image, ImageDraw, ImageFont, ImageFilter
 import random
-from urllib.request import urlopen
-from Morningstar.settings.common import MEDIA_ROOT
 import os
+
+from PIL import Image, ImageDraw, ImageFont, ImageFilter
+from urllib.request import urlopen
+
+from Morningstar.settings.common import MEDIA_ROOT
+
+
 def generate_image(width=120, height=40, char_length=5, font_size=30):
     code = []
     # font_file = urlopen(truetype_url)
