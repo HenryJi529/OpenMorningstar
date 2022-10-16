@@ -24,23 +24,19 @@ from Morningstar.settings.common import CACHE_TIMEOUT
 from Morningstar.settings.common import MEDIA_ROOT
 
 
-from .views import dev, info, shortcut, tool, views
+from .views import dev, info, shortcut, tool
 
 from .sitemaps import Sitemaps
 
 
 urlpatterns = [
-    # 样板
-    path('spa/', cache_page(CACHE_TIMEOUT)(views.spa), name='spa'),
     # 工具
     path('get-image-captcha/',tool.get_image_captcha, name="get_image_captcha"),
+    path('activate/', tool.activate, name="activate"),
+    path('send-sms/', tool.send_sms, name="send_sms"),
     # 开发
     path('dev/info/', dev.info, name="dev-info"),
     path('dev/map/', dev.map, name="dev-map"),
-    # 账号
-    path('account/activate/', views.activate, name="activate"),
-    path('account/send-sms/', views.send_sms, name="send_sms"),
-    path('account/change-password/', views.change_password,name='change_password'),
     # 信息
     path('me/', cache_page(CACHE_TIMEOUT)(info.me), name="me"),
     path('sitemap.xml', cache_page(CACHE_TIMEOUT)(sitemap), {'sitemaps': Sitemaps},name='sitemap'),
