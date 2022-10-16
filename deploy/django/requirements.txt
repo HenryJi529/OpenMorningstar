@@ -44,7 +44,7 @@ entrypoints==0.4
 executing==0.8.3
 fabric==2.7.1
 fake-useragent==0.1.11
-Faker==15.0.0
+Faker==15.1.1
 fastjsonschema==2.16.1
 fontawesomefree==6.2.0
 fonttools==4.34.4
@@ -83,7 +83,7 @@ nbformat==5.4.0
 nest-asyncio==1.5.5
 networkx==2.8.7
 notebook==6.4.12
-numpy==1.23.3
+numpy==1.23.4
 packaging==21.3
 pandas==1.5.0
 pandocfilters==1.5.0

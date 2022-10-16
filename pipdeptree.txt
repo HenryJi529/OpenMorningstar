@@ -84,7 +84,7 @@ fabric==2.7.1
   pathlib2==2.3.7.post1
     six==1.16.0
 fake-useragent==0.1.11
-Faker==15.0.0
+Faker==15.1.1
   python-dateutil==2.8.2
     six==1.16.0
 fontawesomefree==6.2.0
@@ -654,11 +654,11 @@ jupyter==1.0.0
     traitlets==5.3.0
 matplotlib==3.6.1
   contourpy==1.0.5
-    numpy==1.23.3
+    numpy==1.23.4
   cycler==0.11.0
   fonttools==4.34.4
   kiwisolver==1.4.4
-  numpy==1.23.3
+  numpy==1.23.4
   packaging==21.3
     pyparsing==3.0.9
   Pillow==9.2.0
@@ -679,7 +679,7 @@ mysql-to-sqlite3==1.4.14
 mysqlclient==2.1.1
 networkx==2.8.7
 pandas==1.5.0
-  numpy==1.23.3
+  numpy==1.23.4
   python-dateutil==2.8.2
     six==1.16.0
   pytz==2022.1
@@ -707,7 +707,7 @@ requests==2.28.1
   idna==3.3
   urllib3==1.26.10
 scipy==1.9.1
-  numpy==1.23.3
+  numpy==1.23.4
 sh==1.14.3
 sqlite3-to-mysql==1.4.16
   click==8.1.3
