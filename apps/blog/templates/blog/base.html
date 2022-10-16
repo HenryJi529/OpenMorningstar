@@ -89,6 +89,122 @@
 				</label>
 			</label>
 		</div>
+		{% else %}
+		<div class="profile-modal-content">
+			<input type="checkbox" id="profileModal" class="modal-toggle" />
+			<div class="modal">
+				<div class="modal-box relative max-w-none w-full h-[60rem] max-h-full">
+					<label for="profileModal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+					<div class="text-3xl font-bold text-center">{<span class="">{{user.username}}</span>}的档案</div>
+					<div class="text-2xl font-bold my-2">基本信息</div>
+					<form action="{% url 'blog:updateInfo' %}" method="post" enctype="multipart/form-data"
+						class="form-control relative mb-6">
+						{% csrf_token %}
+						{% for field in info_form %}
+						<div class="mb-2 w-full">
+							<div id="{{ field.name }}_check"></div>
+							<label for="{{ field.id_for_label }}" class="inline-block mb-1 font-bold">{{ field.label }}:
+							</label>
+							{% if field.name == "avatar" %}
+							<div class="flex items-center justify-start space-x-4 p-2">
+								<div class="avatar">
+									<div class="w-24 rounded-full">
+										<img src="/media/{{ user.avatar }}" id="avatarDisplay" />
+									</div>
+								</div>
+								<div
+									class="w-full relative text-2xl leading-[6rem] h-24 rounded-xl border-2 border-indigo-600">
+									{{ field }}
+									<div class="h-full text-center" id="id_avatarNote">
+										请选择图片～
+									</div>
+								</div>
+							</div>
+							{% else %}
+
+							{{ field }}
+
+							{% endif %}
+						</div>
+						{% endfor %}
+						<div>
+							<input type="submit" value="保存" class="w-full btn shadow-md shadow-gray-500"
+								id="save_button">
+						</div>
+					</form>
+					<div class="text-2xl font-bold my-2">账号信息</div>
+					<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+						<div>
+							<div class="text-lg font-bold indent-[2.5em]">修改手机</div>
+							<form action="" method="post">
+								{% csrf_token %}
+								<div class="flex items-center mb-2">
+									<label for="phone" class="inline-block w-[4em] text-right pr-2">
+										手机:
+									</label>
+									<input type="text" name="phone" id="phone" class="input flex-1" />
+								</div>
+								<div class="flex items-center mb-2">
+									<label for="phone_code" class="inline-block w-[4em] text-right pr-2">
+										验证码:
+									</label>
+									<div class="flex-1 flex space-x-4">
+										<input type="text" name="phone_code" id="phone_code" class="input flex-1" />
+										<button class="btn">获取验证码</button>
+									</div>
+								</div>
+								<input type="submit" value="保存" class="w-full btn">
+							</form>
+						</div>
+
+						<div>
+							<div class="text-lg font-bold indent-[2.5em]">修改邮箱</div>
+							<form action="" method="post">
+								{% csrf_token %}
+								<div class="flex items-center mb-2">
+									<label for="email" class="inline-block w-[4em] text-right pr-2">
+										邮箱:
+									</label>
+									<input type="email" name="email" id="email" class="input flex-1" />
+								</div>
+								<div class="flex items-center mb-2">
+									<label for="email_code" class="inline-block w-[4em] text-right pr-2">
+										验证码:
+									</label>
+									<div class="flex-1 flex space-x-4">
+										<input type="text" name="email_code" id="email_code" class="input flex-1" />
+										<button class="btn">获取验证码</button>
+									</div>
+								</div>
+								<input type="submit" value="保存" class="w-full btn">
+							</form>
+						</div>
+
+						<div>
+							<div class="text-lg font-bold indent-[2.5em]">修改密码</div>
+							<form action="{% url 'blog:updatePassword' %}" method="post">
+								{% csrf_token %}
+								<div class="flex items-center mb-2">
+									<label for="password" class="inline-block w-[4em] text-right pr-2">
+										新密码:
+									</label>
+									<input type="password" name="password" id="password" class="input flex-1" />
+								</div>
+								<div class="flex items-center mb-2">
+									<label for="confirm_password" class="inline-block w-[4em] text-right pr-2">
+										请确认:
+									</label>
+									<input type="password" name="confirm_password" id="confirm_password"
+										class="input flex-1" />
+								</div>
+								<input type="submit" value="保存" class="w-full btn">
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<script src="{% static 'blog/js/loadAvatarFromInput.js' %}"></script>
+		</div>
 		{% endif %}
 		<div class="server-modal-content">
 			<input type="checkbox" id="serverModal" class="modal-toggle" />
@@ -129,53 +245,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="profile-modal-content">
-			<input type="checkbox" id="profileModal" class="modal-toggle" />
-			<div class="modal">
-				<div class="modal-box relative max-w-none w-full h-[60rem] max-h-full">
-					<label for="profileModal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-					<div class="text-3xl font-bold text-center">{<span class="">{{user.username}}</span>}的档案</div>
-					<div class="text-2xl font-bold my-2">基本信息</div>
-					<form action="{% url 'blog:updateProfile' %}" method="post" enctype="multipart/form-data"
-						class="form-control relative mb-6">
-						{% csrf_token %}
-						{% for field in info_form %}
-						<div class="mb-2 w-full">
-							<div id="{{ field.name }}_check"></div>
-							<label for="{{ field.id_for_label }}" class="inline-block mb-1 font-bold">{{ field.label }}:
-							</label>
-							{% if field.name == "avatar" %}
-							<div class="flex items-center justify-start space-x-4 p-2">
-								<div class="avatar">
-									<div class="w-24 rounded-full">
-										<img src="/media/{{ user.avatar }}" id="avatarDisplay" />
-									</div>
-								</div>
-								<div
-									class="w-full relative text-2xl leading-[6rem] h-24 rounded-xl border-2 border-indigo-600">
-									{{ field }}
-									<div class="h-full text-center" id="id_avatarNote">
-										请选择图片～
-									</div>
-								</div>
-							</div>
-							{% else %}
 
-							{{ field }}
-
-							{% endif %}
-						</div>
-						{% endfor %}
-						<div>
-							<input type="submit" value="保存" class="w-full btn shadow-md shadow-gray-500"
-								id="save_button">
-						</div>
-					</form>
-					<div class="text-2xl font-bold my-2">账号信息</div>
-				</div>
-			</div>
-			<script src="{% static 'blog/js/loadAvatarFromInput.js' %}"></script>
-		</div>
 	</div>
 
 	<div class="container m-auto">

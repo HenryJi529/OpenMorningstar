@@ -18,13 +18,14 @@ from haystack import views as haystack_views
 from Morningstar.views.base import handle_login, handle_register
 from Morningstar.views.base import fix_fetched_post
 from Morningstar.settings.common import EMAIL_HOST_USER
-from Morningstar.forms import LoginForm, RegisterForm, InfoForm
+from Morningstar.forms import LoginForm, RegisterForm, InfoForm, UpdateMailForm, UpdatePhoneForm, UpdatePasswordForm
 from Morningstar.lib.print import better_print
 from Morningstar.lib.mail import send_mail_from_host
 from Morningstar.models import User
 
 from .models import Category, Post, Tag, Comment
 from .forms import CommentForm, ContactForm
+
 
 class BlogSearchView(haystack_views.SearchView):
     template = "blog/search.html"
@@ -210,7 +211,7 @@ def login(request):
     return handle_login(request, is_api=False)
 
 
-def updateProfile(request):
+def updateInfo(request):
     if request.method == 'POST':
         info_form = InfoForm(request.POST, request.FILES)
         if info_form.is_valid():
@@ -224,3 +225,16 @@ def updateProfile(request):
             print(better_print(info_form.errors))
             messages.add_message(request, messages.ERROR, "档案更新失败...")
         return redirect(reverse('blog:index'))
+
+
+@require_POST
+def updatePassword(request):
+    update_password_form = UpdatePasswordForm(request.POST)
+    if update_password_form.is_valid():
+        password = update_password_form.cleaned_data['confirm_password']
+        request.user.set_password(password)
+        request.user.save()
+        messages.add_message(request, messages.INFO, "密码修改成功...")
+    else:
+        messages.add_message(request, messages.ERROR, "密码不一致或强度不够...")
+    return redirect(reverse('blog:index'))
