@@ -148,7 +148,7 @@ def comment(request, post_pk):
                     # 发送邮件通知
                     subject = "您在晨星小站的评论有了新的回复"
                     post = Comment.objects.get(id=comment_id).post
-                    message = f"您在《{post.title}》的评论中有了新的回复, 点击链接查看: \nhttps://morningstar529.com{post.get_absolute_url()}\n"
+                    message = f"您在《{post.title}》的评论中有了新的回复, 点击链接查看: \nhttps://morningstar529.com{post.get_absolute_url()}#comment-{comment.id}\n"
                     from_email = EMAIL_HOST_USER
                     to_email = User.objects.get(username=username).email
                     send_mail_from_host(subject, message, [to_email])
@@ -208,6 +208,7 @@ def register(request):
 
 def login(request):
     return handle_login(request, is_api=False)
+
 
 def updateProfile(request):
     if request.method == 'POST':
