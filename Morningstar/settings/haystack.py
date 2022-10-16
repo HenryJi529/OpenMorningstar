@@ -4,7 +4,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 HAYSTACK_SEARCH_RESULTS_PER_PAGE = 8
-HAYSTACK_CUSTOM_HIGHLIGHTER = 'Morningstar.utils.Highlighter'
+HAYSTACK_CUSTOM_HIGHLIGHTER = 'blog.utils.Highlighter'
 
 HAYSTACK_CONNECTIONS = {
     'default': {
