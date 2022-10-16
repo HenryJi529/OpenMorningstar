@@ -27,7 +27,7 @@
 		{
 			"extensionName": ".css",
 			// "format": "expanded",
-			"format":"compressed"
+			"format": "compressed"
 		}
 	],
 	"liveSassCompile.settings.generateMap": false,
@@ -41,5 +41,8 @@
 		"yaml": false,
 		"plaintext": false,
 		"markdown": true
-	}
+	},
+	"cSpell.words": [
+		"qrcoder"
+	]
 }

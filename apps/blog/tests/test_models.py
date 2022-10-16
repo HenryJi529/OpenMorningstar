@@ -45,6 +45,14 @@ class PostModelTestCase(TestCase):
         self.assertEqual(self.post.views, 2)
 
 
+class TagModelTestCase(TestCase):
+    def setUp(self):
+        self.tag = Tag.objects.create(name='测试')
+
+    def test_str_representation(self):
+        self.assertEqual(self.tag.__str__(), self.tag.name)
+
+
 class CommentDataTestCase(TestCase):
     def setUp(self):
         apps.get_app_config('haystack').signal_processor.teardown()

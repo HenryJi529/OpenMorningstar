@@ -31,17 +31,17 @@ def generate_image(width=120, height=40, char_length=5, font_size=30):
         code.append(char)
         h = random.randint(0, 4)
         draw.text([i * width / char_length, h],
-                  char, font=font, fill=rndColor())
+                    char, font=font, fill=rndColor())
 
     # 写干扰点
     for i in range(40):
         draw.point([random.randint(0, width),
-                   random.randint(0, height)], fill=rndColor())
+                    random.randint(0, height)], fill=rndColor())
 
     # 写干扰圆圈
     for i in range(40):
         draw.point([random.randint(0, width),
-                   random.randint(0, height)], fill=rndColor())
+                    random.randint(0, height)], fill=rndColor())
         x = random.randint(0, width)
         y = random.randint(0, height)
         draw.arc((x, y, x + 4, y + 4), 0, 90, fill=rndColor())
