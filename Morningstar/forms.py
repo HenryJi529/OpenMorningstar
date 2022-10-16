@@ -179,3 +179,45 @@ class InfoForm(forms.Form):
                 field.widget.attrs['class'] += ' input input-bordered'
             else:
                 field.widget.attrs['class'] = 'input input-bordered'
+
+
+class UpdateMailForm(forms.Form):
+    pass
+
+
+class UpdatePhoneForm(forms.Form):
+    pass
+
+
+class UpdatePasswordForm(forms.Form):
+    password = forms.CharField(label='密码', required=True, 
+        widget=forms.PasswordInput(attrs={"placeholder": FAKE_PASSWORD, "class": "w-full"}),
+        validators=[RegexValidator(r'^[\w_]*$', '密码中只能包含数字、字母下划线'),],
+        min_length=6,
+        max_length=16,
+        error_messages={
+            'min_length': "密码长度不能小于6个字符",
+            'max_length': "密码长度不能大于16个字符"
+        },
+        )
+
+    confirm_password = forms.CharField(label='重复密码',required=True,
+        widget=forms.PasswordInput(attrs={"placeholder": FAKE_PASSWORD, "class": "w-full"}),
+        min_length=6,
+        max_length=16,
+        error_messages={
+            'min_length': "密码长度不能小于6个字符",
+            'max_length': "密码长度不能大于16个字符"
+        },
+        )
+
+    def clean_confirm_password(self):
+        password = self.cleaned_data.get('password')
+        confirm_password = self.cleaned_data['confirm_password']
+        if not password:
+            return confirm_password
+        
+        if password != confirm_password:
+            self.add_error('confirm_password', '两次密码不一致')
+
+        return confirm_password
