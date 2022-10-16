@@ -11,6 +11,11 @@ Dev - 访客信息
 
 {% block content %}
 <div class="container min-h-screen p-4">
+    <div class="text-3xl">用户信息</div>
+    <div>
+        <h1>Hello "{{user.username}}"</h1>
+        <h1>Hello "{{user.nickname}}"</h1>
+    </div>
     <div class="text-3xl">屏幕/浏览器尺寸:</div>
     <ul>
         <li>screen.height = <span id="screen-height"></span></li>
