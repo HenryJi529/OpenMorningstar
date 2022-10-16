@@ -1,5 +1,5 @@
 from django.test import TestCase
-from Morningstar.utils import Highlighter
+from blog.utils import Highlighter
 
 
 class HighlighterTestCase(TestCase):
