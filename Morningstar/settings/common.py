@@ -211,6 +211,12 @@ TENCENT_SMS_TEMPLATE = {
     'chpasswd': 1278679,
 }
 
+TENCENT_SMS_TEMPLATE_TEXT = {
+    'register':  lambda code: f"{code}为您的注册验证码。如非本人操作，请忽略本短信。",
+    'login': lambda code: f"{code}为您的登录验证码。如非本人操作，请忽略本短信。",
+    'chpasswd': lambda code: f"{code}为您的改密验证码。如非本人操作，请忽略本短信。"
+}
+
 """日志系统"""
 # 文档: https://docs.djangoproject.com/zh-hans/3.2/topics/logging/
 # 原版: https://github.com/django/django/blob/main/django/utils/log.py
