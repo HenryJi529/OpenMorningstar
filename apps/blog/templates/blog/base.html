@@ -102,8 +102,16 @@
 			<label for="findModal" class="modal cursor-pointer">
 				<label class="modal-box relative" for="">
 					<div class="text-2xl font-bold text-center">找回</div>
-					<p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia
-						for free!</p>
+					<form id="find_form" action="{% url 'blog:find' %}" method="post" autocomplete="on">
+						{% csrf_token %}
+						<div class="flex justify-evenly items-center mb-3">
+							<input type="reset" value="重置" class="btn shadow-md shadow-gray-500">
+							<div></div>
+							<input name="next" value="{{request.path}}" hidden></input>
+							<div></div>
+							<input type="submit" value="找回" class="btn shadow-md shadow-gray-500">
+						</div>
+					</form>
 				</label>
 			</label>
 		</div>
@@ -331,7 +339,10 @@
 						<ul tabindex="0"
 							class="mt-1 p-1 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-20">
 							{% if user.is_authenticated %}
-							<li><label for="profileModal" class="modal-button">档案</label></li>
+							<li class="indicator">
+								<span class="indicator-item badge badge-primary text-xs px-1 h-4">新</span>
+								<label for="profileModal" class="modal-button">档案</label>
+							</li>
 							<li><a href="{% url 'blog:logout' %}">登出</a></li>
 							{% else %}
 							<li><label for="loginModal" class="modal-button">登录</label></li>
