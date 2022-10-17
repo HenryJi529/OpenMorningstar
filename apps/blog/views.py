@@ -18,7 +18,7 @@ from haystack import views as haystack_views
 from Morningstar.views.base import handle_login, handle_register
 from Morningstar.views.base import fix_fetched_post
 from Morningstar.settings.common import EMAIL_HOST_USER
-from Morningstar.forms import LoginForm, RegisterForm, InfoForm, UpdateMailForm, UpdatePhoneForm, UpdatePasswordForm
+from Morningstar.forms import LoginForm, RegisterForm, FindForm, InfoForm, UpdateMailForm, UpdatePhoneForm, UpdatePasswordForm
 from Morningstar.lib.print import better_print
 from Morningstar.lib.mail import send_mail_from_host
 from Morningstar.models import User
@@ -36,6 +36,7 @@ class CustomListView(ListView):
         context = super().get_context_data(**kwargs)
         context['login_form'] = LoginForm(self.request)
         context['register_form'] = RegisterForm()
+        context['find_form'] = FindForm()
         if self.request.user.is_authenticated:
             context['info_form'] = InfoForm(initial={
                 'nickname': self.request.user.nickname,
@@ -52,6 +53,7 @@ class CustomDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['login_form'] = LoginForm(self.request)
         context['register_form'] = RegisterForm()
+        context['find_form'] = FindForm()
         if self.request.user.is_authenticated:
             context['info_form'] = InfoForm(initial={
                 'nickname': self.request.user.nickname,
@@ -211,20 +213,25 @@ def login(request):
     return handle_login(request, is_api=False)
 
 
+@require_POST
+def find(request):
+    pass
+
+
+@require_POST
 def updateInfo(request):
-    if request.method == 'POST':
-        info_form = InfoForm(request.POST, request.FILES)
-        if info_form.is_valid():
-            request.user.nickname = info_form.cleaned_data['nickname']
-            request.user.bio = info_form.cleaned_data['bio']
-            if info_form.cleaned_data['avatar']:
-                request.user.avatar = info_form.cleaned_data['avatar']
-            request.user.save()
-            messages.add_message(request, messages.INFO, "档案更新成功...")
-        else:
-            print(better_print(info_form.errors))
-            messages.add_message(request, messages.ERROR, "档案更新失败...")
-        return redirect(reverse('blog:index'))
+    info_form = InfoForm(request.POST, request.FILES)
+    if info_form.is_valid():
+        request.user.nickname = info_form.cleaned_data['nickname']
+        request.user.bio = info_form.cleaned_data['bio']
+        if info_form.cleaned_data['avatar']:
+            request.user.avatar = info_form.cleaned_data['avatar']
+        request.user.save()
+        messages.add_message(request, messages.INFO, "档案更新成功...")
+    else:
+        print(better_print(info_form.errors))
+        messages.add_message(request, messages.ERROR, "档案更新失败...")
+    return redirect(reverse('blog:index'))
 
 
 @require_POST
