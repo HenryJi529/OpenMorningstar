@@ -89,6 +89,16 @@
 				</label>
 			</label>
 		</div>
+		<div class="find-modal-content">
+			<input type="checkbox" id="findModal" class="modal-toggle" />
+			<label for="findModal" class="modal cursor-pointer">
+				<label class="modal-box relative" for="">
+					<div class="text-2xl font-bold text-center">找回</div>
+					<p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia
+						for free!</p>
+				</label>
+			</label>
+		</div>
 		{% else %}
 		<div class="profile-modal-content">
 			<input type="checkbox" id="profileModal" class="modal-toggle" />
@@ -318,6 +328,7 @@
 							{% else %}
 							<li><label for="loginModal" class="modal-button">登录</label></li>
 							<li><label for="registerModal" class="modal-button">注册</label></li>
+							<li><label for="findModal" class="modal-button">找回</label></li>
 							{% endif %}
 						</ul>
 					</div>
