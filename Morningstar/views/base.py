@@ -43,7 +43,12 @@ def handle_register(request, is_api=True):
         except:
             pass
         conn.set(f'{username}-activate', code, ex=60*5)
-        return f"通过该链接激活:\nhttps://{host}/account/activate/?username={username}&code={code}\n五分钟内有效"
+
+        protocol = "https://" if request.is_secure() else "http://"
+        link = protocol + host + reverse('activate_by_email') + f'?username={username}&code={code}'
+        message = f"通过该链接激活:\n{link}\n五分钟内有效..."
+
+        return message
 
     form = RegisterForm(request.POST)
     if form.is_valid():
@@ -79,18 +84,28 @@ def handle_login(request, is_api=False):
     form = LoginForm(request, request.POST)
     if form.is_valid():
         identity = form.cleaned_data.get('identity')
-        password = form.cleaned_data.get('password_login')
+        password = form.cleaned_data.get('password')
 
         # NOTE: 使用增强后的认证函数
         user = authenticate(identity=identity,password=password)
         if user is not None:
             auth.login(request, user)
             next = request.POST.get("next", "/")
-            return redirect(next if next else "/")
+            if is_api:
+                return JsonResponse({'status': 'success', 'message': '登录成功'})
+            else:
+                messages.add_message(request, messages.INFO, "登录成功...")
+                return redirect(next if next else "/")
         else:
-            messages.add_message(request, messages.ERROR, "账号不存在或密码错误")
-            return redirect("/")
+            if is_api:
+                return JsonResponse({'status': 'error', 'message': '账号不存在或密码错误...'})
+            else:
+                messages.add_message(request, messages.ERROR, "账号不存在或密码错误...")
+                return redirect("/")
     else:
-        messages.add_message(request, messages.ERROR, form.errors['image_captcha'][0])
-        return redirect("/")
+        if is_api:
+            return JsonResponse({'status': 'error', 'message': form.errors['image_captcha'][0]})
+        else:
+            messages.add_message(request, messages.ERROR, form.errors['image_captcha'][0])
+            return redirect("/")
 
