@@ -33,7 +33,6 @@ urlpatterns = [
     # 工具
     path('get-image-captcha/',tool.get_image_captcha, name="get_image_captcha"),
     path('activate/', tool.activate, name="activate"),
-    path('send-sms/', tool.send_sms, name="send_sms"),
     # 开发
     path('dev/info/', dev.info, name="dev-info"),
     path('dev/map/', dev.map, name="dev-map"),
