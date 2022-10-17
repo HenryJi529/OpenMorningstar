@@ -44,8 +44,16 @@
 								</div>
 								<div class="w-5/12 flex justify-end items-center">
 									<img src="{% url 'get_image_captcha' %}" alt="图片验证码" title="点击刷新,60s有效"
-										id="image_code">
+										class="cursor-pointer" id="image_code">
 								</div>
+								<script>
+									setInterval(() => {
+										document.querySelector('#image_code').setAttribute('src', document.querySelector('#image_code').getAttribute('src') + "?")
+									}, 60000)
+									document.querySelector('#image_code').addEventListener('click', (evt) => {
+										evt.target.setAttribute("src", evt.target.getAttribute("src") + "?");
+									})
+								</script>
 							</div>
 							{% else %}
 							{{ field }}
