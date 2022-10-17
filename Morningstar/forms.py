@@ -6,7 +6,7 @@ from django_redis import get_redis_connection
 from Morningstar.settings.common import TENCENT_SMS_TEMPLATE
 import random
 import re
-from .lib.sms import send_sms_single
+
 from .models import User
 
 FAKE_USERNAME = "xiaoming"
@@ -56,46 +56,6 @@ class LoginForm(forms.Form):
             self.add_error('image_captcha', '验证码错误，请重新输入')
 
         return image_captcha
-
-
-class SendSmsForm(forms.Form):
-    phone = forms.CharField(label='手机号', validators=[RegexValidator(r'^(1[3|4|5|6|7|8|9])\d{9}$', '手机号格式错误'), ])
-
-    def __init__(self, request, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.request = request
-
-    def clean_phone(self):
-        """ 手机号校验的钩子 """
-        phone = self.cleaned_data['phone']
-        request = self.request
-
-        # 判断短信模板是否有问题
-        tpl = request.POST.get('tpl')
-        template_id = TENCENT_SMS_TEMPLATE.get(tpl)
-        
-        if not template_id:
-            self.add_error('code', '短信模板错误') # NOTE: 不太可能出现...
-
-        if tpl == "register":
-            if User.objects.filter(phone=phone).exists():
-                self.add_error('phone', '手机号已被注册')
-        elif tpl == "login":
-            if not User.objects.filter(phone=phone).exists():
-                self.add_error('phone', '此手机号尚未被注册')
-
-        code = random.randint(100000, 999999)
-
-        # 发送短信
-        res = send_sms_single(phone, template_id, [code, ])
-        if res['result'] != 0:
-            self.add_error('code', f"短信发送失败: {res['errmsg']}")
-
-        # 保存到redis, 五分钟有效
-        conn = get_redis_connection("default")
-        conn.set(f'{phone}-register', code, ex=300)
-
-        return phone
 
 
 class RegisterForm(forms.Form):
@@ -221,3 +181,7 @@ class UpdatePasswordForm(forms.Form):
             self.add_error('confirm_password', '两次密码不一致')
 
         return confirm_password
+
+
+class FindForm(forms.Form):
+    pass
