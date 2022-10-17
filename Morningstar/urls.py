@@ -32,7 +32,7 @@ from .sitemaps import Sitemaps
 urlpatterns = [
     # 工具
     path('get-image-captcha/',tool.get_image_captcha, name="get_image_captcha"),
-    path('activate/', tool.activate, name="activate"),
+    path('activate-by-email/', tool.activate_by_email, name="activate_by_email"),
     # 开发
     path('dev/info/', dev.info, name="dev-info"),
     path('dev/map/', dev.map, name="dev-map"),

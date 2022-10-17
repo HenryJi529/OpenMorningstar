@@ -23,7 +23,7 @@ def get_image_captcha(request):
     return HttpResponse(stream.getvalue(),"image/png")
 
 
-def activate(request):
+def activate_by_email(request):
     if request.method == "GET":
         username = request.GET["username"]
         code = request.GET["code"]
