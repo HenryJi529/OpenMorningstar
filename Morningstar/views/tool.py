@@ -7,7 +7,6 @@ from django_redis import get_redis_connection
 
 from ..lib.image_captcha import generate_image
 from ..lib.mail import send_mail_from_host
-from ..forms import SendSmsForm
 from ..models import User
 
 
@@ -22,15 +21,6 @@ def get_image_captcha(request):
     stream = io.BytesIO()
     image_object.save(stream, 'png')
     return HttpResponse(stream.getvalue(),"image/png")
-
-
-def send_sms(request):
-    """ 发送短信 """
-    form = SendSmsForm(request, data=request.POST)
-    # 校验手机号：格式是否正确, 是否存在； 检验模版是否存在
-    if form.is_valid():
-        return JsonResponse({'status': "success"})
-    return JsonResponse({'status': "error", 'message': form.errors})
 
 
 def activate(request):
