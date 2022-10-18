@@ -207,14 +207,16 @@ TENCENT_SMS_SIGN = "嘉鱼居个人公众号"
 
 TENCENT_SMS_TEMPLATE = {
     'register': 1278655,
-    'login': 1278656,
-    'chpasswd': 1278679,
+    'login': 1278656,  # NOTE: 需要手机号在数据库中存在
+    'chpasswd': 1278679,  # NOTE: 需要手机号在数据库中存在
+    'chphone': 1576443,
 }
 
 TENCENT_SMS_TEMPLATE_TEXT = {
     'register':  lambda code: f"{code}为您的注册验证码。如非本人操作，请忽略本短信。",
     'login': lambda code: f"{code}为您的登录验证码。如非本人操作，请忽略本短信。",
-    'chpasswd': lambda code: f"{code}为您的改密验证码。如非本人操作，请忽略本短信。"
+    'chpasswd': lambda code: f"{code}为您的改密验证码。如非本人操作，请忽略本短信。",
+    'chphone': lambda code: f"{code}为您的换绑验证码。如非本人操作，请忽略本短信。",
 }
 
 """日志系统"""
