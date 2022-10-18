@@ -1,3 +1,5 @@
+import os
+
 from django.shortcuts import render, HttpResponse, redirect
 from django.urls import reverse
 
@@ -25,7 +27,7 @@ def submit(request):
             url = item_form.cleaned_data['url']
             items = Item.objects.filter(url=url)
             id = items.first().id
-            protocol = "https://" if request.is_secure() else "http://"
+            protocol = "https://" if os.environ.get('DJANGO_SETTINGS_MODULE', 'Morningstar.settings.dev') == 'Morningstar.settings.production' else "http://"
             link = protocol + request.META["HTTP_HOST"] + reverse('share:route', args=[id])
         else:
             success = False

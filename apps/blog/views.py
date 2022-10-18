@@ -1,4 +1,5 @@
 import re
+import json
 
 from django.shortcuts import get_object_or_404, redirect, render, reverse
 from django.http import HttpResponseRedirect, HttpResponse, Http404, JsonResponse
@@ -235,7 +236,8 @@ def updatePassword(request):
         request.user.save()
         messages.add_message(request, messages.INFO, "密码修改成功...")
     else:
-        messages.add_message(request, messages.ERROR, "密码不一致或强度不够...")
+        error_message = [ value[0]['message'] for value in json.loads(update_password_form.errors.as_json()).values() ][0]
+        messages.add_message(request, messages.ERROR, error_message)
     return redirect(reverse('blog:index'))
 
 
@@ -243,7 +245,7 @@ def updatePassword(request):
 def updateEmail(request):
     update_email_form = UpdateEmailForm(request.POST)
     if update_email_form.is_valid():
-        request.user.phone = update_email_form.cleaned_data['email']
+        request.user.email = update_email_form.cleaned_data['email']
         request.user.save()
         messages.add_message(request, messages.INFO, "邮箱修改成功...")
     else:

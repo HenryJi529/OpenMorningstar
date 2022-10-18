@@ -1,6 +1,7 @@
 import io
 import random
 import re
+import os
 import html
 
 from django.http import HttpResponse, JsonResponse
@@ -120,7 +121,7 @@ def get_login_token(request, identity):
         username = user.username
         password = user.password
         token = html.escape(password[-20:])
-        protocol = "https://" if request.is_secure() else "http://"
+        protocol = "https://" if os.environ.get('DJANGO_SETTINGS_MODULE', 'Morningstar.settings.dev') == 'Morningstar.settings.production' else "http://"
         link = protocol + request.get_host() + reverse("login_by_token",args=[token,]) 
         conn = get_redis_connection("default")
         conn.set(f'{token}-login-token', password, ex=24*60*60)

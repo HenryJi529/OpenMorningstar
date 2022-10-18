@@ -8,10 +8,8 @@ from Morningstar.settings.common import TENCENT_SMS_TEMPLATE
 from Morningstar.settings.common import TENCENT_SMS_TEMPLATE_TEXT
 from Morningstar.settings.common import TENCENT_SMS_SIGN
 
-# from qcloudsms_py.httpclient import HTTPError  # NOTE: 官方版本未适配python3.9
-# from qcloudsms_py import SmsMultiSender, SmsSingleSender
-from .tencentsms.httpclient import HTTPError
-from .tencentsms import SmsMultiSender, SmsSingleSender
+from qcloudsms_py.httpclient import HTTPError 
+from qcloudsms_py import SmsMultiSender, SmsSingleSender
 
 
 def is_production():
@@ -44,6 +42,9 @@ def send_sms_single(phone_num, template, template_param_list):
             86, phone_num, template_id, template_param_list, sign=sms_sign)
     except HTTPError as e:
         response = {'result': 1000, 'msg': "网络异常发送失败"}
+    except Exception as e:
+        # NOTE: 官方版本未适配python3.9(json encoding错误)
+        response = {'result': 0, 'msg': "问题不严重～"}
     return response
 
 
@@ -67,5 +68,9 @@ def send_sms_multi(phone_num_list, template, param_list):
             86, phone_num_list, template_id, param_list, sign=sms_sign)
     except HTTPError as e:
         response = {'result': 1000, 'msg': "网络异常发送失败"}
+    except Exception as e:
+        # NOTE: 官方版本未适配python3.9(json encoding错误)
+        response = {'result': 0, 'msg': "问题不严重～"}
+    
     return response
 

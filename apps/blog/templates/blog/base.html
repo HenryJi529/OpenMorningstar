@@ -210,6 +210,7 @@
 									})
 										.then((res) => res.json())
 										.then((data) => {
+											console.log(data);
 											if (data.status === "error") {
 												document.querySelector('#error-update-phone').innerHTML = data.msg;
 												setTimeout(() => {
@@ -272,6 +273,7 @@
 									})
 										.then((res) => res.json())
 										.then((data) => {
+											console.log(data);
 											if (data.status === "error") {
 												document.querySelector('#error-update-email').innerHTML = data.msg;
 												setTimeout(() => {

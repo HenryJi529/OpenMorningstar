@@ -1,4 +1,5 @@
 import json
+import os
 
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.shortcuts import render, reverse
@@ -16,7 +17,7 @@ from .forms import VerifyForm
 class IndexView(View):
     def get(self, request):
         def get_endpoint(request):
-            protocol = "https://" if request.is_secure() else "http://"
+            protocol = "https://" if os.environ.get('DJANGO_SETTINGS_MODULE', 'Morningstar.settings.dev') == 'Morningstar.settings.production' else "http://"
             endpoint = protocol + request.get_host() + reverse("book:api")
             return endpoint
         verify_form = VerifyForm()

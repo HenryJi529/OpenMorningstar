@@ -1,4 +1,5 @@
 import json
+import os
 import random
 import logging
 
@@ -44,7 +45,7 @@ def handle_register(request, is_api=True):
             pass
         conn.set(f'{username}-activate', code, ex=60*10)
 
-        protocol = "https://" if request.is_secure() else "http://"
+        protocol = "https://" if os.environ.get('DJANGO_SETTINGS_MODULE', 'Morningstar.settings.dev') == 'Morningstar.settings.production' else "http://"
         link = protocol + host + reverse('activate_by_email') + f'?username={username}&code={code}'
         message = f"通过该链接激活:\n{link}\n十分钟内有效..."
 

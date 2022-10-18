@@ -2,7 +2,7 @@ const myModalBox = document.querySelector('#myModalBox');
 
 
 function processData(data, submitVerifyInterval) {
-    // console.log(data.status);
+    console.log(data);
     if (data.status === "success") {
         clearInterval(submitVerifyInterval);
 
