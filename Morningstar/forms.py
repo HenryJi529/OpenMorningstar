@@ -3,7 +3,6 @@ from captcha.fields import ReCaptchaField
 from django.core.validators import RegexValidator 
 from django.core.exceptions import ValidationError  # NOTE: 此方法可能导致引用未知字段的错误
 from django_redis import get_redis_connection
-from Morningstar.settings.common import TENCENT_SMS_TEMPLATE
 import random
 import re
 
@@ -65,7 +64,7 @@ class RegisterForm(forms.Form):
 
     email = forms.EmailField(label="邮箱", required=True, 
         widget=forms.EmailInput(attrs={"placeholder": FAKE_EMAIL, "class": "w-full"}),
-        validators=[RegexValidator(r'^[0-9a-zA-Z_.-]+[@][0-9a-zA-Z_.-]+([.][a-zA-Z]+){1,2}$', '邮箱格式错误'),]
+        validators=[RegexValidator(r'^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$', '邮箱格式错误'),]
         )
 
     password = forms.CharField(label='密码', required=True, 
@@ -143,24 +142,38 @@ class InfoForm(forms.Form):
                 field.widget.attrs['class'] = 'input input-bordered'
 
 
-class UpdateMailForm(forms.Form):
-    pass
+class UpdateEmailForm(forms.Form):
+    email = forms.EmailField(label="邮箱", validators=[RegexValidator(r'^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$', '邮箱格式错误'),])
+    email_code = forms.CharField(label='验证码', validators=[RegexValidator(r'^\d{6}$', '验证码格式错误'), ])
+
+    def clean_email_code(self):
+        email = self.cleaned_data['email']
+        email_code = self.cleaned_data['email_code']
+
+        conn = get_redis_connection("default")
+        redis_email_code = conn.get(f'{email}-chemail')
+        if not redis_email_code:
+            self.add_error('email_code', '验证码超时')
+        if email_code == str(redis_email_code.decode()):
+            return email
+        else:
+            self.add_error('email_code', '验证码错误，请重新输入')
 
 
 class UpdatePhoneForm(forms.Form):
     phone = forms.CharField(label='手机号', validators=[RegexValidator(r'^(1[3|4|5|6|7|8|9])\d{9}$', '手机号格式错误'), ])
     phone_code = forms.CharField(label='验证码', validators=[RegexValidator(r'^\d{6}$', '验证码格式错误'), ])
 
-    def clean_code(self):
+    def clean_phone_code(self):
         phone = self.cleaned_data['phone']
         phone_code = self.cleaned_data['phone_code']
 
         conn = get_redis_connection("default")
-        redis_phone_code = conn.get(f'{phone}-{chphone}')
+        redis_phone_code = conn.get(f'{phone}-chphone')
         if not redis_phone_code:
             self.add_error('phone_code', '验证码超时')
         if phone_code == str(redis_phone_code.decode()):
-            return phone_code
+            return phone
         else:
             self.add_error('phone_code', '验证码错误，请重新输入')
 
