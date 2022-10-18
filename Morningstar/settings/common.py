@@ -196,6 +196,24 @@ ADMINS = [('Henry', 'jeep.jipu@gmail.com')]
 MANAGERS = [('Henry', 'jeep.jipu@gmail.com')]
 # MANAGERS = [('Ai', 'morningstar1.gcp@gmail.com')]
 
+EMAIL_TEMPLATE_TEXT = {
+    'login':  {
+        'subject': 'Morningstar - 登录',
+        'message': lambda code: f"{code}为您的登录验证码。如非本人操作，请忽略本邮件。",
+    }, # NOTE: 需要邮箱在数据库中存在
+    'chpasswd': {
+        'subject': 'Morningstar - 改密',
+        'message': lambda code: f"{code}为您的改密验证码。如非本人操作，请忽略本邮件。",
+    }, # NOTE: 需要邮箱在数据库中存在
+    'activate': {
+        'subject': 'Morningstar - 激活',
+        'message': lambda code: f"{code}为您的激活验证码。如非本人操作，请忽略本邮件。",
+    }, 
+    'chemail': {
+        'subject': 'Morningstar - 换绑',
+        'message': lambda code: f"{code}为您的换绑验证码。如非本人操作，请忽略本邮件。",
+    },
+}
 
 """腾讯云短信"""
 TENCENT_SMS_APP_ID = 1400623801
@@ -206,9 +224,9 @@ except KeyError:
 TENCENT_SMS_SIGN = "嘉鱼居个人公众号"
 
 TENCENT_SMS_TEMPLATE = {
-    'register': 1278655,
     'login': 1278656,  # NOTE: 需要手机号在数据库中存在
     'chpasswd': 1278679,  # NOTE: 需要手机号在数据库中存在
+    'register': 1278655,
     'chphone': 1576443,
 }
 
