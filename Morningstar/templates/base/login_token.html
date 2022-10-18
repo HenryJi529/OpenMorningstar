@@ -1,0 +1,19 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load compress %}
+
+{% block title %}
+LoginToken生成页
+{% endblock %}
+
+
+{% block content %}
+<div class="container min-h-screen p-4">
+    <h1 class="text-4xl mb-4 text-center">LoginToken生成页</h1>
+    <div class="p-4">
+        <p><span class="font-bold">用户</span>: {{username}}</p>
+        <p><span class="font-bold">令牌</span>: {{token}}</p>
+        <p><span class="font-bold">链接</span>: {{link}}</p>
+    </div>
+</div>
+{% endblock %}

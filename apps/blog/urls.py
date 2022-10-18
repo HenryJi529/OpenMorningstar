@@ -23,7 +23,8 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'),
     path('login/', views.login, name='login'),
     path('register/', views.register, name='register'),
-    path('find/', views.find, name='find'),
     path('updateInfo/', views.updateInfo, name='updateInfo'),
     path('updatePassword/', views.updatePassword, name='updatePassword'),
+    path('updateEmail/', views.updateEmail, name='updateEmail'),
+    path('updatePhone/', views.updatePhone, name='updatePhone'),
 ]
