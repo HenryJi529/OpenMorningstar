@@ -2419,14 +2419,6 @@ body[dir="rtl"] .checkbox:checked,
   top: 0px;
 }
 
-.top-\[2rem\] {
-  top: 2rem;
-}
-
-.top-\[3rem\] {
-  top: 3rem;
-}
-
 .top-\[4rem\] {
   top: 4rem;
 }
@@ -2490,10 +2482,6 @@ body[dir="rtl"] .checkbox:checked,
 
 .w-screen {
   width: 100vw;
-}
-
-.max-w-2xl {
-  max-width: 42rem;
 }
 
 .max-w-3xl {
@@ -2596,14 +2584,14 @@ body[dir="rtl"] .checkbox:checked,
   line-height: 2.5rem;
 }
 
-.text-lg {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-}
-
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }
 
 .text-2xl {
@@ -2630,14 +2618,14 @@ body[dir="rtl"] .checkbox:checked,
   color: rgb(239 68 68 / var(--tw-text-opacity));
 }
 
-.text-orange-500 {
-  --tw-text-opacity: 1;
-  color: rgb(249 115 22 / var(--tw-text-opacity));
-}
-
 .text-gray-400 {
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity));
+}
+
+.text-orange-500 {
+  --tw-text-opacity: 1;
+  color: rgb(249 115 22 / var(--tw-text-opacity));
 }
 
 .outline-none {
@@ -2673,11 +2661,6 @@ body[dir="rtl"] .checkbox:checked,
   .md\:text-3xl {
     font-size: 1.875rem;
     line-height: 2.25rem;
-  }
-
-  .md\:text-sm {
-    font-size: 0.875rem;
-    line-height: 1.25rem;
   }
 
   .md\:text-base {
