@@ -148,7 +148,21 @@ class UpdateMailForm(forms.Form):
 
 
 class UpdatePhoneForm(forms.Form):
-    pass
+    phone = forms.CharField(label='手机号', validators=[RegexValidator(r'^(1[3|4|5|6|7|8|9])\d{9}$', '手机号格式错误'), ])
+    phone_code = forms.CharField(label='验证码', validators=[RegexValidator(r'^\d{6}$', '验证码格式错误'), ])
+
+    def clean_code(self):
+        phone = self.cleaned_data['phone']
+        phone_code = self.cleaned_data['phone_code']
+
+        conn = get_redis_connection("default")
+        redis_phone_code = conn.get(f'{phone}-{chphone}')
+        if not redis_phone_code:
+            self.add_error('phone_code', '验证码超时')
+        if phone_code == str(redis_phone_code.decode()):
+            return phone_code
+        else:
+            self.add_error('phone_code', '验证码错误，请重新输入')
 
 
 class UpdatePasswordForm(forms.Form):
@@ -183,7 +197,3 @@ class UpdatePasswordForm(forms.Form):
             self.add_error('confirm_password', '两次密码不一致')
 
         return confirm_password
-
-
-class FindForm(forms.Form):
-    pass
