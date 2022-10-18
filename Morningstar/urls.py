@@ -34,6 +34,7 @@ urlpatterns = [
     path('get-image-captcha/',tool.get_image_captcha, name="get_image_captcha"),
     path('activate-by-email/', tool.activate_by_email, name="activate_by_email"),
     path('send-phone-code/<slug:template>/', tool.send_phone_code, name="send_phone_code"),
+    path('send-email-code/<slug:template>/', tool.send_email_code, name="send_email_code"),
     path('get-login-token/<slug:identity>/', tool.get_login_token, name="get_login_token"),
     path('login-by-token/<str:token>/', tool.login_by_token, name="login_by_token"),
     # 开发
