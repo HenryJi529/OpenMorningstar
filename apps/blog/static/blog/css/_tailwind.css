@@ -3141,6 +3141,10 @@ body[dir="rtl"] .checkbox:checked,
   padding-top: 0.25rem;
 }
 
+.pl-10 {
+  padding-left: 2.5rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -3153,16 +3157,16 @@ body[dir="rtl"] .checkbox:checked,
   text-align: right;
 }
 
+.indent-\[2em\] {
+  text-indent: 2em;
+}
+
 .indent-\[2\.5em\] {
   text-indent: 2.5em;
 }
 
-.indent-4 {
-  text-indent: 1rem;
-}
-
-.indent-\[2em\] {
-  text-indent: 2em;
+.indent-10 {
+  text-indent: 2.5rem;
 }
 
 .text-2xl {
