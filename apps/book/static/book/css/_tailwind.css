@@ -2395,6 +2395,10 @@ body[dir="rtl"] .checkbox:checked,
   position: static;
 }
 
+.fixed {
+  position: fixed;
+}
+
 .absolute {
   position: absolute;
 }
@@ -2415,8 +2419,16 @@ body[dir="rtl"] .checkbox:checked,
   top: 0px;
 }
 
-.top-1\/4 {
-  top: 25%;
+.top-\[2rem\] {
+  top: 2rem;
+}
+
+.top-\[3rem\] {
+  top: 3rem;
+}
+
+.top-\[4rem\] {
+  top: 4rem;
 }
 
 .z-40 {
@@ -2464,8 +2476,8 @@ body[dir="rtl"] .checkbox:checked,
   display: none;
 }
 
-.h-screen {
-  height: 100vh;
+.h-full {
+  height: 100%;
 }
 
 .min-h-screen {
@@ -2482,6 +2494,10 @@ body[dir="rtl"] .checkbox:checked,
 
 .max-w-2xl {
   max-width: 42rem;
+}
+
+.max-w-3xl {
+  max-width: 48rem;
 }
 
 .cursor-pointer {
@@ -2590,6 +2606,16 @@ body[dir="rtl"] .checkbox:checked,
   line-height: 2.25rem;
 }
 
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -2609,6 +2635,11 @@ body[dir="rtl"] .checkbox:checked,
   color: rgb(249 115 22 / var(--tw-text-opacity));
 }
 
+.text-gray-400 {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity));
+}
+
 .outline-none {
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -2624,3 +2655,33 @@ body[dir="rtl"] .checkbox:checked,
 /* .morningstar-btn {
     @apply btn text-3xl;
 } */
+
+@media (min-width: 768px) {
+  .md\:top-\[7rem\] {
+    top: 7rem;
+  }
+
+  .md\:max-w-2xl {
+    max-width: 42rem;
+  }
+
+  .md\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
+  .md\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
+  .md\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  .md\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
