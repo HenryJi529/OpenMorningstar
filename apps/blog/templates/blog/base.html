@@ -170,9 +170,10 @@
 					</div>
 					<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
 						<div>
-							<div class="text-lg font-bold indent-[2.5em]">修改手机</div>
+							<div class="text-lg font-bold indent-[2.5em]">换绑手机</div>
 							<form action="{% url 'blog:updatePhone' %}" method="post" id="updatePhoneForm">
 								{% csrf_token %}
+								<div id="error-update-phone" class="text-red-500 pl-10"></div>
 								<div class="flex items-center mb-2">
 									<label for="id_phone" class="inline-block w-[4em] text-right pr-2">
 										手机:
@@ -210,10 +211,13 @@
 										.then((res) => res.json())
 										.then((data) => {
 											if (data.status === "error") {
-												console.log(data.msg);
+												document.querySelector('#error-update-phone').innerHTML = data.msg;
+												setTimeout(() => {
+													document.querySelector('#error-update-phone').innerHTML = "";
+												}, 3000);
 												return;
 											}
-											document.querySelector("#phoneCodeButton").innerText = 10;
+											document.querySelector("#phoneCodeButton").innerText = 600;
 											let phoneCodeTimer = setInterval(() => {
 												document.querySelector("#phoneCodeButton").innerText = document.querySelector("#phoneCodeButton").innerText - 1;
 												if (document.querySelector("#phoneCodeButton").innerText == 0) {
@@ -222,16 +226,16 @@
 													document.querySelector("#phoneCodeButton").innerText = "获取验证码";
 												}
 											}, 1000);
-											console.log(data);
 										})
 								})
 							</script>
 						</div>
 
 						<div>
-							<div class="text-lg font-bold indent-[2.5em]">修改邮箱</div>
+							<div class="text-lg font-bold indent-[2.5em]">换绑邮箱</div>
 							<form action="{% url 'blog:updateEmail' %}" method="post" id="updateEmailForm">
 								{% csrf_token %}
+								<div id="error-update-email" class="text-red-500 pl-10"></div>
 								<div class="flex items-center mb-2">
 									<label for="id_email" class="inline-block w-[4em] text-right pr-2">
 										邮箱:
@@ -244,11 +248,49 @@
 									</label>
 									<div class="flex-1 flex space-x-4">
 										<input type="text" name="email_code" id="id_email_code" class="input flex-1" />
-										<div class="btn" id="emailCodeButton">获取验证码</div>
+										<div class="btn" id="emailCodeButton" data-enable="true">获取验证码</div>
 									</div>
 								</div>
 								<input type="submit" value="保存" class="w-full btn">
 							</form>
+							<script>
+								document.querySelector("#emailCodeButton").addEventListener('click', (evt) => {
+									if (evt.target.dataset.enable === "false") {
+										return;
+									}
+									evt.target.dataset.enable === "false";
+									fetch("{% url 'send_email_code' 'chemail' %}", {
+										method: "post",
+										headers: {
+											"X-CSRFToken": "{{ csrf_token }}",
+											'Content-Type': 'application/json',
+										},
+										body: JSON.stringify({
+											csrfmiddlewaretoken: "{{ csrf_token }}",
+											identity: document.querySelector('#updateEmailForm').querySelector("#id_email").value,
+										}),
+									})
+										.then((res) => res.json())
+										.then((data) => {
+											if (data.status === "error") {
+												document.querySelector('#error-update-email').innerHTML = data.msg;
+												setTimeout(() => {
+													document.querySelector('#error-update-email').innerHTML = "";
+												}, 3000);
+												return;
+											}
+											document.querySelector("#emailCodeButton").innerText = 600;
+											let emailCodeTimer = setInterval(() => {
+												document.querySelector("#emailCodeButton").innerText = document.querySelector("#emailCodeButton").innerText - 1;
+												if (document.querySelector("#emailCodeButton").innerText == 0) {
+													clearInterval(emailCodeTimer);
+													evt.target.dataset.enable === "true";
+													document.querySelector("#emailCodeButton").innerText = "获取验证码";
+												}
+											}, 1000);
+										})
+								})
+							</script>
 						</div>
 
 						<div>

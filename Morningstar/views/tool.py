@@ -12,10 +12,10 @@ from django_redis import get_redis_connection
 
 from Morningstar.views.base import fix_fetched_post
 from Morningstar.settings.common import TENCENT_SMS_TEMPLATE
-TEMPLATE_NAMES = list(TENCENT_SMS_TEMPLATE.keys())
+from Morningstar.settings.common import EMAIL_TEMPLATE_TEXT
 
 from ..lib.image_captcha import generate_image
-from ..lib.mail import send_mail_from_host
+from ..lib.mail import send_mail_from_host_by_template
 from ..lib.sms import send_sms_single
 from ..lib.check import is_identity_belong_phone, is_identity_belong_email
 from ..models import User
@@ -63,7 +63,7 @@ def send_phone_code(request, template):
     identity = request.POST.get("identity")
     if not identity or not re.match(r'^(1[3|4|5|6|7|8|9])\d{9}$', identity):
         return JsonResponse({"status": "error", "msg": "手机号格式错误"})
-    if template in TEMPLATE_NAMES:
+    if template in list(TENCENT_SMS_TEMPLATE.keys()):
         code = random.randint(100000, 999999)
         if template in ["login", "chpasswd"]:
             if not User.objects.filter(phone=identity).exists():
@@ -78,6 +78,31 @@ def send_phone_code(request, template):
             return JsonResponse({"status": "success", "msg": "验证码已发送"})
         else:
             return JsonResponse({"status": "error", "msg": f"短信发送失败: {response['msg']}"})
+    else:
+        return JsonResponse({"status": "error", "msg": "错误的模板名称"})
+
+
+@require_POST
+def send_email_code(request, template):
+    request = fix_fetched_post(request)
+    identity = request.POST.get("identity")
+    if not identity or not re.match(r'^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$', identity):
+        return JsonResponse({"status": "error", "msg": "邮箱格式错误"})
+    if template in EMAIL_TEMPLATE_TEXT.keys():
+        code = random.randint(100000, 999999)
+        if template in ["login", "chpasswd"]:
+            if not User.objects.filter(email=identity).exists():
+                return JsonResponse({"status": "error", "msg": "邮箱不存在"})
+        else:
+            if User.objects.filter(email=identity).exists():
+                return JsonResponse({"status": "error", "msg": "邮箱已存在"})
+        response = send_mail_from_host_by_template([identity,], template, [code,])
+        if response:
+            conn = get_redis_connection("default")
+            conn.set(f'{identity}-{template}', code, ex=600)
+            return JsonResponse({"status": "success", "msg": "验证码已发送"})
+        else:
+            return JsonResponse({"status": "error", "msg": "邮件发送失败"})
     else:
         return JsonResponse({"status": "error", "msg": "错误的模板名称"})
 

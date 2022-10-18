@@ -18,7 +18,7 @@ from haystack import views as haystack_views
 from Morningstar.views.base import handle_login, handle_register
 from Morningstar.views.base import fix_fetched_post
 from Morningstar.settings.common import EMAIL_HOST_USER
-from Morningstar.forms import LoginForm, RegisterForm, InfoForm, UpdateMailForm, UpdatePhoneForm, UpdatePasswordForm
+from Morningstar.forms import LoginForm, RegisterForm, InfoForm, UpdateEmailForm, UpdatePhoneForm, UpdatePasswordForm
 from Morningstar.lib.print import better_print
 from Morningstar.lib.mail import send_mail_from_host
 from Morningstar.models import User
@@ -150,7 +150,6 @@ def comment(request, post_pk):
                     subject = "您在晨星小站的评论有了新的回复"
                     post = Comment.objects.get(id=comment_id).post
                     message = f"您在《{post.title}》的评论中有了新的回复, 点击链接查看: \nhttps://morningstar529.com{post.get_absolute_url()}#comment-{comment.id}\n"
-                    from_email = EMAIL_HOST_USER
                     to_email = User.objects.get(username=username).email
                     send_mail_from_host(subject, message, [to_email])
         else:
@@ -242,7 +241,14 @@ def updatePassword(request):
 
 @require_POST
 def updateEmail(request):
-    pass
+    update_email_form = UpdateEmailForm(request.POST)
+    if update_email_form.is_valid():
+        request.user.phone = update_email_form.cleaned_data['email']
+        request.user.save()
+        messages.add_message(request, messages.INFO, "邮箱修改成功...")
+    else:
+        messages.add_message(request, messages.ERROR, update_email_form.errors['email_code'][0])
+    return redirect(reverse('blog:index'))
 
 
 @require_POST
@@ -253,5 +259,5 @@ def updatePhone(request):
         request.user.save()
         messages.add_message(request, messages.INFO, "手机号修改成功...")
     else:
-        messages.add_message(request, messages.ERROR, update_phone_form.errors)
+        messages.add_message(request, messages.ERROR, update_phone_form.errors['phone_code'][0])
     return redirect(reverse('blog:index'))
