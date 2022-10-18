@@ -49,7 +49,7 @@
 								<script>
 									setInterval(() => {
 										document.querySelector('#image_code').setAttribute('src', document.querySelector('#image_code').getAttribute('src') + "?")
-									}, 60000)
+									}, 60 * 1000)
 									document.querySelector('#image_code').addEventListener('click', (evt) => {
 										evt.target.setAttribute("src", evt.target.getAttribute("src") + "?");
 									})
@@ -102,16 +102,21 @@
 			<label for="findModal" class="modal cursor-pointer">
 				<label class="modal-box relative" for="">
 					<div class="text-2xl font-bold text-center">找回</div>
-					<form id="find_form" action="{% url 'blog:find' %}" method="post" autocomplete="on">
-						{% csrf_token %}
-						<div class="flex justify-evenly items-center mb-3">
-							<input type="reset" value="重置" class="btn shadow-md shadow-gray-500">
-							<div></div>
-							<input name="next" value="{{request.path}}" hidden></input>
-							<div></div>
-							<input type="submit" value="找回" class="btn shadow-md shadow-gray-500">
-						</div>
-					</form>
+					<div class="mb-2">
+						<p class="indent-[2em]">
+							咱就是说, 要是早用
+							<a href="https://www.lastpass.com/how-lastpass-works"
+								class="link link-secondary">LastPass</a>
+							之类的密码管理软件, 不就没这回事儿了吗～
+						</p>
+						<p class="indent-[2em]">
+							<span class="font-bold">补救方法</span>: 联系站长并验明身份, 站长会发一个含临时令牌的链接给您。
+							您可以通过该链接重新登入账号, 登入后请即刻到{档案}区修改密码(临时令牌使用一次后就会失效[一天后也自动失效])。
+						</p>
+					</div>
+					<a href="{% url 'blog:contact' %}" class="flex justify-center">
+						<div class="btn">联系站长(邮箱)</div>
+					</a>
 				</label>
 			</label>
 		</div>
@@ -159,47 +164,87 @@
 						</div>
 					</form>
 					<div class="text-2xl font-bold my-2">账号信息</div>
+					<div class="px-4 mb-3 text-gray-300 dark:text-gray-600">
+						<div>手机: {{user.phone}}</div>
+						<div>邮箱: {{user.email}}</div>
+					</div>
 					<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
 						<div>
 							<div class="text-lg font-bold indent-[2.5em]">修改手机</div>
-							<form action="" method="post">
+							<form action="{% url 'blog:updatePhone' %}" method="post" id="updatePhoneForm">
 								{% csrf_token %}
 								<div class="flex items-center mb-2">
-									<label for="phone" class="inline-block w-[4em] text-right pr-2">
+									<label for="id_phone" class="inline-block w-[4em] text-right pr-2">
 										手机:
 									</label>
-									<input type="text" name="phone" id="phone" class="input flex-1" />
+									<input type="text" name="phone" id="id_phone" class="input flex-1" />
 								</div>
 								<div class="flex items-center mb-2">
-									<label for="phone_code" class="inline-block w-[4em] text-right pr-2">
+									<label for="id_phone_code" class="inline-block w-[4em] text-right pr-2">
 										验证码:
 									</label>
 									<div class="flex-1 flex space-x-4">
-										<input type="text" name="phone_code" id="phone_code" class="input flex-1" />
-										<button class="btn">获取验证码</button>
+										<input type="text" name="phone_code" id="id_phone_code" class="input flex-1" />
+										<div class="btn" id="phoneCodeButton" data-enable="true">获取验证码</div>
 									</div>
 								</div>
 								<input type="submit" value="保存" class="w-full btn">
 							</form>
+							<script>
+								document.querySelector("#phoneCodeButton").addEventListener('click', (evt) => {
+									if (evt.target.dataset.enable === "false") {
+										return;
+									}
+									evt.target.dataset.enable === "false";
+									fetch("{% url 'send_phone_code' 'chphone' %}", {
+										method: "post",
+										headers: {
+											"X-CSRFToken": "{{ csrf_token }}",
+											'Content-Type': 'application/json',
+										},
+										body: JSON.stringify({
+											csrfmiddlewaretoken: "{{ csrf_token }}",
+											identity: document.querySelector('#updatePhoneForm').querySelector("#id_phone").value,
+										}),
+									})
+										.then((res) => res.json())
+										.then((data) => {
+											if (data.status === "error") {
+												console.log(data.msg);
+												return;
+											}
+											document.querySelector("#phoneCodeButton").innerText = 10;
+											let phoneCodeTimer = setInterval(() => {
+												document.querySelector("#phoneCodeButton").innerText = document.querySelector("#phoneCodeButton").innerText - 1;
+												if (document.querySelector("#phoneCodeButton").innerText == 0) {
+													clearInterval(phoneCodeTimer);
+													evt.target.dataset.enable === "true";
+													document.querySelector("#phoneCodeButton").innerText = "获取验证码";
+												}
+											}, 1000);
+											console.log(data);
+										})
+								})
+							</script>
 						</div>
 
 						<div>
 							<div class="text-lg font-bold indent-[2.5em]">修改邮箱</div>
-							<form action="" method="post">
+							<form action="{% url 'blog:updateEmail' %}" method="post" id="updateEmailForm">
 								{% csrf_token %}
 								<div class="flex items-center mb-2">
-									<label for="email" class="inline-block w-[4em] text-right pr-2">
+									<label for="id_email" class="inline-block w-[4em] text-right pr-2">
 										邮箱:
 									</label>
-									<input type="email" name="email" id="email" class="input flex-1" />
+									<input type="email" name="email" id="id_email" class="input flex-1" />
 								</div>
 								<div class="flex items-center mb-2">
-									<label for="email_code" class="inline-block w-[4em] text-right pr-2">
+									<label for="id_email_code" class="inline-block w-[4em] text-right pr-2">
 										验证码:
 									</label>
 									<div class="flex-1 flex space-x-4">
-										<input type="text" name="email_code" id="email_code" class="input flex-1" />
-										<button class="btn">获取验证码</button>
+										<input type="text" name="email_code" id="id_email_code" class="input flex-1" />
+										<div class="btn" id="emailCodeButton">获取验证码</div>
 									</div>
 								</div>
 								<input type="submit" value="保存" class="w-full btn">
@@ -208,19 +253,19 @@
 
 						<div>
 							<div class="text-lg font-bold indent-[2.5em]">修改密码</div>
-							<form action="{% url 'blog:updatePassword' %}" method="post">
+							<form action="{% url 'blog:updatePassword' %}" method="post" id="updatePasswordForm">
 								{% csrf_token %}
 								<div class="flex items-center mb-2">
-									<label for="password" class="inline-block w-[4em] text-right pr-2">
+									<label for="id_password" class="inline-block w-[4em] text-right pr-2">
 										新密码:
 									</label>
-									<input type="password" name="password" id="password" class="input flex-1" />
+									<input type="password" name="password" id="id_password" class="input flex-1" />
 								</div>
 								<div class="flex items-center mb-2">
-									<label for="confirm_password" class="inline-block w-[4em] text-right pr-2">
+									<label for="id_confirm_password" class="inline-block w-[4em] text-right pr-2">
 										请确认:
 									</label>
-									<input type="password" name="confirm_password" id="confirm_password"
+									<input type="password" name="confirm_password" id="id_confirm_password"
 										class="input flex-1" />
 								</div>
 								<input type="submit" value="保存" class="w-full btn">
@@ -348,7 +393,8 @@
 							{% else %}
 							<li><label for="loginModal" class="modal-button">登录</label></li>
 							<li><label for="registerModal" class="modal-button">注册</label></li>
-							<li><label for="findModal" class="modal-button">找回</label></li>
+							<li><label for="findModal" class="modal-button text-gray-300 dark:text-gray-600">找回</label>
+							</li>
 							{% endif %}
 						</ul>
 					</div>
