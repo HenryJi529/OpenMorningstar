@@ -340,7 +340,8 @@
 							class="mt-1 p-1 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-20">
 							{% if user.is_authenticated %}
 							<li class="indicator">
-								<span class="indicator-item badge badge-primary text-xs px-1 h-4">新</span>
+								<span
+									class="indicator-item badge text-red-500 bg-slate-300 dark:bg-slate-200 text-xs px-1 h-4">新</span>
 								<label for="profileModal" class="modal-button">档案</label>
 							</li>
 							<li><a href="{% url 'blog:logout' %}">登出</a></li>
