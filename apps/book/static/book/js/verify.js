@@ -1,9 +1,9 @@
 const myModalBox = document.querySelector('#myModalBox');
 
 
-function processData(data, submitVerifyInterval){
-    console.log(data.status);
-    if(data.status==="success"){
+function processData(data, submitVerifyInterval) {
+    // console.log(data.status);
+    if (data.status === "success") {
         clearInterval(submitVerifyInterval);
 
         linkContainer = document.createElement("div");
@@ -28,15 +28,15 @@ function processData(data, submitVerifyInterval){
         myModalBox.appendChild(linkContainer);
 
         document.querySelector(".g-recaptcha").style.display = "none";
-    }else{
+    } else {
 
     }
 }
 
-document.querySelectorAll('.modal-button').forEach(button=>{
-    button.addEventListener('click',()=>{
-        let submitVerifyInterval = setInterval(()=>{
-            if(document.querySelector("#g-recaptcha-response").value){
+document.querySelectorAll('.modal-button').forEach(button => {
+    button.addEventListener('click', () => {
+        let submitVerifyInterval = setInterval(() => {
+            if (document.querySelector("#g-recaptcha-response").value) {
                 fetch(verifyUrl, {
                     "method": "POST",
                     "headers": {
@@ -51,7 +51,7 @@ document.querySelectorAll('.modal-button').forEach(button=>{
                 }).then(res => res.json()).then(data => processData(data, submitVerifyInterval))
             }
         }, 2000);
-        document.querySelector("#myModalToggle").addEventListener("click",()=>{
+        document.querySelector("#myModalToggle").addEventListener("click", () => {
             clearInterval(submitVerifyInterval)
         })
     })

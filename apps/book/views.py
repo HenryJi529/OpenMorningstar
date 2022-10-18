@@ -1,7 +1,6 @@
 import json
 
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
-from django.core.mail import send_mail
 from django.shortcuts import render, reverse
 from django.views import View
 
