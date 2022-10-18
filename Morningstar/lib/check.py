@@ -9,7 +9,7 @@ def is_identity_belong_phone(identity):
 
 
 def is_identity_belong_email(identity):
-    if re.match(r'^[0-9a-zA-Z_.-]+[@][0-9a-zA-Z_.-]+([.][a-zA-Z]+){1,2}$', identity):
+    if re.match(r'^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$', identity):
         return True 
     else:
         return False
