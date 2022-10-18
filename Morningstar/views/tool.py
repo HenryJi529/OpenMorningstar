@@ -1,12 +1,23 @@
 import io
+import random
+import re
+import html
 
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
+from django.urls import reverse
 from django.contrib import auth
+from django.views.decorators.http import require_POST
 from django_redis import get_redis_connection
+
+from Morningstar.views.base import fix_fetched_post
+from Morningstar.settings.common import TENCENT_SMS_TEMPLATE
+TEMPLATE_NAMES = list(TENCENT_SMS_TEMPLATE.keys())
 
 from ..lib.image_captcha import generate_image
 from ..lib.mail import send_mail_from_host
+from ..lib.sms import send_sms_single
+from ..lib.check import is_identity_belong_phone, is_identity_belong_email
 from ..models import User
 
 
@@ -45,3 +56,64 @@ def activate_by_email(request):
     else:
         return HttpResponse("这是啥玩意儿。。")
 
+
+@require_POST
+def send_phone_code(request, template):
+    request = fix_fetched_post(request)
+    identity = request.POST.get("identity")
+    if not identity or not re.match(r'^(1[3|4|5|6|7|8|9])\d{9}$', identity):
+        return JsonResponse({"status": "error", "msg": "手机号格式错误"})
+    if template in TEMPLATE_NAMES:
+        code = random.randint(100000, 999999)
+        if template in ["login", "chpasswd"]:
+            if not User.objects.filter(phone=identity).exists():
+                return JsonResponse({"status": "error", "msg": "手机号不存在"})
+        else:
+            if User.objects.filter(phone=identity).exists():
+                return JsonResponse({"status": "error", "msg": "手机号已存在"})
+        response = send_sms_single(identity, template, [code,])
+        if response['result']==0:
+            conn = get_redis_connection("default")
+            conn.set(f'{identity}-{template}', code, ex=600)
+            return JsonResponse({"status": "success", "msg": "验证码已发送"})
+        else:
+            return JsonResponse({"status": "error", "msg": f"短信发送失败: {response['msg']}"})
+    else:
+        return JsonResponse({"status": "error", "msg": "错误的模板名称"})
+
+
+def get_login_token(request, identity):
+    if not request.user.is_superuser:
+        return HttpResponse("你不是超级管理员，无权使用此功能")
+    if is_identity_belong_phone(identity):
+        user = User.objects.get(phone=identity)
+    elif is_identity_belong_email(identity):
+        user = User.objects.get(email=identity)
+    else:
+        user = User.objects.get(username=identity)
+    if user:
+        username = user.username
+        password = user.password
+        token = html.escape(password[-20:])
+        protocol = "https://" if request.is_secure() else "http://"
+        link = protocol + request.get_host() + reverse("login_by_token",args=[token,]) 
+        conn = get_redis_connection("default")
+        conn.set(f'{token}-login-token', password, ex=24*60*60)
+        return render(request, "base/login_token.html", {"username": username, "token": token, "link": link})
+    else:
+        return HttpResponse("用户不存在")
+
+
+def login_by_token(request, token):
+    conn = get_redis_connection("default")
+    redis_login_token = conn.get(f'{token}-login-token')
+    if not redis_login_token:
+        return HttpResponse("登录链接已经超时/令牌无效")
+    password = str(redis_login_token.decode())
+    user = User.objects.get(password=password)
+    auth.login(request, user)
+    try:
+        conn.delete(f'{token}-login-token')
+    except:
+        pass
+    return redirect(reverse('blog:index'))
