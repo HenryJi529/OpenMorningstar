@@ -31,7 +31,9 @@ def send_sms_single(phone_num, template, template_param_list):
     :return:
     """
     if not is_production():
-        return {'result': 0, 'msg': "测试环境发送成功", 'phone': f'{phone_num}', 'sms': TENCENT_SMS_TEMPLATE_TEXT[template](*template_param_list)}
+        content = TENCENT_SMS_TEMPLATE_TEXT[template](*template_param_list)
+        print(content)
+        return {'result': 0, 'msg': "测试环境发送成功", 'phone': f'{phone_num}', 'content': content}
     appid = TENCENT_SMS_APP_ID
     appkey = TENCENT_SMS_APP_KEY
     sms_sign = TENCENT_SMS_SIGN
