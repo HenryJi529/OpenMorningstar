@@ -42,11 +42,11 @@ def handle_register(request, is_api=True):
             conn.delete(f'{username}-activate')
         except:
             pass
-        conn.set(f'{username}-activate', code, ex=60*5)
+        conn.set(f'{username}-activate', code, ex=60*10)
 
         protocol = "https://" if request.is_secure() else "http://"
         link = protocol + host + reverse('activate_by_email') + f'?username={username}&code={code}'
-        message = f"通过该链接激活:\n{link}\n五分钟内有效..."
+        message = f"通过该链接激活:\n{link}\n十分钟内有效..."
 
         return message
 
