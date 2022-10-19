@@ -2901,6 +2901,10 @@ body[dir="rtl"] .checkbox:checked,
   max-height: 100%;
 }
 
+.min-h-screen {
+  min-height: 100vh;
+}
+
 .w-7\/12 {
   width: 58.333333%;
 }
@@ -3117,6 +3121,10 @@ body[dir="rtl"] .checkbox:checked,
   padding-right: 4rem;
 }
 
+.pl-10 {
+  padding-left: 2.5rem;
+}
+
 .pr-2 {
   padding-right: 0.5rem;
 }
@@ -3141,10 +3149,6 @@ body[dir="rtl"] .checkbox:checked,
   padding-top: 0.25rem;
 }
 
-.pl-10 {
-  padding-left: 2.5rem;
-}
-
 .text-left {
   text-align: left;
 }
@@ -3163,10 +3167,6 @@ body[dir="rtl"] .checkbox:checked,
 
 .indent-\[2\.5em\] {
   text-indent: 2.5em;
-}
-
-.indent-10 {
-  text-indent: 2.5rem;
 }
 
 .text-2xl {
