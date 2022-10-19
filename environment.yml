@@ -1,4 +1,4 @@
-# updated: 2022.10.16
+# updated: 2022.10.19
 qcloudsms-py: 0.1.4 # 已停止维护, 需适配py3.9 https://github.com/qcloudsms/qcloudsms_py
 django-crontab: 0.7.1 # 已停止维护, https://github.com/kraiz/django-crontab
 mysql-connector-python: 8.0.29 # 被依赖特定的版本, mysql API
@@ -14,7 +14,7 @@ django-cors-middleware: 1.5.0 # 跨域访问之middleware
 django-debug-toolbar: 3.7.0 # 调试工具
 django-filter: 22.1 # django filtering support
 django-haystack: 3.2.1 # 全局搜索
-django-import-export: 2.9.0 # 数据导入导出
+django-import-export: 3.0.1 # 数据导入导出
 django-jazzmin: 2.5.0 # 非常美观的django-adminUI库
 django-matomo: 0.1.6 # 网站分析
 django-recaptcha: 3.0.0 # Google Recaptcha验证
@@ -25,7 +25,7 @@ Faker: 15.1.1 # 测试数据生成
 fake-useragent: 0.1.11 # 用户代理模拟
 fontawesomefree: 6.2.0 # fontawesome free字体管理
 gunicorn: 20.1.0 # 动态web服务器
-igraph: 0.10.1 # 图和网络分析工具
+igraph: 0.10.2 # 图和网络分析工具
 ipykernel: 6.16.0 # python 笔记本
 ipython: 8.5.0 # 交互式python
 jieba: 0.42.1 # 中文分词
@@ -38,7 +38,7 @@ networkx: 2.8.7 # 图和网络分析工具
 numpy: 1.23.4 # 矩阵计算
 pandas: 1.5.0 # 数据处理
 Pillow: 9.2.0 # 图像处理
-pip: 22.2.2 # 包管理工具
+pip: 22.3 # 包管理工具
 pipdeptree: 2.3.1 # 获取python依赖关系
 pip-review: 1.2.0 # 升级第三方包
 pydub: 0.25.1 # 音频处理库
