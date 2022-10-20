@@ -867,11 +867,6 @@
 					"image": "/media/nav/img/Recreation/AcFun.png"
 				},
 				{
-					"name": "油管",
-					"url": "https://youtube.com/",
-					"image": "/media/nav/img/Recreation/YouTube.png"
-				},
-				{
 					"name": "努努影院",
 					"url": "https://www.nnyy6.top/",
 					"image": "/media/nav/img/Recreation/努努影院.png"
@@ -880,11 +875,6 @@
 					"name": "GetComic",
 					"url": "https://getcomics.info/cat/dc/",
 					"image": "/media/nav/img/Recreation/GetComic.png"
-				},
-				{
-					"name": "Twitter",
-					"url": "https://twitter.com/home",
-					"image": "/media/nav/img/Recreation/Twitter.png"
 				},
 				{
 					"name": "Instagram",
