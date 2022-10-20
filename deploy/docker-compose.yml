@@ -182,7 +182,6 @@ services:
       - USER_UID=1000
       - USER_GID=1000
       - DOMAIN="gitea.morningstar369.com"
-      - ROOT_URL="gitea.morningstar369.com"
       - DB_TYPE="sqlite3"
       - APP_NAME="Morningstar Gitea"
       - DB_NAME="gitea"
