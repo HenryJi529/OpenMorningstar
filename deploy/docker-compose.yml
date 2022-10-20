@@ -181,6 +181,7 @@ services:
     environment:
       - USER_UID=1000
       - USER_GID=1000
+      - ROOT_URL="gitea.morningstar369.com"
     restart: always
     volumes:
       - morningstar_gitea_data:/data
