@@ -1,5 +1,5 @@
 import os
-import pathlib
+import pathlib # NOTE: read_text
 import random
 import sys
 from datetime import timedelta
@@ -85,11 +85,6 @@ def init_blog():
 
     """ 创建博文 """
     print("创建博文...")
-    blog.models.Post.objects.create(
-        title='Nginx 学习笔记',
-        body=pathlib.Path(os.path.join(BASE_DIR, 'scripts', 'initialize', 'blog_post.md')).read_text(encoding='utf-8'),
-        category=blog.models.Category.objects.create(name='Markdown测试'),
-    )
     # 50篇英文
     fake = faker.Faker()
     for _ in range(50):
