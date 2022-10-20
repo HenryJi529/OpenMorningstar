@@ -3,7 +3,7 @@
 https://github.com/Pryaxis/TShock/releases
 
 **我的服务器:**
-1. server.morningstar529.com:7777
+1. server.morningstar369.com:7777
 2. 35.220.252.85:7777
 
 **教程:**

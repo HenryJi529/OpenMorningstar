@@ -112,7 +112,7 @@ def contact(request):
             subject = cd['subject']
             message = request.POST['message']
             email = cd.get('email') if len(
-                cd.get('email')) > 0 else 'guest@morningstar529.com'
+                cd.get('email')) > 0 else 'guest@morningstar369.com'
             from_email = email.replace("@", "*") + "<" + EMAIL_HOST_USER + ">"
             send_mail(
                 subject,
@@ -150,7 +150,7 @@ def comment(request, post_pk):
                     # 发送邮件通知
                     subject = "您在晨星小站的评论有了新的回复"
                     post = Comment.objects.get(id=comment_id).post
-                    message = f"您在《{post.title}》的评论中有了新的回复, 点击链接查看: \nhttps://morningstar529.com{post.get_absolute_url()}#comment-{comment.id}\n"
+                    message = f"您在《{post.title}》的评论中有了新的回复, 点击链接查看: \nhttps://morningstar369.com{post.get_absolute_url()}#comment-{comment.id}\n"
                     to_email = User.objects.get(username=username).email
                     send_mail_from_host(subject, message, [to_email])
         else:

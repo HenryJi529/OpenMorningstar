@@ -22,7 +22,7 @@ def get_favicon(request):
 
 
 def get_qrcode(request):
-    url = "https://morningstar529.com/"
+    url = "https://morningstar369.com/"
     back_color=(255, 255, 255)
     center_color=(255, 0, 255)
     edge_color=(75,20,147)

@@ -24,7 +24,7 @@ from .test_models import CommentDataTestCase
 class BlogExtrasTestCase(TestCase):
     def setUp(self):
         apps.get_app_config("haystack").signal_processor.teardown()
-        self.user = User.objects.create_superuser(username="admin", email="admin@morningstar529.com", password="admin")
+        self.user = User.objects.create_superuser(username="admin", email="admin@morningstar.com", password="admin")
         self.cate = Category.objects.create(name="测试")
         self.ctx = Context()
 

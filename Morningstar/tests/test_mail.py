@@ -5,7 +5,7 @@ from Morningstar.settings.common import EMAIL_HOST_USER
 
 class EmailTest(TestCase):
     def test_send_email(self):
-        email = 'guest1@morningstar529.com'
+        email = 'guest1@morningstar.com'
         from_email = email.replace("@", "*") + "<" + EMAIL_HOST_USER + ">"
         mail.send_mail(
             "这是主题",

@@ -4,7 +4,7 @@ from Morningstar.lib.qrcoder import make_qrcode
 
 class QrcodeTest(TestCase):
     def test_make_qrcode(self):
-        data = "https://morningstar529.com"
+        data = "https://morningstar.com"
         back_color=(255, 255, 255)
         center_color=(255, 0, 255)
         edge_color=(75,20,147)

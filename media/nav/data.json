@@ -106,49 +106,49 @@
 				},
 				{
 					"name": "资金管理",
-					"url": "https://beancount.morningstar529.com/",
+					"url": "https://beancount.morningstar369.com/",
 					"image": "/media/nav/img/Admin/资金管理.jpeg",
 					"desc": "通过Beancount管理账本"
 				},
 				{
 					"name": "域名配置",
-					"url": "https://ap.www.namecheap.com/Domains/DomainControlPanel/morningstar529.com/advancedns",
+					"url": "https://ap.www.namecheap.com/Domains/DomainControlPanel/morningstar369.com/advancedns",
 					"image": "/media/nav/img/Admin/域名配置.png",
 					"desc": "NameCheap子域名配置"
 				},
 				{
 					"name": "站点分析",
-					"url": "https://matomo.morningstar529.com",
+					"url": "https://matomo.morningstar369.com",
 					"image": "/media/nav/img/Admin/站点分析.png",
 					"desc": "通过Matomo分析流量"
 				},
 				{
 					"name": "代码编辑",
-					"url": "https://code.morningstar529.com/",
+					"url": "https://code.morningstar369.com/",
 					"image": "/media/nav/img/Admin/代码编辑.png",
 					"desc": "通过code-server管理网站代码"
 				},
 				{
 					"name": "容器管理",
-					"url": "https://portainer.morningstar529.com/#/home",
+					"url": "https://portainer.morningstar369.com/#/home",
 					"image": "/media/nav/img/Admin/容器管理.png",
 					"desc": "通过portainer管理容器"
 				},
 				{
 					"name": "反向代理",
-					"url": "https://frps.morningstar529.com",
+					"url": "https://frps.morningstar369.com",
 					"image": "/media/nav/img/Admin/反向代理.png",
 					"desc": "通过FRP反向代理"
 				},
 				{
 					"name": "文件备份",
-					"url": "ftp://ftp.morningstar529.com",
+					"url": "ftp://ftp.morningstar369.com",
 					"image": "/media/nav/img/Admin/文件备份.png",
 					"desc": "通过FTP实现备份"
 				},
 				{
 					"name": "任务管理",
-					"url": "https://morningstar529.com/shortcut/task/",
+					"url": "https://morningstar369.com/shortcut/task/",
 					"image": "/media/nav/img/Admin/任务管理.png",
 					"desc": "通过ticktick实现任务管理"
 				},
@@ -1002,7 +1002,7 @@
 						},
 						{
 							"name": "RSS生成器(RSSHub)",
-							"link": "https://rsshub.morningstar529.com"
+							"link": "https://rsshub.morningstar369.com"
 						},
 						{
 							"name": "冷门RSS源定制工具",
@@ -1043,7 +1043,7 @@
 				},
 				{
 					"name": "资源快传",
-					"url": "https://send.morningstar529.com"
+					"url": "https://send.morningstar369.com"
 				},
 				{
 					"name": "二维码",
@@ -1109,7 +1109,7 @@
 					"entries": [
 						{
 							"name": "代码仓库",
-							"link": "https://gitea.morningstar529.com"
+							"link": "https://gitea.morningstar369.com"
 						},
 						{
 							"name": "Gitignore生成",
@@ -1219,7 +1219,7 @@
 				},
 				{
 					"name": "远程连接",
-					"url": "https://ssh.morningstar529.com"
+					"url": "https://ssh.morningstar369.com"
 				},
 				{
 					"name": "接口管理",

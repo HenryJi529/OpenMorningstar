@@ -102,7 +102,7 @@ MIDDLEWARE = [
 
 """跨域访问"""
 CORS_ALLOWED_ORIGINS = [
-    "https://morningstar529.com",
+    "https://morningstar369.com",
     "http://localhost:8000",  # NOTE: 测试专用
 ]
 # CORS_ALLOW_ALL_ORIGINS = True
@@ -387,4 +387,4 @@ CACHE_TIMEOUT = 60*5 if os.environ.get('DJANGO_SETTINGS_MODULE','Morningstar.set
 
 """Matomo"""
 MATOMO_SITE_ID = 1
-MATOMO_URL = "https://matomo.morningstar529.com/"
+MATOMO_URL = "https://matomo.morningstar369.com/"

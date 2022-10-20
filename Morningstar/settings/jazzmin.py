@@ -91,7 +91,7 @@ JAZZMIN_SETTINGS = {
     "custom_links": {
         "blog": [{
             "name": "展示",
-            "url": "https://morningstar529.com/",
+            "url": "https://morningstar369.com/",
             "icon": "fas fa-dragon"
         }]
     },

@@ -44,7 +44,7 @@ Nginx 是一种高性能网络服务器，专注于高性能、高并发和低�
 ### 其他准备
 
 为了更好的演示多域名下的 Nginx 配置，推荐使用[switchhost](https://github.com/oldj/SwitchHosts)修改客户端的配置
-![](https://cdn.morningstar529.com/mweb/16580354059224.jpg)
+![](https://cdn.morningstar369.com/mweb/16580354059224.jpg)
 
 ## 初次使用
 
@@ -120,13 +120,13 @@ http {
 `root`用于声明站点的根目录，是 Nginx 在收到相应请求后查找的路径
 
 访问[http://local.com](http://local.com)
-![](https://cdn.morningstar529.com/mweb/16580551862411.jpg)
+![](https://cdn.morningstar369.com/mweb/16580551862411.jpg)
 尽管 Nginx 已正确提供`index.html`，但似乎 CSS 样式不起作用。
 
 ### 静态文件类型处理
 
 观察静态网站，得出 css 的路径为 http://local.com/css/style.css
-![](https://cdn.morningstar529.com/mweb/16580554216323.jpg)
+![](https://cdn.morningstar369.com/mweb/16580554216323.jpg)
 通过`curl`查看请求请求报文首部
 
 ```bash
@@ -179,7 +179,7 @@ Accept-Ranges: bytes
 
 `Content-Type`已经成功转化成`text/css`。
 再通过浏览器访问页面:
-![](https://cdn.morningstar529.com/mweb/16580587514604.jpg)
+![](https://cdn.morningstar369.com/mweb/16580587514604.jpg)
 
 ### `root`与`alias`
 
@@ -193,7 +193,7 @@ Accept-Ranges: bytes
 上一小节实现了一个简单的静态内容服务器配置，它获取与 URI 相匹配的站点文件，并进行相应。
 
 然而，如果访问的 URI 无法匹配到站点文件，将返回默认的 404 页面
-![](https://cdn.morningstar529.com/mweb/16580615401815.jpg)
+![](https://cdn.morningstar369.com/mweb/16580615401815.jpg)
 
 这一问题可以通过动态路由配置来解决
 在本节，需要了解`location`上下文、变量、重定向、重写以及`try_files`指令。
@@ -464,7 +464,7 @@ return [code] URL;
 
 #### rewrite
 
-用于通知客户端，请求的资源已经换地方，例如访问 joke.morningstar529.com，转到 morningstar529.com/joke/
+用于通知客户端，请求的资源已经换地方，例如访问 joke.morningstar369.com，转到 morningstar369.com/joke/
 用法:
 
 ```nginx
@@ -588,7 +588,7 @@ http {
 ```
 
 访问[http://local.com](http://local.com)，将看到原始的思否站点:
-![](https://cdn.morningstar529.com/mweb/16586432800096.jpg)
+![](https://cdn.morningstar369.com/mweb/16586432800096.jpg)
 
 ### 搭配 Python 后端
 
@@ -623,7 +623,7 @@ http {
    }
    ```
 4. 通过浏览器检查反向代理是否成功
-   ![](https://cdn.morningstar529.com/mweb/16586460626307.jpg)
+   ![](https://cdn.morningstar369.com/mweb/16586460626307.jpg)
    显示的正是后端的响应，说明反向代理成功
 
 ## 负载均衡

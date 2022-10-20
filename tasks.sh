@@ -1,4 +1,4 @@
-DOMAIN="morningstar529.com"
+DOMAIN="morningstar369.com"
 PIP=$(pwd)/VENV/bin/pip
 PIPDEPTREE=$(pwd)/VENV/bin/pipdeptree
 

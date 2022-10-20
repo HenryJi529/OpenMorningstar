@@ -5,7 +5,7 @@
 <link>{{link}}</link>
 <description>{{description}}</description>
 <atom:link href="{{link}}" rel="self" type="application/rss+xml"/>
-<generator>morningstar529.com</generator>
+<generator>晨星小站</generator>
 <language>{{language}}</language>
 <lastBuildDate>{{lastBuildDate}}</lastBuildDate>
 {% for item in items %}

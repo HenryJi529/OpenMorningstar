@@ -12,21 +12,21 @@ def shortcut(request, name):
             if name == "src":
                 return redirect("https://github.com/HenryJi529/OpenMorningstar")
             elif name == "src-mirror":
-                return redirect("https://gitea.morningstar529.com/Henry529/OpenMorningstar")
+                return redirect("https://gitea.morningstar369.com/Henry529/OpenMorningstar")
             else:
                 pass
         elif name == "host" or name == "vercel":
             return redirect("https://vercel.com/dashboard")
         elif name == "domain" or name == "namecheap":
-            return redirect("https://ap.www.namecheap.com/Domains/DomainControlPanel/morningstar529.com/advancedns")
+            return redirect("https://ap.www.namecheap.com/Domains/DomainControlPanel/morningstar369.com/advancedns")
         elif name == "license":
             return redirect("https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/LICENSE")
         elif name == "coverage":
-            return redirect("https://coverage.morningstar529.com/")
+            return redirect("https://coverage.morningstar369.com/")
         elif name == "task":
             return redirect("https://ticktick.com/webapp#m/all/matrix")
         elif name == "resume":
-            return redirect("https://resume.morningstar529.com/")
+            return redirect("https://resume.morningstar369.com/")
         elif name == "wechatpp":
             return redirect("https://mp.weixin.qq.com/cgi-bin/home")
         else:

@@ -127,7 +127,7 @@ def upgrade(c):
 
         better_print("配置HTTPS...")
         c.run('docker exec morningstar_nginx bash /start.sh')
-        # c.run('docker exec -it morningstar_nginx certbot --nginx -n --domains morningstar529.com')
+        # c.run('docker exec -it morningstar_nginx certbot --nginx -n --domains morningstar369.com')
         c.run('docker exec -it morningstar_nginx certbot --nginx')
 
     print("Done!!")
@@ -143,7 +143,7 @@ def backup(c):
             pass
         c.run('docker exec -it morningstar_django bash -c "python3 manage.py dumpdata --settings=Morningstar.settings.production > database/all.json"')
         c.run('sshpass -p ' + DEV_PASSWORD +
-            ' scp -P 1022 ~/morningstar/database/all.json henry529@server.morningstar529.com:~/Projects/OpenMorningstar/database')
+            ' scp -P 1022 ~/morningstar/database/all.json henry529@server.morningstar369.com:~/Projects/OpenMorningstar/database')
     print("Done!!")
 
 
@@ -156,7 +156,7 @@ def restore(c):
         except:
             pass
         c.run('sshpass -p ' + DEV_PASSWORD +
-            ' scp -P 1022 henry529@server.morningstar529.com:~/Projects/OpenMorningstar/database/all.json ~/morningstar/database')
+            ' scp -P 1022 henry529@server.morningstar369.com:~/Projects/OpenMorningstar/database/all.json ~/morningstar/database')
         c.run('docker exec -it morningstar_django bash -c "python3 manage.py loaddata --settings=Morningstar.settings.production database/all.json"')
     print("Done!!")
 
@@ -216,7 +216,7 @@ def updateLedger(c):
     with c.cd(home_path):
         better_print("传递数据至文件夹...")
         c.run('sshpass -p ' + DEV_PASSWORD +
-            ' scp -P 1022 henry529@server.morningstar529.com:~/Projects/OpenMorningstar/deploy/beancount/moneybook.bean  ~/morningstar/deploy/beancount/')
+            ' scp -P 1022 henry529@server.morningstar369.com:~/Projects/OpenMorningstar/deploy/beancount/moneybook.bean  ~/morningstar/deploy/beancount/')
         better_print("传递数据至数据卷...")
         c.run('docker cp ~/morningstar/deploy/beancount/moneybook.bean morningstar_beancount:/root/beancount')
 
