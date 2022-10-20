@@ -8,7 +8,7 @@ class AllPostsRssFeed(Feed):
     title = "Morningstar Blog"
 
     # 通过聚合阅读器跳转到网站的地址
-    link = "/blog/"
+    link = "/"
 
     # 显示在聚合阅读器上的描述信息
     description = "Morningstar Blog全部文章"
