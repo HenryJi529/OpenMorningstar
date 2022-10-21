@@ -13,8 +13,11 @@
             <span>分享成功!</span>
         </div>
     </div>
-    <div class="md:text-2xl mt-10 text-center">
+    <div class="md:text-2xl my-10 text-center">
         <i class="fa-solid fa-link"></i><a href="{{ link }}" class="text-lime-600">{{ link }}</a>
+    </div>
+    <div class="flex justify-center">
+        <img src="{{ image_url }}" alt="链接二维码" class="h-[16rem]">
     </div>
     {% else %}
     <div class="alert shadow-lg">

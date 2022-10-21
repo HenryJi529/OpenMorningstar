@@ -2195,6 +2195,11 @@ html {
   margin-right: auto;
 }
 
+.my-10 {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
 .mt-20 {
   margin-top: 5rem;
 }
@@ -2207,6 +2212,10 @@ html {
   display: block;
 }
 
+.inline-block {
+  display: inline-block;
+}
+
 .flex {
   display: flex;
 }
@@ -2217,6 +2226,14 @@ html {
 
 .h-6 {
   height: 1.5rem;
+}
+
+.h-\[32rem\] {
+  height: 32rem;
+}
+
+.h-\[16rem\] {
+  height: 16rem;
 }
 
 .w-\[20rem\] {
