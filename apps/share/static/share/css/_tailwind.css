@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.1.8 | MIT License | https://tailwindcss.com
+! tailwindcss v3.2.0 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -408,6 +408,12 @@ img,
 video {
   max-width: 100%;
   height: auto;
+}
+
+/* Make elements with the HTML hidden attribute stay hidden by default */
+
+[hidden] {
+  display: none;
 }
 
 :root,
@@ -2212,10 +2218,6 @@ html {
   display: block;
 }
 
-.inline-block {
-  display: inline-block;
-}
-
 .flex {
   display: flex;
 }
@@ -2226,10 +2228,6 @@ html {
 
 .h-6 {
   height: 1.5rem;
-}
-
-.h-\[32rem\] {
-  height: 32rem;
 }
 
 .h-\[16rem\] {
