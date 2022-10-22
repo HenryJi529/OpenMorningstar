@@ -1,4 +1,4 @@
-# updated: 2022.10.21
+# updated: 2022.10.22
 qcloudsms-py: 0.1.4 # 已停止维护, 需适配py3.9 https://github.com/qcloudsms/qcloudsms_py
 django-crontab: 0.7.1 # 已停止维护, https://github.com/kraiz/django-crontab
 mysql-connector-python: 8.0.29 # 被依赖特定的版本, mysql API
@@ -26,7 +26,7 @@ fake-useragent: 0.1.11 # 用户代理模拟
 fontawesomefree: 6.2.0 # fontawesome free字体管理
 gunicorn: 20.1.0 # 动态web服务器
 igraph: 0.10.2 # 图和网络分析工具
-ipykernel: 6.16.0 # python 笔记本
+ipykernel: 6.16.1 # python 笔记本
 ipython: 8.5.0 # 交互式python
 jieba: 0.42.1 # 中文分词
 lxml: 4.9.1 # 用作bs4的解析器
@@ -52,7 +52,8 @@ scipy: 1.9.2 # 科学计算
 sh: 1.14.3 # 执行shell命令
 sqlite3-to-mysql: 1.4.16 # sqlite迁移到mysql
 torch: 1.12.1 # 深度学习框架
-torchvision: 0.13.1 # 用来生成图片,视频数据集,一些流行的模型类,预训练模型
+torchaudio: 0.12.1 # 音频相关数据集、模型类、预训练模型
+torchvision: 0.13.1 # 图片相关数据集、模型类、预训练模型
 Whoosh: 2.7.4 # 站内搜索
 xlrd: 2.0.1 # NOTE: 被django-import-export所依赖
 xlwt: 1.3.0 # NOTE: 被django-import-export所依赖
