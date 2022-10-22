@@ -22,9 +22,6 @@ dev() {
 	echo "同步JavaScript模块..."
 	rsync -a ./node_modules ./Morningstar/static
 	echo "==================================="
-	# echo "更新开发测试数据..."
-	# python scripts/initialize/main.py
-	# echo "==================================="
 	echo "迁移模型到数据库..."
 	python manage.py makemigrations && python manage.py migrate
 	echo "==================================="
@@ -34,6 +31,9 @@ dev() {
 	# echo "启动定时任务..."
 	# python manage.py crontab add
 	# echo "==================================="
+	echo "获取静态文件..."
+	python manage.py collectstatic --noinput
+	echo "==================================="
 	echo "编译CSS库..."
 	npm run build_css &
 	# bash scripts/frontend/build_sass.sh & # NOTE: 可用live-sass-compiler替换
