@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.2.0 | MIT License | https://tailwindcss.com
+! tailwindcss v3.2.1 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -1863,7 +1863,7 @@ html {
   outline: 2px solid hsl(var(--in));
 }
 
-.textarea-disabled, 
+.textarea-disabled,
   .textarea[disabled] {
   cursor: not-allowed;
   --tw-border-opacity: 1;
@@ -1878,7 +1878,7 @@ html {
   --tw-placeholder-opacity: 0.2;
 }
 
-.textarea-disabled::placeholder, 
+.textarea-disabled::placeholder,
   .textarea[disabled]::placeholder {
   color: hsl(var(--bc) / var(--tw-placeholder-opacity));
   --tw-placeholder-opacity: 0.2;

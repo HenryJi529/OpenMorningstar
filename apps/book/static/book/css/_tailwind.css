@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.2.0 | MIT License | https://tailwindcss.com
+! tailwindcss v3.2.1 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -1750,7 +1750,7 @@ html {
   color: hsl(var(--nc) / var(--tw-text-opacity));
 }
 
-.btn-disabled, 
+.btn-disabled,
   .btn[disabled] {
   pointer-events: none;
 }
@@ -1762,7 +1762,7 @@ html {
   padding: 0px;
 }
 
-.btn.loading, 
+.btn.loading,
     .btn.loading:hover {
   pointer-events: none;
 }
@@ -1889,7 +1889,7 @@ html {
   isolation: isolate;
 }
 
-.input-group > *, 
+.input-group > *,
   .input-group > .input {
   border-radius: 0px;
 }
@@ -1948,8 +1948,8 @@ html {
   overscroll-behavior: contain;
 }
 
-.modal-open, 
-.modal:target, 
+.modal-open,
+.modal:target,
 .modal-toggle:checked + .modal {
   pointer-events: auto;
   visibility: visible;
@@ -1989,7 +1989,7 @@ html {
   transform: scale(var(--btn-focus-scale, 0.95));
 }
 
-.btn:hover, 
+.btn:hover,
     .btn-active {
   --tw-border-opacity: 1;
   border-color: hsl(var(--nf, var(--n)) / var(--tw-border-opacity));
@@ -2012,9 +2012,9 @@ html {
   outline: 2px solid currentColor;
 }
 
-.btn-disabled, 
-  .btn-disabled:hover, 
-  .btn[disabled], 
+.btn-disabled,
+  .btn-disabled:hover,
+  .btn[disabled],
   .btn[disabled]:hover {
   --tw-border-opacity: 0;
   background-color: hsl(var(--n) / var(--tw-bg-opacity));
@@ -2023,24 +2023,24 @@ html {
   --tw-text-opacity: 0.2;
 }
 
-.btn.loading.btn-square:before, 
+.btn.loading.btn-square:before,
     .btn.loading.btn-circle:before {
   margin-right: 0px;
 }
 
-.btn.loading.btn-xl:before, 
+.btn.loading.btn-xl:before,
     .btn.loading.btn-lg:before {
   height: 1.25rem;
   width: 1.25rem;
 }
 
-.btn.loading.btn-sm:before, 
+.btn.loading.btn-sm:before,
     .btn.loading.btn-xs:before {
   height: 0.75rem;
   width: 0.75rem;
 }
 
-.btn-group > input[type="radio"]:checked.btn, 
+.btn-group > input[type="radio"].btn:checked,
   .btn-group > .btn-active {
   --tw-border-opacity: 1;
   border-color: hsl(var(--p) / var(--tw-border-opacity));
@@ -2073,8 +2073,8 @@ html {
   outline-offset: 2px;
 }
 
-.checkbox:checked, 
-  .checkbox[checked="true"], 
+.checkbox:checked,
+  .checkbox[checked="true"],
   .checkbox[aria-checked=true] {
   --tw-bg-opacity: 1;
   background-color: hsl(var(--bc) / var(--tw-bg-opacity));
@@ -2138,7 +2138,7 @@ body[dir="rtl"] .checkbox:checked,
   outline-offset: 2px;
 }
 
-.input-disabled, 
+.input-disabled,
   .input[disabled] {
   cursor: not-allowed;
   --tw-border-opacity: 1;
@@ -2153,7 +2153,7 @@ body[dir="rtl"] .checkbox:checked,
   --tw-placeholder-opacity: 0.2;
 }
 
-.input-disabled::placeholder, 
+.input-disabled::placeholder,
   .input[disabled]::placeholder {
   color: hsl(var(--bc) / var(--tw-placeholder-opacity));
   --tw-placeholder-opacity: 0.2;
@@ -2175,8 +2175,8 @@ body[dir="rtl"] .checkbox:checked,
   margin-top: -25px;
 }
 
-.modal-open .modal-box, 
-.modal-toggle:checked + .modal .modal-box, 
+.modal-open .modal-box,
+.modal-toggle:checked + .modal .modal-box,
 .modal:target .modal-box {
   --tw-translate-y: 0px;
   --tw-scale-x: 1;
@@ -2224,17 +2224,17 @@ body[dir="rtl"] .checkbox:checked,
   vertical-align: middle;
 }
 
-.table tr.active th, 
-    .table tr.active td, 
-    .table tr.active:nth-child(even) th, 
+.table tr.active th,
+    .table tr.active td,
+    .table tr.active:nth-child(even) th,
     .table tr.active:nth-child(even) td {
   --tw-bg-opacity: 1;
   background-color: hsl(var(--b3, var(--b2)) / var(--tw-bg-opacity));
 }
 
-.table tr.hover:hover th, 
-    .table tr.hover:hover td, 
-    .table tr.hover:nth-child(even):hover th, 
+.table tr.hover:hover th,
+    .table tr.hover:hover td,
+    .table tr.hover:nth-child(even):hover th,
     .table tr.hover:nth-child(even):hover td {
   --tw-bg-opacity: 1;
   background-color: hsl(var(--b3, var(--b2)) / var(--tw-bg-opacity));
@@ -2260,7 +2260,7 @@ body[dir="rtl"] .checkbox:checked,
   background-color: hsl(var(--b1) / var(--tw-bg-opacity));
 }
 
-.table-zebra tbody tr:nth-child(even) th, 
+.table-zebra tbody tr:nth-child(even) th,
       .table-zebra tbody tr:nth-child(even) td {
   --tw-bg-opacity: 1;
   background-color: hsl(var(--b2, var(--b1)) / var(--tw-bg-opacity));
@@ -2343,7 +2343,7 @@ body[dir="rtl"] .checkbox:checked,
   border-bottom-right-radius: 0;
 }
 
-.btn-group .btn:first-child:not(:last-child),  .btn-group.btn-group-horizontal .btn:first-child:not(:last-child) {
+.btn-group .btn:first-child:not(:last-child), .btn-group.btn-group-horizontal .btn:first-child:not(:last-child) {
   margin-left: -1px;
   margin-top: -0px;
   border-top-left-radius: var(--rounded-btn, 0.5rem);

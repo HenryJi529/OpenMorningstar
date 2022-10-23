@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.2.0 | MIT License | https://tailwindcss.com
+! tailwindcss v3.2.1 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -1033,7 +1033,7 @@ html {
   color: hsl(var(--nc) / var(--tw-text-opacity));
 }
 
-.btn-disabled, 
+.btn-disabled,
   .btn[disabled] {
   pointer-events: none;
 }
@@ -1051,7 +1051,7 @@ html {
   padding: 0px;
 }
 
-.btn.loading, 
+.btn.loading,
     .btn.loading:hover {
   pointer-events: none;
 }
@@ -1112,14 +1112,18 @@ html {
   border-radius: var(--rounded-btn, 0.5rem);
 }
 
+.collapse.collapse {
+  visibility: visible;
+}
+
 .collapse {
   position: relative;
   display: grid;
   overflow: hidden;
 }
 
-.collapse-title, 
-.collapse > input[type="checkbox"], 
+.collapse-title,
+.collapse > input[type="checkbox"],
 .collapse-content {
   grid-column-start: 1;
   grid-row-start: 1;
@@ -1229,9 +1233,9 @@ html {
   top: auto;
 }
 
-.dropdown.dropdown-open .dropdown-content, 
-.dropdown.dropdown-hover:hover .dropdown-content, 
-.dropdown:not(.dropdown-hover):focus .dropdown-content, 
+.dropdown.dropdown-open .dropdown-content,
+.dropdown.dropdown-hover:hover .dropdown-content,
+.dropdown:not(.dropdown-hover):focus .dropdown-content,
 .dropdown:not(.dropdown-hover):focus-within .dropdown-content {
   visibility: visible;
   opacity: 1;
@@ -1327,7 +1331,7 @@ html {
   isolation: isolate;
 }
 
-.input-group > *, 
+.input-group > *,
   .input-group > .input {
   border-radius: 0px;
 }
@@ -1481,8 +1485,8 @@ html {
   overscroll-behavior: contain;
 }
 
-.modal-open, 
-.modal:target, 
+.modal-open,
+.modal:target,
 .modal-toggle:checked + .modal {
   pointer-events: auto;
   visibility: visible;
@@ -1545,7 +1549,7 @@ html {
   background-color: transparent;
 }
 
-.radial-progress:before, 
+.radial-progress:before,
 .radial-progress:after {
   position: absolute;
   border-radius: 9999px;
@@ -1618,20 +1622,20 @@ html {
           appearance: none;
 }
 
-.swap .swap-on, 
-.swap .swap-indeterminate, 
+.swap .swap-on,
+.swap .swap-indeterminate,
 .swap input:indeterminate ~ .swap-on {
   opacity: 0;
 }
 
-.swap input:checked ~ .swap-off, 
-.swap.swap-active .swap-off, 
+.swap input:checked ~ .swap-off,
+.swap.swap-active .swap-off,
 .swap input:indeterminate ~ .swap-off {
   opacity: 0;
 }
 
-.swap input:checked ~ .swap-on, 
-.swap-active .swap-on, 
+.swap input:checked ~ .swap-on,
+.swap-active .swap-on,
 .swap input:indeterminate ~ .swap-indeterminate {
   opacity: 1;
 }
@@ -1788,7 +1792,7 @@ html {
   transform: scale(var(--btn-focus-scale, 0.95));
 }
 
-.btn:hover, 
+.btn:hover,
     .btn-active {
   --tw-border-opacity: 1;
   border-color: hsl(var(--nf, var(--n)) / var(--tw-border-opacity));
@@ -1818,7 +1822,7 @@ html {
   color: currentColor;
 }
 
-.btn-ghost:hover, 
+.btn-ghost:hover,
     .btn-ghost.btn-active {
   --tw-border-opacity: 0;
   background-color: hsl(var(--bc) / var(--tw-bg-opacity));
@@ -1829,9 +1833,9 @@ html {
   outline: 2px solid currentColor;
 }
 
-.btn-disabled, 
-  .btn-disabled:hover, 
-  .btn[disabled], 
+.btn-disabled,
+  .btn-disabled:hover,
+  .btn[disabled],
   .btn[disabled]:hover {
   --tw-border-opacity: 0;
   background-color: hsl(var(--n) / var(--tw-bg-opacity));
@@ -1840,24 +1844,24 @@ html {
   --tw-text-opacity: 0.2;
 }
 
-.btn.loading.btn-square:before, 
+.btn.loading.btn-square:before,
     .btn.loading.btn-circle:before {
   margin-right: 0px;
 }
 
-.btn.loading.btn-xl:before, 
+.btn.loading.btn-xl:before,
     .btn.loading.btn-lg:before {
   height: 1.25rem;
   width: 1.25rem;
 }
 
-.btn.loading.btn-sm:before, 
+.btn.loading.btn-sm:before,
     .btn.loading.btn-xs:before {
   height: 0.75rem;
   width: 0.75rem;
 }
 
-.btn-group > input[type="radio"]:checked.btn, 
+.btn-group > input[type="radio"].btn:checked,
   .btn-group > .btn-active {
   --tw-border-opacity: 1;
   border-color: hsl(var(--p) / var(--tw-border-opacity));
@@ -1890,8 +1894,8 @@ html {
   outline-offset: 2px;
 }
 
-.checkbox:checked, 
-  .checkbox[checked="true"], 
+.checkbox:checked,
+  .checkbox[checked="true"],
   .checkbox[aria-checked=true] {
   --tw-bg-opacity: 1;
   background-color: hsl(var(--bc) / var(--tw-bg-opacity));
@@ -1980,7 +1984,7 @@ body[dir="rtl"] .checkbox:checked,
   pointer-events: none;
 }
 
-.collapse:not(.collapse-open):not(.collapse-close) input[type="checkbox"], 
+.collapse:not(.collapse-open):not(.collapse-close) input[type="checkbox"],
 .collapse:not(.collapse-open):not(.collapse-close) .collapse-title {
   cursor: pointer;
 }
@@ -1997,7 +2001,7 @@ body[dir="rtl"] .checkbox:checked,
   z-index: 1;
 }
 
-.collapse-title, 
+.collapse-title,
 :where(.collapse > input[type="checkbox"]) {
   width: 100%;
   padding: 1rem;
@@ -2006,15 +2010,15 @@ body[dir="rtl"] .checkbox:checked,
   transition: background-color 0.2s ease-in-out;
 }
 
-.collapse-open :where(.collapse-content), 
-.collapse:focus:not(.collapse-close) :where(.collapse-content), 
+.collapse-open :where(.collapse-content),
+.collapse:focus:not(.collapse-close) :where(.collapse-content),
 .collapse:not(.collapse-close) :where(input[type="checkbox"]:checked ~ .collapse-content) {
   padding-bottom: 1rem;
   transition: padding 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 
-.collapse-open.collapse-arrow .collapse-title:after, 
-.collapse-arrow:focus:not(.collapse-close) .collapse-title:after, 
+.collapse-open.collapse-arrow .collapse-title:after,
+.collapse-arrow:focus:not(.collapse-close) .collapse-title:after,
 .collapse-arrow:not(.collapse-close) input[type="checkbox"]:checked ~ .collapse-title:after {
   --tw-translate-y: -50%;
   --tw-rotate: 225deg;
@@ -2045,9 +2049,9 @@ body[dir="rtl"] .checkbox:checked,
   outline: 2px solid currentColor;
 }
 
-.dropdown.dropdown-open .dropdown-content, 
-.dropdown.dropdown-hover:hover .dropdown-content, 
-.dropdown:focus .dropdown-content, 
+.dropdown.dropdown-open .dropdown-content,
+.dropdown.dropdown-hover:hover .dropdown-content,
+.dropdown:focus .dropdown-content,
 .dropdown:focus-within .dropdown-content {
   --tw-scale-x: 1;
   --tw-scale-y: 1;
@@ -2083,7 +2087,7 @@ body[dir="rtl"] .checkbox:checked,
   box-shadow: none;
 }
 
-.input-disabled, 
+.input-disabled,
   .input[disabled] {
   cursor: not-allowed;
   --tw-border-opacity: 1;
@@ -2098,7 +2102,7 @@ body[dir="rtl"] .checkbox:checked,
   --tw-placeholder-opacity: 0.2;
 }
 
-.input-disabled::placeholder, 
+.input-disabled::placeholder,
   .input[disabled]::placeholder {
   color: hsl(var(--bc) / var(--tw-placeholder-opacity));
   --tw-placeholder-opacity: 0.2;
@@ -2124,8 +2128,8 @@ body[dir="rtl"] .checkbox:checked,
   outline-offset: 2px;
 }
 
-.menu.horizontal li.bordered > a, 
-        .menu.horizontal li.bordered > button, 
+.menu.horizontal li.bordered > a,
+        .menu.horizontal li.bordered > button,
         .menu.horizontal li.bordered > span {
   border-left-width: 0px;
   border-bottom-width: 4px;
@@ -2133,7 +2137,7 @@ body[dir="rtl"] .checkbox:checked,
   border-color: hsl(var(--p) / var(--tw-border-opacity));
 }
 
-.menu[class*=" p-"] li > *, 
+.menu[class*=" p-"] li > *,
   .menu[class^="p-"] li > * {
   border-radius: var(--rounded-btn, 0.5rem);
 }
@@ -2153,13 +2157,13 @@ body[dir="rtl"] .checkbox:checked,
   color: currentColor;
 }
 
-.menu :where(li:not(.menu-title):not(:empty)) > :where(*:not(ul):focus), 
+.menu :where(li:not(.menu-title):not(:empty)) > :where(*:not(ul):focus),
   .menu :where(li:not(.menu-title):not(:empty)) > :where(*:not(ul):hover) {
   background-color: hsl(var(--bc) / var(--tw-bg-opacity));
   --tw-bg-opacity: 0.1;
 }
 
-.menu :where(li:not(.menu-title):not(:empty)) > :where(:not(ul).active), 
+.menu :where(li:not(.menu-title):not(:empty)) > :where(:not(ul).active),
   .menu :where(li:not(.menu-title):not(:empty)) > :where(*:not(ul):active) {
   --tw-bg-opacity: 1;
   background-color: hsl(var(--p) / var(--tw-bg-opacity));
@@ -2199,7 +2203,7 @@ body[dir="rtl"] .checkbox:checked,
   border-color: hsl(var(--p) / var(--tw-border-opacity));
 }
 
-.menu.compact li > a, 
+.menu.compact li > a,
       .menu.compact li > span {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -2297,8 +2301,8 @@ body[dir="rtl"] .checkbox:checked,
   border-bottom-left-radius: inherit;
 }
 
-.modal-open .modal-box, 
-.modal-toggle:checked + .modal .modal-box, 
+.modal-open .modal-box,
+.modal-toggle:checked + .modal .modal-box,
 .modal:target .modal-box {
   --tw-translate-y: 0px;
   --tw-scale-x: 1;
@@ -2434,22 +2438,22 @@ body[dir="rtl"] .checkbox:checked,
   content: attr(data-content);
 }
 
-.swap-rotate .swap-on, 
-.swap-rotate .swap-indeterminate, 
+.swap-rotate .swap-on,
+.swap-rotate .swap-indeterminate,
 .swap-rotate input:indeterminate ~ .swap-on {
   --tw-rotate: 45deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.swap-rotate input:checked ~ .swap-off, 
-.swap-rotate.swap-active .swap-off, 
+.swap-rotate input:checked ~ .swap-off,
+.swap-rotate.swap-active .swap-off,
 .swap-rotate input:indeterminate ~ .swap-off {
   --tw-rotate: -45deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.swap-rotate input:checked ~ .swap-on, 
-.swap-rotate.swap-active .swap-on, 
+.swap-rotate input:checked ~ .swap-on,
+.swap-rotate.swap-active .swap-on,
 .swap-rotate input:indeterminate ~ .swap-indeterminate {
   --tw-rotate: 0deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -2484,7 +2488,7 @@ body[dir="rtl"] .checkbox:checked,
   outline-offset: 2px;
 }
 
-.textarea-disabled, 
+.textarea-disabled,
   .textarea[disabled] {
   cursor: not-allowed;
   --tw-border-opacity: 1;
@@ -2499,7 +2503,7 @@ body[dir="rtl"] .checkbox:checked,
   --tw-placeholder-opacity: 0.2;
 }
 
-.textarea-disabled::placeholder, 
+.textarea-disabled::placeholder,
   .textarea[disabled]::placeholder {
   color: hsl(var(--bc) / var(--tw-placeholder-opacity));
   --tw-placeholder-opacity: 0.2;
@@ -2688,7 +2692,7 @@ body[dir="rtl"] .checkbox:checked,
   border-bottom-right-radius: 0;
 }
 
-.btn-group .btn:first-child:not(:last-child),  .btn-group.btn-group-horizontal .btn:first-child:not(:last-child) {
+.btn-group .btn:first-child:not(:last-child), .btn-group.btn-group-horizontal .btn:first-child:not(:last-child) {
   margin-left: -1px;
   margin-top: -0px;
   border-top-left-radius: var(--rounded-btn, 0.5rem);

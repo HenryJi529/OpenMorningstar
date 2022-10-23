@@ -15,13 +15,14 @@ menuButton.addEventListener('click', () => {
             widgetToggle = widget.querySelector('.widget-toggle');
             widgetTitle = widget.querySelector('.widget-title');
             widgetList = widget.querySelector('.widget-list');
+
             widget.classList.add('collapse');
             widget.classList.remove('p-2');
             widgetToggle.classList.remove('hidden');
             widgetTitle.classList.add('collapse-title');
             widgetList.classList.add('collapse-content');
         });
-        document.querySelectorAll('.toc a').forEach((linkElement)=>{
+        document.querySelectorAll('.toc a').forEach((linkElement) => {
             linkElement.onclick = () => {
                 mainContent.classList.remove('hidden');
                 sideContent.classList.add('hidden');
@@ -39,6 +40,7 @@ menuButton.addEventListener('click', () => {
             widgetToggle = widget.querySelector('.widget-toggle');
             widgetTitle = widget.querySelector('.widget-title');
             widgetList = widget.querySelector('.widget-list');
+
             widget.classList.remove('collapse');
             widget.classList.add('p-2');
             widgetToggle.classList.add('hidden');
