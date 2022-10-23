@@ -58,8 +58,8 @@ coverage() {
 
 # 更新依赖
 updateDep() {
-	echo "JavaScript: 更新大版本..."
-	npx ncu -u
+	echo "JavaScript: 更新版本..."
+	# npx ncu -u
 	npm update
 	echo "==================================="
 	# echo "Python: 编译包更新工具..."
