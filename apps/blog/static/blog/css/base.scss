@@ -10,6 +10,12 @@
 $post-inline-code-color: #08844F;
 $post-link-color: #5660f1;
 
+
+// NOTE: 解决tailwindcss覆盖daisyUI collapse引发的错误
+.collapse {
+    visibility: inherit !important;
+}
+
 .toc {
 
     ul {
