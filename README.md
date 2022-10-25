@@ -91,9 +91,9 @@ $ docker-compose -f deploy/docker-compose.yml up --build -d
 
 ## 🙈 欢迎支持(~~宗旨是不退款！~~)
 
-|    微信    |    支付宝    |
-| :-------: | :-------: |
-| <img src="https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/Morningstar/static/base/img/微信收款码.png" alt="Wechat" width="200"> | <img src="https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/Morningstar/static/base/img/支付宝收款码.png" alt="Alipay" width="200"> |
+|    微信    |    支付宝    |    小荷包    |
+| :-------: | :-------: | :-------: |
+| <img src="https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/Morningstar/static/base/img/微信收款码.png" alt="Wechat" width="200"> | <img src="https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/Morningstar/static/base/img/支付宝收款码.png" alt="Alipay" width="200"> | <img src="https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/Morningstar/static/base/img/小荷包收款码.png" alt="PiggyBank" width="200"> |
 
 ## 📝 许可证
 
