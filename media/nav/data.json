@@ -55,12 +55,6 @@
 					"desc": "专注于WEB全栈,复杂网络的个人博客"
 				},
 				{
-					"name": "科学上网",
-					"url": "/v2ray/",
-					"image": "/media/nav/img/Work/v2ray.png",
-					"desc": "提供私人与Ghelper线路"
-				},
-				{
 					"name": "在线投票",
 					"url": "/poll/",
 					"image": "/media/nav/img/Work/poll.png",
