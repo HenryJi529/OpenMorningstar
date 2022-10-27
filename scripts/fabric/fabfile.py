@@ -90,11 +90,11 @@ def upgrade(c):
         
         def update_file_with_secret():
             c.run(
-                "source ~/.zshrc && echo \"\nenvironment=DJANGO_SECRET_KEY='${DJANGO_SECRET_KEY}',EMAIL_HOST_PASSWORD='${EMAIL_HOST_PASSWORD}',TENCENT_SMS_APP_KEY='${TENCENT_SMS_APP_KEY}',RECAPTCHA_PUBLIC_KEY='${RECAPTCHA_PUBLIC_KEY}',RECAPTCHA_PRIVATE_KEY='${RECAPTCHA_PRIVATE_KEY}',MYSQL_ROOT_PASSWORD='${MYSQL_ROOT_PASSWORD}',REDIS_PASSWORD='${REDIS_PASSWORD}'\" >> ~/morningstar/deploy/django/supervise.conf")
+                "source ~/.zshrc && echo \"\nenvironment=DJANGO_SECRET_KEY='${DJANGO_SECRET_KEY}',EMAIL_HOST_PASSWORD='${EMAIL_HOST_PASSWORD}',TENCENT_SMS_APP_KEY='${TENCENT_SMS_APP_KEY}',RECAPTCHA_PUBLIC_KEY='${RECAPTCHA_PUBLIC_KEY}',RECAPTCHA_PRIVATE_KEY='${RECAPTCHA_PRIVATE_KEY}',MYSQL_ROOT_PASSWORD='${MYSQL_ROOT_PASSWORD}',REDIS_PASSWORD='${REDIS_PASSWORD}'\" >> ~/morningstar/scripts/deploy/django/supervise.conf")
             c.run(
-                'source ~/.zshrc && sed -i "s/MORNINGSTAR_USERNAME/${MORNINGSTAR_USERNAME}/" ~/morningstar/deploy/_config/frp/frps.ini')
+                'source ~/.zshrc && sed -i "s/MORNINGSTAR_USERNAME/${MORNINGSTAR_USERNAME}/" ~/morningstar/scripts/scripts/deploy/_config/frp/frps.ini')
             c.run(
-                'source ~/.zshrc && sed -i "s/MORNINGSTAR_PASSWORD/${MORNINGSTAR_PASSWORD}/" ~/morningstar/deploy/_config/frp/frps.ini')
+                'source ~/.zshrc && sed -i "s/MORNINGSTAR_PASSWORD/${MORNINGSTAR_PASSWORD}/" ~/morningstar/scripts/scripts/deploy/_config/frp/frps.ini')
         better_print("添加密钥...")
         update_file_with_secret()
 
@@ -106,10 +106,10 @@ def upgrade(c):
         c.run('docker system prune -af')
 
         better_print("部署容器...")
-        c.run('source ~/.zshrc && cd ~/morningstar/deploy; docker-compose build && docker-compose up -d')
+        c.run('source ~/.zshrc && cd ~/morningstar/scripts/deploy; docker-compose build && docker-compose up -d')
         
         better_print("配置frps...")
-        c.run("docker cp ~/morningstar/deploy/_config/frp/frps.ini morningstar_frps:/etc/frp/frps.ini && docker restart morningstar_frps")
+        c.run("docker cp ~/morningstar/scripts/deploy/_config/frp/frps.ini morningstar_frps:/etc/frp/frps.ini && docker restart morningstar_frps")
 
         better_print("更新并迁移JavaScript依赖...")
         c.run('docker exec -it morningstar_django npm install --production')
@@ -216,9 +216,9 @@ def updateLedger(c):
     with c.cd(home_path):
         better_print("传递数据至文件夹...")
         c.run('sshpass -p ' + DEV_PASSWORD +
-            ' scp -P 1022 henry529@server.morningstar369.com:~/Projects/OpenMorningstar/deploy/beancount/moneybook.bean  ~/morningstar/deploy/beancount/')
+            ' scp -P 1022 henry529@server.morningstar369.com:~/Projects/OpenMorningstar/scripts/deploy/beancount/moneybook.bean  ~/morningstar/scripts/deploy/beancount/')
         better_print("传递数据至数据卷...")
-        c.run('docker cp ~/morningstar/deploy/beancount/moneybook.bean morningstar_beancount:/root/beancount')
+        c.run('docker cp ~/morningstar/scripts/deploy/beancount/moneybook.bean morningstar_beancount:/root/beancount')
 
     print("Done!!")
 

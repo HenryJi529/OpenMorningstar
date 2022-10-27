@@ -4,7 +4,7 @@
 		<img src="https://github.com/HenryJi529/OpenMorningstar/actions/workflows/django.yml/badge.svg"
 			alt="Django CI" />
 	</a>
-	<a href="https://github.com/HenryJi529/OpenMorningstar/blob/main/deploy/docker-compose.yml">
+	<a href="https://github.com/HenryJi529/OpenMorningstar/blob/main/scripts/deploy/docker-compose.yml">
 		<img src="https://img.shields.io/badge/docker-passing-brightgreen"
 			alt="Docker Passing" />
 	</a>
@@ -82,7 +82,7 @@ $ python manage.py runserver 0:8000
 ### 远程部署
 
 ```bash
-$ docker-compose -f deploy/docker-compose.yml up --build -d
+$ docker-compose -f scripts/deploy/docker-compose.yml up --build -d
 ```
 
 ## 🤝 维护人员

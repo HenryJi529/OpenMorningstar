@@ -52,14 +52,14 @@ config_remote_connect() {
 
 config_shell() {
   config_bash() {
-    sh -c "$(wget -O- https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/deploy/_install/oh-my-bash.sh)"
+    sh -c "$(wget -O- https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/scripts/deploy/_install/oh-my-bash.sh)"
     cat ~/.bashrc ~/.bashrc.pre-oh-my-bash >~/.bashrc.new
     rm ~/.bashrc ~/.bashrc.pre-oh-my-bash
     mv ~/.bashrc.new ~/.bashrc
   }
   config_zsh() {
     sudo apt-get update && sudo apt-get install -y zsh
-    sh -c "$(wget -O - https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/deploy/_install/oh-my-zsh.sh)"
+    sh -c "$(wget -O - https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/scripts/deploy/_install/oh-my-zsh.sh)"
     sudo sed -i "s/ZSH_THEME="robbyrussell"/ZSH_THEME="josh"/g" ~/.zshrc
     sudo sed -i "s/\/home\/$GCLOUD_USERNAME:\/bin\/bash/\/home\/$GCLOUD_USERNAME:\/bin\/zsh/g" /etc/passwd
   }
@@ -236,7 +236,7 @@ restore_docker_volumes() {
 
 update_myself() {
   rm ~/deploy.sh
-  wget https://raw.githubusercontent.com/HenryJi529/OpenMorningstar/main/deploy/deploy.sh -P ~/
+  wget https://raw.githubusercontent.com/HenryJi529/OpenMorningstar/main/scripts/deploy/deploy.sh -P ~/
   chmod +x ~/deploy.sh
 }
 
