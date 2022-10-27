@@ -1,10 +1,10 @@
-# updated: 2022.10.22
+# updated: 2022.10.28
 qcloudsms-py: 0.1.4 # 已停止维护, 需适配py3.9 https://github.com/qcloudsms/qcloudsms_py
 django-crontab: 0.7.1 # 已停止维护, https://github.com/kraiz/django-crontab
 mysql-connector-python: 8.0.29 # 被依赖特定的版本, mysql API
 #----------------------------
 beautifulsoup4: 4.11.1 # 处理HTML
-colorama: 0.4.5 # 彩色print
+colorama: 0.4.6 # 彩色print
 coverage: 6.5.0 # 计算覆盖率
 Django: 4.1.2 # 基础框架
 djangorestframework: 3.14.0 # REST framework for Django
@@ -26,7 +26,7 @@ fake-useragent: 0.1.11 # 用户代理模拟
 fontawesomefree: 6.2.0 # fontawesome free字体管理
 gunicorn: 20.1.0 # 动态web服务器
 igraph: 0.10.2 # 图和网络分析工具
-ipykernel: 6.16.1 # python 笔记本
+ipykernel: 6.16.2 # python 笔记本
 ipython: 8.5.0 # 交互式python
 jieba: 0.42.1 # 中文分词
 lxml: 4.9.1 # 用作bs4的解析器
@@ -42,13 +42,13 @@ pip: 22.3 # 包管理工具
 pipdeptree: 2.3.1 # 获取python依赖关系
 pip-review: 1.2.0 # 升级第三方包
 pydub: 0.25.1 # 音频处理库
-pymdown-extensions: 9.6 # 实用的Python-Markdown扩展
+pymdown-extensions: 9.7 # 实用的Python-Markdown扩展
 python-dotenv: 0.21.0 # 环境变量获取
 qrcode: 7.3.1 # 二维码
 readtime: 2.0.0 # 阅读时间计算
 redis: 4.3.4 # redisAPI
 requests: 2.28.1 # web请求
-scipy: 1.9.2 # 科学计算
+scipy: 1.9.3 # 科学计算
 sh: 1.14.3 # 执行shell命令
 sqlite3-to-mysql: 1.4.16 # sqlite迁移到mysql
 torch: 1.12.1 # 深度学习框架

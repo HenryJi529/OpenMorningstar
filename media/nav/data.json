@@ -50,15 +50,9 @@
 				},
 				{
 					"name": "个人博客",
-					"url": "/blog/",
+					"url": "/",
 					"image": "/media/nav/img/Work/blog.png",
 					"desc": "专注于WEB全栈,复杂网络的个人博客"
-				},
-				{
-					"name": "科学上网",
-					"url": "/v2ray/",
-					"image": "/media/nav/img/Work/v2ray.png",
-					"desc": "提供私人与Ghelper线路"
 				},
 				{
 					"name": "在线投票",
@@ -100,7 +94,7 @@
 				},
 				{
 					"name": "赠金余额",
-					"url": "https://console.cloud.google.com/billing/01CCBD-0C5E72-E23C90?project=crafty-nova-249804&supportedpurview=project",
+					"url": "https://console.cloud.google.com/billing/linkedaccount?project=morningstar-366900",
 					"image": "/media/nav/img/Admin/赠金余额.png",
 					"desc": "谷歌云结算账号管理"
 				},

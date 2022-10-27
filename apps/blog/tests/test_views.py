@@ -17,7 +17,7 @@ class BlogDataTestCase(TestCase):
         # User
         self.user = User.objects.create_superuser(
             username='admin',
-            email='admin@morningstar369.com',
+            email='admin@morningstar.com',
             password='admin',
         )
         # 分类

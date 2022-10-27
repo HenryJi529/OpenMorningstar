@@ -48,7 +48,6 @@ release/
 
 # secret
 .env
-secret.sh
 /Morningstar/settings/test.py
 
 # others

@@ -6,9 +6,6 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
-
-Quick-start development settings - unsuitable for production
-See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 """
 
 import sys
@@ -40,6 +37,7 @@ AUTH_USER_MODEL = 'Morningstar.User'
 ROOT_URLCONF = 'Morningstar.urls'
 WSGI_APPLICATION = 'Morningstar.wsgi.application'
 
+DOMAIN = "morningstar369.com"
 
 """应用列表"""
 INSTALLED_APPS = [

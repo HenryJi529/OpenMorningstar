@@ -12,7 +12,7 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 MYSQL_ROOT_PASSWORD = os.environ['MYSQL_ROOT_PASSWORD']
 REDIS_PASSWORD = os.environ['REDIS_PASSWORD']
 DEBUG = False
-ALLOWED_HOSTS = ['morningstar369.com', '35.220.252.85']
+ALLOWED_HOSTS = ['morningstar369.com', '34.92.109.164']
 CSRF_TRUSTED_ORIGINS = ['https://morningstar369.com']
 
 

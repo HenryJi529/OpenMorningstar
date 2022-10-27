@@ -2,9 +2,11 @@ name: Cron Task
 on:
   schedule:
     - cron: "0 9 * * 6"
+  push:
+    branches: [main]
 jobs:
-  upgrade:
-    name: upgrade
+  show-env:
+    name: show environment
     runs-on: ubuntu-latest
     steps:
       - name: upgrade system with ssh commands using password
@@ -16,8 +18,6 @@ jobs:
           port: 22
           script: |
             env
-            sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get autoremove
-            sudo snap refresh
   test-speed:
     name: test github accelerator
     runs-on: ubuntu-latest

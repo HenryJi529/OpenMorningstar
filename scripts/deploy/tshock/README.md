@@ -2,9 +2,6 @@
 
 https://github.com/Pryaxis/TShock/releases
 
-**我的服务器:**
-server.morningstar369.com:7777
-
 **教程:**
 1. http://www.kuaihou.com/gl/16589.html
 2. https://www.bbstr.net/t/tshock.386/

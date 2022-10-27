@@ -30,7 +30,7 @@ RUN ln -s /usr/bin/python3 /usr/bin/python
 USER ubuntu
 
 # ZSH
-RUN sh -c "$(wget -O - https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/deploy/_install/oh-my-zsh.sh)"  && \
+RUN sh -c "$(wget -O - https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/scripts/deploy/_install/oh-my-zsh.sh)"  && \
 	sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="fino-time"/g' /home/ubuntu/.zshrc
 
 # Git

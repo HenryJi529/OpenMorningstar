@@ -6,7 +6,7 @@ from Morningstar.models import User
 
 class ViewTestCase(TestCase):
     def setUp(self):
-        self.superuser = User.objects.create_superuser(username='admin', email='jeep.jipu@gmail.com', password='admin')
+        self.superuser = User.objects.create_superuser(username='admin', email='admin@morningstar.com', password='admin')
         self.client = Client()
 
     def test_index_normal(self):

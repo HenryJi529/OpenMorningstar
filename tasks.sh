@@ -1,10 +1,14 @@
-DOMAIN="morningstar369.com"
+# 加载环境变量
+source .env
+
 PIP=$(pwd)/VENV/bin/pip
 PIPDEPTREE=$(pwd)/VENV/bin/pipdeptree
 
 runCommand() {
-	fab -H jeep_jipu@server.${DOMAIN} -r scripts/fabric -p $1
+	fab -H $GCLOUD_USERNAME@server.${DOMAIN} -r scripts/deploy/_fabric -p $1
 }
+
+echo $GCLOUD_USERNAME
 
 # 简单运行
 serve() {
@@ -74,7 +78,7 @@ updateDep() {
 	echo ""
 	echo "==================================="
 	echo "Python: 保存依赖配置..."
-	${PIP} freeze >requirements.txt && ${PIP} freeze >deploy/django/requirements.txt
+	${PIP} freeze >requirements.txt && ${PIP} freeze >scripts/deploy/django/requirements.txt
 	${PIPDEPTREE} -fl >pipdeptree.txt
 	echo "DONE!!!"
 }
@@ -124,7 +128,7 @@ publicPackage() {
 	echo ""
 	echo "==================================="
 	echo "更新开发环境下的容器..."
-	docker compose -f deploy/example_dev.yml up --build -d
+	docker compose -f scripts/deploy/example_dev.yml up --build -d
 	docker push henry529/dev
 	docker tag henry529/dev ghcr.io/henryji529/morningstar-dev && docker push ghcr.io/henryji529/morningstar-dev
 }

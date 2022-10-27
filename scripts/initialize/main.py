@@ -55,7 +55,7 @@ def clean_database():
 
 def init_user():
     fake = faker.Faker()
-    superuser = User.objects.create_superuser(username='admin', email='jeep.jipu@gmail.com', phone='19850052801', password='admin')
+    superuser = User.objects.create_superuser(username='admin', email='admin@morningstar.com', phone='19850000001', password='admin')
     # 创建邮箱账户
     for _ in range(10):
         try:

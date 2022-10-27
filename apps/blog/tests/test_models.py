@@ -11,7 +11,7 @@ class PostModelTestCase(TestCase):
     def setUp(self):
         # 断开 haystack 的 signal，测试生成的文章无需生成索引
         apps.get_app_config('haystack').signal_processor.teardown()
-        user = User.objects.create_superuser(username='admin', email='admin@hellogithub.com', password='admin')
+        user = User.objects.create_superuser(username='admin', email='admin@morningstar.com', password='admin')
         cate = Category.objects.create(name='测试')
         self.post = Post.objects.create(title='测试标题', body='测试内容', category=cate)
 

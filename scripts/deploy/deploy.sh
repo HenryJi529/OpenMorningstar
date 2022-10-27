@@ -1,5 +1,5 @@
 #!/bin/bash
-source ~/secret.sh
+source .env
 
 IGNORE="echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections && "
 DEBIAN_FRONTEND=noninteractive
@@ -9,8 +9,8 @@ function echo_important {
 }
 
 change_password() {
-  echo "root:$GCLOUD_ROOT_PASSWORD" | sudo chpasswd
-  echo "$GCLOUD_USERNAME:$GCLOUD_PASSWORD" | sudo chpasswd
+  echo_important "root:$GCLOUD_ROOT_PASSWORD" | sudo chpasswd
+  echo_important "$GCLOUD_USERNAME:$GCLOUD_PASSWORD" | sudo chpasswd
 }
 
 change_cn_source() {
@@ -38,7 +38,7 @@ config_remote_connect() {
   config_ssh() {
     sudo apt install -y ssh
     sudo sed -i "s/PasswordAuthentication no/PasswordAuthentication yes/g" /etc/ssh/sshd_config
-    sudo sed -i "s/#PermitRootLogin prohibit-password/PermitRootLogin yes/g" /etc/ssh/sshd_config
+    # sudo sed -i "s/#PermitRootLogin prohibit-password/PermitRootLogin yes/g" /etc/ssh/sshd_config
     sudo systemctl restart ssh
     sudo apt install -y sshpass
   }
@@ -52,14 +52,14 @@ config_remote_connect() {
 
 config_shell() {
   config_bash() {
-    sh -c "$(wget -O- https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/deploy/_install/oh-my-bash.sh)"
+    sh -c "$(wget -O- https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/scripts/deploy/_install/oh-my-bash.sh)"
     cat ~/.bashrc ~/.bashrc.pre-oh-my-bash >~/.bashrc.new
     rm ~/.bashrc ~/.bashrc.pre-oh-my-bash
     mv ~/.bashrc.new ~/.bashrc
   }
   config_zsh() {
     sudo apt-get update && sudo apt-get install -y zsh
-    sh -c "$(wget -O - https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/deploy/_install/oh-my-zsh.sh)"
+    sh -c "$(wget -O - https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/scripts/deploy/_install/oh-my-zsh.sh)"
     sudo sed -i "s/ZSH_THEME="robbyrussell"/ZSH_THEME="josh"/g" ~/.zshrc
     sudo sed -i "s/\/home\/$GCLOUD_USERNAME:\/bin\/bash/\/home\/$GCLOUD_USERNAME:\/bin\/zsh/g" /etc/passwd
   }
@@ -87,7 +87,7 @@ alias certbot_renew='docker exec morningstar_nginx certbot renew'
 config_git() {
   sudo apt-get install -y git curl
   # config alias
-  git config --global user.name ${GIT_USER}
+  git config --global user.name "Henry Ji"
   git config --global user.email ${EMAIL}
   git config --global alias.st status
   git config --global alias.co checkout
@@ -107,6 +107,8 @@ config_git() {
   git config --global color.ui true
   # config pull
   git config --global pull.rebase false
+  # config init
+  git config --global init.defaultBranch main
   # install git lfs
   curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
   sudo apt-get install -y git-lfs
@@ -120,10 +122,10 @@ config_vim() {
   ./install.sh <<!
 3
 !
+  # TODO: 实现vimplus自动化 -- 需要PlugInstall
   cd ~/.vim/plugged/YouCompleteMe
-  ./install.py
+  /usr/bin/python3 ./install.py
   cd ~
-  cd .vim/plugged/YouCompleteMe && ./install.py && cd ~
 }
 
 config_python() {
@@ -156,7 +158,7 @@ config_node() {
   echo 'export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 ' >>~/.zshrc
-  nvm install node # 当前安装v17.0.1
+  # nvm install node # NOTE: 当前安装v19.0.0
 }
 
 install_tiny_tool() {
@@ -214,7 +216,7 @@ cert: false
 backup_docker_volumes() {
   # 全面备份
   # docker run --rm -v some_volume:/volume -v ~/backup/docker_volume:/backup alpine sh -c "tar -C /volume -cvzf /backup/${volume_name}.tar.gz ./"
-  sudo rm /home/jeep_jipu/backup/docker_volume/*
+  sudo rm /home/$GCLOUD_USERNAME/backup/docker_volume/*
   docker_volume_list_=($(docker volume ls | awk '{print $2}' | tr '\n' ' '))
   docker_volume_list=${docker_volume_list_[@]:1:${#docker_volume_list_[@]}}
   for volume in $(echo ${docker_volume_list}); do
@@ -236,7 +238,7 @@ restore_docker_volumes() {
 
 update_myself() {
   rm ~/deploy.sh
-  wget https://raw.githubusercontent.com/HenryJi529/OpenMorningstar/main/deploy/deploy.sh -P ~/
+  wget https://raw.githubusercontent.com/HenryJi529/OpenMorningstar/main/scripts/deploy/deploy.sh -P ~/
   chmod +x ~/deploy.sh
 }
 
@@ -247,16 +249,12 @@ full_process() {
     read -s -n1 -p "按任意键继续..."
     echo ""
   }
-  print_step "修改密码..."
-  change_password
   print_step "配置远程连接..."
   config_remote_connect
   print_step "配置shell..."
   config_shell
   print_step "配置Git..."
   config_git
-  print_step "配置VIM..."
-  config_vim
   print_step "配置Python..."
   config_python
   print_step "配置Sqlite..."
@@ -271,6 +269,8 @@ full_process() {
   install_tiny_tool
   print_step "安装VScode..."
   install_vscode
+  print_step "配置VIM..."
+  config_vim
 }
 
 main() {

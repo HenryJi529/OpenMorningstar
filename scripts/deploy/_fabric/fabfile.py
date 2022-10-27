@@ -8,6 +8,12 @@ import colorama
 # NOTE: 因为.env的路径问题，所以本脚本只能通过task.sh在根目录执行
 
 
+env_path = os.getcwd() + "/.env"
+load_dotenv(dotenv_path=env_path, verbose=True)
+DEV_PASSWORD = os.getenv("DEV_PASSWORD")
+GCLOUD_USERNAME = os.getenv("GCLOUD_USERNAME")
+
+
 def runcmd1(command):
     ret = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding="utf-8", timeout=1, universal_newlines=True)
     if ret.returncode == 0:
@@ -28,11 +34,6 @@ def runcmd2(command):
 def better_print(var):
     formatted_output = colorama.Fore.YELLOW + colorama.Style.BRIGHT + str(var) + colorama.Style.RESET_ALL
     print(formatted_output)
-
-
-env_path = os.getcwd() + "/.env"
-load_dotenv(dotenv_path=env_path, verbose=True)
-DEV_PASSWORD = os.getenv("DEV_PASSWORD")
 
 
 @task()
@@ -90,11 +91,11 @@ def upgrade(c):
         
         def update_file_with_secret():
             c.run(
-                "source ~/.zshrc && echo \"\nenvironment=DJANGO_SECRET_KEY='${DJANGO_SECRET_KEY}',EMAIL_HOST_PASSWORD='${EMAIL_HOST_PASSWORD}',TENCENT_SMS_APP_KEY='${TENCENT_SMS_APP_KEY}',RECAPTCHA_PUBLIC_KEY='${RECAPTCHA_PUBLIC_KEY}',RECAPTCHA_PRIVATE_KEY='${RECAPTCHA_PRIVATE_KEY}',MYSQL_ROOT_PASSWORD='${MYSQL_ROOT_PASSWORD}',REDIS_PASSWORD='${REDIS_PASSWORD}'\" >> ~/morningstar/deploy/django/supervise.conf")
+                "source ~/.zshrc && echo \"\nenvironment=DJANGO_SECRET_KEY='${DJANGO_SECRET_KEY}',EMAIL_HOST_PASSWORD='${EMAIL_HOST_PASSWORD}',TENCENT_SMS_APP_KEY='${TENCENT_SMS_APP_KEY}',RECAPTCHA_PUBLIC_KEY='${RECAPTCHA_PUBLIC_KEY}',RECAPTCHA_PRIVATE_KEY='${RECAPTCHA_PRIVATE_KEY}',MYSQL_ROOT_PASSWORD='${MYSQL_ROOT_PASSWORD}',REDIS_PASSWORD='${REDIS_PASSWORD}'\" >> ~/morningstar/scripts/deploy/django/supervise.conf")
             c.run(
-                'source ~/.zshrc && sed -i "s/MORNINGSTAR_USERNAME/${MORNINGSTAR_USERNAME}/" ~/morningstar/deploy/_config/frp/frps.ini')
+                'source ~/.zshrc && sed -i "s/MORNINGSTAR_USERNAME/${MORNINGSTAR_USERNAME}/" ~/morningstar/scripts/deploy/_config/frp/frps.ini')
             c.run(
-                'source ~/.zshrc && sed -i "s/MORNINGSTAR_PASSWORD/${MORNINGSTAR_PASSWORD}/" ~/morningstar/deploy/_config/frp/frps.ini')
+                'source ~/.zshrc && sed -i "s/MORNINGSTAR_PASSWORD/${MORNINGSTAR_PASSWORD}/" ~/morningstar/scripts/deploy/_config/frp/frps.ini')
         better_print("添加密钥...")
         update_file_with_secret()
 
@@ -106,10 +107,10 @@ def upgrade(c):
         c.run('docker system prune -af')
 
         better_print("部署容器...")
-        c.run('source ~/.zshrc && cd ~/morningstar/deploy; docker-compose build && docker-compose up -d')
+        c.run('source ~/.zshrc && cd ~/morningstar/scripts/deploy; docker-compose build && docker-compose up -d')
         
         better_print("配置frps...")
-        c.run("docker cp ~/morningstar/deploy/_config/frp/frps.ini morningstar_frps:/etc/frp/frps.ini && docker restart morningstar_frps")
+        c.run("docker cp ~/morningstar/scripts/deploy/_config/frp/frps.ini morningstar_frps:/etc/frp/frps.ini && docker restart morningstar_frps")
 
         better_print("更新并迁移JavaScript依赖...")
         c.run('docker exec -it morningstar_django npm install --production')
@@ -127,7 +128,7 @@ def upgrade(c):
 
         better_print("配置HTTPS...")
         c.run('docker exec morningstar_nginx bash /start.sh')
-        # c.run('docker exec -it morningstar_nginx certbot --nginx -n --domains morningstar369.com')
+        # c.run('docker exec -it morningstar_nginx certbot --nginx -n --domains xxx.com')
         c.run('docker exec -it morningstar_nginx certbot --nginx')
 
     print("Done!!")
@@ -138,7 +139,7 @@ def backup(c):
     project_root_path = '~/morningstar'
     with c.cd(project_root_path):
         try:
-            c.run('mkdir /home/jeep_jipu/morningstar/database/')
+            c.run(f'mkdir /home/{GCLOUD_USERNAME}/morningstar/database/')
         except:
             pass
         c.run('docker exec -it morningstar_django bash -c "python3 manage.py dumpdata --settings=Morningstar.settings.production > database/all.json"')
@@ -152,7 +153,7 @@ def restore(c):
     project_root_path = '~/morningstar'
     with c.cd(project_root_path):
         try:
-            c.run('mkdir /home/jeep_jipu/morningstar/database/')
+            c.run(f'mkdir /home/{GCLOUD_USERNAME}/morningstar/database/')
         except:
             pass
         c.run('sshpass -p ' + DEV_PASSWORD +
@@ -182,7 +183,7 @@ def backupDockerVolume(c):
 def restoreDockerVolume(c):
     home_path = "~/"
     with c.cd(home_path):
-        c.run('ls /home/jeep_jipu/backup/docker_volume/')
+        c.run(f'ls /home/{GCLOUD_USERNAME}/backup/docker_volume/')
         volumeName = input("请输入卷名: ")
         print(f"volumeName: {volumeName}")
         cmd = f'docker run --rm -v deploy_{volumeName}:/volume -v ~/backup/docker_volume:/backup alpine sh -c "rm -rf /volume/* ; tar -C /volume/ -xzvf /backup/{volumeName}.tar.gz"'
@@ -216,9 +217,9 @@ def updateLedger(c):
     with c.cd(home_path):
         better_print("传递数据至文件夹...")
         c.run('sshpass -p ' + DEV_PASSWORD +
-            ' scp -P 1022 henry529@server.morningstar369.com:~/Projects/OpenMorningstar/deploy/beancount/moneybook.bean  ~/morningstar/deploy/beancount/')
+            ' scp -P 1022 henry529@server.morningstar369.com:~/Projects/OpenMorningstar/scripts/deploy/beancount/moneybook.bean  ~/morningstar/scripts/deploy/beancount/')
         better_print("传递数据至数据卷...")
-        c.run('docker cp ~/morningstar/deploy/beancount/moneybook.bean morningstar_beancount:/root/beancount')
+        c.run('docker cp ~/morningstar/scripts/deploy/beancount/moneybook.bean morningstar_beancount:/root/beancount')
 
     print("Done!!")
 

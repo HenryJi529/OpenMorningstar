@@ -1,5 +1,6 @@
-# 空闲端口: 6002、6005、6006
-# 占用端口: 6379、3307、7777、5299、20、21、21100-21110、80、443、6000、6001、6002、6003、6004、6007、6008、6009、6010
+# 空闲端口: 6005、6006
+# 特殊端口: 6379、3307、5299、20、21、21100-21110、80、443、
+# 连续端口: 6000、6001、6002、6003、6004、6007、6008、6009、6010
 version: "3.6"
 volumes:
   morningstar_django_static: null
@@ -40,7 +41,7 @@ services:
     volumes:
       - morningstar_django_static:/app/static
       - morningstar_django_media:/app/media
-      - ../:/app
+      - ../../:/app
     environment:
       - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
       - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}
@@ -112,7 +113,7 @@ services:
     volumes:
       - morningstar_tshock_data:/root/.local/share/Terraria
     ports:
-      - "7777:7777"
+      - "6002:7777"
     command: bash
 
   frps:
@@ -133,7 +134,7 @@ services:
       FTP_PASS: 1234asdw
       PASV_MIN_PORT: 21100
       PASV_MAX_PORT: 21110
-      PASV_ADDRESS: 35.220.252.85
+      PASV_ADDRESS: 34.92.109.164
     tty: true
     restart: always
     volumes:
@@ -182,6 +183,7 @@ services:
       - USER_UID=1000
       - USER_GID=1000
       - DOMAIN="gitea.morningstar369.com"
+      - ROOT_URL="https://gitea.morningstar369.com/"
       - DB_TYPE="sqlite3"
       - APP_NAME="Morningstar Gitea"
       - DB_NAME="gitea"
