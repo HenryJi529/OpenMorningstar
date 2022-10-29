@@ -113,6 +113,10 @@ archiveMain() {
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+syncToLocalDockerVolume() {
+	runCommand syncToLocalDockerVolume
+}
+
 backupDockerVolume() {
 	runCommand backupDockerVolume
 }
@@ -162,6 +166,7 @@ c. publicPackage();
 d. publicVercel();
 e. publicLedger();
 f. check();
+g. syncToLocalDockerVolume();
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 0. serve();
 1. dev();
@@ -174,7 +179,7 @@ f. check();
 8. restoreProd();
 9. archiveMain();
 "
-read -p "输入序号(a-f|0-9): " order
+read -p "输入序号(a-g|0-9): " order
 
 start_time=$(date +%s)
 
@@ -188,6 +193,7 @@ c) publicPackage ;;
 d) publicVercel ;;
 e) publicLedger ;;
 f) check ;;
+g) syncToLocalDockerVolume ;;
 # ==========================
 0) serve ;;
 1) dev ;;
