@@ -1,6 +1,6 @@
 setInterval(() => {
     currentTime = new Date();
-    initialTime = new Date("9/1/2022 7:30:00");
+    initialTime = new Date("10/15/2022 7:30:00");
     interval = currentTime.getTime() - initialTime.getTime();
 
     dayInMillisecond = 1000 * 60 * 60 * 24;
