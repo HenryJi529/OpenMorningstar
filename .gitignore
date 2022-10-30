@@ -12,6 +12,7 @@
 VENV/
 __pycache__/
 environment.bak
+pipdeptree.txt
 
 # Sass
 *.css.map
