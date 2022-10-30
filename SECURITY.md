@@ -6,8 +6,8 @@ We release patches for security vulnerabilities.
 
 | Version   | Supported          |
 | --------  | ------------------ |
-| 0.1.x     | ✅                 |
-| < 0.1.0   | ❌                 |
+| 0.2.x     | ✅                 |
+| < 0.2.0   | ❌                 |
 
 ## Reporting a Vulnerability
 
