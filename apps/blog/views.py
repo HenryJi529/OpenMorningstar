@@ -18,7 +18,7 @@ from haystack import views as haystack_views
 
 from Morningstar.views.base import handle_login, handle_register
 from Morningstar.views.base import fix_fetched_post
-from Morningstar.settings.common import EMAIL_HOST_USER
+from Morningstar.settings.common import EMAIL_HOST_USER, DEFAULT_GUEST_EMAIL
 from Morningstar.forms import LoginForm, RegisterForm, InfoForm, UpdateEmailForm, UpdatePhoneForm, UpdatePasswordForm
 from Morningstar.lib.print import better_print
 from Morningstar.lib.mail import send_mail_from_host
@@ -111,8 +111,7 @@ def contact(request):
             cd = form.cleaned_data
             subject = cd['subject']
             message = request.POST['message']
-            email = cd.get('email') if len(
-                cd.get('email')) > 0 else 'guest@morningstar369.com'
+            email = cd.get('email') if len(cd.get('email')) > 0 else DEFAULT_GUEST_EMAIL
             from_email = email.replace("@", "*") + "<" + EMAIL_HOST_USER + ">"
             send_mail(
                 subject,
@@ -121,7 +120,11 @@ def contact(request):
                 ['jeep.jipu@gmail.com'],
             )
             return render(request, 'blog/contact_thanks.html')
-    return render(request, 'blog/contact.html')
+        else:
+            messages.add_message(request, messages.ERROR, form.errors['message'][0])
+            return render(request, 'blog/contact.html')
+    else:
+        return render(request, 'blog/contact.html')
 
 
 @require_POST

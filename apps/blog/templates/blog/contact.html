@@ -9,7 +9,7 @@
 			<form id="contactForm" action="{% url 'blog:contact' %}" method="POST">
 				{% csrf_token %}
 				<div>
-					<input type="email" placeholder="邮箱" class="input input-ghost w-full" name="email" required />
+					<input type="email" placeholder="邮箱" class="input input-ghost w-full" name="email" />
 					<input type="text" placeholder="主题" class="input input-ghost w-full" name="subject" required />
 					<textarea class="textarea w-full" rows="7" name="message" placeholder="你的网站太棒了呢(字数太少站长收不到哟～)"
 						required></textarea>

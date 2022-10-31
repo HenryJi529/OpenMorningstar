@@ -27,5 +27,5 @@ class ContactForm(forms.Form):
     def clean_message(self):
         message = self.cleaned_data['message']
         if len(list(jieba.cut(message))) < 4:
-            raise forms.ValidationError("Not enough words!")
+            raise forms.ValidationError("内容不够长哎!")
         return message

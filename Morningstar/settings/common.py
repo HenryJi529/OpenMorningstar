@@ -186,13 +186,12 @@ except KeyError:
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'morningstar1.gcp@gmail.com'
+DEFAULT_GUEST_EMAIL = 'guest@morningstar369.com'
 SERVER_EMAIL = 'morningstar1.gcp@gmail.com'
 # 500
 ADMINS = [('Henry', 'jeep.jipu@gmail.com')]
-# ADMINS = [('Ai', 'morningstar1.gcp@gmail.com')]
 # 404
 MANAGERS = [('Henry', 'jeep.jipu@gmail.com')]
-# MANAGERS = [('Ai', 'morningstar1.gcp@gmail.com')]
 
 EMAIL_TEMPLATE_TEXT = {
     'login':  {
