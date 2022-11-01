@@ -390,28 +390,28 @@
 							<input type="search" placeholder="搜索" class="input input-bordered" name="q" required>
 						</div>
 					</form>
-					<div class="flex justify-center p-2" id="toggleThemeButton">
+					<div class="flex justify-center p-2" id="toggleThemeButton" title="模式">
 						<i class="fa-solid text-2xl" id="themeIcon"></i>
 					</div>
-					<div class="flex justify-center p-2" id="loverButton">
+					<div class="flex justify-center p-2" id="loverButton" title="爱人">
 						<a href="{% url 'lover:index' %}" target="_blank" class="text-2xl fa-solid fa-heart"></a>
 					</div>
-					<div class="flex justify-center p-2" id="bookButton">
+					<div class="flex justify-center p-2" id="bookButton" title="书单">
 						<a href="{% url 'book:index' %}" target="_blank" class="text-2xl fa-solid fa-book-atlas"></a>
 					</div>
-					<div class="flex justify-center p-2" id="githubButton">
+					<div class="flex justify-center p-2" id="githubButton" title="源码">
 						<a href="https://github.com/HenryJi529/OpenMorningstar" target="_blank"
 							class="fa-brands text-2xl fa-github"></a>
 					</div>
-					<div class="flex justify-center p-2" id="serverButton">
+					<div class="flex justify-center p-2" id="serverButton" title="服务">
 						<label for="serverModal" class="modal-button cursor-pointer">
 							<i class="fa-solid text-2xl fa-server"></i>
 						</label>
 					</div>
-					<div class="flex justify-center p-2" id="contactButton">
+					<div class="flex justify-center p-2" id="contactButton" title="联系">
 						<a href="{% url 'blog:contact' %}" class="fa-solid text-2xl fa-paper-plane"></a>
 					</div>
-					<div class="dropdown dropdown-end" id="profileButton">
+					<div class="dropdown dropdown-end" id="profileButton" title="档案">
 						<label tabindex="0" class="btn btn-ghost btn-circle avatar">
 							{% if user.is_authenticated %}
 							<div class="w-10 rounded-full">
