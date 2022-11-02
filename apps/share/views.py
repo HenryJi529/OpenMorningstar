@@ -19,7 +19,7 @@ def index(request):
 def route(request, id):
     try:
         url = Item.objects.get(id=id).url
-        return redirect(url)
+        return render(request, "share/route.html", context={"url": url})
     except Item.DoesNotExist:
         return HttpResponse("此短链接不存在...")
 

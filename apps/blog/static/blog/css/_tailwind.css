@@ -593,7 +593,7 @@ html {
 }
 
 :root {
-  --p: 259 94% 51%;
+  color-scheme: light;
   --pf: 259 94% 41%;
   --sf: 314 100% 38%;
   --af: 174 60% 41%;
@@ -616,6 +616,7 @@ html {
   --border-btn: 1px;
   --tab-border: 1px;
   --tab-radius: 0.5rem;
+  --p: 259 94% 51%;
   --pc: 0 0% 100%;
   --s: 314 100% 47%;
   --sc: 0 0% 100%;
@@ -631,7 +632,7 @@ html {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --p: 262 80% 50%;
+    color-scheme: dark;
     --pf: 262 80% 40%;
     --sf: 316 70% 40%;
     --af: 175 70% 33%;
@@ -653,6 +654,7 @@ html {
     --border-btn: 1px;
     --tab-border: 1px;
     --tab-radius: 0.5rem;
+    --p: 262 80% 50%;
     --pc: 0 0% 100%;
     --s: 316 70% 50%;
     --sc: 0 0% 100%;
@@ -669,7 +671,7 @@ html {
 }
 
 [data-theme=light] {
-  --p: 259 94% 51%;
+  color-scheme: light;
   --pf: 259 94% 41%;
   --sf: 314 100% 38%;
   --af: 174 60% 41%;
@@ -692,6 +694,7 @@ html {
   --border-btn: 1px;
   --tab-border: 1px;
   --tab-radius: 0.5rem;
+  --p: 259 94% 51%;
   --pc: 0 0% 100%;
   --s: 314 100% 47%;
   --sc: 0 0% 100%;
@@ -706,7 +709,7 @@ html {
 }
 
 [data-theme=dark] {
-  --p: 262 80% 50%;
+  color-scheme: dark;
   --pf: 262 80% 40%;
   --sf: 316 70% 40%;
   --af: 175 70% 33%;
@@ -728,6 +731,7 @@ html {
   --border-btn: 1px;
   --tab-border: 1px;
   --tab-radius: 0.5rem;
+  --p: 262 80% 50%;
   --pc: 0 0% 100%;
   --s: 316 70% 50%;
   --sc: 0 0% 100%;
@@ -743,7 +747,7 @@ html {
 }
 
 [data-theme=valentine] {
-  --p: 353 74% 67%;
+  color-scheme: light;
   --pf: 353 74% 54%;
   --sf: 254 86% 61%;
   --af: 181 56% 56%;
@@ -766,6 +770,7 @@ html {
   --border-btn: 1px;
   --tab-border: 1px;
   --tab-radius: 0.5rem;
+  --p: 353 74% 67%;
   --s: 254 86% 77%;
   --a: 181 56% 70%;
   --n: 336 43% 48%;
@@ -1217,6 +1222,12 @@ html {
   transform-origin: left;
 }
 
+.dropdown-bottom .dropdown-content {
+  bottom: auto;
+  top: 100%;
+  transform-origin: top;
+}
+
 .dropdown-top .dropdown-content {
   bottom: 100%;
   top: auto;
@@ -1332,7 +1343,8 @@ html {
 }
 
 .input-group > *,
-  .input-group > .input {
+  .input-group > .input,
+  .input-group > .select {
   border-radius: 0px;
 }
 
@@ -1345,14 +1357,14 @@ html {
   padding-right: 1rem;
 }
 
-.input-group :first-child {
+.input-group > :first-child {
   border-top-left-radius: var(--rounded-btn, 0.5rem);
   border-top-right-radius: 0;
   border-bottom-left-radius: var(--rounded-btn, 0.5rem);
   border-bottom-right-radius: 0;
 }
 
-.input-group :last-child {
+.input-group > :last-child {
   border-top-left-radius: 0;
   border-top-right-radius: var(--rounded-btn, 0.5rem);
   border-bottom-left-radius: 0;
@@ -1576,6 +1588,8 @@ html {
   height: 1.5rem;
   width: 100%;
   cursor: pointer;
+  -moz-appearance: none;
+       appearance: none;
   -webkit-appearance: none;
   --range-shdw: var(--bc);
   overflow: hidden;
@@ -1896,7 +1910,7 @@ html {
 
 .checkbox:checked,
   .checkbox[checked="true"],
-  .checkbox[aria-checked=true] {
+  .checkbox[aria-checked="true"] {
   --tw-bg-opacity: 1;
   background-color: hsl(var(--bc) / var(--tw-bg-opacity));
   background-repeat: no-repeat;
@@ -1934,14 +1948,14 @@ html {
   }
 }
 
-body[dir="rtl"] .checkbox {
+[dir="rtl"] .checkbox {
   --chkbg: var(--bc);
   --chkfg: var(--b1);
 }
 
-body[dir="rtl"] .checkbox:checked,
-    body[dir="rtl"] .checkbox[checked="true"],
-    body[dir="rtl"] .checkbox[aria-checked=true] {
+[dir="rtl"] .checkbox:checked,
+    [dir="rtl"] .checkbox[checked="true"],
+    [dir="rtl"] .checkbox[aria-checked="true"] {
   background-image: linear-gradient(45deg, transparent 65%, hsl(var(--chkbg)) 65.99%), linear-gradient(-45deg, transparent 75%, hsl(var(--chkbg)) 75.99%), linear-gradient(45deg, hsl(var(--chkbg)) 40%, transparent 40.99%), linear-gradient(-45deg, hsl(var(--chkbg)) 30%, hsl(var(--chkfg)) 30.99%, hsl(var(--chkfg)) 40%, transparent 40.99%), linear-gradient(45deg, hsl(var(--chkfg)) 50%, hsl(var(--chkbg)) 50.99%);
 }
 
@@ -2359,6 +2373,7 @@ body[dir="rtl"] .checkbox:checked,
   width: 1.5rem;
   border-style: none;
   border-radius: var(--rounded-box, 1rem);
+  appearance: none;
   -webkit-appearance: none;
   top: 50%;
   color: hsl(var(--range-shdw));
