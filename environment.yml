@@ -1,4 +1,4 @@
-# updated: 2022.11.03
+# updated: 2022.11.04
 qcloudsms-py: 0.1.4 # 已停止维护, 需适配py3.9 https://github.com/qcloudsms/qcloudsms_py
 django-crontab: 0.7.1 # 已停止维护, https://github.com/kraiz/django-crontab
 mysql-connector-python: 8.0.29 # 被依赖特定的版本, mysql API
@@ -34,7 +34,7 @@ matplotlib: 3.6.1 # 绘图库
 Markdown: 3.4.1 # markdown支持
 mysqlclient: 2.1.1 # mysql的pythonAPI
 mysql-to-sqlite3: 1.4.14 # mysql -> sqlite3
-networkx: 2.8.7 # 图和网络分析工具
+networkx: 2.8.8 # 图和网络分析工具
 numpy: 1.23.4 # 矩阵计算
 pandas: 1.5.1 # 数据处理
 Pillow: 9.3.0 # 图像处理
