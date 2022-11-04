@@ -14,7 +14,7 @@ from .models import Photo, Text
 class PhotoAdmin(ImportExportModelAdmin):
     formats = (base_formats.CSV, base_formats.XLS)
     list_display = ['id', 'title', '链接']
-    search_fields = ['foreign_url']
+    search_fields = ['title']
 
     def 链接(self, obj):
         return unquote(obj.foreign_url if obj.foreign_url else obj.image.url)

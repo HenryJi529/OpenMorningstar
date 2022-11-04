@@ -11,7 +11,8 @@ from .models import Post, Category, Tag, Comment
 class PostAdmin(ImportExportModelAdmin):
     list_display = ['title', 'category', 'created', 'updated', 'readtime']
     fields = ['title', 'body', 'category', 'tags', 'readtime']
-    search_fields = ('title', 'category',)
+    search_fields = ['title']
+    list_filter = ['created', 'updated']
 
     def save_model(self, request, obj, form, change):
         try:
