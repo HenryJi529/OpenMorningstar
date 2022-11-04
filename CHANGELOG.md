@@ -1,5 +1,15 @@
 # 更新日志
 
+## v0.2.1:
+
+本次更新如下内容:
+
+1. 更新Readme
+1. 更新依赖(django-jazzmin)
+1. 更新博客UI
+1. 更新SECURITY.md
+1. 忽略pipdeptree.txt
+
 ## v0.2.0:
 
 本次更新如下内容:
