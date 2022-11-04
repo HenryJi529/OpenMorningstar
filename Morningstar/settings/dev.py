@@ -32,11 +32,7 @@ CACHES = {
     }
 }
 
-""" 采用本地的静态文件"""
-STATIC_URL = "/static/"
-
 """ RECAPTCHA-V2"""
-RECAPTCHA_DOMAIN = 'www.recaptcha.net'
 RECAPTCHA_PUBLIC_KEY = '6Le20wwdAAAAAKjy3eAJ8BPLN59KDRrRBeslsqpw'
 RECAPTCHA_PRIVATE_KEY = '6Le20wwdAAAAAIyF33a5fiD-PJ7uioonJQ9ycilI'
 

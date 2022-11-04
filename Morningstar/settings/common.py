@@ -366,12 +366,15 @@ CRONJOBS =  [
     ("0 0 * * *", "Morningstar.cron.test", ">> " + str(BASE_DIR) + "/log/cron.log")
 ]
 
+
+
 """媒体设置"""
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = "/media/"
 
-"""压缩css/js"""
-COMPRESS_ROOT = BASE_DIR / 'static'
+"""静态文件"""
+STATIC_URL = "/static/"
+COMPRESS_ROOT = BASE_DIR / 'static'  # 压缩css/js
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
@@ -385,3 +388,6 @@ CACHE_TIMEOUT = 60*5 if os.environ.get('DJANGO_SETTINGS_MODULE','Morningstar.set
 """Matomo"""
 MATOMO_SITE_ID = 1
 MATOMO_URL = "https://matomo.morningstar369.com/"
+
+""" RECAPTCHA-V2"""
+RECAPTCHA_DOMAIN = 'www.recaptcha.net'

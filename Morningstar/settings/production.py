@@ -53,11 +53,7 @@ CACHES = {
     }
 }
 
-"""静态文件加速"""
-STATIC_URL = '/static/'
-
 """RECAPTCHA-V2"""
-RECAPTCHA_DOMAIN = 'www.recaptcha.net'
 RECAPTCHA_PUBLIC_KEY = os.environ['RECAPTCHA_PUBLIC_KEY']
 RECAPTCHA_PRIVATE_KEY = os.environ['RECAPTCHA_PRIVATE_KEY']
 
