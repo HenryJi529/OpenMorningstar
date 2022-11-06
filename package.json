@@ -27,7 +27,7 @@
     "@tailwindcss/typography": "^0.5.7",
     "browserify": "^17.0.0",
     "concurrently": "^7.5.0",
-    "daisyui": "^2.38.0",
+    "daisyui": "^2.38.1",
     "live-server": "^1.2.2",
     "npm-check-updates": "^16.3.16",
     "sass": "^1.56.0",
