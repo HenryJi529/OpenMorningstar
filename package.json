@@ -24,15 +24,15 @@
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/line-clamp": "^0.4.2",
-    "@tailwindcss/typography": "^0.5.7",
+    "@tailwindcss/typography": "^0.5.8",
     "browserify": "^17.0.0",
     "concurrently": "^7.5.0",
     "daisyui": "^2.38.1",
     "live-server": "^1.2.2",
-    "npm-check-updates": "^16.3.16",
+    "npm-check-updates": "^16.3.18",
     "sass": "^1.56.0",
     "tailwindcss": "~3.2.2",
-    "vercel": "^28.4.14"
+    "vercel": "^28.4.15"
   },
   "dependencies": {
     "canvas-nest.js": "^2.0.4",
