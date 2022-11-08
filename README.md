@@ -104,7 +104,7 @@ This project is [AGPL v3](https://raw.githubusercontent.com/HenryJi529/OpenMorni
 <a href="https://www.freecodecamp.org/">
 	<img width="20%"
 		src="https://cdn.jsdelivr.net/gh/fizzed/font-mfizz@master/src/svg/freecodecamp.svg"
-		alt="pycharm">
+		alt="freecodecamp">
 </a>
 <a href="https://www.jetbrains.com/">
 	<img width="20%"
@@ -114,6 +114,6 @@ This project is [AGPL v3](https://raw.githubusercontent.com/HenryJi529/OpenMorni
 <a href="https://cloud.google.com/">
 	<img width="20%"
 		src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg"
-		alt="pycharm">
+		alt="gcloud">
 </a>
 
