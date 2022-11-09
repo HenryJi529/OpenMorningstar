@@ -1,4 +1,4 @@
-# updated: 2022.11.08
+# updated: 2022.11.09
 qcloudsms-py: 0.1.4 # 已停止维护, 需适配py3.9 https://github.com/qcloudsms/qcloudsms_py
 django-crontab: 0.7.1 # 已停止维护, https://github.com/kraiz/django-crontab
 mysql-connector-python: 8.0.29 # 被依赖特定的版本, mysql API
@@ -21,7 +21,7 @@ django-recaptcha: 3.0.0 # Google Recaptcha验证
 django-redis: 5.2.0 # django的全局redis
 django-user-agents: 0.4.0 # 用户代理处理
 fabric: 2.7.1 # 自动化管理项目
-Faker: 15.2.0 # 测试数据生成
+Faker: 15.3.1 # 测试数据生成
 fake-useragent: 0.1.14 # 用户代理模拟
 fontawesomefree: 6.2.0 # fontawesome free字体管理
 gunicorn: 20.1.0 # 动态web服务器

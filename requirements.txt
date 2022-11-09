@@ -45,7 +45,7 @@ et-xmlfile==1.1.0
 executing==0.8.3
 fabric==2.7.1
 fake-useragent==0.1.14
-Faker==15.2.0
+Faker==15.3.1
 fastjsonschema==2.16.1
 fontawesomefree==6.2.0
 fonttools==4.34.4
