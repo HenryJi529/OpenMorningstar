@@ -1,4 +1,4 @@
-# updated: 2022.11.09
+# updated: 2022.11.10
 qcloudsms-py: 0.1.4 # 已停止维护, 需适配py3.9 https://github.com/qcloudsms/qcloudsms_py
 django-crontab: 0.7.1 # 已停止维护, https://github.com/kraiz/django-crontab
 mysql-connector-python: 8.0.29 # 被依赖特定的版本, mysql API
@@ -42,7 +42,7 @@ pip: 22.3.1 # 包管理工具
 pipdeptree: 2.3.3 # 获取python依赖关系
 pip-review: 1.2.0 # 升级第三方包
 pydub: 0.25.1 # 音频处理库
-pymdown-extensions: 9.7 # 实用的Python-Markdown扩展
+pymdown-extensions: 9.8 # 实用的Python-Markdown扩展
 python-dotenv: 0.21.0 # 环境变量获取
 qrcode: 7.3.1 # 二维码
 readtime: 2.0.0 # 阅读时间计算
