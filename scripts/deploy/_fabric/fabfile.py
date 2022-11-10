@@ -59,22 +59,10 @@ def update(c):
         c.run('sudo rm -rf ~/morningstar/')
         c.run('git clone https://github.com/HenryJi529/OpenMorningstar.git ~/morningstar')
 
-    better_print("暂停所有任务...")
-    c.run('docker restart morningstar_django')
-
-    better_print("更新Python依赖...")
-    c.run('docker exec -it morningstar_django python3 -m pip install -r /app/requirements.txt')
-
-    better_print("更新并迁移JavaScript依赖...")
-    c.run('docker exec -it morningstar_django npm install --production')
-    c.run('docker exec -it morningstar_django test -d "/app/static" || mkdir /app/static')
-    c.run('docker exec -it morningstar_django rsync -a /app/node_modules /app/static')
-
     better_print("转移媒体文件...")
     c.run('docker cp ~/morningstar/media morningstar_django:/app')
 
-    better_print("启动supervisor管理Django进程...")
-    c.run('docker exec -it morningstar_django service supervisor start')
+    better_print("运行更新脚本...")
     c.run('docker exec -it morningstar_django bash /production.sh')
 
     print("Done!!")
@@ -111,11 +99,6 @@ def upgrade(c):
         
         better_print("配置frps...")
         c.run("docker cp ~/morningstar/scripts/deploy/_config/frp/frps.ini morningstar_frps:/etc/frp/frps.ini && docker restart morningstar_frps")
-
-        better_print("更新并迁移JavaScript依赖...")
-        c.run('docker exec -it morningstar_django npm install --production')
-        c.run('docker exec -it morningstar_django test -d "/app/static" || mkdir /app/static')
-        c.run('docker exec -it morningstar_django rsync -a /app/node_modules /app/static')
 
         better_print("转移媒体文件...")
         c.run('docker cp ~/morningstar/media morningstar_django:/app')
