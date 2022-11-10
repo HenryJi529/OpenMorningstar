@@ -96,7 +96,7 @@ def upgrade(c):
 
         better_print("部署容器...")
         c.run('source ~/.zshrc && cd ~/morningstar/scripts/deploy; docker-compose build && docker-compose up -d')
-        
+
         better_print("配置frps...")
         c.run("docker cp ~/morningstar/scripts/deploy/_config/frp/frps.ini morningstar_frps:/etc/frp/frps.ini && docker restart morningstar_frps")
 
