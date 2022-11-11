@@ -1,25 +1,10 @@
-name: Cron Task
+name: Other Tasks
 on:
   schedule:
     - cron: "0 9 * * 6"
-  push:
-    branches: [main]
 jobs:
-  show-env:
-    name: show environment
-    runs-on: ubuntu-latest
-    steps:
-      - name: upgrade system with ssh commands using password
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.PUBLIC_IP }}
-          username: ${{ secrets.GCLOUD_USERNAME }}
-          password: ${{ secrets.GCLOUD_PASSWORD }}
-          port: 22
-          script: |
-            env
-  test-speed:
-    name: test github accelerator
+  test-github-mirror:
+    name: test github mirror
     runs-on: ubuntu-latest
     steps:
       - name: ping jsdelivr

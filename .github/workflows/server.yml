@@ -1,0 +1,24 @@
+name: Check Server
+on:
+  schedule:
+    - cron: "0 9 * * *"
+jobs:
+  show-env:
+    name: show environment variables
+    runs-on: ubuntu-latest
+    steps:
+      - name: show server env with ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.PUBLIC_IP }}
+          username: ${{ secrets.GCLOUD_USERNAME }}
+          password: ${{ secrets.GCLOUD_PASSWORD }}
+          port: 22
+          script: |
+            env
+  check-online:
+    runs-on: ubuntu-latest
+    steps:
+      - name: check if website is online(200)
+        run: |
+          echo $(curl https://morningstar369.com/ -I | head -n 1) | grep "200"
