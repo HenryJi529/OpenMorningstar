@@ -1,4 +1,4 @@
-# updated: 2022.11.10
+# updated: 2022.11.12
 qcloudsms-py: 0.1.4 # 已停止维护, 需适配py3.9 https://github.com/qcloudsms/qcloudsms_py
 django-crontab: 0.7.1 # 已停止维护, https://github.com/kraiz/django-crontab
 mysql-connector-python: 8.0.29 # 被依赖特定的版本, mysql API
@@ -26,7 +26,7 @@ fake-useragent: 0.1.14 # 用户代理模拟
 fontawesomefree: 6.2.0 # fontawesome free字体管理
 gunicorn: 20.1.0 # 动态web服务器
 igraph: 0.10.2 # 图和网络分析工具
-ipykernel: 6.17.0 # python 笔记本
+ipykernel: 6.17.1 # python 笔记本
 ipython: 8.6.0 # 交互式python
 jieba: 0.42.1 # 中文分词
 lxml: 4.9.1 # 用作bs4的解析器

@@ -53,7 +53,7 @@ gunicorn==20.1.0
 idna==3.3
 igraph==0.10.2
 invoke==1.7.1
-ipykernel==6.17.0
+ipykernel==6.17.1
 ipython==8.6.0
 ipython-genutils==0.2.0
 ipywidgets==7.7.1
