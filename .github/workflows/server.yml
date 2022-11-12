@@ -3,11 +3,11 @@ on:
   schedule:
     - cron: "0 9 * * *"
 jobs:
-  show-env:
-    name: show environment variables
+  show-docker-status:
+    name: show docker status
     runs-on: ubuntu-latest
     steps:
-      - name: show server env with ssh commands using password
+      - name: show docker status with ssh commands using password
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.PUBLIC_IP }}
@@ -15,7 +15,7 @@ jobs:
           password: ${{ secrets.GCLOUD_PASSWORD }}
           port: 22
           script: |
-            env
+            docker ps -a
   check-online:
     runs-on: ubuntu-latest
     steps:
