@@ -210,9 +210,9 @@ def updateLedger(c):
     with c.cd(home_path):
         better_print("传递数据至文件夹...")
         c.run('sshpass -p ' + DEV_PASSWORD +
-            ' scp -P 1022 henry529@server.morningstar369.com:~/Projects/OpenMorningstar/scripts/deploy/beancount/moneybook.bean  ~/morningstar/scripts/deploy/beancount/')
+            ' scp -P 1022 -r henry529@server.morningstar369.com:~/Projects/OpenMorningstar/scripts/deploy/beancount  ~/morningstar/scripts/deploy/')
         better_print("传递数据至数据卷...")
-        c.run('docker cp ~/morningstar/scripts/deploy/beancount/moneybook.bean morningstar_beancount:/root/beancount')
+        c.run('docker cp ~/morningstar/scripts/deploy/beancount morningstar_beancount:/root/')
 
     print("Done!!")
 
