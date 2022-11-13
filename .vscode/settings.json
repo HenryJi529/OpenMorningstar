@@ -49,6 +49,7 @@
 	],
 	"cSpell.words": [
 		"Alipay",
+		"Aminer",
 		"appkey",
 		"appleboy",
 		"arithmatex",
@@ -62,8 +63,10 @@
 		"certbot",
 		"chemail",
 		"chphone",
+		"CNKI",
 		"colorama",
 		"corsheaders",
+		"Coursera",
 		"csrfmiddlewaretoken",
 		"daisyui",
 		"densenet",
@@ -112,6 +115,8 @@
 		"networkx",
 		"numpy",
 		"pipdeptree",
+		"Pixiv",
+		"portainer",
 		"pretrained",
 		"pycache",
 		"pydub",
@@ -133,9 +138,11 @@
 		"tailwindcss",
 		"TENCENT",
 		"tencentsms",
+		"ticktick",
 		"torchaudio",
 		"torchvision",
 		"tshock",
+		"Turnitin",
 		"useragent",
 		"VENV",
 		"vercel",
@@ -145,6 +152,7 @@
 		"wechatpp",
 		"xiaoming",
 		"xlrd",
-		"xlwt"
+		"xlwt",
+		"zlibrary"
 	]
 }
