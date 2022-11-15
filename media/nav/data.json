@@ -264,6 +264,11 @@
 					"image": "/media/nav/img/Manual/Markdown.png"
 				},
 				{
+					"name": "Regex",
+					"url": "https://regexlearn.com/zh-cn/cheatsheet",
+					"image": "/media/nav/img/Manual/Regex.png"
+				},
+				{
 					"name": "GIMP",
 					"url": "https://docs.gimp.org/2.10/zh_CN/",
 					"image": "/media/nav/img/Manual/GIMP.png"
