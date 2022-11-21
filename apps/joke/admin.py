@@ -23,7 +23,7 @@ class PhotoAdmin(ImportExportModelAdmin):
 @admin.register(Text)
 class TextAdmin(ImportExportModelAdmin):
     formats = (base_formats.CSV, base_formats.JSON)
-    list_display = ['id', 'title', '摘要', 'created']
+    list_display = ['id', 'description', '摘要', 'created']
     search_fields = ['title', 'body']
 
     def 摘要(self, obj):
