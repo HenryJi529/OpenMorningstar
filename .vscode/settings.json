@@ -12,6 +12,8 @@
 		"TEMP/": true,
 		"**/*.csv": true
 	},
+	/*******Makefile*******/
+	"makefile.extensionOutputFolder": "./.vscode",
 	/****Todo Tree****/
 	"todo-tree.filtering.excludeGlobs": [
 		"**/VENV/**",
