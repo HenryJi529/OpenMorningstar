@@ -790,40 +790,32 @@
 					"display": "modal",
 					"entries": [
 						{
-							"name": "渐变",
+							"name": "Logo设计",
+							"link": "https://www.designevo.com/logo-maker/"
+						},
+						{
+							"name": "渐变背景生成",
 							"link": "https://cssgradient.io/"
 						},
 						{
-							"name": "渐变背景色",
-							"link": "https://uigradients.com/#AzurePop"
-						},
-						{
-							"name": "背景图",
+							"name": "背景图生成",
 							"link": "https://duotone.shapefactory.co/"
-						},
-						{
-							"name": "CSS效果",
-							"link": "https://lhammer.cn/You-need-to-know-css/#/zh-cn/"
-						},
-						{
-							"name": "CSS Tricks",
-							"link": "https://qishaoxuan.github.io/css_tricks/"
 						},
 						{
 							"name": "新拟态效果生成",
 							"link": "https://neumorphism.io/"
 						},
 						{
-							"name": "CSS常见效果生成",
-							"link": "https://enjoycss.com/"
+							"name": "CSS效果: You-need-to-know-css",
+							"link": "https://lhammer.cn/You-need-to-know-css/#/zh-cn/"
 						},
 						{
-							"name": "CSS-Inspiration",
+							"name": "CSS效果: CSS Tricks",
+							"link": "https://qishaoxuan.github.io/css_tricks/"
+						},
+						{
+							"name": "CSS效果: CSS Inspiration",
 							"link": "https://csscoco.com/inspiration/"
-						},
-						{
-							"name": "Logo设计",
-							"link": "https://www.designevo.com/logo-maker/"
 						}
 					]
 				},
@@ -922,6 +914,10 @@
 			"slug": "utility",
 			"icon": "fa-solid fa-screwdriver-wrench",
 			"items": [
+				{
+					"name": "设计工具",
+					"url": "https://www.figma.com/files"
+				},
 				{
 					"name": "几何绘图",
 					"url": "https://www.geogebra.org/calculator"
