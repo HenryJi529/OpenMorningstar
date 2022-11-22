@@ -88,7 +88,7 @@
 			"items": [
 				{
 					"name": "计算引擎",
-					"url": "https://console.cloud.google.com/compute/instances?project=crafty-nova-249804",
+					"url": "https://console.cloud.google.com/compute/instances?project=morningstar-366900",
 					"image": "/media/nav/img/Admin/计算引擎.png",
 					"desc": "谷歌云虚拟机实例管理"
 				},
