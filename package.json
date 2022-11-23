@@ -1,6 +1,5 @@
 {
   "scripts": {
-    "build_highlightjs_bundle": "npx browserify apps/blog/static/blog/js/highlight.js -o apps/blog/static/blog/dist/highlight.bundle.js",
     "base_tailwind": "npx tailwindcss -c Morningstar/tailwind.config.js -i Morningstar/static/base/css/_build.css -o Morningstar/static/base/css/_tailwind.css --watch --minify",
     "base_base": "while true; do npx sass Morningstar/static/base/css/base.scss Morningstar/static/base/css/base.css --no-source-map --style compressed && echo '✔︎ build base/base.css'; sleep 5; done;",
     "blog_tailwind": "npx tailwindcss -c apps/blog/tailwind.config.js -i apps/blog/static/blog/css/_build.css -o apps/blog/static/blog/css/_tailwind.css --watch --minify",
@@ -18,7 +17,10 @@
     "rss_tailwind": "npx tailwindcss -c apps/rss/tailwind.config.js -i apps/rss/static/rss/css/_build.css -o apps/rss/static/rss/css/_tailwind.css --watch --minify",
     "share_tailwind": "npx tailwindcss -c apps/share/tailwind.config.js -i apps/share/static/share/css/_build.css -o apps/share/static/share/css/_tailwind.css --watch --minify",
     "share_base": "while true; do npx sass apps/share/static/share/css/base.scss apps/share/static/share/css/base.css --no-source-map --style compressed && echo '✔︎ build share/base.css'; sleep 5; done;",
-    "build_css": "npx concurrently \"npm run base_tailwind\" \"npm run base_base\" \"npm run blog_tailwind\" \"npm run blog_base\"  \"npm run book_tailwind\" \"npm run book_base\" \"npm run formula_tailwind\" \"npm run formula_style\" \"npm run joke_tailwind\" \"npm run joke_style\" \"npm run lover_tailwind\" \"npm run lover_style\" \"npm run nav_tailwind\" \"npm run nav_style\"  \"npm run rss_tailwind\" \"npm run share_tailwind\" \"npm run share_base\""
+    "build_css": "npx concurrently \"npm run base_tailwind\" \"npm run base_base\" \"npm run blog_tailwind\" \"npm run blog_base\"  \"npm run book_tailwind\" \"npm run book_base\" \"npm run formula_tailwind\" \"npm run formula_style\" \"npm run joke_tailwind\" \"npm run joke_style\" \"npm run lover_tailwind\" \"npm run lover_style\" \"npm run nav_tailwind\" \"npm run nav_style\"  \"npm run rss_tailwind\" \"npm run share_tailwind\" \"npm run share_base\"",
+    "build_nav_js": "npx tsc -p apps/nav/ --watch",
+    "build_highlightjs_bundle": "npx browserify apps/blog/static/blog/js/highlight.js -o apps/blog/static/blog/dist/highlight.bundle.js",
+    "build_js": "npx concurrently \"npm run build_nav_js\" \"npm run build_highlightjs_bundle\""
   },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",
@@ -32,6 +34,7 @@
     "npm-check-updates": "^16.4.3",
     "sass": "^1.56.1",
     "tailwindcss": "~3.2.4",
+    "typescript": "^4.9.3",
     "vercel": "^28.5.6"
   },
   "dependencies": {
