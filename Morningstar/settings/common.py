@@ -50,9 +50,9 @@ INSTALLED_APPS = [
     'apps.lover.apps.LoverConfig',  # 爱人
     'apps.nav.apps.NavConfig',  # 导航
     'apps.poll.apps.PollConfig',  # 投票
+    'apps.proxy.apps.ProxyConfig',  # 代理
     'apps.rss.apps.RssConfig',  # RSS
     'apps.share.apps.ShareConfig',  # 分享
-    'apps.v2ray.apps.V2RayConfig',  # 代理
 
     'captcha',  # google recaptcha
     'compressor',  # 压缩js

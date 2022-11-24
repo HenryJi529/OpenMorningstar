@@ -55,9 +55,9 @@ urlpatterns = [
     path('lover/', include('lover.urls')),
     path('nav/', include('nav.urls')),
     path('poll/', include('poll.urls')),
+    path('proxy/', include('proxy.urls')),
     path('rss/', include('rss.urls')),
     path('share/', include('share.urls')),
-    path('v2ray/', include('v2ray.urls')),
     # 快捷
     path('shortcut/<slug:name>/', cache_page(CACHE_TIMEOUT)(shortcut.shortcut), name="shortcut"),
     # 调试

@@ -1,6 +1,7 @@
 from django.apps import AppConfig
 
 
-class V2RayConfig(AppConfig):
+class ProxyConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'v2ray'
+    name = "proxy"
+    verbose_name = "代理"

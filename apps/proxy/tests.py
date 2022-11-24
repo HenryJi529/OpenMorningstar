@@ -7,11 +7,10 @@ from django.test import Client
 
 class ViewTestCase(TestCase):
     def test_index(self):
-        response = self.client.get(reverse('v2ray:index'))
-        node_config = base64.b64decode(response.content).decode()
-        self.assertTrue("vmess://" in node_config)
+        response = self.client.get(reverse('proxy:index'))
+        self.assertTrue("vmess://" in base64.b64decode(response.content).decode())
 
     def test_config(self):
-        response = self.client.get(reverse('v2ray:config'))
+        response = self.client.get(reverse('proxy:config'))
         self.assertEqual(response.status_code, 302)  
     

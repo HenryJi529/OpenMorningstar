@@ -85,7 +85,7 @@ JAZZMIN_SETTINGS = {
     "hide_models": [],
 
     # List of apps (and/or models) to base side menu ordering off of (does not need to contain all apps/models)
-    "order_with_respect_to": ["Morningstar", "auth", "blog", "joke", "book", "share", "poll",],
+    "order_with_respect_to": ["Morningstar", "auth", "blog", "joke", "book", "poll", "proxy", "share",],
 
     # Custom links to append to app groups, keyed on app name
     "custom_links": {
@@ -107,6 +107,7 @@ JAZZMIN_SETTINGS = {
         "book": "fas fa-atlas", "book.book": "fas fa-book", "book.category": "fas fa-box", "book.author": "fas fa-copyright", "book.translator": "fas fa-language",
         "joke": "far fa-images", "joke.photo": "far fa-image", "joke.text": "fas fa-paragraph",
         "poll": "fas fa-poll", "poll.question": "fas fa-question", "poll.choice": "fas fa-arrow-circle-right",
+        "proxy": "fas fa-project-diagram", "proxy.node": "fas fa-link",
         "share": "fas fa-share-alt", "share.item": "fas fa-link",
     },
     # Icons that are used when one is not manually specified
