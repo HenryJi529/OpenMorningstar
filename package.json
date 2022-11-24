@@ -19,8 +19,9 @@
     "share_base": "while true; do npx sass apps/share/static/share/css/base.scss apps/share/static/share/css/base.css --no-source-map --style compressed && echo '✔︎ build share/base.css'; sleep 5; done;",
     "build_css": "npx concurrently \"npm run base_tailwind\" \"npm run base_base\" \"npm run blog_tailwind\" \"npm run blog_base\"  \"npm run book_tailwind\" \"npm run book_base\" \"npm run formula_tailwind\" \"npm run formula_style\" \"npm run joke_tailwind\" \"npm run joke_style\" \"npm run lover_tailwind\" \"npm run lover_style\" \"npm run nav_tailwind\" \"npm run nav_style\"  \"npm run rss_tailwind\" \"npm run share_tailwind\" \"npm run share_base\"",
     "build_nav_js": "npx tsc -p apps/nav/ --watch",
-    "build_highlightjs_bundle": "npx browserify apps/blog/static/blog/js/highlight.js -o apps/blog/static/blog/dist/highlight.bundle.js",
-    "build_js": "npx concurrently \"npm run build_nav_js\" \"npm run build_highlightjs_bundle\""
+    "build_highlightjs_bundle_watch": "npx watchify apps/blog/static/blog/js/highlight.js -vo 'npx terser --compress --mangle > apps/blog/static/blog/dist/highlight.bundle.js'",
+    "build_highlightjs_bundle": "npx browserify apps/blog/static/blog/js/highlight.js | npx terser --compress --mangle > apps/blog/static/blog/dist/highlight.bundle.js",
+    "build_js": "npx concurrently \"npm run build_nav_js\" \"npm run build_highlightjs_bundle_watch\" "
   },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",
@@ -34,8 +35,10 @@
     "npm-check-updates": "^16.4.3",
     "sass": "^1.56.1",
     "tailwindcss": "~3.2.4",
+    "terser": "^5.15.1",
     "typescript": "^4.9.3",
-    "vercel": "^28.5.6"
+    "vercel": "^28.5.6",
+    "watchify": "^4.0.0"
   },
   "dependencies": {
     "canvas-nest.js": "^2.0.4",
