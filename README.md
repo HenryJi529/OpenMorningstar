@@ -55,7 +55,7 @@
 
 ## ✨ 技术栈:
 
-- **前端**：CSS, Sass, Tailwindcss, DaisyUI, JavaScript
+- **前端**：CSS, Sass, Tailwindcss, DaisyUI, JavaScript, TypeScript
 - **后端**：Django, Redis, SQLite, MySQL
 - **部署**：Docker, Nginx, Fabric, Supervisor
 - **测试**：Coverage
