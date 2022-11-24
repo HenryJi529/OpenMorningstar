@@ -34,7 +34,7 @@ class Category(models.Model):
     """
     分类
     """
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
 
     class Meta:
         verbose_name = '分类'
@@ -49,7 +49,7 @@ class Tag(models.Model):
     """
     标签
     """
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
 
     class Meta:
         verbose_name = '标签'
