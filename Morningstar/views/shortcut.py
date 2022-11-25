@@ -34,7 +34,7 @@ def shortcut(request, name):
     # 静态资源管理
     elif name in ["qiniu", "lanzou"]:
         if name == "qiniu":
-            return redirect("https://portal.qiniu.com/kodo/bucket/resource-v2?bucketName=morningstar-529")
+            return redirect("https://portal.qiniu.com/kodo/bucket/overview?bucketName=morningstar-369")
         elif name == "lanzou":
             return redirect("https://pc.woozooo.com/mydisk.php")
         else:
