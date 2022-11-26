@@ -1,38 +1,13 @@
-# Description
+**请描述更改的内容(请勾选复选框):**
+- [ ] 修复Bug (解决issue的非重大改变)
+- [ ] 新增Feature (增加功能的非重大改变)
+- [ ] 重大改变 (fix or feature that would cause existing functionality to not work as expected)
 
-Please include a summary of the change and which issue is fixed. Please also include relevant motivation and context. List any dependencies that are required for this change.
+**在提出此拉取请求时，我确认了以下几点（请复选框）：**
 
-Fixes # (issue)
-
-## Type of change
-
-Please delete options that are not relevant.
-
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
-- [ ] This change requires a documentation update
-
-# How Has This Been Tested?
-
-Please describe the tests that you ran to verify your changes. Provide instructions so we can reproduce. Please also list any relevant details for your test configuration
-
-- [ ] Test A
-- [ ] Test B
-
-**Test Configuration**:
-* Firmware version:
-* Hardware:
-* Toolchain:
-* SDK:
-
-# Checklist:
-
-- [ ] My code follows the style guidelines of this project
-- [ ] I have performed a self-review of my own code
-- [ ] I have commented my code, particularly in hard-to-understand areas
-- [ ] I have made corresponding changes to the documentation
-- [ ] My changes generate no new warnings
-- [ ] I have added tests that prove my fix is effective or that my feature works
-- [ ] New and existing unit tests pass locally with my changes
-- [ ] Any dependent changes have been merged and published in downstream modules
+- [ ] 我已检查没有与此请求重复的拉取请求。
+- [ ] 我已经考虑过，并确认这份呈件对其他人很有价值。
+- [ ] 我已经确保所提交的代码通过测试(新增功能还需自主添加单元测试)。
+- [ ] 我已经确保充分的注释了所提交的代码，尤其是难以理解的部分。
+- [ ] 我已经确保所提交的代码与项目原本的代码风格统一。
+- [ ] 我接受此提交可能不会被使用，并根据维护人员的意愿关闭拉取请求。
