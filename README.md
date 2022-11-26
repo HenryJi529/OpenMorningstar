@@ -97,7 +97,7 @@ $ docker-compose -f scripts/deploy/docker-compose.yml up --build -d
 
 ## 📝 许可证
 
-Copyright © 2021 [Henry Ji](https://github.com/HenryJi529).<br/>
+Copyright © 2021 *[Henry Ji](https://github.com/HenryJi529)*.<br/>
 This project is [AGPL v3](https://raw.githubusercontent.com/HenryJi529/OpenMorningstar/main/LICENSE) licensed.
 
 ## 🙏 感谢
