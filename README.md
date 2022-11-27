@@ -53,15 +53,17 @@
 	</a>
 </div>
 
+
 ## ✨ 技术栈:
 
 - **前端**：CSS, Sass, Tailwindcss, DaisyUI, JavaScript, TypeScript
 - **后端**：Django, Redis, SQLite, MySQL
 - **部署**：Docker, Nginx, Fabric, Supervisor
-- **测试**：Coverage
+- **测试**：unittest(py), Coverage
 - **集成**：Github Action
 
-## 🚀 部署&开发
+
+## 🚀 开发&部署
 
 ### 源码获取
 
@@ -72,6 +74,8 @@ $ git clone git@github.com:HenryJi529/OpenMorningstar.git
 
 ### 本地开发
 
+**`/task.sh`中已提供常见的开发快捷方式...**
+
 ```bash
 $ virtualenv VENV
 $ source VENV/bin/activate
@@ -81,13 +85,24 @@ $ python manage.py runserver 0:8000
 
 ### 远程部署
 
-```bash
-$ docker-compose -f scripts/deploy/docker-compose.yml up --build -d
-```
+**`/task.sh`中已提供常见的部署快捷方式...**
 
-## 🤝 维护人员
+1. 通用部署方式
+	```bash
+	$ docker-compose -f scripts/deploy/docker-compose.yml up --build -d
+	```
 
-👤 **[Henry Ji](https://github.com/HenryJi529)**
+2. [本站](https://morningstar369.com)部署方式(需裸机环境)
+	1. 部署基础环境: 通过scp传输`.env`与`scripts/deploy/deploy.sh`, 执行`deploy.sh`从而
+		- 安装oh-my-bash
+		- 安装vim与vimPlus
+		- 安装code-server
+		- 安装docker与docker-compose
+		- 安装supervisor
+		- 安装nvm与node
+		- 安装其他生产力工具
+	2. 通过`task.sh`中的`upgradeProd`完成后续的自动化部署
+
 
 ## 🙈 欢迎支持(~~宗旨是不退款！~~)
 
@@ -95,10 +110,6 @@ $ docker-compose -f scripts/deploy/docker-compose.yml up --build -d
 | :-------: | :-------: | :-------: |
 | <img src="https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/Morningstar/static/base/img/微信收款码.png" alt="Wechat" width="150"> | <img src="https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/Morningstar/static/base/img/支付宝收款码.png" alt="Alipay" width="150"> | <img src="https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/Morningstar/static/base/img/小荷包收款码.png" alt="PiggyBank" width="150"> |
 
-## 📝 许可证
-
-Copyright © 2021 *[Henry Ji](https://github.com/HenryJi529)*.<br/>
-This project is [AGPL v3](https://raw.githubusercontent.com/HenryJi529/OpenMorningstar/main/LICENSE) licensed.
 
 ## 🙏 感谢
 <a href="https://www.freecodecamp.org/">
@@ -117,3 +128,8 @@ This project is [AGPL v3](https://raw.githubusercontent.com/HenryJi529/OpenMorni
 		alt="gcloud">
 </a>
 
+
+## 📝 许可证
+
+Copyright © 2021 *[Henry Ji](https://github.com/HenryJi529)*.<br/>
+This project is [AGPL v3](https://raw.githubusercontent.com/HenryJi529/OpenMorningstar/main/LICENSE) licensed.
