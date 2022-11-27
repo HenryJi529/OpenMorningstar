@@ -21,7 +21,7 @@ django-redis: 5.2.0 # django的全局redis
 django-user-agents: 0.4.0 # 用户代理处理
 fabric: 2.7.1 # 自动化管理项目
 Faker: 15.3.3 # 测试数据生成
-fake-useragent: 1.0.1 # 用户代理模拟
+fake-useragent: 1.1.0 # 用户代理模拟
 fontawesomefree: 6.2.1 # fontawesome free字体管理
 gunicorn: 20.1.0 # 动态web服务器
 igraph: 0.10.2 # 图和网络分析工具
