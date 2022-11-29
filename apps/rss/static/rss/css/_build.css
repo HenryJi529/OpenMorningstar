@@ -6,3 +6,8 @@
 /* .morningstar-btn {
     @apply btn text-3xl;
 } */
+
+@font-face {
+    font-family: "Lora";
+    src: url("/static/font/Lora-MediumItalic.ttf");
+}
