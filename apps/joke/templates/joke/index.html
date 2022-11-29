@@ -20,11 +20,43 @@
 </head>
 
 <body>
+	<div class="modals">
+		<div class="notice-modal-content">
+			<input type="checkbox" id="noticeModal" class="modal-toggle" />
+			<div class="modal">
+				<div class="modal-box relative">
+					<label for="noticeModal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+					<h3 class="text-2xl font-bold text-center mb-2">常见问答</h3>
+					<div class="collapse border border-base-300 rounded-2xl mb-2">
+						<input type="checkbox" />
+						<div class="collapse-title text-lg font-medium">
+							为何不采用更常见的垂直滚动内容无限生成的交互模式？
+						</div>
+						<div class="collapse-content">
+							<p>主要是为了防沉迷, 因此只随机生成20个文本或图片笑话</p>
+						</div>
+					</div>
+					<div class="collapse border border-base-300 rounded-2xl mb-2">
+						<input type="checkbox" />
+						<div class="collapse-title text-lg font-medium">
+							怎样分享素材给站长呢？
+						</div>
+						<div class="collapse-content">
+							<p>欢迎直接<a href="mailto: jeep.jipu@gmail.com">邮箱联系</a>站长。</p>
+							<p>对于素材的要求只有两个:"切题"和搞笑。"切题"自必多说, 只有搞笑才能易于传播, 更有效的启发民智, 而不是学官媒那样给人上课～</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="min-h-screen container mx-auto">
-		<header class="pt-6 pb-4 flex justify-center items-center">
+		<header class="pt-6 pb-4 flex justify-center items-end">
 			<span class="text-5xl">神兔笑话</span>
-			<div class="btn btn-circle rounded-full border-2 text-3xl flex justify-center items-center bg-gray-200">
-				<i class="fa-solid fa-question text-sky-400"></i>
+			<div
+				class="btn btn-sm btn-circle rounded-full border-2 text-xl flex justify-center items-center bg-gray-200">
+				<label for="noticeModal" class="fa-solid fa-question text-sky-400">
+				</label>
 			</div>
 		</header>
 
