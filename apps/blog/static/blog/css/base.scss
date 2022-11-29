@@ -16,6 +16,12 @@ $post-link-color: #5660f1;
     visibility: inherit !important;
 }
 
+// NOTE: 解决公式过宽的问题
+mjx-container {
+    overflow-x: scroll;
+}
+
+
 .toc {
 
     ul {
@@ -34,6 +40,7 @@ $post-link-color: #5660f1;
         }
     }
 }
+
 
 .post {
     margin-bottom: 1rem;
