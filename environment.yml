@@ -26,7 +26,7 @@ fontawesomefree: 6.2.1 # fontawesome free字体管理
 gunicorn: 20.1.0 # 动态web服务器
 igraph: 0.10.2 # 图和网络分析工具
 ipykernel: 6.17.1 # python 笔记本
-ipython: 8.6.0 # 交互式python
+ipython: 8.7.0 # 交互式python
 jieba: 0.42.1 # 中文分词
 lxml: 4.9.1 # 用作bs4的解析器
 matplotlib: 3.6.2 # 绘图库
