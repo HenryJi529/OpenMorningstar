@@ -131,5 +131,5 @@ $ python manage.py runserver 0:8000
 
 ## 📝 许可证
 
-Copyright © 2021 *[Henry Ji](https://github.com/HenryJi529)*.<br/>
+Copyright © 2022 *[Henry Ji](https://github.com/HenryJi529)*.<br/>
 This project is [AGPL v3](https://raw.githubusercontent.com/HenryJi529/OpenMorningstar/main/LICENSE) licensed.
