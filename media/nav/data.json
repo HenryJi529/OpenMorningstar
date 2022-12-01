@@ -698,7 +698,8 @@
 						},
 						{
 							"name": "zlibrary",
-							"link": "https://v4.zhelper.net/"
+							"link": "https://v5.zhelper.net/",
+							"link_bak": "https://zlib.knat.network/"
 						},
 						{
 							"name": "SoBook",
