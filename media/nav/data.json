@@ -581,11 +581,13 @@
 					"entries": [
 						{
 							"name": "图像放大",
-							"link": "https://bigjpg.com/"
+							"link": "https://bigjpg.com/",
+							"class": "special"
 						},
 						{
 							"name": "图像压缩",
-							"link": "https://tinypng.com/"
+							"link": "https://tinypng.com/",
+							"class": "special"
 						},
 						{
 							"name": "wallpaperup",
@@ -674,7 +676,8 @@
 					"entries": [
 						{
 							"name": "mobi2epub",
-							"link": "https://mobi2epub.com/"
+							"link": "https://mobi2epub.com/",
+							"class": "special"
 						},
 						{
 							"name": "鸠摩搜书",

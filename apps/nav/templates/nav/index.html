@@ -83,6 +83,8 @@
 				{% endif %}
 			</div>
 		</div>
+
+		<!-- mainPart -->
 		<div class="flex">
 			<!-- 实现margin-1/6 -->
 			<div class="w-1/6 hidden md:block"></div>
@@ -111,7 +113,8 @@
 									<h1 class="text-3xl font-bold">{{ item.name }}</h1>
 									<ul class="pl-8 py-4">
 										{% for entry in item.entries %}
-										<li class="hover:text-lime-400 custom-list-style">
+										<li
+											class="{% if entry.class == 'special' %} text-red-400 {% endif %} hover:text-lime-400 custom-list-style">
 											<a href="{{ entry.link }}" target="_blank" class="cursor-pointer text-lg">
 												{{ entry.name}}
 											</a>
