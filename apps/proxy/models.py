@@ -6,7 +6,7 @@ from django.db import models
 
 class Node(models.Model):
     name = models.CharField("名称", max_length=64, unique=True)
-    link = models.CharField("配置链接",max_length=1024, unique=True)
+    link = models.TextField("配置链接") # NOTE: TextField不可使用unique=True
     updated = models.DateTimeField('更新时间', auto_now=True)
 
     class Meta:

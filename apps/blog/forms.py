@@ -22,7 +22,7 @@ class CommentForm(forms.ModelForm):
 class ContactForm(forms.Form):
     subject = forms.CharField(max_length=100, required=False)
     email = forms.EmailField(label='Your e-mail address', required=False)
-    message = forms.CharField(max_length=300, required=True)
+    message = forms.CharField(required=True)
 
     def clean_message(self):
         message = self.cleaned_data['message']
