@@ -677,14 +677,6 @@
 							"link": "https://mobi2epub.com/"
 						},
 						{
-							"name": "豆瓣读书",
-							"link": "https://book.douban.com/"
-						},
-						{
-							"name": "Kindle图书大合集",
-							"link": "https://www.ahhhhfs.com/21412/"
-						},
-						{
 							"name": "鸠摩搜书",
 							"link": "https://www.jiumodiary.com/"
 						},
@@ -708,10 +700,6 @@
 						{
 							"name": "Academia",
 							"link": "https://www.academia.edu/"
-						},
-						{
-							"name": "NOBA",
-							"link": "https://nobaproject.com/"
 						}
 					]
 				},
