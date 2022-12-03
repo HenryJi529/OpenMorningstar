@@ -112,13 +112,18 @@ $ python manage.py runserver 0:8000
 
 
 ## 🙏 感谢
+<a href="https://www.djangoproject.com/">
+	<img width="20%"
+		src="https://www.vectorlogo.zone/logos/djangoproject/djangoproject-icon.svg"
+		alt="django">
+</a>
 <a href="https://www.freecodecamp.org/">
 	<img width="20%"
 		src="https://cdn.jsdelivr.net/gh/fizzed/font-mfizz@master/src/svg/freecodecamp.svg"
 		alt="freecodecamp">
 </a>
 <a href="https://www.jetbrains.com/">
-	<img width="20%"
+	<img width="23%"
 		src="https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/Morningstar/static/base/img/pycharm.svg"
 		alt="pycharm">
 </a>
