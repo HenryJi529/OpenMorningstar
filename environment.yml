@@ -10,7 +10,7 @@ djangorestframework: 3.14.0 # REST framework for Django
 django-compressor: 4.1 # 压缩css/js
 django-cors-headers: 3.13.0 # 跨域访问之headers
 django-cors-middleware: 1.5.0 # 跨域访问之middleware
-django-debug-toolbar: 3.7.0 # 调试工具
+django-debug-toolbar: 3.8.1 # 调试工具
 django-filter: 22.1 # django filtering support
 django-haystack: 3.2.1 # 全局搜索
 django-import-export: 3.0.1 # 数据导入导出
@@ -21,7 +21,7 @@ django-redis: 5.2.0 # django的全局redis
 django-user-agents: 0.4.0 # 用户代理处理
 fabric: 2.7.1 # 自动化管理项目
 Faker: 15.3.4 # 测试数据生成
-fake-useragent: 1.1.0 # 用户代理模拟
+fake-useragent: 1.1.1 # 用户代理模拟
 fontawesomefree: 6.2.1 # fontawesome free字体管理
 gunicorn: 20.1.0 # 动态web服务器
 igraph: 0.10.2 # 图和网络分析工具
@@ -45,7 +45,7 @@ pymdown-extensions: 9.9 # 实用的Python-Markdown扩展
 python-dotenv: 0.21.0 # 环境变量获取
 qrcode: 7.3.1 # 二维码
 readtime: 2.0.0 # 阅读时间计算
-redis: 4.3.5 # redisAPI
+redis: 4.4.0 # redisAPI
 requests: 2.28.1 # web请求
 scipy: 1.9.3 # 科学计算
 sh: 1.14.3 # 执行shell命令

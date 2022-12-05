@@ -30,7 +30,6 @@ django-compressor==4.1
 django-cors-headers==3.13.0
 django-cors-middleware==1.5.0
 django-crontab==0.7.1
-django-debug-toolbar==3.7.0
 django-filter==22.1
 django-haystack==3.2.1
 django-import-export==3.0.1
@@ -39,12 +38,13 @@ django-matomo==0.1.6
 django-recaptcha==3.0.0
 django-redis==5.2.0
 django-user-agents==0.4.0
+django_debug_toolbar==3.8.1
 djangorestframework==3.14.0
 entrypoints==0.4
 et-xmlfile==1.1.0
 executing==0.8.3
 fabric==2.7.1
-fake-useragent==1.1.0
+fake-useragent==1.1.1
 Faker==15.3.4
 fastjsonschema==2.16.1
 fontawesomefree==6.2.1
@@ -126,7 +126,7 @@ qtconsole==5.3.1
 QtPy==2.1.0
 rcssmin==1.1.0
 readtime==2.0.0
-redis==4.3.5
+redis==4.4.0
 requests==2.28.1
 rjsmin==1.2.0
 scipy==1.9.3
