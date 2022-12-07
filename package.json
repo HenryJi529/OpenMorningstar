@@ -32,7 +32,7 @@
     "concurrently": "^7.6.0",
     "daisyui": "^2.42.1",
     "live-server": "^1.2.2",
-    "npm-check-updates": "^16.4.3",
+    "npm-check-updates": "^16.5.0",
     "sass": "^1.56.1",
     "tailwindcss": "~3.2.4",
     "terser": "^5.16.1",
@@ -48,7 +48,7 @@
     "highlightjs-copy": "^1.0.3",
     "highlightjs-line-numbers.js": "^2.8.0",
     "localstorage-slim": "^2.2.0",
-    "marked": "^4.2.3",
+    "marked": "^4.2.4",
     "masonry-layout": "^4.2.2",
     "mathjax": "^3.2.2",
     "pace-js": "^1.2.4"
