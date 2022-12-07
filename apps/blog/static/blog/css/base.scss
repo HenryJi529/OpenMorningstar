@@ -246,6 +246,17 @@ mjx-container {
                 }
             }
         }
+
+        blockquote {
+            border: {
+                radius: 0;
+                width: 0 0rem 0rem 0.35rem;
+                style: solid;
+                color: greenyellow;
+            }
+
+            padding: 0.5rem 0 0.5rem 0.75rem;
+        }
     }
 }
 
@@ -441,5 +452,17 @@ mjx-container {
                 }
             }
         }
+    }
+
+    blockquote {
+        border: {
+            radius: 0;
+            width: 0 0rem 0rem 0.35rem;
+            style: solid;
+            color: greenyellow;
+        }
+
+        padding: 0.35rem 0 0.35rem 0.75rem;
+
     }
 }
