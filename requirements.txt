@@ -9,7 +9,7 @@ backcall==0.2.0
 bcrypt==3.2.2
 beautifulsoup4==4.11.1
 bleach==5.0.1
-certifi==2022.6.15
+certifi==2022.12.7
 cffi==1.15.1
 charset-normalizer==2.1.0
 click==8.1.3
