@@ -30,7 +30,7 @@
     "@tailwindcss/typography": "^0.5.8",
     "browserify": "^17.0.0",
     "concurrently": "^7.6.0",
-    "daisyui": "^2.42.1",
+    "daisyui": "^2.43.0",
     "live-server": "^1.2.2",
     "npm-check-updates": "^16.5.3",
     "sass": "^1.56.2",
@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "canvas-nest.js": "^2.0.4",
-    "echarts": "^5.4.0",
+    "echarts": "^5.4.1",
     "github-corners": "^0.1.0",
     "highlight.js": "^11.7.0",
     "highlightjs-copy": "^1.0.3",
