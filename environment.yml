@@ -3,6 +3,7 @@ django-crontab: 0.7.1 # 已停止维护, https://github.com/kraiz/django-crontab
 mysql-connector-python: 8.0.29 # 被依赖特定的版本, mysql API
 #----------------------------
 beautifulsoup4: 4.11.1 # 处理HTML
+cairocffi: 1.4.0 # NOTE: 被igraph所依赖
 colorama: 0.4.6 # 彩色print
 coverage: 6.5.0 # 计算覆盖率
 dash: 2.7.0 # 制作数据分析web界面的工具
@@ -26,7 +27,7 @@ fake-useragent: 1.1.1 # 用户代理模拟
 fontawesomefree: 6.2.1 # fontawesome free字体管理
 gunicorn: 20.1.0 # 动态web服务器
 igraph: 0.10.2 # 图和网络分析工具
-ipykernel: 6.17.1 # python 笔记本
+ipykernel: 6.17.1 # NOTE: 用于支持ipynb笔记本，一笔烂账～
 ipython: 8.7.0 # 交互式python
 jieba: 0.42.1 # 中文分词
 lxml: 4.9.1 # 用作bs4的解析器
