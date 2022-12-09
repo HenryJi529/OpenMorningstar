@@ -123,6 +123,7 @@
 		"numpy",
 		"pipdeptree",
 		"Pixiv",
+		"plotly",
 		"portainer",
 		"pretrained",
 		"pycache",
