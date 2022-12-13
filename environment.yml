@@ -6,8 +6,8 @@ beautifulsoup4: 4.11.1 # 处理HTML
 cairocffi: 1.4.0 # NOTE: 被igraph所依赖
 colorama: 0.4.6 # 彩色print
 coverage: 6.5.0 # 计算覆盖率
-dash: 2.7.0 # 制作数据分析web界面的工具
-Django: 4.1.3 # 基础框架
+dash: 2.7.1 # 制作数据分析web界面的工具
+Django: 4.1.4 # 基础框架
 djangorestframework: 3.14.0 # REST framework for Django
 django-compressor: 4.1 # 压缩css/js
 django-cors-headers: 3.13.0 # 跨域访问之headers
@@ -27,7 +27,7 @@ fake-useragent: 1.1.1 # 用户代理模拟
 fontawesomefree: 6.2.1 # fontawesome free字体管理
 gunicorn: 20.1.0 # 动态web服务器
 igraph: 0.10.2 # 图和网络分析工具
-ipykernel: 6.17.1 # NOTE: 用于支持ipynb笔记本，一笔烂账～
+ipykernel: 6.19.2 # NOTE: 用于支持ipynb笔记本，一笔烂账～
 ipython: 8.7.0 # 交互式python
 jieba: 0.42.1 # 中文分词
 lxml: 4.9.1 # 用作bs4的解析器
