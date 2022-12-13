@@ -14,14 +14,15 @@
 
 <body class="min-h-screen fixed w-screen" style="min-height: -webkit-fill-available;">
     <div class="container m-auto p-5 md:py-10 md:px-20">
-        <div class="text-center text-3xl md:text-5xl mb-6">
+        <nav class="text-center text-3xl md:text-5xl mb-6">
             LaTex公式转换
-        </div>
+        </nav>
+        <main>
+            <textarea id="formulaTextarea" name="formula" class="textarea textarea-info w-full min-h-[10rem] mb-6"
+                placeholder="请输入LaTex公式"></textarea>
 
-        <textarea id="formulaTextarea" name="formula" class="textarea textarea-info w-full min-h-[10rem] mb-6"
-            placeholder="请输入LaTex公式"></textarea>
-
-        <div id="formulaDisplay" class="w-full bg-slate-300 min-h-[10rem] p-2 rounded-lg"></div>
+            <div id="formulaDisplay" class="w-full bg-slate-300 min-h-[10rem] p-2 rounded-lg"></div>
+        </main>
     </div>
 
     <footer class="absolute bottom-2 mx-auto w-full">
@@ -42,14 +43,21 @@
         <script src="{% static 'base/js/runtime.js' %}"></script>
         {% endcompress %}
     </footer>
-
 </body>
+<script>
+    MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+    };
+</script>
 <script id="MathJax-script" src="{% static 'node_modules/mathjax/es5/tex-mml-chtml.js' %}"></script>
 <script>
     let formulaTextarea = document.querySelector("#formulaTextarea")
     let formulaDisplay = document.querySelector("#formulaDisplay")
     setInterval(() => {
         formulaDisplay.innerHTML = formulaTextarea.value
+        // formulaDisplay.innerHTML = '$$' + formulaTextarea.value + '$$'
         MathJax.typeset()
     }, 500);
     // console.log(formulaTextarea.value)
