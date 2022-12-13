@@ -4,7 +4,7 @@
 	<ul class="widget-list">
 		{% for category in category_list %}
 		<li>
-			<i class="fa-regular fa-circle-check"></i>
+			<i class="fa-solid fa-folder"></i>
 			<a href="{% url 'blog:category' category.pk %}">{{category.name }}
 				<span>[{{ category.num_posts }}]</span></a>
 		</li>
