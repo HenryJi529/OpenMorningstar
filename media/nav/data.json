@@ -350,12 +350,12 @@
 				},
 				{
 					"name": "NumPy",
-					"url": "https://numpy.org/doc/stable/",
+					"url": "https://www.cheat-sheet.cn/post/numpy-cheat-sheet/",
 					"image": "/media/nav/img/Manual/NumPy.svg"
 				},
 				{
 					"name": "Pandas",
-					"url": "https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html",
+					"url": "https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf",
 					"image": "/media/nav/img/Manual/Pandas.svg"
 				},
 				{
