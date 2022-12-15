@@ -319,9 +319,19 @@
 					"image": "/media/nav/img/Manual/JavaScript.png"
 				},
 				{
+					"name": "Web API",
+					"url": "https://wangdoc.com/webapi/",
+					"image": "/media/nav/img/Manual/WebAPI.png"
+				},
+				{
 					"name": "TypeScript",
-					"url": "https://www.vectorlogo.zone/logos/typescriptlang/typescriptlang-icon.svg",
+					"url": "https://ts.xcatliu.com/",
 					"image": "/media/nav/img/Manual/TypeScript.svg"
+				},
+				{
+					"name": "Vue",
+					"url": "https://cn.vuejs.org/",
+					"image": "/media/nav/img/Manual/Vue.png"
 				},
 				{
 					"name": "ECharts",
@@ -329,9 +339,9 @@
 					"image": "/media/nav/img/Manual/ECharts.png"
 				},
 				{
-					"name": "Web API",
-					"url": "https://wangdoc.com/webapi/",
-					"image": "/media/nav/img/Manual/WebAPI.png"
+					"name": "Chrome插件",
+					"url": "https://developer.chrome.com/docs/extensions/mv3/getstarted/",
+					"image": "/media/nav/img/Manual/ChromeExt.svg"
 				},
 				{
 					"name": "MDN",
@@ -718,7 +728,8 @@
 					"entries": [
 						{
 							"name": "Favicon生成",
-							"link": "https://favicon.io/favicon-converter/"
+							"link": "https://favicon.io/favicon-converter/",
+							"class": "special"
 						},
 						{
 							"name": "OpenMoji",
