@@ -31,17 +31,17 @@ ipykernel: 6.19.2 # NOTE: 用于支持ipynb笔记本，一笔烂账～
 ipython: 8.7.0 # 交互式python
 jieba: 0.42.1 # 中文分词
 lxml: 4.9.2 # 用作bs4的解析器
-matplotlib: 3.6.2 # 绘图库
+matplotlib: 3.6.2 # 绘图工具
 Markdown: 3.4.1 # markdown支持
 mysqlclient: 2.1.1 # mysql的pythonAPI
 mysql-to-sqlite3: 1.4.14 # mysql -> sqlite3
 networkx: 2.8.8 # 图和网络分析工具
 numpy: 1.23.5 # 矩阵计算
-pandas: 1.5.2 # 数据处理
+pandas: 1.5.2 # 表数据处理
 Pillow: 9.3.0 # 图像处理
 pip: 22.3.1 # 包管理工具
-pipdeptree: 2.3.3 # 获取python依赖关系
-pip-review: 1.2.0 # 升级第三方包
+pipdeptree: 2.3.3 # python依赖关系展示工具
+pip-review: 1.2.0 # 第三方包升级工具
 plotly: 5.11.0 # 高级的绘图工具
 pydub: 0.25.1 # 音频处理库
 pymdown-extensions: 9.9 # 实用的Python-Markdown扩展
@@ -49,7 +49,7 @@ python-dotenv: 0.21.0 # 环境变量获取
 qrcode: 7.3.1 # 二维码
 readtime: 2.0.0 # 阅读时间计算
 redis: 4.4.0 # redisAPI
-requests: 2.28.1 # web请求
+requests: 2.28.1 # HTTP请求
 scipy: 1.9.3 # 科学计算
 sh: 1.14.3 # 执行shell命令
 sqlite3-to-mysql: 1.4.16 # sqlite迁移到mysql
