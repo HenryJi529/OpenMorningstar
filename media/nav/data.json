@@ -304,6 +304,11 @@
 					"image": "/media/nav/img/Manual/DaisyUI.png"
 				},
 				{
+					"name": "AnimateCSS",
+					"url": "https://animate.style/",
+					"image": "/media/nav/img/Manual/AnimateCSS.png"
+				},
+				{
 					"name": "Sass",
 					"url": "https://www.sass.hk/docs/",
 					"image": "/media/nav/img/Manual/Sass.svg"
