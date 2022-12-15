@@ -15,7 +15,7 @@ django-cors-middleware: 1.5.0 # 跨域访问之middleware
 django-debug-toolbar: 3.8.1 # 调试工具
 django-filter: 22.1 # django filtering support
 django-haystack: 3.2.1 # 全局搜索
-django-import-export: 3.0.1 # 数据导入导出
+django-import-export: 3.0.2 # 数据导入导出
 django-jazzmin: 2.6.0 # 非常美观的django-adminUI库
 django-matomo: 0.1.6 # 网站分析
 django-recaptcha: 3.0.0 # Google Recaptcha验证
@@ -30,7 +30,7 @@ igraph: 0.10.2 # 图和网络分析工具
 ipykernel: 6.19.2 # NOTE: 用于支持ipynb笔记本，一笔烂账～
 ipython: 8.7.0 # 交互式python
 jieba: 0.42.1 # 中文分词
-lxml: 4.9.1 # 用作bs4的解析器
+lxml: 4.9.2 # 用作bs4的解析器
 matplotlib: 3.6.2 # 绘图库
 Markdown: 3.4.1 # markdown支持
 mysqlclient: 2.1.1 # mysql的pythonAPI

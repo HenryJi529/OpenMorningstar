@@ -38,7 +38,7 @@ django-cors-middleware==1.5.0
 django-crontab==0.7.1
 django-filter==22.1
 django-haystack==3.2.1
-django-import-export==3.0.1
+django-import-export==3.0.2
 django-jazzmin==2.6.0
 django-matomo==0.1.6
 django-recaptcha==3.0.0
@@ -76,7 +76,7 @@ jupyter-core==4.11.1
 jupyterlab-pygments==0.2.2
 jupyterlab-widgets==1.1.1
 kiwisolver==1.4.4
-lxml==4.9.1
+lxml==4.9.2
 Markdown==3.4.1
 markdown2==2.4.5
 MarkupPy==1.14
