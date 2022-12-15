@@ -39,31 +39,11 @@ def shortcut(request, name):
             return redirect("https://pc.woozooo.com/mydisk.php")
         else:
             pass
-    # 速查表链接
-    elif name in ["gist", "html", "css", "js", "bash", "sass", "icon", "tailwind", "daisy"]:
+    # 其他快捷链接
+    elif name in ["gist", "sgs", "cook", "news"]:
         if name == "gist":
             return redirect("https://gist.github.com/HenryJi529")
-        elif name == "html":
-            return redirect("https://man.ilovefishc.com/html5/")
-        elif name == "css":
-            return redirect("https://man.ilovefishc.com/css3/")
-        elif name == "js":
-            return redirect("https://zh.javascript.info/")
-        elif name == "bash":
-            return redirect("https://wsgzao.github.io/post/bash/")
-        elif name == "sass":
-            return redirect("https://www.sass.hk/docs/")
-        elif name == "icon":
-            return redirect("https://fontawesome.com/icons")
-        elif name == "tailwind":
-            return redirect("https://tailwindcss.com/")
-        elif name == "daisy":
-            return redirect("https://daisyui.com/components/")
-        else:
-            pass
-    # 其他快捷链接
-    elif name in ["sgs", "cook", "news"]:
-        if name == "sgs":
+        elif name == "sgs":
             return redirect("https://web.sanguosha.com/login/index.html")
         elif name == "cook":
             return redirect("https://github.com/Anduin2017/HowToCook")
