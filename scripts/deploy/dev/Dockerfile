@@ -19,7 +19,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 	dpkg-reconfigure -f noninteractive tzdata
 
 # 依赖
-RUN apt-get install -y systemctl wget curl zsh git python3 ipython3 python3-pip vim cmake net-tools \
+RUN apt-get install -y systemctl wget curl zsh perl git python3 ipython3 python3-pip vim cmake net-tools \
 	&& apt update && apt install -y libmysqlclient-dev python3-dev \
 	&& apt-get upgrade -y && apt-get autoremove -y
 
