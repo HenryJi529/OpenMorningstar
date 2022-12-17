@@ -107,6 +107,7 @@ services:
       dockerfile: tshock/Dockerfile
     image: henry529/tshock:latest
     container_name: morningstar_tshock
+    hostname: morningstar_tshock
     working_dir: /root
     privileged: true
     tty: true

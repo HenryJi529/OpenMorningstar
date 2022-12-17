@@ -52,14 +52,14 @@ config_remote_connect() {
 
 config_shell() {
   config_bash() {
-    sh -c "$(wget -O- https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/scripts/deploy/_install/oh-my-bash.sh)"
+    bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
     cat ~/.bashrc ~/.bashrc.pre-oh-my-bash >~/.bashrc.new
     rm ~/.bashrc ~/.bashrc.pre-oh-my-bash
     mv ~/.bashrc.new ~/.bashrc
   }
   config_zsh() {
     sudo apt-get update && sudo apt-get install -y zsh
-    sh -c "$(wget -O - https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/scripts/deploy/_install/oh-my-zsh.sh)"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     sudo sed -i "s/ZSH_THEME="robbyrussell"/ZSH_THEME="josh"/g" ~/.zshrc
     sudo sed -i "s/\/home\/$GCLOUD_USERNAME:\/bin\/bash/\/home\/$GCLOUD_USERNAME:\/bin\/zsh/g" /etc/passwd
   }
