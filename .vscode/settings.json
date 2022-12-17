@@ -124,6 +124,7 @@
 		"mysqlclient",
 		"namecheap",
 		"networkx",
+		"noninteractive",
 		"numpy",
 		"pipdeptree",
 		"Pixiv",
