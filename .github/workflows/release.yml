@@ -15,5 +15,3 @@ jobs:
       - run: docker push henry529/tshock:latest
       - run: docker build ./scripts/deploy -f ./scripts/deploy/beancount/Dockerfile -t henry529/beancount:latest
       - run: docker push henry529/beancount:latest
-      - run: docker build ./scripts/deploy -f ./scripts/deploy/dev/Dockerfile -t henry529/dev:latest
-      - run: docker push henry529/dev:latest
