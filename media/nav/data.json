@@ -571,10 +571,10 @@
 					"desc": "闯关形式学编程"
 				},
 				{
-					"name": "W3schools",
-					"url": "https://www.w3schools.com/",
-					"image": "/media/nav/img/Learn/W3schools.png",
-					"desc": "非常好的初学者Web开发词典"
+					"name": "Udemy",
+					"url": "https://www.udemy.com/",
+					"image": "/media/nav/img/Learn/Udemy.svg",
+					"desc": "挺好的技术学习平台"
 				},
 				{
 					"name": "LeetCode",
