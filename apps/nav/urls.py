@@ -5,5 +5,5 @@ from . import views
 
 app_name = 'nav'
 urlpatterns = [
-    path('', cache_page(CACHE_TIMEOUT)(views.index), name='index'),
+    path('', views.index, name='index'),
 ]
