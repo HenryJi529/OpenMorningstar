@@ -114,15 +114,16 @@
 
 	</div>
 
-	<div id="fade" class="hidden w-screen h-full z-40 absolute top-0 bg-gray-400/50"></div>
-	<div id="float" class="hidden w-screen z-50 fixed top-[4rem] md:top-[7rem]">
-		<form class="w-screen max-w-3xl md:max-w-2xl mx-auto px-8">
-			<input type="text" placeholder="书名/作者" id="searchInput"
-				class="w-full p-4 text-center text-2xl md:text-3xl rounded-3xl outline-none border-solid border-slate-300 border-8">
-			<ul class="w-full px-4" id="suggestionList">
-				<li class="p-4 text-gray-400">这里会显示推荐的书目</li>
-			</ul>
-		</form>
+	<div id="overlay" class="hidden w-screen h-full z-40 absolute top-0 bg-gray-400/50">
+		<div class="w-screen z-50 fixed top-[4rem] md:top-[7rem]" onclick="event.stopPropagation()">
+			<form class="max-w-3xl md:max-w-2xl mx-auto px-8">
+				<input type="text" placeholder="书名/作者" id="searchInput"
+					class="w-full p-4 text-center text-2xl md:text-3xl rounded-3xl outline-none border-solid border-slate-300 border-8">
+				<ul class="w-full px-4" id="suggestionList">
+					<li class="p-4 text-gray-400">这里会显示推荐的书目</li>
+				</ul>
+			</form>
+		</div>
 	</div>
 </body>
 
@@ -135,12 +136,10 @@
 	const endpoint = "{{ endpoint }}";
 	const verifyUrl = "{% url 'book:index' %}";
 	document.querySelector("#searchButton").addEventListener('click', e => {
-		document.querySelector("#float").classList.remove("hidden");
-		document.querySelector("#fade").classList.remove("hidden");
+		document.querySelector("#overlay").classList.remove("hidden");
 	})
-	document.querySelector("#fade").addEventListener('click', e => {
-		document.querySelector("#float").classList.add("hidden");
-		document.querySelector("#fade").classList.add('hidden');
+	document.querySelector("#overlay").addEventListener('click', e => {
+		document.querySelector("#overlay").classList.add('hidden');
 	})
 </script>
 
