@@ -1,6 +1,7 @@
 let textarea = document.querySelector('textarea.auto-expend');
 let commentPreview = document.querySelector('#commentPreview');
 
+// textarea长度自适应
 textarea.addEventListener('keydown', (e) => {
     setTimeout(() => {
         if (e.target.scrollHeight > 112) {
@@ -8,6 +9,8 @@ textarea.addEventListener('keydown', (e) => {
         }
     }, 0);
 });
+
+// 编辑与预览更换
 document.querySelector('#editorButton').addEventListener('click', (evt) => {
     textarea.classList.remove('hidden');
     commentPreview.classList.add('hidden');
@@ -17,14 +20,10 @@ document.querySelector('#previewButton').addEventListener('click', (evt) => {
     commentPreview.classList.remove('hidden');
 })
 
-let lastTextareaValue;
-setInterval(() => {
-    if (textarea.value != lastTextareaValue) {
-        commentPreview.innerHTML = marked.parse(textarea.value);
-        commentPreview.querySelectorAll('pre code').forEach((el) => {
-            hljs.highlightElement(el);
-        });
-        lastTextareaValue = textarea.value;
-    }
-}, 500);
-
+// 预览
+textarea.addEventListener('change', () => {
+    commentPreview.innerHTML = marked.parse(textarea.value);
+    commentPreview.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+    });
+})
