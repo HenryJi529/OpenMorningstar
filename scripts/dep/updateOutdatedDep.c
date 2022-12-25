@@ -1,3 +1,7 @@
+/*
+编译: gcc scripts/dep/updateOutdatedDep.c -lpthread -o scripts/dep/updateOutdatedDep.exe
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

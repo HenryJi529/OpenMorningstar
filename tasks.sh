@@ -68,14 +68,8 @@ updateDep() {
 	npx ncu -u
 	npm update
 	echo "==================================="
-	# echo "Python: 编译包更新工具..."
-	# gcc scripts/dep/updateOutdatedDep.c -lpthread -o scripts/dep/updateOutdatedDep.exe
-	# echo "==================================="
-	echo "Python: 保存当前版本..."
-	sed "s/: /==/" environment.yml >environment.bak
-	echo "==================================="
 	echo "Python: 更新依赖..."
-	./scripts/dep/updateOutdatedDep.exe
+	python scripts/dep/dependencyManager.py upgrade --verbose
 	read -s -n1 -p "[按任意键继续...]"
 	echo ""
 	echo "==================================="
