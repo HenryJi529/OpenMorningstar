@@ -12,7 +12,7 @@ import argparse
 import time
 import pickle
 import logging
-from functools import cached_property, cache
+from functools import cached_property, lru_cache
 
 ENVIRONMENT_PATH = "environment.json"
 DEV_REQUIREMENTS_PATH = "requirements-dev.txt"
@@ -246,7 +246,7 @@ class Manager:
             results.append(result)
         return results
 
-    @cache
+    @lru_cache
     def _getTextsFromPipShow(self, packageName):
         if f"pipShow-{str(packageName)}" in self.pipCache and self.pipCache[f"pipShow-{str(packageName)}"]["time"] > time.time() - self.expire_time:
             return self.pipCache[f"pipShow-{str(packageName)}"]["data"]
