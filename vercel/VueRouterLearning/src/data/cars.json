@@ -1,0 +1,52 @@
+[
+    {
+        "id": 1,
+        "name": "Chevy",
+        "price": 15000,
+        "year": 2015,
+        "contact": {
+            "dealer": "Bob",
+            "number": "555-555-5555"
+        }
+    },
+    {
+        "id": 2,
+        "name": "Bentley",
+        "price": 215000,
+        "year": 2021,
+        "contact": {
+            "dealer": "Joe",
+            "number": "555-555-5555"
+        }
+    },
+    {
+        "id": 3,
+        "name": "Ford",
+        "price": 5000,
+        "year": 2005,
+        "contact": {
+            "dealer": "Bob",
+            "number": "555-555-5555"
+        }
+    },
+    {
+        "id": 4,
+        "name": "Land Lover",
+        "price": 85000,
+        "year": 2019,
+        "contact": {
+            "dealer": "Joe",
+            "number": "555-555-5525"
+        }
+    },
+    {
+        "id": 5,
+        "name": "Nissan",
+        "price": 25000,
+        "year": 2019,
+        "contact": {
+            "dealer": "Bob",
+            "number": "535-555-5555"
+        }
+    }
+]
