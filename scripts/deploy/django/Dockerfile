@@ -13,8 +13,8 @@ RUN apt-get install -y python3-pip mysql-client libmysqlclient-dev
 RUN apt-get install -y nodejs npm
 RUN apt-get install -y cron
 RUN apt-get install -y supervisor
-COPY ./django/requirements.txt /app/requirements.txt
-RUN python3 -m pip install -r /app/requirements.txt
+COPY ./django/requirements-prod.txt /app/requirements-prod.txt
+RUN python3 -m pip install -r /app/requirements-prod.txt
 
 # 解决timezone依赖
 RUN export DEBIAN_FRONTEND=noninteractive && \

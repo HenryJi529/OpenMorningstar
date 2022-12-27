@@ -2,6 +2,7 @@
 source .env
 
 PIP=$(pwd)/VENV/bin/pip
+PYTHON=$(pwd)/VENV/bin/python
 PIPDEPTREE=$(pwd)/VENV/bin/pipdeptree
 
 runCommand() {
@@ -69,13 +70,10 @@ updateDep() {
 	npm update
 	echo "==================================="
 	echo "Python: 更新依赖..."
-	python scripts/dep/dependencyManager.py upgrade --verbose
-	read -s -n1 -p "[按任意键继续...]"
-	echo ""
-	echo "==================================="
-	echo "Python: 保存依赖配置..."
-	${PIP} freeze >requirements.txt && ${PIP} freeze >scripts/deploy/django/requirements.txt
+	${PYTHON} scripts/dep/dependencyManager.py upgrade --verbose
+	${PYTHON} scripts/dep/dependencyManager.py export --verbose
 	${PIPDEPTREE} -fl >pipdeptree.txt
+	echo "==================================="
 	echo "DONE!!!"
 }
 

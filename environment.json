@@ -129,7 +129,7 @@
         "summary": "动态web服务器"
     },
     "ipykernel": {
-        "version": "6.19.4",
+        "version": "6.20.0",
         "summary": "用于支持ipynb笔记本",
         "inDev": true
     },
@@ -161,7 +161,7 @@
         "summary": "图和网络分析工具"
     },
     "numpy": {
-        "version": "1.24.0",
+        "version": "1.24.1",
         "summary": "矩阵计算"
     },
     "pandas": {
@@ -207,7 +207,10 @@
     },
     "readtime": {
         "version": "2.0.0",
-        "summary": "阅读时间计算"
+        "summary": "阅读时间计算",
+        "dependencies": [
+            "lxml"
+        ]
     },
     "redis": {
         "version": "4.4.0"
@@ -224,18 +227,6 @@
     },
     "sqlite3-to-mysql": {
         "version": "1.4.16"
-    },
-    "torch": {
-        "version": "1.13.1",
-        "summary": "深度学习框架"
-    },
-    "torchaudio": {
-        "version": "0.13.1",
-        "summary": "音频相关数据集、模型类、预训练模型"
-    },
-    "torchvision": {
-        "version": "0.14.1",
-        "summary": "图片相关数据集、模型类、预训练模型"
     },
     "Whoosh": {
         "version": "2.7.4",
