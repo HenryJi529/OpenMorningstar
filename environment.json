@@ -174,7 +174,8 @@
     },
     "pip": {
         "version": "22.3.1",
-        "summary": "包管理工具"
+        "summary": "包管理工具",
+        "inDev": true
     },
     "pipdeptree": {
         "version": "2.3.3",
