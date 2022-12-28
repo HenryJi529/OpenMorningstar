@@ -1,5 +1,19 @@
 # 更新日志
 
+## v0.2.6:
+
+本次更新如下内容:
+
+1. 常规更新(UI, 依赖, 数据, cSpell词库, Readme)
+1. 更新工具安装脚本
+1. blog: 新增blockquote
+1. 添加animate.css
+1. 更新快捷链接
+1. CI: 添加docker镜像发布流程
+1. 添加CounterApp, NotesApp, QuizApp, VueRouterLearning
+1. 新增依赖管理工具
+
+
 ## v0.2.5:
 
 本次更新如下内容:
