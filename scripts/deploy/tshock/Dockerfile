@@ -7,7 +7,7 @@ WORKDIR /root
 # 换源
 # RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak
 # COPY ./_mirror_cn/aliyun-sources.list /etc/apt/sources.list
-RUN apt update && apt upgrade -y
+RUN apt-get update && apt-get upgrade -y
 
 ## 时区
 RUN export DEBIAN_FRONTEND=noninteractive; apt-get install -y tzdata > /dev/null

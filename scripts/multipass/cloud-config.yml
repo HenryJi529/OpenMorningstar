@@ -26,7 +26,7 @@ write_files:
   - path: /home/ubuntu/.pip/pip.conf
     content: "[global]\n# index-url = https://pypi.tuna.tsinghua.edu.cn/simple\nindex-url = https://pypi.doubanio.com/simple/"
   - path: /home/ubuntu/install/install_docker.sh
-    content: "curl -fsSL https://get.docker.com | sudo bash -s docker --mirror Aliyun\nsudo gpasswd -a ubuntu docker\nsudo systemctl restart docker\nsudo chmod a+rw /var/run/docker.sock\nsudo apt install -qq docker-compose"
+    content: "curl -fsSL https://get.docker.com | sudo bash -s docker --mirror Aliyun\nsudo gpasswd -a ubuntu docker\nsudo systemctl restart docker\nsudo chmod a+rw /var/run/docker.sock\nsudo apt-get install -qq docker-compose"
 
 runcmd:
   # apt

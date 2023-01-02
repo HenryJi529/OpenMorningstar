@@ -6,7 +6,7 @@ WORKDIR /root/
 # COPY ./_mirror_cn/aliyun-sources.list /etc/apt/sources.list
 # COPY ./_mirror_cn/pip.conf /root/.pip/pip.conf
 # 安装pip
-RUN apt update && apt install -y python3-pip && pip install --upgrade pip
+RUN apt-get update && apt-get install -y python3-pip && pip install --upgrade pip
 # 安装 beancount
 RUN pip install beancount fava
 
