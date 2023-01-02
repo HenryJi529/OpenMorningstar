@@ -144,6 +144,7 @@
 		"runcmd",
 		"runserver",
 		"scipy",
+		"seaborn",
 		"sshpass",
 		"startretries",
 		"startsecs",
