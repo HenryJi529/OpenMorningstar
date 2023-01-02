@@ -184,12 +184,6 @@
 					"desc": "一个关于分享和探索的地方"
 				},
 				{
-					"name": "雪球",
-					"url": "https://xueqiu.com/",
-					"image": "/media/nav/img/Community/雪球.png",
-					"desc": "财经黑嘴都在这儿！"
-				},
-				{
 					"name": "知乎",
 					"url": "https://www.zhihu.com/",
 					"image": "/media/nav/img/Community/知乎.png",
@@ -218,6 +212,12 @@
 					"url": "https://github.com/",
 					"image": "/media/nav/img/Community/Github.png",
 					"desc": "用于获取灵感的技术平台"
+				},
+				{
+					"name": "Kaggle",
+					"url": "https://www.kaggle.com/",
+					"image": "/media/nav/img/Community/Kaggle.svg",
+					"desc": "机器学习与数据分析学习交流平台"
 				},
 				{
 					"name": "FCC论坛",
@@ -382,6 +382,11 @@
 					"name": "Matplotlib",
 					"url": "https://matplotlib.org/stable/tutorials/index.html",
 					"image": "/media/nav/img/Manual/Matplotlib.png"
+				},
+				{
+					"name": "Seaborn",
+					"url": "https://seaborn.pydata.org/",
+					"image": "/media/nav/img/Manual/Seaborn.svg"
 				},
 				{
 					"name": "Networkx",
@@ -744,7 +749,7 @@
 							"link": "https://fontawesome.com/v6.0/icons/"
 						},
 						{
-							"name": "simpleicons",
+							"name": "Simple Icons(品牌图标)",
 							"link": "https://simpleicons.org/"
 						},
 						{
@@ -752,23 +757,27 @@
 							"link": "https://fonts.google.com/icons/"
 						},
 						{
+							"name": "Tabler Icons(粗细可调)",
+							"link": "https://tablericons.com/"
+						},
+						{
 							"name": "icons8",
 							"link": "https://icons8.com/icons"
+						},
+						{
+							"name": "LogoSearch",
+							"link": "https://logosear.ch/"
 						},
 						{
 							"name": "Vector Logo Zone",
 							"link": "https://www.vectorlogo.zone/index.html"
 						},
 						{
-							"name": "Devicon",
+							"name": "Devicon(开发工具相关)",
 							"link": "https://devicon.dev/"
 						},
 						{
-							"name": "Tabler Icons",
-							"link": "https://tablericons.com/"
-						},
-						{
-							"name": "MacOS Icons",
+							"name": "MacOS Icons(适配新系统)",
 							"link": "https://macosicons.com/"
 						}
 					]
