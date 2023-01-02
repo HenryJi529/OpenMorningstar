@@ -145,6 +145,10 @@
         "version": "3.6.2",
         "summary": "绘图工具"
     },
+    "seaborn": {
+        "version": "0.12.2",
+        "summary": "更高级的绘图工具"
+    },
     "Markdown": {
         "version": "3.4.1"
     },
