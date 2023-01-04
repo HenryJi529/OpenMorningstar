@@ -451,7 +451,7 @@
 				{
 					"name": "OpenAccessLibrary",
 					"url": "https://www.oalib.com/",
-					"image": "/media/nav/img/Research/Oalib.png",
+					"image": "/media/nav/img/Research/OpenAccessLibrary.png",
 					"desc": "全面、及时、优质、免费"
 				},
 				{
@@ -704,17 +704,8 @@
 							"link": "https://www.jiumodiary.com/"
 						},
 						{
-							"name": "蓝菊花",
-							"link": "http://www.lanjuhua.com/"
-						},
-						{
 							"name": "三秋书屋",
 							"link": "https://www.sanqiu.cc/"
-						},
-						{
-							"name": "zlibrary",
-							"link": "https://v5.zhelper.net/",
-							"link_bak": "https://zlib.knat.network/"
 						},
 						{
 							"name": "SoBook",
