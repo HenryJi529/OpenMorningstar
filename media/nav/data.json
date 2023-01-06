@@ -330,7 +330,7 @@
 				},
 				{
 					"name": "Vue",
-					"url": "https://cn.vuejs.org/",
+					"url": "https://vue3.chengpeiquan.com/",
 					"image": "/media/nav/img/Manual/Vue.png"
 				},
 				{
@@ -350,7 +350,7 @@
 				},
 				{
 					"name": "Python",
-					"url": "https://www.liaoxuefeng.com/wiki/1016959663602400",
+					"url": "https://python3-cookbook.readthedocs.io/zh_CN/latest/index.html",
 					"image": "/media/nav/img/Manual/Python.svg"
 				},
 				{
@@ -568,6 +568,30 @@
 					"url": "https://www.vocabulary.com/play/",
 					"image": "/media/nav/img/Learn/Vocabulary.ico",
 					"desc": "专业的英语词汇学习网站"
+				},
+				{
+					"name": "DeveloperRoadmap",
+					"url": "https://roadmap.sh/",
+					"image": "/media/nav/img/Learn/Roadmap.png",
+					"desc": "开发者学习路线图"
+				},
+				{
+					"name": "CS-Notes",
+					"url": "http://www.cyc2018.xyz/",
+					"image": "/media/nav/img/Learn/CS-Notes.png",
+					"desc": "综合性的CS学习笔记"
+				},
+				{
+					"name": "润学笔记",
+					"url": "https://github.com/lidangzzz/How-to-run",
+					"image": "/media/nav/img/Learn/润学笔记.png",
+					"desc": "立党的润学笔记"
+				},
+				{
+					"name": "The Algorithms",
+					"url": "https://the-algorithms.com/",
+					"image": "/media/nav/img/Learn/TheAlgorithms.svg",
+					"desc": "提供多语言的典型算法分析与实现"
 				},
 				{
 					"name": "FreeCodeCamp",
@@ -931,12 +955,42 @@
 					"url": "https://www.geogebra.org/calculator"
 				},
 				{
-					"name": "口红选购",
-					"url": "https://github.com/rentianle2022/LipsticksGeek-BackEnd"
+					"name": "交往工具",
+					"slug": "date",
+					"display": "modal",
+					"entries": [
+						{
+							"name": "口红选购",
+							"url": "http://www.tianlefirstweb.fun/"
+						},
+						{
+							"name": "口红色号",
+							"link": "http://zhangwenli.com/lipstick/"
+						}
+					]
+				},
+				{
+					"name": "烹饪教程",
+					"slug": "cook",
+					"display": "modal",
+					"entries": [
+						{
+							"name": "程沛权的菜谱",
+							"url": "https://chengpeiquan.com/cookbook"
+						},
+						{
+							"name": "程序员做饭指南",
+							"link": "https://cook.aiurs.co/"
+						}
+					]
 				},
 				{
 					"name": "快捷写作",
 					"url": "https://stackedit.io/app#"
+				},
+				{
+					"name": "Word代码",
+					"url": "http://codeinword.com/"
 				},
 				{
 					"name": "语法检测",
