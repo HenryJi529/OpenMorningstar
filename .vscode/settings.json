@@ -89,6 +89,7 @@
 		"frpc",
 		"frps",
 		"GCLOUD",
+		"ggplot",
 		"Ghelper",
 		"gitea",
 		"Gitmoji",
@@ -114,6 +115,7 @@
 		"linspace",
 		"localstorage",
 		"logfile",
+		"lognorm",
 		"lxml",
 		"markdownify",
 		"mathematica",
@@ -150,6 +152,7 @@
 		"runserver",
 		"scipy",
 		"seaborn",
+		"semilogy",
 		"sshpass",
 		"startretries",
 		"startsecs",
@@ -174,9 +177,14 @@
 		"webp",
 		"Wechat",
 		"wechatpp",
+		"whitegrid",
 		"xiaoming",
+		"xlabel",
 		"xlrd",
 		"xlwt",
+		"xticks",
+		"ylabel",
+		"yticks",
 		"zlibrary"
 	]
 }
