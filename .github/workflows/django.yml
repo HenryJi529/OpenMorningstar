@@ -33,6 +33,7 @@ jobs:
           EMAIL_HOST_PASSWORD: ${{ secrets.EMAIL_HOST_PASSWORD }}
           TENCENT_SMS_APP_KEY: ${{ secrets.TENCENT_SMS_APP_KEY }}
         run: |
+          mkdir database
           python manage.py makemigrations && python manage.py migrate
           python scripts/initialize/main.py
           python manage.py test Morningstar apps
