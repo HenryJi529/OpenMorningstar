@@ -1,9 +1,9 @@
-<section class="widget p-2 relative">
+<section class="widget p-2 relative" id="tagsWidget">
 	<input class="widget-toggle hidden absolute w-full" type="checkbox" />
 	<div class="widget-title text-2xl">标签</div>
-	<ul class="widget-list">
+	<ul class="widget-list grid xl:grid-cols-2">
 		{% for tag in tag_list %}
-		<li>
+		<li data-level="{{tag.color_level}}" class="tag-item">
 			<i class="fa-solid fa-tag"></i>
 			<a href="{% url 'blog:tag' tag.pk %}">{{ tag.name }}
 				<span>[{{ tag.num_posts }}]</span></a>
@@ -13,4 +13,17 @@
 		{% endfor %}
 	</ul>
 </section>
+<script>
+	if (/Android|iPhone/i.test(navigator.userAgent) ? true : false) {
+		document.querySelector("#tagsWidget").querySelector(".widget-list").classList.add("grid-cols-2")
+	}
+	let textColorDark = ["dark:text-violet-300", "dark:text-violet-400", "dark:text-violet-500", "dark:text-violet-600", "dark:text-violet-800"]
+	textColorDark = [...textColorDark].reverse();
+	let textColorLight = ["text-pink-300", "text-pink-400", "text-pink-500", "text-pink-600", "text-pink-800"]
+	document.querySelector("#tagsWidget").querySelector(".widget-list").querySelectorAll(".tag-item").forEach((item) => {
+		item.classList.add(textColorLight[item.dataset.level - 1])
+		item.classList.add(textColorDark[item.dataset.level - 1])
+	})
+
+</script>
 <div class="divider"></div>

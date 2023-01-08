@@ -1,7 +1,7 @@
 from django import template
 
 from ..models import Post, Category, Tag
-from django.db.models.aggregates import Count
+from django.db.models.aggregates import Count, Max
 register = template.Library()
 
 
@@ -30,8 +30,12 @@ def show_categories(context):
 
 @register.inclusion_tag('blog/inclusions/_tags.html', takes_context=True)
 def show_tags(context):
-    tag_list = Tag.objects.annotate(
-        num_posts=Count('post')).filter(num_posts__gt=0)
+    tag_list = Tag.objects.annotate(num_posts=Count('post')).filter(num_posts__gt=0).order_by('-num_posts')
+    maxNum = max([tag.num_posts for tag in tag_list])
+    minNum = min([tag.num_posts for tag in tag_list])
+    levelNum = 5
+    for tag in tag_list:
+        tag.color_level = int( (tag.num_posts - minNum) / (maxNum - minNum) * (levelNum-1) ) + 1
     return {
         'tag_list': tag_list,
     }
