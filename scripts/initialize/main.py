@@ -88,9 +88,6 @@ def init_blog():
     # 50篇英文
     fake = faker.Faker()
     for _ in range(50):
-        tags = blog.models.Tag.objects.order_by('?')
-        tag1 = tags.first()
-        tag2 = tags.last()
         cate = blog.models.Category.objects.order_by('?').first()
         created = fake.date_time_between(start_date='-1y', end_date="now", tzinfo=timezone.get_current_timezone())
         post = blog.models.Post.objects.create(
