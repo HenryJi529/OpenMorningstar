@@ -99,7 +99,8 @@ def init_blog():
             created=created,
             category=cate,
         )
-        post.tags.add(tag1, tag2)
+        tag4post = blog.models.Tag.objects.all()[:random.randint(0,len(tag_list))]
+        post.tags.add(*tag4post)
         post.save()
     # 50篇中文
     fake = faker.Faker('zh_CN')
