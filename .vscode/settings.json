@@ -48,5 +48,6 @@
 	/****Code Spell Checker****/
 	"cSpell.ignorePaths": [
 		"./pipdeptree.txt",
+		"*.csv"
 	],
 }
