@@ -1,6 +1,6 @@
 Django==4.1.4
 Markdown==3.4.1
-Pillow==9.3.0
+Pillow==9.4.0
 Whoosh==2.7.4
 beautifulsoup4==4.11.1
 colorama==0.4.6
@@ -23,13 +23,13 @@ fake-useragent==1.1.1
 fontawesomefree==6.2.1
 gunicorn==20.1.0
 igraph==0.10.2
-ipython==8.7.0
+ipython==8.8.0
 jieba==0.42.1
 matplotlib==3.6.2
 mysql-connector-python==8.0.29
 mysql-to-sqlite3==1.4.14
 mysqlclient==2.1.1
-networkx==2.8.8
+networkx==3.0
 numpy==1.24.1
 pandas==1.5.2
 plotly==5.11.0
