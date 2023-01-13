@@ -59,7 +59,7 @@ INSTALLED_APPS = [
     'corsheaders',  # 处理跨域访问
     'debug_toolbar',  # 调试工具
     'django_crontab', # 定时任务
-    'django_user_agents',  # 获取客户端代理类型
+    'django_user_agents',  # 处理用户代理
     'fontawesomefree',  # 字体图标
     'haystack',  # 搜索
     'import_export',  # 导入导出
@@ -88,6 +88,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',  # NOTE: 位置固定；
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'django_user_agents.middleware.UserAgentMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -106,6 +107,7 @@ CORS_ALLOWED_ORIGINS = [
 # CORS_ALLOW_ALL_ORIGINS = True
 
 
+"""模版处理"""
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -381,6 +383,9 @@ STATICFILES_FINDERS = (
     # other finders..
     'compressor.finders.CompressorFinder',
 )
+
+"""用户代理"""
+USER_AGENTS_CACHE = 'default'
 
 """缓存"""
 CACHE_TIMEOUT = 60*5 if os.environ.get('DJANGO_SETTINGS_MODULE','Morningstar.settings.dev') == 'Morningstar.settings.production'else 5
