@@ -11,29 +11,12 @@ Dev - 访客信息
 
 {% block content %}
 <div class="container min-h-screen p-4">
-    <div class="text-2xl">用户信息</div>
+    <div class="text-3xl">用户信息</div>
     <div>
-        {% if user.is_authenticated %}
-        <h1>Hello {{user.username}}</h1>
-        <h1>Hello {{user.nickname}}</h1>
-        {% endif %}
-        <h1>
-            客户端：
-            {% if request.user_agent.is_pc %}
-            电脑
-            {% elif request.user_agent.is_mobile %}
-            手机
-            {% elif request.user_agent.is_tablet %}
-            平板
-            {% else %}
-            未知
-            {% endif %}
-        </h1>
-        {% if request.user_agent.is_bot %}
-        <h1 class="text-red-500">机器人！！！</h1>
-        {% endif %}
+        <h1>Hello "{{user.username}}"</h1>
+        <h1>Hello "{{user.nickname}}"</h1>
     </div>
-    <div class="text-2xl">屏幕/浏览器尺寸:</div>
+    <div class="text-3xl">屏幕/浏览器尺寸:</div>
     <ul>
         <li>screen.height = <span id="screen-height"></span></li>
         <li>screen.width = <span id="screen-width"></span></li>
