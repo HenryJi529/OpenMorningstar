@@ -104,7 +104,7 @@
     },
     "django-user-agents": {
         "version": "0.4.0",
-        "summary": "用户代理"
+        "summary": "处理用户代理"
     },
     "fabric": {
         "version": "2.7.1",
