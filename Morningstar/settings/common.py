@@ -94,8 +94,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.common.BrokenLinkEmailsMiddleware',  # 404邮箱提醒
 
+    'Morningstar.middleware.block.BlockUserAgentMiddleware',  # UserAgent黑名单
     'Morningstar.middleware.maintenance.MaintenanceMiddleware', # 维护中的站点重定向
-
 ]
 
 

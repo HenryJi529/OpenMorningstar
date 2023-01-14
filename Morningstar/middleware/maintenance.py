@@ -1,8 +1,9 @@
 import datetime
+import os
 from django.shortcuts import redirect, Http404, render
 from django.http import HttpResponse
 from django.utils.deprecation import MiddlewareMixin
-import os
+
 
 class MaintenanceMiddleware(MiddlewareMixin):
 	def process_request(self, request):
