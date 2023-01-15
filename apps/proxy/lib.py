@@ -35,8 +35,8 @@ class Ghelper:
             return links_old
 
         def rename_configs(configs_old):
-            count = {"HK":0, "TW":0, "US":0, "JP":0, "DE":0}
-            prefix = {"HK":["香港", "HK"], "TW":["台湾", "台灣"], "US":["美国","美國"], "JP":["日本"], "DE":["德国"]}
+            count = {"HK":0, "TW":0, "US":0, "JP":0, "DE":0, "UK":0}
+            prefix = {"HK":["香港", "HK"], "TW":["台湾", "台灣"], "US":["美国","美國"], "JP":["日本"], "DE":["德国"],"UK":["英国","英國"]}
             configs_new = []
             for config_old in configs_old:
                 j = json.loads(config_old)
