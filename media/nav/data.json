@@ -1048,7 +1048,7 @@
 						},
 						{
 							"name": "RSS生成器(RSSHub)",
-							"link": "https://rsshub.morningstar369.com"
+							"link": "https://docs.rsshub.app/"
 						},
 						{
 							"name": "冷门RSS源定制工具",
@@ -1089,7 +1089,7 @@
 				},
 				{
 					"name": "资源快传",
-					"url": "https://send.morningstar369.com"
+					"url": "https://send.vis.ee/"
 				},
 				{
 					"name": "二维码",
@@ -1153,10 +1153,6 @@
 					"slug": "version-control",
 					"display": "modal",
 					"entries": [
-						{
-							"name": "代码仓库",
-							"link": "https://gitea.morningstar369.com"
-						},
 						{
 							"name": "Gitignore生成",
 							"link": "https://www.toptal.com/developers/gitignore/"

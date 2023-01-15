@@ -8,11 +8,9 @@ def shortcut(request, name):
             return redirect("https://github.com/HenryJi529/OpenMorningstar/issues")
         elif name == "auto":
             return redirect("https://github.com/HenryJi529/OpenMorningstar/actions")
-        elif name == "src" or name == "src-mirror":
+        elif name in ["src"]:
             if name == "src":
                 return redirect("https://github.com/HenryJi529/OpenMorningstar")
-            elif name == "src-mirror":
-                return redirect("https://gitea.morningstar369.com/Henry529/OpenMorningstar")
             else:
                 pass
         elif name == "host" or name == "vercel":
