@@ -118,19 +118,14 @@ $ python manage.py runserver 0:8000
 		alt="django">
 </a>
 <a href="https://www.freecodecamp.org/">
-	<img width="20%"
+	<img width="23%"
 		src="https://cdn.jsdelivr.net/gh/fizzed/font-mfizz@master/src/svg/freecodecamp.svg"
 		alt="freecodecamp">
 </a>
 <a href="https://www.jetbrains.com/">
-	<img width="23%"
+	<img width="25%"
 		src="https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/Morningstar/static/base/img/pycharm.svg"
 		alt="pycharm">
-</a>
-<a href="https://cloud.google.com/">
-	<img width="20%"
-		src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg"
-		alt="gcloud">
 </a>
 
 

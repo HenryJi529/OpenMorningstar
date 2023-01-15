@@ -6,10 +6,10 @@ PYTHON=$(pwd)/VENV/bin/python
 PIPDEPTREE=$(pwd)/VENV/bin/pipdeptree
 
 runCommand() {
-	fab -H $GCLOUD_USERNAME@server.${DOMAIN} -r scripts/deploy/_fabric -p $1
+	fab -H $CLOUD_USERNAME@server.${DOMAIN} -r scripts/deploy/_fabric -p $1
 }
 
-echo $GCLOUD_USERNAME
+echo $CLOUD_USERNAME
 
 # 简单运行
 serve() {

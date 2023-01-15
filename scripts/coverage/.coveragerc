@@ -11,7 +11,6 @@ omit =
 	Morningstar/whoosh_cn_backend.py
 	Morningstar/middleware/maintenance.py
 	Morningstar/settings/common.py
-	Morningstar/lib/tencentsms/*
 
 [report]
 show_missing = True

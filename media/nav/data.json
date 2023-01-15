@@ -88,15 +88,9 @@
 			"items": [
 				{
 					"name": "计算引擎",
-					"url": "https://console.cloud.google.com/compute/instances?project=morningstar-366900",
+					"url": "https://console.cloud.tencent.com/cvm/instance/",
 					"image": "/media/nav/img/Admin/计算引擎.png",
-					"desc": "谷歌云虚拟机实例管理"
-				},
-				{
-					"name": "赠金余额",
-					"url": "https://console.cloud.google.com/billing/linkedaccount?project=morningstar-366900",
-					"image": "/media/nav/img/Admin/赠金余额.png",
-					"desc": "谷歌云结算账号管理"
+					"desc": "腾讯云虚拟机实例管理"
 				},
 				{
 					"name": "资金管理",

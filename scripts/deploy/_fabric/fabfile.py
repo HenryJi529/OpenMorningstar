@@ -11,7 +11,7 @@ import colorama
 env_path = os.getcwd() + "/.env"
 load_dotenv(dotenv_path=env_path, verbose=True)
 DEV_PASSWORD = os.getenv("DEV_PASSWORD")
-GCLOUD_USERNAME = os.getenv("GCLOUD_USERNAME")
+CLOUD_USERNAME = os.getenv("CLOUD_USERNAME")
 
 
 def runcmd1(command):
@@ -122,7 +122,7 @@ def backup(c):
     project_root_path = '~/morningstar'
     with c.cd(project_root_path):
         try:
-            c.run(f'mkdir /home/{GCLOUD_USERNAME}/morningstar/database/')
+            c.run(f'mkdir /home/{CLOUD_USERNAME}/morningstar/database/')
         except:
             pass
         c.run('docker exec -it morningstar_django bash -c "python3 manage.py dumpdata --settings=Morningstar.settings.production > database/all.json"')
@@ -136,7 +136,7 @@ def restore(c):
     project_root_path = '~/morningstar'
     with c.cd(project_root_path):
         try:
-            c.run(f'mkdir /home/{GCLOUD_USERNAME}/morningstar/database/')
+            c.run(f'mkdir /home/{CLOUD_USERNAME}/morningstar/database/')
         except:
             pass
         c.run('sshpass -p ' + DEV_PASSWORD +
@@ -176,7 +176,7 @@ def backupDockerVolume(c):
 def restoreDockerVolume(c):
     home_path = "~/"
     with c.cd(home_path):
-        c.run(f'ls /home/{GCLOUD_USERNAME}/backup/docker_volume/')
+        c.run(f'ls /home/{CLOUD_USERNAME}/backup/docker_volume/')
         volumeName = input("请输入卷名(不带'deploy_'): ")
         print(f"volumeName: {volumeName}")
         cmd = f'docker run --rm -v deploy_{volumeName}:/volume -v ~/backup/docker_volume:/backup alpine sh -c "rm -rf /volume/* ; tar -C /volume/ -xzvf /backup/{volumeName}.tar.gz"'

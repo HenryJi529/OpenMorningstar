@@ -9,8 +9,8 @@ function echo_important {
 }
 
 change_password() {
-  echo_important "root:$GCLOUD_ROOT_PASSWORD" | sudo chpasswd
-  echo_important "$GCLOUD_USERNAME:$GCLOUD_PASSWORD" | sudo chpasswd
+  echo_important "root:$CLOUD_ROOT_PASSWORD" | sudo chpasswd
+  echo_important "$CLOUD_USERNAME:$CLOUD_PASSWORD" | sudo chpasswd
 }
 
 change_cn_source() {
@@ -61,7 +61,7 @@ config_shell() {
     sudo apt-get update && sudo apt-get install -y zsh
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     sudo sed -i "s/ZSH_THEME="robbyrussell"/ZSH_THEME="josh"/g" ~/.zshrc
-    sudo sed -i "s/\/home\/$GCLOUD_USERNAME:\/bin\/bash/\/home\/$GCLOUD_USERNAME:\/bin\/zsh/g" /etc/passwd
+    sudo sed -i "s/\/home\/$CLOUD_USERNAME:\/bin\/bash/\/home\/$CLOUD_USERNAME:\/bin\/zsh/g" /etc/passwd
   }
   config_bash
   config_zsh
@@ -100,7 +100,7 @@ config_git() {
   git config --global alias.lg "log --all --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
   git config --global alias.df "diff --compact-summary"
   # config core
-  git config --global core.excludesfile /home/${GCLOUD_USERNAME}/.gitignore_global
+  git config --global core.excludesfile /home/${CLOUD_USERNAME}/.gitignore_global
   git config --global core.editor vim
   git config --global core.quotepath false
   # config color
@@ -201,10 +201,10 @@ install_vscode() {
   mkdir -p ~/.config/code-server
   echo "bind-addr: 0.0.0.0:5299
 auth: password
-password: ${GCLOUD_PASSWORD}
+password: ${CLOUD_PASSWORD}
 cert: false 
 " >~/.config/code-server/config.yaml
-  sudo systemctl enable --now code-server@${GCLOUD_USERNAME}
+  sudo systemctl enable --now code-server@${CLOUD_USERNAME}
   /usr/bin/code-server --install-extension ms-python.python            # Python
   /usr/bin/code-server --install-extension esbenp.prettier-vscode      # Prettier
   /usr/bin/code-server --install-extension dbaeumer.vscode-eslint      # ESLint
@@ -216,7 +216,7 @@ cert: false
 backup_docker_volumes() {
   # 全面备份
   # docker run --rm -v some_volume:/volume -v ~/backup/docker_volume:/backup alpine sh -c "tar -C /volume -cvzf /backup/${volume_name}.tar.gz ./"
-  sudo rm /home/$GCLOUD_USERNAME/backup/docker_volume/*
+  sudo rm /home/$CLOUD_USERNAME/backup/docker_volume/*
   docker_volume_list_=($(docker volume ls | awk '{print $2}' | tr '\n' ' '))
   docker_volume_list=${docker_volume_list_[@]:1:${#docker_volume_list_[@]}}
   for volume in $(echo ${docker_volume_list}); do
