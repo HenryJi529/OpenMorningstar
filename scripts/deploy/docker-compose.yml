@@ -136,7 +136,7 @@ services:
       FTP_PASS: 1234asdw
       PASV_MIN_PORT: 21100
       PASV_MAX_PORT: 21110
-      PASV_ADDRESS: 34.92.109.164
+      PASV_ADDRESS: 43.154.147.176
     tty: true
     restart: always
     volumes:
