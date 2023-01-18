@@ -238,8 +238,13 @@
 					"image": "/media/nav/img/Manual/Git.png"
 				},
 				{
+					"name": "VSCode",
+					"url": "https://wangchujiang.com/reference/docs/vscode.html",
+					"image": "/media/nav/img/Manual/VSCode.svg"
+				},
+				{
 					"name": "Bash",
-					"url": "https://wsgzao.github.io/post/bash/",
+					"url": "https://wangchujiang.com/reference/docs/bash.html",
 					"image": "/media/nav/img/Manual/Bash.png"
 				},
 				{
@@ -253,9 +258,19 @@
 					"image": "/media/nav/img/Manual/Makefile.png"
 				},
 				{
+					"name": "GithubActions",
+					"url": "https://wangchujiang.com/reference/docs/github-actions.html",
+					"image": "/media/nav/img/Manual/GithubActions.svg"
+				},
+				{
 					"name": "Markdown",
 					"url": "https://wangchujiang.com/reference/docs/markdown.html",
 					"image": "/media/nav/img/Manual/Markdown.png"
+				},
+				{
+					"name": "LaTex",
+					"url": "https://wangchujiang.com/reference/docs/latex.html",
+					"image": "/media/nav/img/Manual/LaTex.svg"
 				},
 				{
 					"name": "Regex",
@@ -269,13 +284,18 @@
 				},
 				{
 					"name": "Nginx",
-					"url": "https://chinese.freecodecamp.org/news/the-nginx-handbook/",
+					"url": "https://wangchujiang.com/reference/docs/nginx.html",
 					"image": "/media/nav/img/Manual/Nginx.svg"
 				},
 				{
 					"name": "SQL",
-					"url": "http://www.cyc2018.xyz/#数据库",
+					"url": "http://www.cyc2018.xyz/数据库/SQL%20语法.html",
 					"image": "/media/nav/img/Manual/SQL.png"
+				},
+				{
+					"name": "MySQL",
+					"url": "https://wangchujiang.com/reference/docs/mysql.html",
+					"image": "/media/nav/img/Manual/MySQL.svg"
 				},
 				{
 					"name": "HTML",
