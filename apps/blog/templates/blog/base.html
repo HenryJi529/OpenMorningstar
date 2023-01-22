@@ -382,7 +382,7 @@
 				<div class="flex-none">
 					<a class="btn btn-ghost normal-case text-5xl" href="{% url 'blog:index' %}">晨星小站</a>
 				</div>
-				<div class="flex-none">
+				<div class="flex-none flex justify-between">
 					<form id="searchForm" class="form-control" role="search" method="get"
 						action="{% url 'blog:search' %}">
 						<div class="input-group">
@@ -392,53 +392,57 @@
 							<input type="search" placeholder="搜索" class="input input-bordered" name="q" required>
 						</div>
 					</form>
-					<div class="flex justify-center p-2" id="toggleThemeButton" title="模式">
-						<i class="fa-solid text-2xl" id="themeIcon"></i>
-					</div>
-					<!-- <div class="flex justify-center p-2" id="loverButton" title="爱人">
-						<a href="{% url 'lover:index' %}" target="_blank" class="text-2xl fa-solid fa-heart"></a>
-					</div> -->
-					<div class="flex justify-center p-2" id="bookButton" title="书单">
-						<a href="{% url 'book:index' %}" target="_blank" class="text-2xl fa-solid fa-book-atlas"></a>
-					</div>
-					<div class="flex justify-center p-2" id="githubButton" title="源码">
-						<a href="https://github.com/HenryJi529/OpenMorningstar" target="_blank"
-							class="fa-brands text-2xl fa-github"></a>
-					</div>
-					<div class="flex justify-center p-2" id="serverButton" title="服务">
-						<label for="serverModal" class="modal-button cursor-pointer">
-							<i class="fa-solid text-2xl fa-server"></i>
-						</label>
-					</div>
-					<div class="flex justify-center p-2" id="contactButton" title="联系">
-						<a href="{% url 'blog:contact' %}" class="fa-solid text-2xl fa-paper-plane"></a>
-					</div>
-					<div class="dropdown dropdown-end" id="profileButton" title="档案">
-						<label tabindex="0" class="btn btn-ghost btn-circle avatar">
-							{% if user.is_authenticated %}
-							<div class="w-10 rounded-full">
-								<img src="{{ user.avatar.url }}" class="w-full" />
-							</div>
-							{% else %}
-							<i class="fa-solid text-3xl fa-user"></i>
-							{% endif %}
-						</label>
-						<ul tabindex="0"
-							class="mt-1 p-1 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-20">
-							{% if user.is_authenticated %}
-							<li class="indicator">
-								<span
-									class="indicator-item badge text-red-500 bg-slate-300 dark:bg-slate-200 text-xs px-1 h-4">新</span>
-								<label for="profileModal" class="modal-button">档案</label>
-							</li>
-							<li><a href="{% url 'blog:logout' %}">登出</a></li>
-							{% else %}
-							<li><label for="loginModal" class="modal-button">登录</label></li>
-							<li><label for="registerModal" class="modal-button">注册</label></li>
-							<li><label for="findModal" class="modal-button text-gray-300 dark:text-gray-600">找回</label>
-							</li>
-							{% endif %}
-						</ul>
+					<div class="flex">
+						<div class="flex justify-center p-2" id="toggleThemeButton" title="模式">
+							<i class="fa-solid text-2xl" id="themeIcon"></i>
+						</div>
+						<!-- <div class="flex justify-center p-2" id="loverButton" title="爱人">
+							<a href="{% url 'lover:index' %}" target="_blank" class="text-2xl fa-solid fa-heart"></a>
+						</div> -->
+						<div class="flex justify-center p-2" id="bookButton" title="书单">
+							<a href="{% url 'book:index' %}" target="_blank"
+								class="text-2xl fa-solid fa-book-atlas"></a>
+						</div>
+						<div class="flex justify-center p-2" id="githubButton" title="源码">
+							<a href="https://github.com/HenryJi529/OpenMorningstar" target="_blank"
+								class="fa-brands text-2xl fa-github"></a>
+						</div>
+						<div class="flex justify-center p-2" id="serverButton" title="服务">
+							<label for="serverModal" class="modal-button cursor-pointer">
+								<i class="fa-solid text-2xl fa-server"></i>
+							</label>
+						</div>
+						<div class="flex justify-center p-2" id="contactButton" title="联系">
+							<a href="{% url 'blog:contact' %}" class="fa-solid text-2xl fa-paper-plane"></a>
+						</div>
+						<div class="dropdown dropdown-end" id="profileButton" title="档案">
+							<label tabindex="0" class="btn btn-ghost btn-circle avatar">
+								{% if user.is_authenticated %}
+								<div class="w-10 rounded-full">
+									<img src="{{ user.avatar.url }}" class="w-full" />
+								</div>
+								{% else %}
+								<i class="fa-solid text-3xl fa-user"></i>
+								{% endif %}
+							</label>
+							<ul tabindex="0"
+								class="mt-1 p-1 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-20">
+								{% if user.is_authenticated %}
+								<li class="indicator">
+									<span
+										class="indicator-item badge text-red-500 bg-slate-300 dark:bg-slate-200 text-xs px-1 h-4">新</span>
+									<label for="profileModal" class="modal-button">档案</label>
+								</li>
+								<li><a href="{% url 'blog:logout' %}">登出</a></li>
+								{% else %}
+								<li><label for="loginModal" class="modal-button">登录</label></li>
+								<li><label for="registerModal" class="modal-button">注册</label></li>
+								<li><label for="findModal"
+										class="modal-button text-gray-300 dark:text-gray-600">找回</label>
+								</li>
+								{% endif %}
+							</ul>
+						</div>
 					</div>
 				</div>
 			</nav>

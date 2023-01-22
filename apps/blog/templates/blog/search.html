@@ -34,14 +34,12 @@
 				<a href="{% url 'blog:category' post.category.pk %}">{{post.category.name}}</a>
 			</span>
 			<span>
-				<i class="fa-solid fa-comment"></i>
-				<a href="{{ post.get_absolute_url }}#comment-area">{{post.comment_set.count}}</a></span>
-			<span>
 				<i class="fa-solid fa-eye"></i>
-				<a href="{% url 'blog:detail' post.pk %}">{{post.views}}</a></span>
+				<a href="{% url 'blog:detail' post.pk %}">{{post.views}}</a>
+			</span>
 			<span>
-				<i class="fa-solid fa-pen"></i>
-				<time>{{ post.updated|date:"Y-m-d" }}</time>
+				<i class="fa-solid fa-clock-rotate-left"></i>
+				<time>{{ post.readtime }}min</time>
 			</span>
 		</div>
 	</div>

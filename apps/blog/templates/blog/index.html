@@ -7,7 +7,7 @@
         <a class="text-center text-2xl block" href="{{ post.get_absolute_url }}">
             {{ post.title }}
         </a>
-        <div class="flex justify-center text-sm text-center space-x-2">
+        <div class="flex justify-center text-sm text-center space-x-2 overflow-x-scroll">
             <span>
                 <i class="fa-solid fa-folder"></i>
                 <a href="{% url 'blog:category' post.category.pk %}">{{ post.category.name }}</a>
@@ -24,15 +24,8 @@
             </span>
             {% endif %}
             <span>
-                <i class="fa-solid fa-comment"></i>
-                <a href="{{ post.get_absolute_url }}#comment-area">{{ post.comment_set.count }}</a>
-            </span>
-            <span>
                 <i class="fa-solid fa-eye"></i>
-                <a href="{% url 'blog:detail' post.pk %}">{{ post.views }}</a></span>
-            <span>
-                <i class="fa-solid fa-pen"></i>
-                <time>{{ post.updated|date:"Y-m-d" }}</time>
+                <a href="{% url 'blog:detail' post.pk %}">{{ post.views }}</a>
             </span>
             <span>
                 <i class="fa-solid fa-clock-rotate-left"></i>
