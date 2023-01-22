@@ -107,12 +107,12 @@
         "summary": "处理用户代理"
     },
     "fabric": {
-        "version": "2.7.1",
+        "version": "3.0.0",
         "summary": "自动化管理项目",
         "inDev": true
     },
     "Faker": {
-        "version": "16.4.0",
+        "version": "16.6.0",
         "summary": "测试数据生成",
         "inDev": true
     },
@@ -129,7 +129,7 @@
         "summary": "动态web服务器"
     },
     "ipykernel": {
-        "version": "6.20.1",
+        "version": "6.20.2",
         "summary": "用于支持ipynb笔记本",
         "inDev": true
     },
@@ -179,7 +179,7 @@
         "summary": "矩阵计算"
     },
     "pandas": {
-        "version": "1.5.2",
+        "version": "1.5.3",
         "summary": "表数据处理"
     },
     "Pillow": {
@@ -210,11 +210,11 @@
         "summary": "音频处理库"
     },
     "pymdown-extensions": {
-        "version": "9.9.1",
+        "version": "9.9.2",
         "summary": "实用的Python-Markdown扩展"
     },
     "python-dotenv": {
-        "version": "0.21.0",
+        "version": "0.21.1",
         "summary": "环境变量获取"
     },
     "qrcode": {
