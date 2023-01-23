@@ -47,10 +47,6 @@
 	<a href="https://github.com/HenryJi529/OpenMorningstar/stargazers">
 		<img src="https://img.shields.io/static/v1?label=%F0%9F%8C%9F&message=If%20Useful&style=style=flat&color=BC4E99" alt="Please Star Badge"/>
 	</a>
-	<a href="https://twitter.com/HenryJi529">
-		<img src="https://img.shields.io/twitter/follow/HenryJi529.svg?style=social"
-			alt="Twitter:HenryJi529" />
-	</a>
 </div>
 
 
