@@ -320,13 +320,13 @@ c. 更新脚本...;
   esac
 }
 if [ $# -eq 1 ]; then
-  if [ $1 == "-a"]; then
+  if [ $1 == "-a" ]; then
     echo "备份数据..."
     backup_docker_volumes
-  elif [$1 == "-b"]; then
+  elif [ $1 == "-b" ]; then
     echo "还原数据..."
     restore_docker_volumes
-  elif [$1 == "-c"]; then
+  elif [ $1 == "-c" ]; then
     echo "更新脚本..."
     update_myself
   else
