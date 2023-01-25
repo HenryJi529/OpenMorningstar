@@ -147,27 +147,11 @@ def restore(c):
 
 # ================================================================
 
-
-@task()
-def syncToLocalDockerVolume(c):
-    home_path = "~/"
-    with c.cd(home_path):
-        better_print("备份docker volume至文件夹...")
-        c.run('sshpass -p ' + DEV_PASSWORD +
-            ' scp -P 1022 ~/backup/docker_volume/* henry529@server.morningstar369.com:~/Projects/OpenMorningstar/database/docker_volume/')
-    print("Done!!")
-
-
 @task()
 def backupDockerVolume(c):
     home_path = "~/"
     with c.cd(home_path):
-        c.run('docker volume ls')
-        volumeName = input("请输入卷名(不带'deploy_'): ")
-        print(f"volumeName: {volumeName}")
-        cmd = f'docker run --rm -v deploy_{volumeName}:/volume -v ~/backup/docker_volume:/backup alpine sh -c "tar -C /volume -cvzf /backup/{volumeName}.tar.gz ./"'
-        better_print(cmd)
-        c.run(cmd)
+        c.run('bash ~/deploy.sh a')
     
     print("Done!!")
 
@@ -176,13 +160,8 @@ def backupDockerVolume(c):
 def restoreDockerVolume(c):
     home_path = "~/"
     with c.cd(home_path):
-        c.run(f'ls /home/{CLOUD_USERNAME}/backup/docker_volume/')
-        volumeName = input("请输入卷名(不带'deploy_'): ")
-        print(f"volumeName: {volumeName}")
-        cmd = f'docker run --rm -v deploy_{volumeName}:/volume -v ~/backup/docker_volume:/backup alpine sh -c "rm -rf /volume/* ; tar -C /volume/ -xzvf /backup/{volumeName}.tar.gz"'
-        better_print(cmd)
-        c.run(cmd)
-
+        c.run('bash ~/deploy.sh b')
+    
     print("Done!!")
 
 

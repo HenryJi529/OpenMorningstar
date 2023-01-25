@@ -5,7 +5,7 @@ PIP=$(pwd)/VENV/bin/pip
 PYTHON=$(pwd)/VENV/bin/python
 PIPDEPTREE=$(pwd)/VENV/bin/pipdeptree
 
-runCommand() {
+runRemoteCommand() {
 	fab -H $CLOUD_USERNAME@${PUBLIC_IP} -r scripts/deploy/_fabric -p $1
 }
 
@@ -19,7 +19,7 @@ serve() {
 
 # 检视信息
 check() {
-	runCommand check --prompt-for-login-password
+	runRemoteCommand check --prompt-for-login-password
 }
 
 # 本地开发
@@ -82,22 +82,22 @@ updateDep() {
 
 # 远程同步
 updateProd() {
-	runCommand update
+	runRemoteCommand update
 }
 
 # 整体更新
 upgradeProd() {
-	runCommand upgrade
+	runRemoteCommand upgrade
 }
 
-# 数据备份
-backupProd() {
-	runCommand backup
+# 数据库备份
+backupDatabase() {
+	runRemoteCommand backup
 }
 
-# 数据还原
-restoreProd() {
-	runCommand restore
+# 数据库还原
+restoreDatabase() {
+	runRemoteCommand restore
 }
 
 # 生成压缩包
@@ -108,21 +108,23 @@ archiveMain() {
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-syncToLocalDockerVolume() {
-	runCommand syncToLocalDockerVolume
-}
-
 backupDockerVolume() {
-	runCommand backupDockerVolume
+	# 备份volume为压缩包
+	runRemoteCommand backupDockerVolume
+	# 同步压缩包到本地
+	rsync -avz ${CLOUD_USERNAME}@server.morningstar369.com:~/backup/docker_volume ./database/
 }
 
 restoreDockerVolume() {
-	runCommand restoreDockerVolume
+	# 同步压缩包到远处
+	rsync -avz ./database/docker_volume ${CLOUD_USERNAME}@server.morningstar369.com:~/backup/
+	# 复原压缩包为volume
+	runRemoteCommand restoreDockerVolume
 }
 
 publicPackage() {
 	echo "更新生产环境下的容器..."
-	runCommand updatePackage
+	runRemoteCommand updatePackage
 	read -s -n1 -p "按任意键继续..."
 	echo ""
 	echo "==================================="
@@ -144,7 +146,7 @@ publicVercel() {
 }
 
 publicLedger() {
-	runCommand updateLedger
+	runRemoteCommand updateLedger
 }
 
 #==================================================================
@@ -161,7 +163,6 @@ c. publicPackage();
 d. publicVercel();
 e. publicLedger();
 f. check();
-g. syncToLocalDockerVolume();
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 0. serve();
 1. dev();
@@ -170,8 +171,8 @@ g. syncToLocalDockerVolume();
 4. updateDep();
 5. updateProd();
 6. upgradeProd();
-7. backupProd();
-8. restoreProd();
+7. backupDatabase();
+8. restoreDatabase();
 9. archiveMain();
 "
 read -p "输入序号(a-g|0-9): " order
@@ -188,7 +189,6 @@ c) publicPackage ;;
 d) publicVercel ;;
 e) publicLedger ;;
 f) check ;;
-g) syncToLocalDockerVolume ;;
 # ==========================
 0) serve ;;
 1) dev ;;
@@ -197,8 +197,8 @@ g) syncToLocalDockerVolume ;;
 4) updateDep ;;
 5) updateProd ;;
 6) upgradeProd ;;
-7) backupProd ;;
-8) restoreProd ;;
+7) backupDatabase ;;
+8) restoreDatabase ;;
 9) archiveMain ;;
 *) echo "输入错误" ;;
 esac
