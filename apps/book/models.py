@@ -42,7 +42,7 @@ class Book(models.Model):
     category = models.ForeignKey(Category, verbose_name='分类', on_delete=models.CASCADE)
     author = models.ForeignKey(Author, verbose_name='作者', on_delete=models.SET_DEFAULT, null=True, default=None)
     translator = models.ForeignKey(Translator, verbose_name='译者', on_delete=models.SET_DEFAULT, null=True, default=None, blank=True)
-    file = models.FileField('文件', upload_to="book/%Y%m%d%H%M%S/", default="book/default.pdf", blank=True)
+    file = models.FileField('文件', upload_to="book/%Y%m%d%H%M%S/", default="book/default.pdf", blank=True, null=True)
     foreign_url = models.URLField('外链', null=True, blank=True)
 
     @property
