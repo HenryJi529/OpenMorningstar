@@ -9,8 +9,6 @@ runRemoteCommand() {
 	fab -H $CLOUD_USERNAME@${PUBLIC_IP} -r scripts/deploy/_fabric -p $1
 }
 
-echo $CLOUD_USERNAME
-
 # 简单运行
 serve() {
 	echo "启动django-server..."
