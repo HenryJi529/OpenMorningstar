@@ -7,8 +7,8 @@ from .lib import Ghelper
 from .models import Node
 
 URLs = [
-    "https://ghelper.me/rss/9714f7c1e4741f547c37d4b0e13d580b",
-    "https://ghelper.me/rss/2b1e0f931b6e95ef7314e3c756360e0e"
+    "https://ghelper.me/rss/9714f7c1e4741f547c37d4b0e13d580b", # JP
+    "https://ghelper.me/rss/2b1e0f931b6e95ef7314e3c756360e0e", # CMH
 ]
 
 def index(request):
