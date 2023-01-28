@@ -14,7 +14,8 @@ URLs = [
 def index(request):
     links = [node.link for node in Node.objects.all()]
     for url in URLs:
-        links.extend(Ghelper(url=url).links)
+        id = URLs.index(url)
+        links.extend(Ghelper(url=url,id=id).links)
     links_bytes = "\n".join(links).encode('utf-8')
     data_bytes = base64.b64encode(links_bytes)
     data = data_bytes.decode('utf-8')
