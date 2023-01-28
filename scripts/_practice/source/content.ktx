@@ -1,0 +1,1270 @@
+< q1
+Print the numpy version and the configuration (★☆☆)
+
+< h1
+hint: `np.__version__`, `np.show_config`)
+
+< a1
+# np.show_config()
+np.__version__
+
+
+< q2
+Create a null vector of size 10 (★☆☆)
+
+< h2
+hint: `np.zeros`
+
+< a2
+Z = np.zeros(10)
+print(Z)
+
+
+< q3
+How to find the memory size of any array (★☆☆)
+
+< h3
+hint: `np.size`, `np.itemsize`
+
+< a3
+Z = np.zeros((10,10))
+Z.size * Z.itemsize
+
+
+< q4
+How to get the documentation of the numpy add function from the command line? (★☆☆)
+
+< h4
+hint: `np.info`
+
+< a4
+# help(numpy.add)
+numpy.info(numpy.add)
+
+
+< q5
+Create a null vector of size 10 but the fifth value which is 1 (★☆☆)
+
+< h5
+hint: `array[4]`
+
+< a5
+Z = np.zeros(10)
+Z[4] = 1
+Z
+
+
+< q6
+Create a vector with values ranging from 10 to 49 (★☆☆)
+
+< h6
+hint: `np.arange`
+
+< a6
+np.arange(10,50)
+
+
+< q7
+Reverse a vector (first element becomes last) (★☆☆)
+
+< h7
+hint: `array[::-1]`
+
+< a7
+np.arange(10,50)[::-1]
+
+
+< q8
+Create a 3x3 matrix with values ranging from 0 to 8 (★☆☆)
+
+< h8
+hint: `array.reshape`
+
+< a8
+np.arange(0,9).reshape(3,3)
+
+
+< q9
+Find indices of non-zero elements from [1,2,0,0,4,0] (★☆☆)
+
+< h9
+hint: `np.nonzero`
+
+< a9
+Z = np.array([1,2,0,0,4,0])
+# Z[Z!=0]
+np.nonzero(Z)
+
+
+< q10
+Create a 3x3 identity matrix (★☆☆)
+
+< h10
+hint: `np.eye`
+
+< a10
+np.eye(3)
+
+
+< q11
+Create a 3x3x3 array with random values (★☆☆)
+
+< h11
+hint: `np.random.random`
+
+< a11
+np.random.random((3,3,3))
+
+
+< q12
+Create a 10x10 array with random values and find the minimum and maximum values (★☆☆)
+
+< h12
+hint: `array.min`, `array.max`
+
+< a12
+Z = np.random.random((10,10))
+Z = np.random.random((10,10))
+minValue, maxValue = Z.min(), Z.max()
+
+
+< q13
+Create a random vector of size 30 and find the mean value (★☆☆)
+
+< h13
+hint: `array.mean`
+
+< a13
+Z = np.random.random(30)
+Z.mean()
+
+
+< q14
+Create a 2d array with 1 on the border and 0 inside (★☆☆)
+
+< h14
+hint: `array[1:-1, 1:-1]`
+
+< a14
+Z = np.ones((10,10))
+Z[1:-1,1:-1] = 0
+Z
+
+
+< q15
+How to add a border (filled with 0's) around an existing array? (★☆☆)
+
+< h15
+hint: `np.pad`
+
+< a15
+Z = np.random.random((3,3))
+np.pad(Z, pad_width=1, mode='constant', constant_values=0)
+
+
+< q16
+What is the result of the following expression? (★☆☆)
+```python
+0 * np.nan
+np.nan == np.nan
+np.inf > np.nan
+np.nan - np.nan
+np.nan in set([np.nan])
+0.3 == 3 * 0.1
+```
+
+< h16
+hint: NaN = not a number, inf = infinity
+
+< a16
+print(0 * np.nan)
+print(np.nan == np.nan)
+print(np.inf > np.nan)
+print(np.nan - np.nan)
+print(np.nan in set([np.nan]))
+print(0.3 == 3 * 0.1)
+
+
+< q17
+Create a 5x5 matrix with values 1,2,3,4 just below the diagonal (★☆☆)
+
+< h17
+hint: `np.diag`
+
+< a17
+"""
+Z = np.zeros((5,5))
+for i in range(0,4):
+    Z[i+1,i] = i+1
+"""
+np.diag(1+np.arange(4),k=-1)
+
+
+< q18
+Create a 8x8 matrix and fill it with a checkerboard pattern (★☆☆)
+
+< h18
+hint: `array[::2]`
+
+< a18
+Z = np.zeros((8,8),dtype=int)
+Z[1::2,::2] = 1
+Z[::2,1::2] = 1
+Z
+
+
+< q19
+Consider a (6,7,8) shape array, what is the index (x,y,z) of the 100th element? (★☆☆)
+
+< h19
+hint: `np.unravel_index`
+
+< a19
+np.unravel_index(99,(6,7,8))
+
+
+< q20
+Create a checkerboard 8x8 matrix using the tile function (★☆☆)
+
+< h20
+hint: `np.tile`
+
+< a20
+np.tile(np.array([[0,1],[1,0]]), (4,4))
+
+
+< q21
+Normalize a 5x5 random matrix (★☆☆)
+
+< h21
+hint: (x - mean)/std
+
+< a21
+Z = np.random.random((5,5))
+Z = (Z - Z.mean())/Z.std()
+Z.std()
+
+
+< q22
+Create a custom dtype that describes a color as four unsigned bytes (RGBA) (★☆☆)
+
+< h22
+hint: `np.dtype`
+
+< a22
+colorType = np.dtype([
+    ("r", np.ubyte),
+    ("g", np.ubyte),
+    ("b", np.ubyte),
+    ("a", np.ubyte)]
+)
+color = np.array([(222,222,212,5),(222,222,212,5)], colorType)
+color['r']
+
+
+< q23
+Multiply a 5x3 matrix by a 3x2 matrix (real matrix product) (★☆☆)
+
+< h23
+hint: `np.dot`, `np.mat`, `@`
+
+< a23
+# np.dot(np.ones((5,3)), np.ones((3,2)))
+# np.mat(np.ones((5,3))) * np.mat(np.ones((3,2)))
+np.ones((5,3)) @ np.ones((3,2))
+
+
+< q24
+Given a 1D array, negate all elements which are between 3 and 8, in place. (★☆☆)
+
+< h24
+hint: >, <
+
+< a24
+Z = np.random.randint(0,10,10)
+Z[(Z >= 3) & (Z <= 8)] *= -1
+Z
+
+
+< q25
+How to find common values between two arrays? (★☆☆)
+
+< h25
+hint: `np.intersect1d`
+
+< a25
+Z1 = np.random.randint(0,10,10)
+Z2 = np.random.randint(0,10,10)
+np.intersect1d(Z1,Z2)
+
+
+< q26
+Is the following expressions true? (★☆☆)
+```python
+np.sqrt(-1) == np.emath.sqrt(-1)
+```
+
+< h26
+hint: imaginary number
+
+< a26
+np.sqrt(-1) == np.emath.sqrt(-1)
+
+
+< q27
+How to get the dates of yesterday, today and tomorrow? (★☆☆)
+
+< h27
+hint: `np.datetime64`, `np.timedelta64`, `datetime`
+
+< a27
+# import datetime
+# today = datetime.datetime.now()
+# tomorrow = datetime.datetime.now() + datetime.timedelta(days=1)
+# yesterday = datetime.datetime.now() - datetime.timedelta(days=1)
+
+yesterday = np.datetime64('today') - np.timedelta64(1)
+today     = np.datetime64('today')
+tomorrow  = np.datetime64('today') + np.timedelta64(1)
+
+
+< q28
+How to get all the dates corresponding to the month of July 2016? (★★☆)
+
+< h28
+hint: `np.arange(dtype=datetime64['D'])`
+
+< a28
+# import pandas as pd
+# pd.date_range("2016-7-1","2016-7-31")
+np.arange('2016-07', '2016-08', dtype='datetime64[D]')
+
+
+< q29
+How to compute ((A+B)*(-A/2)) in place (without copy)? (★★☆)
+
+< h29
+hint: `np.add(out=)`, `np.negative(out=)`, `np.multiply(out=)`, `np.divide(out=)`
+
+< a29
+A = np.ones(3)*1
+B = np.ones(3)*2
+np.add(A,B,out=B)
+np.divide(A,2,out=A)
+np.negative(A,out=A)
+np.multiply(A,B,out=A)
+
+
+< q30
+Extract the integer part of a random array of positive numbers using 4 different methods (★★☆)
+
+< h30
+hint: `%`, `np.floor`, `astype`, `np.trunc`
+
+< a30
+Z = np.random.uniform(0,10,10)
+print(Z - Z%1)
+print(Z // 1)
+print(np.floor(Z))
+print(Z.astype(int))
+print(np.trunc(Z))
+
+
+< q31
+Create a 5x5 matrix with row values ranging from 0 to 4 (★★☆)
+
+< h31
+hint: `np.arange`
+
+< a31
+np.tile(np.arange(0,5),(5,1))
+
+
+< q32
+Create a vector of size 10 with values ranging from 0 to 1, both excluded (★★☆)
+
+< h32
+hint: `np.linspace`
+
+< a32
+np.linspace(0,1,11,endpoint=False)[1:]
+
+
+< q33
+Create a random vector of size 10 and sort it (★★☆)
+
+< h33
+hint: `array.sort`
+
+< a33
+Z = np.random.randn(10)
+# Z.sort()
+sorted(Z)
+
+
+< q34
+Consider two random array A and B, check if they are equal (★★☆)
+
+< h34
+hint: `np.allclose`, `np.array_equal`
+
+< a34
+A = np.random.randint(0,2,5)
+B = np.random.randint(0,2,5)
+
+# Assuming identical shape of the arrays and a tolerance for the comparison of values
+equal = np.allclose(A,B)
+print(equal)
+
+# Checking both the shape and the element values, no tolerance (values have to be exactly equal)
+equal = np.array_equal(A,B)
+print(equal)
+
+
+< q35
+Make an array immutable (read-only) (★★☆)
+
+< h35
+hint: `array.flags.writeable`
+
+< a35
+Z = np.zeros(10)
+Z.flags.writeable = False
+Z[0] = 1
+
+
+< q36
+Consider a random 10x2 matrix representing cartesian coordinates, convert them to polar coordinates (★★☆)
+
+< h36
+hint: `np.sqrt`, `np.arctan2`
+
+< a36
+Z = np.random.random((10,2))
+X,Y = Z[:,0], Z[:,1]
+R = np.sqrt(X**2+Y**2)
+T = np.arctan2(Y,X)
+print(R)
+print(T)
+
+
+< q37
+Create random vector of size 10 and replace the maximum value by 0 (★★☆)
+
+< h37
+hint: `array.argmax`
+
+< a37
+Z = np.random.random(10)
+Z[Z.argmax()] = 0
+# Z[np.where(Z == Z.max())[0]]=0
+Z
+
+
+< q38
+Given two arrays, X and Y, construct the Cauchy matrix C (Cij =1/(xi - yj)) (★★☆)
+
+< h38
+hint: `np.subtract.outer`
+
+< a38
+# X = np.arange(8)
+# Y = X + 0.5
+# C = 1.0 / np.subtract.outer(X, Y)
+# print(np.linalg.det(C))
+
+X = np.arange(8)
+Y = (X+0.5).reshape(8,1)
+X_ = np.tile(X,(8,1))
+Y_ = np.tile(Y,(1,8))
+C = (1/(X_ -Y_)).T
+C
+
+
+< q39
+How to print all the values of an array? (★★☆)
+
+< h39
+hint: `np.set_printoptions`
+
+< a39
+np.set_printoptions(threshold=float("inf"))
+Z = np.zeros((40,40))
+print(Z)
+
+
+< q40
+How to find the closest value (to a given scalar) in a vector? (★★☆)
+
+< h40
+hint: `array.argmin`
+
+< a40
+Z = np.arange(100)
+v = np.random.uniform(0,100)
+index = (np.abs(Z-v)).argmin()
+print(Z[index])
+
+
+< q41
+How to convert a float (32 bits) array into an integer (32 bits) in place? (★★☆)
+
+< h41
+hint: `array.astype`
+
+< a41
+(np.random.random(10)*100).astype(np.int32)
+
+
+< q42
+What is the equivalent of enumerate for numpy arrays? (★★☆)
+
+< h42
+hint: `np.ndenumerate`, `np.ndindex`
+
+< a42
+Z = np.arange(9).reshape(3,3)
+for index, value in np.ndenumerate(Z):
+    print(index, value)
+for index in np.ndindex(Z.shape):
+    print(index, Z[index])
+
+
+< q43
+Generate a generic 2D Gaussian-like array (★★☆)
+
+< h43
+hint: `np.meshgrid`, `np.exp`
+
+< a43
+X, Y = np.meshgrid(np.linspace(-1,1,10), np.linspace(-1,1,10))
+D = np.sqrt(X*X+Y*Y)
+sigma, mu = 1.0, 0.0
+G = np.exp(-( (D-mu)**2 / ( 2.0 * sigma**2 ) ) )
+print(G)
+
+
+< q44
+Subtract the mean of each row of a matrix (★★☆)
+
+< h44
+hint: `array.mean(axis=,keepdims=)`
+
+< a44
+X = np.random.rand(5, 10)
+X.mean(axis=1, keepdims=True)
+
+
+< q45
+How to sort an array by the nth column? (★★☆)
+
+< h45
+hint: `array.argsort`
+
+< a45
+Z = np.random.randint(0,10,(3,3))
+print(Z)
+print(Z[Z[:,1].argsort()])
+
+
+< q46
+How to tell if a given 2D array has null columns? (★★☆)
+
+< h46
+hint: any
+
+< a46
+Z=np.array([
+    [0,1,np.nan],
+    [1,2,np.nan],
+    [4,5,np.nan]
+])
+print(np.isnan(Z).all(axis=0))
+
+
+< q47
+Find the nearest value from a given value in an array (★★☆)
+
+< h47
+hint: `np.abs`, `array.argmin`, `array.flat`
+
+< a47
+a = 0.5
+Z = np.random.random((5,5))
+# Z = np.random.uniform(0,1,10)
+Z.flat[np.abs(Z - a).argmin()]
+
+
+< q48
+Create an array class that has a name attribute (★★☆)
+
+< h48
+hint: class method
+
+< a48
+class NamedArray(np.ndarray):
+    def __new__(cls, array, name="no name"):
+        obj = np.asarray(array).view(cls)
+        obj.name = name
+        return obj
+    def __array_finalize__(self, obj):
+        if obj is None: return
+        self.name = getattr(obj, 'name', "no name")
+
+Z = NamedArray(np.arange(10), "range_10")
+print (Z.name)
+
+
+< q49
+Considering a four dimensions array, how to get sum over the last two axis at once? (★★★)
+
+< h49
+hint: `array.sum(axis=(-2,-1))`
+
+< a49
+A = np.random.randint(0,10,(3,4,3,4))
+A.sum(axis=(-2,-1))
+
+
+< q50
+How to get the diagonal of a dot product? (★★★)
+
+< h50
+hint: `np.diag`
+
+< a50
+A = np.random.uniform(0,1,(5,5))
+B = np.random.uniform(0,1,(5,5))
+
+# Slow version
+np.diag(np.dot(A, B))
+
+# Fast version
+np.sum(A * B.T, axis=1)
+
+
+< q51
+Consider the vector [1, 2, 3, 4, 5], how to build a new vector with 3 consecutive zeros interleaved between each value? (★★★)
+
+< h51
+hint: `array[::4]`
+
+< a51
+Z = np.array([1,2,3,4,5])
+nz = 3
+Z0 = np.zeros(len(Z) + (len(Z)-1)*(nz))
+Z0[::nz+1] = Z
+print(Z0)
+
+
+< q52
+Consider an array of dimension (5,5,3), how to multiply it by an array with dimensions (5,5)? (★★★)
+
+< h52
+hint: `array[:, :, None]`
+
+< a52
+A = np.ones((5,5,3))
+B = 2*np.ones((5,5))
+print(A * B[:,:,None])
+
+
+< q53
+How to swap two rows of an array? (★★★)
+
+< h53
+hint: array[[]] = array[[]]
+
+< a53
+Z = np.ones((3,3))
+Z[1,:] *= 2
+Z[[0,1]] = Z[[1,0]]
+Z
+
+
+< q54
+Consider a set of 10 triplets describing 10 triangles (with shared vertices), find the set of unique line segments composing all the  triangles (★★★)
+
+< h54
+hint: `array.repeat`, `np.roll`, `np.sort`, `array.view`, `np.unique`
+
+< a54
+faces = np.random.randint(0,100,(10,3))
+F = np.roll(faces.repeat(2,axis=1),-1,axis=1)
+F = F.reshape(len(F)*3,2)
+F = np.sort(F,axis=1)
+G = F.view( dtype=[('p0',F.dtype),('p1',F.dtype)] )
+G = np.unique(G)
+print(G)
+
+
+< q55
+Given a sorted array C that corresponds to a bincount, how to produce an array A such that np.bincount(A) == C? (★★★)
+
+< h55
+hint: `np.repeat`
+
+< a55
+C = np.bincount([1,1,2,3,4,4,6])
+A = np.repeat(np.arange(len(C)), C)
+print(A)
+
+
+< q56
+How to compute averages using a sliding window over an array? (★★★)
+
+< h56
+hint: `np.cumsum`, `from numpy.lib.stride_tricks import sliding_window_view`
+
+< a56
+from numpy.lib.stride_tricks import sliding_window_view
+Z = np.arange(20)
+print(sliding_window_view(Z, window_shape=3).mean(axis=-1))
+
+
+< q57
+Consider a one-dimensional array Z, build a two-dimensional array whose first row is (Z[0],Z[1],Z[2]) and each subsequent row is  shifted by 1 (last row should be (Z[-3],Z[-2],Z[-1]) (★★★)
+
+< h57
+hint: `from numpy.lib import stride_tricks`, `from numpy.lib.stride_tricks import sliding_window_view`
+
+< a57
+from numpy.lib import stride_tricks
+
+def rolling(a, window):
+    shape = (a.size - window + 1, window)
+    strides = (a.strides[0], a.strides[0])
+    return stride_tricks.as_strided(a, shape=shape, strides=strides)
+Z = rolling(np.arange(10), 3)
+print(Z)
+
+
+< q58
+How to negate a boolean, or to change the sign of a float inplace? (★★★)
+
+< h58
+hint: `np.logical_not`, `np.negative`
+
+< a58
+Z = np.random.randint(0,2,100)
+np.logical_not(Z, out=Z)
+
+Z = np.random.uniform(-1.0,1.0,100)
+np.negative(Z, out=Z)
+
+
+< q59
+Consider 2 sets of points P0,P1 describing lines (2d) and a point p, how to compute distance from p to each line i (P0[i],P1[i])? (★★★)
+
+< h59
+No hints provided...
+
+< a59
+def distance(P0, P1, p):
+    T = P1 - P0
+    L = (T**2).sum(axis=1)
+    U = -((P0[:,0]-p[...,0])*T[:,0] + (P0[:,1]-p[...,1])*T[:,1]) / L
+    U = U.reshape(len(U),1)
+    D = P0 + U*T - p
+    return np.sqrt((D**2).sum(axis=1))
+
+P0 = np.random.uniform(-10,10,(10,2))
+P1 = np.random.uniform(-10,10,(10,2))
+p  = np.random.uniform(-10,10,( 1,2))
+print(distance(P0, P1, p))
+
+
+< q60
+Consider 2 sets of points P0,P1 describing lines (2d) and a set of points P, how to compute distance from each point j (P[j]) to each line i (P0[i],P1[i])? (★★★)
+
+< h60
+No hints provided...
+
+< a60
+# based on distance function from previous question
+P0 = np.random.uniform(-10, 10, (10,2))
+P1 = np.random.uniform(-10,10,(10,2))
+p = np.random.uniform(-10, 10, (10,2))
+print(np.array([distance(P0,P1,p_i) for p_i in p]))
+
+
+< q61
+Consider an arbitrary array, write a function that extract a subpart with a fixed shape and centered on a given element (pad with a `fill` value when necessary) (★★★)
+
+< h61
+hint: minimum maximum
+
+< a61
+Z = np.random.randint(0,10,(10,10))
+shape = (5,5)
+fill  = 0
+position = (1,1)
+
+R = np.ones(shape, dtype=Z.dtype)*fill
+P  = np.array(list(position)).astype(int)
+Rs = np.array(list(R.shape)).astype(int)
+Zs = np.array(list(Z.shape)).astype(int)
+
+R_start = np.zeros((len(shape),)).astype(int)
+R_stop  = np.array(list(shape)).astype(int)
+Z_start = (P-Rs//2)
+Z_stop  = (P+Rs//2)+Rs%2
+
+R_start = (R_start - np.minimum(Z_start,0)).tolist()
+Z_start = (np.maximum(Z_start,0)).tolist()
+R_stop = np.maximum(R_start, (R_stop - np.maximum(Z_stop-Zs,0))).tolist()
+Z_stop = (np.minimum(Z_stop,Zs)).tolist()
+
+r = [slice(start,stop) for start,stop in zip(R_start,R_stop)]
+z = [slice(start,stop) for start,stop in zip(Z_start,Z_stop)]
+R[r] = Z[z]
+print(Z)
+print(R)
+
+
+< q62
+Consider an array Z = [1,2,3,4,5,6,7,8,9,10,11,12,13,14], how to generate an array R = [[1,2,3,4], [2,3,4,5], [3,4,5,6], ..., [11,12,13,14]]? (★★★)
+
+< h62
+hint: `stride_tricks.as_strided`, `from numpy.lib.stride_tricks import sliding_window_view`
+
+< a62
+Z = np.arange(1,15,dtype=np.uint32)
+R = stride_tricks.as_strided(Z,(11,4),(4,4))
+print(R)
+
+
+< q63
+Compute a matrix rank (★★★)
+
+< h63
+hint: `np.linalg.svd`, `np.linalg.matrix_rank`
+
+< a63
+Z = np.random.uniform(0,1,(10,10))
+rank = np.linalg.matrix_rank(Z)
+print(rank)
+
+
+< q64
+How to find the most frequent value in an array? (★★☆)
+
+< h64
+hint: `np.bincount`, `array.argmax`
+
+< a64
+Z = np.random.randint(0,10,50)
+print(np.bincount(Z).argmax())
+
+
+< q65
+Extract all the contiguous 3x3 blocks from a random 10x10 matrix (★★★)
+
+< h65
+hint: `stride_tricks.as_strided`, `from numpy.lib.stride_tricks import sliding_window_view`
+
+< a65
+Z = np.random.randint(0,5,(10,10))
+n = 3
+i = 1 + (Z.shape[0]-3)
+j = 1 + (Z.shape[1]-3)
+C = stride_tricks.as_strided(Z, shape=(i, j, n, n), strides=Z.strides + Z.strides)
+print(C)
+
+
+< q66
+Create a 2D array subclass such that Z[i,j] == Z[j,i] (★★★)
+
+< h66
+hint: class method
+
+< a66
+class Symmetric(np.ndarray):
+    def __setitem__(self, index, value):
+        i,j = index
+        super(Symmetry, self).__setitem__((i,j), value)
+        super(Symmetry, self).__setitem__((j,i), value)
+
+def symmetric(Z):
+    return np.asarray(Z + Z.T - np.diag(Z.diagonal())).view(Symmetric)
+
+S = symmetric(np.random.randint(0,10,(5,5)))
+S[2,3] = 42
+print(S)
+
+
+< q67
+Consider a set of p matrices which shape (n,n) and a set of p vectors with shape (n,1). How to compute the sum of of the p matrix products at once? (result has shape (n,1)) (★★★)
+
+< h67
+hint: `np.tensordot`
+
+< a67
+p, n = 10, 20
+M = np.ones((p,n,n))
+V = np.ones((p,n,1))
+S = np.tensordot(M, V, axes=[[0, 2], [0, 1]])
+print(S)
+
+
+< q68
+How to implement the Game of Life using numpy arrays? (★★★)
+
+< h68
+No hints provided...
+
+< a68
+def iterate(Z):
+    # Count neighbors
+    N = (Z[0:-2,0:-2] + Z[0:-2,1:-1] + Z[0:-2,2:] +
+         Z[1:-1,0:-2]                + Z[1:-1,2:] +
+         Z[2:  ,0:-2] + Z[2:  ,1:-1] + Z[2:  ,2:])
+
+    # Apply rules
+    birth = (N==3) & (Z[1:-1,1:-1]==0)
+    survive = ((N==2) | (N==3)) & (Z[1:-1,1:-1]==1)
+    Z[...] = 0
+    Z[1:-1,1:-1][birth | survive] = 1
+    return Z
+
+Z = np.random.randint(0,2,(50,50))
+for i in range(100): Z = iterate(Z)
+print(Z)
+
+
+< q69
+How to get the n largest values of an array (★★★)
+
+< h69
+hint: `np.argsort`
+
+< a69
+Z = np.arange(10000)
+np.random.shuffle(Z)
+n = 5
+print(Z[np.argsort(Z)[-n:]])
+
+
+< q70
+Given an arbitrary number of vectors, build the cartesian product (every combinations of every item) (★★★)
+
+< h70
+hint: `np.indices`
+
+< a70
+def cartesian(arrays):
+    arrays = [np.asarray(a) for a in arrays]
+    shape = (len(x) for x in arrays)
+
+    ix = np.indices(shape, dtype=int)
+    ix = ix.reshape(len(arrays), -1).T
+
+    for n, arr in enumerate(arrays):
+        ix[:, n] = arrays[n][ix[:, n]]
+
+    return ix
+
+print (cartesian(([1, 2, 3], [4, 5], [6, 7])))
+
+
+< q71
+Considering a path described by two vectors (X,Y), how to sample it using equidistant samples (★★★)
+
+< h71
+hint: `np.cumsum`, `np.interp`
+
+< a71
+phi = np.arange(0, 10*np.pi, 0.1)
+a = 1
+x = a*phi*np.cos(phi)
+y = a*phi*np.sin(phi)
+
+dr = (np.diff(x)**2 + np.diff(y)**2)**.5 # segment lengths
+r = np.zeros_like(x)
+r[1:] = np.cumsum(dr)                # integrate path
+r_int = np.linspace(0, r.max(), 200) # regular spaced path
+x_int = np.interp(r_int, r, x)       # integrate path
+y_int = np.interp(r_int, r, y)
+
+
+< q72
+Given an integer n and a 2D array X, select from X the rows which can be interpreted as draws from a multiple normal distribution with n degrees. (★★★)
+i.e., the rows which only contain integers and which sum to n.
+
+< h72
+hint: `np.logical_and.reduce`, `np.mod`
+
+< a72
+X = np.asarray([[1.0, 0.0, 3.0, 8.0],
+                [2.0, 0.0, 1.0, 1.0],
+                [1.5, 2.5, 1.0, 0.0]])
+n = 4
+M = np.logical_and.reduce(np.mod(X, 1) == 0, axis=-1)
+M &= (X.sum(axis=-1) == n)
+print(X[M])
+
+
+< q73
+Create a DataFrame `df` from this dictionary `data` which has the index `labels`.(★☆☆)
+
+< h73
+hint: `pd.DataFrame`
+
+< a73
+df = pd.DataFrame(data, index=labels)
+df.head()
+
+
+< q74
+Display a summary of the basic information about this DataFrame and its data.(★☆☆)
+
+< h74
+hint: `df.info()`, `df.describe()`
+
+< a74
+# df.describe()
+df.info()
+
+
+< q75
+Return the first 3 rows of the DataFrame `df`.(★☆☆)
+
+< h75
+hint: `df.iloc[]`
+
+< a75
+# df.head(3)
+df.iloc[:3]
+
+
+< q76
+Select just the 'animal' and 'age' columns from the DataFrame `df`.(★☆☆)
+
+< h76
+hint: `df[[]]`, `df.loc[]`
+
+< a76
+# df.loc[:, ['animal', 'age']]
+df[['animal','age']]
+
+
+< q77
+Select the data in rows `[3, 4, 8]` and in columns `['animal', 'age']`.(★☆☆)
+
+< h77
+hint: `df.loc[]`, `df.index[]`
+
+< a77
+df.loc[df.index[[3,4,8]], ['animal', 'age']]
+
+
+< q78
+Select only the rows where the number of visits is greater than 3.(★☆☆)
+
+< h78
+hint: no hint
+
+< a78
+df[df['visits'] > 3]
+
+
+< q79
+Select the rows where the age is missing, i.e. it is `NaN`.(★☆☆)
+
+< h79
+hint: `series.isna()`
+
+< a79
+# df[df['age'].isna()]
+df[df['age'].isnull()]
+
+
+< q80
+Select the rows where the animal is a cat *and* the age is less than 3.(★☆☆)
+
+< h80
+hint: no hint
+
+< a80
+df[(df['animal'] == 'cat') & (df['age'] < 3)]
+
+
+< q81
+Select the rows the age is between 2 and 4 (inclusive).(★☆☆)
+
+< h81
+hint: no hint
+
+< a81
+# df[df['age'].between(2, 4)]
+df[(df['age'] >= 2) & (df['age'] <= 4)]
+
+
+< q82
+Change the age in row 'f' to 1.5.(★☆☆)
+
+< h82
+hint: no hint
+
+< a82
+df.loc['f', 'age'] = 1.5
+
+
+< q83
+Calculate the sum of all visits in `df` (i.e. find the total number of visits).(★☆☆)
+
+< h83
+hint: no hint
+
+< a83
+df['visits'].sum()
+
+
+< q84
+Calculate the mean age for each different animal in `df`.(★☆☆)
+
+< h84
+hint: `df.groupby()`
+
+< a84
+df.groupby('animal')['age'].mean()
+
+
+< q85
+Append a new row 'k' to `df` with your choice of values for each column. Then delete that row to return the original DataFrame.(★☆☆)
+
+< h85
+hint: `df.drop()`
+
+< a85
+df.loc['k'] = [5.5, 'dog', 'no', 2]
+df = df.drop('k')
+
+
+< q86
+Count the number of each type of animal in `df`.(★☆☆)
+
+< h86
+hint: `series.value_counts`
+
+< a86
+# df['animal'].value_counts()
+data = [(key,len(value)) for key,value in df.groupby('animal').groups.items()]
+s = pd.Series(data)
+print(s)
+
+
+< q87
+Sort `df` first by the values in the 'age' in *descending* order, then by the value in the 'visits' column in *ascending* order (so row `i` should be first, and row `d` should be last).(★☆☆)
+
+< h87
+hint: `df.sort_values`
+
+< a87
+df.sort_values(by=['age','visits'], ascending=[False, True])
+
+
+< q88
+The 'priority' column contains the values 'yes' and 'no'. Replace this column with a column of boolean values: 'yes' should be `True` and 'no' should be `False`.(★☆☆)
+
+< h88
+hint: `series.map`
+
+< a88
+df['priority'] = df['priority'].map({'yes': True, 'no': False})
+
+
+< q89
+In the 'animal' column, change the 'snake' entries to 'python'.(★☆☆)
+
+< h89
+hint: `series.replace`
+
+< a89
+df['animal'] = df['animal'].replace('snake', 'python')
+
+
+< q90
+For each animal type and each number of visits, find the mean age. In other words, each row is an animal, each column is a number of visits and the values are the mean ages.(★☆☆)
+
+< h90
+hint: `df.pivot_table`[数据透视表]
+
+< a90
+# df.pivot_table(index='animal', columns='visits', values='age', aggfunc='mean')
+index = df.groupby(['animal']).groups.keys()
+columns = df.groupby(['visits']).groups.keys()
+
+table = pd.DataFrame(index=index, columns=columns)
+table.index.name = 'animal'
+table.columns.name = 'visits'
+temp = df.groupby(['animal', 'visits']).agg({'age':'mean'})
+for ind in range(temp.shape[0]):
+    row = temp.iloc[ind,:]
+    animal = row.name[0]
+    visits = row.name[1]
+    value = row['age']
+    table.loc[animal,visits] = value
+table
+
+
+< q91
+You have a DataFrame `df` with a column 'A' of integers. 
+How do you filter out rows which contain the same integer as the row immediately above?(★★☆)
+For example: 
+```python
+df = pd.DataFrame({'A': [1, 2, 2, 3, 4, 5, 5, 5, 6, 7, 7]})
+```
+You should be left with a column containing the following values:
+```python
+1, 2, 3, 4, 5, 6, 7
+```
+
+< h91
+hint: `series.shift()`
+
+< a91
+df = pd.DataFrame({'A': [1, 2, 2, 3, 4, 5, 5, 5, 6, 7, 7]})
+df.loc[df['A'].shift() != df['A']]
+
+
+< q92
+Given a DataFrame of random numeric values, how do you subtract the row mean from each element in the row? (★★☆)
+```python
+df = pd.DataFrame(np.random.random(size=(5, 3))) # this is a 5x3 DataFrame of float values
+```
+
+< h92
+hint: df.apply(lambda row: handle(row), axis=1)
+
+< a92
+df = pd.DataFrame(np.random.random(size=(5, 3)))
+# df.sub(df.mean(axis=1), axis=0)
+df.apply(lambda row: row-row.mean(), axis=1)
+
+
+< q93
+Suppose you have DataFrame with 10 columns of real numbers. Which column of numbers has the smallest sum? Return that column's label.(★★☆) 
+For example:
+```python
+df = pd.DataFrame(np.random.random(size=(5, 10)))
+```
+
+< h93
+hint: `df.sum()`, `series.idxmin()`
+
+< a93
+df = pd.DataFrame(np.random.random(size=(5, 10)))
+df.sum().idxmin()
+
+
+< q94
+How do you count how many unique rows a DataFrame has (i.e. ignore all rows that are duplicates)? (★★☆)
+
+< h94
+hint: `df.drop_duplicates()`, `df.duplicated()`
+
+< a94
+df = pd.DataFrame(np.random.randint(0, 2, size=(10, 3)))
+# len(df.drop_duplicates(keep=False))
+len(df) - df.duplicated(keep=False).sum()
