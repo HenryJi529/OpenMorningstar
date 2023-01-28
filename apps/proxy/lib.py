@@ -4,7 +4,7 @@ import requests
 
 
 class Ghelper:
-    def __init__(self):
+    def __init__(self, url):
         """
         url: 原始的Ghelper链接
         data: Ghelper给出的原始数据
@@ -13,7 +13,7 @@ class Ghelper:
         config: 单个节点的配置(JSON格式)
         configs: 节点配置列表(JSON列表)
         """
-        self.url = "https://ghelper.me/rss/9714f7c1e4741f547c37d4b0e13d580b"
+        self.url = url
 
     @property
     def links(self):

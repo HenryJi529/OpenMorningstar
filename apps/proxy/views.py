@@ -6,11 +6,15 @@ from django.shortcuts import render, redirect
 from .lib import Ghelper
 from .models import Node
 
+URLs = [
+    "https://ghelper.me/rss/9714f7c1e4741f547c37d4b0e13d580b",
+    "https://ghelper.me/rss/2b1e0f931b6e95ef7314e3c756360e0e"
+]
 
 def index(request):
     links = [node.link for node in Node.objects.all()]
-    links.extend(Ghelper().links)
-
+    for url in URLs:
+        links.extend(Ghelper(url=url).links)
     links_bytes = "\n".join(links).encode('utf-8')
     data_bytes = base64.b64encode(links_bytes)
     data = data_bytes.decode('utf-8')
