@@ -11,6 +11,7 @@ GHELPER_API = "https://ghelper.me/rss/"
 URLs = [
     GHELPER_API + "9714f7c1e4741f547c37d4b0e13d580b", # JP
     GHELPER_API + "2b1e0f931b6e95ef7314e3c756360e0e", # CMH
+    GHELPER_API + "dfaa39466d635ee23b57084040b80137", # JL
 ]
 
 def index(request):
