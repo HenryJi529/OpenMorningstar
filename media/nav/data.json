@@ -1007,10 +1007,6 @@
 					"url": "https://stackedit.io/app#"
 				},
 				{
-					"name": "Word代码",
-					"url": "http://codeinword.com/"
-				},
-				{
 					"name": "语法检测",
 					"url": "https://app.grammarly.com/"
 				},
@@ -1056,8 +1052,12 @@
 							"link": "https://www.tablesgenerator.com/"
 						},
 						{
-							"name": "占位图片",
+							"name": "占位图生成",
 							"link": "https://tool.lu/imageholder/"
+						},
+						{
+							"name": "Word插入代码",
+							"link": "http://codeinword.com/"
 						}
 					]
 				},
