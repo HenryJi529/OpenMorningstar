@@ -27,7 +27,7 @@
         ]
     },
     "igraph": {
-        "version": "0.10.3",
+        "version": "0.10.4",
         "summary": "分析与绘制图和网络",
         "dependencies": [
             "cairocffi"
@@ -38,7 +38,7 @@
         "summary": "创建彩色字符串"
     },
     "coverage": {
-        "version": "7.0.5",
+        "version": "7.1.0",
         "summary": "计算测试覆盖率",
         "inDev": true
     },
@@ -112,7 +112,7 @@
         "inDev": true
     },
     "Faker": {
-        "version": "16.6.0",
+        "version": "16.6.1",
         "summary": "测试数据生成",
         "inDev": true
     },
@@ -134,7 +134,7 @@
         "inDev": true
     },
     "ipython": {
-        "version": "8.8.0",
+        "version": "8.9.0",
         "summary": "交互式python"
     },
     "jieba": {
@@ -144,6 +144,10 @@
     "matplotlib": {
         "version": "3.6.3",
         "summary": "绘图工具"
+    },
+    "SciencePlots": {
+        "version": "2.0.1",
+        "summary": "mpl样式"
     },
     "seaborn": {
         "version": "0.12.2",
@@ -202,7 +206,7 @@
         "inDev": true
     },
     "plotly": {
-        "version": "5.12.0",
+        "version": "5.13.0",
         "summary": "高级的绘图工具"
     },
     "pydub": {
