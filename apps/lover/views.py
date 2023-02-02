@@ -17,7 +17,7 @@ def __get_random_image():
 		image_list = [os.path.join(image_dir, item) for item in items if item.split('.')[1] in ["png", "jpg", "jpeg"]]
 		return image_list
 
-	image_dir = os.path.join(MEDIA_ROOT, 'lover')
+	image_dir = os.path.join(MEDIA_ROOT, 'lover', 'photo')
 	image_list = get_image_list(image_dir)
 	image_num = len(image_list)
 	image_ind = randint(0, image_num-1)
