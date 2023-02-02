@@ -5,8 +5,7 @@ SciencePlots==2.0.1
 Whoosh==2.7.4
 beautifulsoup4==4.11.1
 colorama==0.4.6
-dash==2.7.1
-django-compressor==4.3
+django-compressor==4.3.1
 django-cors-headers==3.13.0
 django-cors-middleware==1.5.0
 django-crontab==0.7.1
@@ -33,7 +32,6 @@ mysqlclient==2.1.1
 networkx==3.0
 numpy==1.24.1
 pandas==1.5.3
-plotly==5.13.0
 pydub==0.25.1
 pymdown-extensions==9.9.2
 python-dotenv==0.21.1
