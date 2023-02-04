@@ -1,0 +1,67 @@
+{
+    "manifest_version": 3,
+    "name": "Morningstar Extensions",
+    "description": "这个插件可以让您更加方便的使用晨星小站的功能",
+    "version": "0.0.1",
+    "icons": {
+        "16": "images/icon.png",
+        "32": "images/icon.png",
+        "48": "images/icon.png",
+        "128": "images/icon.png"
+    },
+    "permissions": [
+        "scripting",
+        "activeTab"
+    ],
+    "commands": {
+        "ai": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+C",
+                "mac": "MacCtrl+Shift+C"
+            },
+            "description": "Open ChatGPT"
+        },
+        "joke": {
+            "suggested_key": {
+                "default": "Alt+Shift+J"
+            },
+            "description": "Open Morningstar Joke"
+        },
+        "nav": {
+            "suggested_key": {
+                "default": "Alt+Shift+N"
+            },
+            "description": "Open Morningstar Nav"
+        },
+        "share": {
+            "suggested_key": {
+                "default": "Alt+Shift+S",
+                "mac": "Alt+Shift+S"
+            },
+            "description": "Open Morningstar Share"
+        }
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "js": [
+                "scripts/ZhiHu.js"
+            ],
+            "matches": [
+                "https://*.zhihu.com/question/*"
+            ]
+        }
+    ],
+    "action": {
+        "default_title": "Morningstar",
+        "default_icon": {
+            "16": "images/icon.png",
+            "32": "images/icon.png",
+            "48": "images/icon.png",
+            "128": "images/icon.png"
+        },
+        "default_popup": "popup/index.html"
+    }
+}
