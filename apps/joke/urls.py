@@ -7,4 +7,5 @@ from . import views
 app_name = 'joke'
 urlpatterns = [
     path('', views.index, name='index'),
+    path('api/', views.api, name='api'),
 ]

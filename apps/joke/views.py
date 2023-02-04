@@ -1,6 +1,7 @@
 import random
 
 from django.shortcuts import render, HttpResponse, redirect
+from django.http import JsonResponse
 from .models import Photo, Text
 
 
@@ -15,3 +16,9 @@ def index(request):
     context = {'joke_list': joke_list}
     return render(request, 'joke/index.html', context=context)
 
+def api(request):
+    photo = Photo.objects.order_by('?').first()
+    protocol = "https://" if request.is_secure() else "http://"
+    link = protocol + request.META["HTTP_HOST"] + photo.uri
+
+    return JsonResponse({"link": link})
