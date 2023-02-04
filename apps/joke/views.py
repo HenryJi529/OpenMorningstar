@@ -16,9 +16,14 @@ def index(request):
     context = {'joke_list': joke_list}
     return render(request, 'joke/index.html', context=context)
 
-def api(request):
-    photo = Photo.objects.order_by('?').first()
-    protocol = "https://" if request.is_secure() else "http://"
-    link = protocol + request.META["HTTP_HOST"] + photo.uri
 
-    return JsonResponse({"link": link})
+def api(request):
+    if request.method == 'GET':
+        num = request.GET.get('n', 1)
+        try:
+            photos = Photo.objects.order_by('?')[:int(num)]
+            protocol = "https://" if request.is_secure() else "http://"
+            links = [ protocol + request.META["HTTP_HOST"] + photo.uri for photo in photos ]
+            return JsonResponse({"status": "ok", "links": links})
+        except:
+            return JsonResponse({"status": "error", "links": [], "message": "{n} should be an integer"})
