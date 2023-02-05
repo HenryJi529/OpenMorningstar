@@ -25,10 +25,16 @@
 					"desc": "致敬那些伟大的同类～"
 				},
 				{
-					"name": "调查问卷",
-					"url": "https://survey-form-lemon.vercel.app/",
-					"image": "/media/nav/img/Work/调查问卷.png",
-					"desc": "只完成了前端样式～"
+					"name": "在线笔记",
+					"url": "https://notes-app-beta-puce.vercel.app",
+					"image": "/media/nav/img/Work/在线笔记.png",
+					"desc": "简易的笔记应用～"
+				},
+				{
+					"name": "在线测验",
+					"url": "https://quiz-app-omega-seven.vercel.app",
+					"image": "/media/nav/img/Work/在线测验.png",
+					"desc": "简易的测验应用～"
 				},
 				{
 					"name": "神兔笑话",
