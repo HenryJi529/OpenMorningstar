@@ -1,6 +1,7 @@
 <script setup>
 import q from '../data/quizzes.json'
 import { ref, watch } from 'vue'
+import gsap from 'gsap'
 import Card from '../components/Card.vue'
 
 const quizzes = ref(q)
@@ -12,6 +13,20 @@ watch(search, () => {
     })
 })
 
+const beforeEnter = (el) => {
+    el.style.opacity = 0;
+    el.style.transform = "translateY(-60px)";
+}
+
+const enter = (el) => {
+    gsap.to(el, {
+        y: 0,
+        opacity: 1,
+        duration: 0.3,
+        delay: el.dataset.index * 0.3
+    })
+}
+
 </script>
 
 <template>
@@ -21,14 +36,16 @@ watch(search, () => {
             <input v-model.trim="search" type="text" placeholder="Search...">
         </header>
         <div class="cards-container">
-            <Card v-for="quiz in quizzes" :key="quiz.id" :quiz="quiz" />
-            <!-- <div class="card" v-for="quiz in quizzes" :key="quiz.id">
-                <img :src="quiz.img" alt="">
-                <div class="card-text">
-                    <h2>{{ quiz.name }}</h2>
-                    <p>{{ quiz.questions.length }} questions</p>
-                </div>
-            </div> -->
+            <TransitionGroup appear @before-enter="beforeEnter" @enter="enter">
+                <Card v-for="(quiz, index) in quizzes" :key="quiz.id" :quiz="quiz" :data-index="index" />
+                <!-- <div class="card" v-for="quiz in quizzes" :key="quiz.id">
+                    <img :src="quiz.img" alt="">
+                    <div class="card-text">
+                        <h2>{{ quiz.name }}</h2>
+                        <p>{{ quiz.questions.length }} questions</p>
+                    </div>
+                </div> -->
+            </TransitionGroup>
         </div>
     </div>
 </template>
@@ -65,4 +82,16 @@ header input {
     flex-wrap: wrap;
     margin-top: 40px;
 }
-</style>s
+
+/* .card-enter-from {
+    opacity: 0;
+    transform: translateY(-50px);
+}
+.card-enter-to {
+    opacity: 1;
+    transform: translateY(0);
+}
+.card-enter-active {
+    transition: all 0.5s ease;
+} */
+</style>

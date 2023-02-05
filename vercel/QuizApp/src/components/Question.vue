@@ -1,16 +1,18 @@
 <script setup>
 const { question } = defineProps(['question'])
-
 const emit = defineEmits(['selectOption'])
 
 const emitSelectOption = (isCorrect) => {
     emit('selectOption', isCorrect)
 }
+
 </script>
 
 <template>
     <div class="question-container">
-        <h1 class="question">{{ question.text }}</h1>
+        <Transition name="fade" appear>
+            <h1 class="question">{{ question.text }}</h1>
+        </Transition>
     </div>
     <div class="options-container">
         <div class="option" v-for="option in question.options" @click="emitSelectOption(option.isCorrect)">
@@ -30,6 +32,24 @@ const emitSelectOption = (isCorrect) => {
 .question {
     font-size: 40px;
     margin-bottom: 20px;
+}
+
+.flash {
+    animation: flash 1s linear infinite;
+}
+
+@keyframes flash {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 .option {
@@ -58,5 +78,17 @@ const emitSelectOption = (isCorrect) => {
 .option-value p {
     height: 50px;
     line-height: 50px;
+}
+
+.fade-enter-from {
+    opacity: 0;
+}
+
+.fade-enter-to {
+    opacity: 1;
+}
+
+.fade-enter-active {
+    transition: all 3s ease;
 }
 </style>

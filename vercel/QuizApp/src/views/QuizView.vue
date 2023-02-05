@@ -39,5 +39,3 @@ const onOptionSelected = (isCorrect) => {
         </div>
     </div>
 </template>
-
-

@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "gsap": "^3.11.4",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   },
