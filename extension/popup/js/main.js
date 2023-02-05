@@ -1,5 +1,6 @@
-const endpoint = "https://morningstar369.com/joke/api/?n=1"
 // const endpoint = "http://127.0.0.1:8000/joke/api/?n=1"
+const endpoint = "https://morningstar369.com/joke/api/?n=1"
+
 const maxHeight = 600
 
 fetch(endpoint)
