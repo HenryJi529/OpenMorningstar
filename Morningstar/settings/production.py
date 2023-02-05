@@ -65,3 +65,8 @@ MAINTENANCE_URL_LIST = [
 """压缩css/js"""
 COMPRESS_ENABLED = True
 
+"""跨站资源共享"""
+CORS_ALLOWED_ORIGINS = [
+    "https://morningstar369.com",
+]
+

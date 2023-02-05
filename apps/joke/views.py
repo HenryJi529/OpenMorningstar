@@ -2,6 +2,7 @@ import random
 
 from django.shortcuts import render, HttpResponse, redirect
 from django.http import JsonResponse
+from Morningstar.lib.cors import add_cors_header
 from .models import Photo, Text
 
 
@@ -17,6 +18,7 @@ def index(request):
     return render(request, 'joke/index.html', context=context)
 
 
+@add_cors_header
 def api(request):
     if request.method == 'GET':
         num = request.GET.get('n', 1)

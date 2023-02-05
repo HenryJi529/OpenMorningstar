@@ -100,12 +100,7 @@ MIDDLEWARE = [
 
 
 """跨站资源共享"""
-# CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOWED_ORIGINS = [
-    "https://morningstar369.com",
-    "http://localhost:8000",  # NOTE: 测试专用
-    "chrome-extension://lihnpgjnikpeaoibnjmjplpmknjlciin"
-]
+CORS_ALLOW_ALL_ORIGINS = False
 
 
 """模版处理"""

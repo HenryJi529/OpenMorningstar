@@ -16,6 +16,7 @@ DATABASES = {
 """邮件"""
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+
 """缓存"""
 CACHE_TIMEOUT = 5
 CACHES = {
@@ -32,12 +33,21 @@ CACHES = {
     }
 }
 
+
 """ RECAPTCHA-V2"""
 RECAPTCHA_PUBLIC_KEY = '6Le20wwdAAAAAKjy3eAJ8BPLN59KDRrRBeslsqpw'
 RECAPTCHA_PRIVATE_KEY = '6Le20wwdAAAAAIyF33a5fiD-PJ7uioonJQ9ycilI'
 
+
 """压缩css/js"""
 COMPRESS_ENABLED = False
+
+
+"""跨站资源共享"""
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000",  # NOTE: 测试专用
+]
+
 
 """ 添加测试环境的配置 """
 try:
