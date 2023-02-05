@@ -3,6 +3,7 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
+    <!-- <RouterLink active-class="active" to="/">Home</RouterLink> -->
     <div class="container">
         <Transition name="router">
             <RouterView />
@@ -11,6 +12,11 @@ import { RouterLink, RouterView } from 'vue-router'
 </template>
 
 <style scoped>
+.active {
+    font-weight: bold;
+    color: red;
+}
+
 .container {
     max-width: 1000px;
     margin: 0 auto;
