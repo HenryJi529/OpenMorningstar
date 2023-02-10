@@ -766,6 +766,17 @@
 					]
 				},
 				{
+					"name": "数据集",
+					"slug": "dataset",
+					"display": "modal",
+					"entries": [
+						{
+							"name": "Index of Complex Networks",
+							"link": "https://icon.colorado.edu/#!/"
+						}
+					]
+				},
+				{
 					"name": "开源图标",
 					"slug": "icon",
 					"display": "modal",
