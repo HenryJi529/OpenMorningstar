@@ -30,14 +30,14 @@
     "@tailwindcss/typography": "^0.5.9",
     "browserify": "^17.0.0",
     "concurrently": "^7.6.0",
-    "daisyui": "^2.50.2",
+    "daisyui": "^2.51.3",
     "live-server": "^1.2.2",
-    "npm-check-updates": "^16.7.5",
+    "npm-check-updates": "^16.7.10",
     "sass": "^1.58.3",
     "tailwindcss": "~3.2.7",
-    "terser": "^5.16.4",
+    "terser": "^5.16.5",
     "typescript": "^4.9.5",
-    "vercel": "^28.16.2",
+    "vercel": "^28.16.11",
     "watchify": "^4.0.0"
   },
   "dependencies": {

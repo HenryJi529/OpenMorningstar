@@ -38,7 +38,7 @@
         "summary": "创建彩色字符串"
     },
     "coverage": {
-        "version": "7.1.0",
+        "version": "7.2.1",
         "summary": "计算测试覆盖率",
         "inDev": true
     },
@@ -55,7 +55,7 @@
         "summary": "压缩css/js"
     },
     "django-cors-headers": {
-        "version": "3.13.0",
+        "version": "3.14.0",
         "summary": "跨域访问之headers"
     },
     "django-cors-middleware": {
@@ -75,7 +75,7 @@
         "summary": "全局搜索"
     },
     "django-import-export": {
-        "version": "3.0.2",
+        "version": "3.1.0",
         "summary": "数据导入导出",
         "dependencies": [
             "xlrd",
@@ -108,7 +108,7 @@
         "inDev": true
     },
     "Faker": {
-        "version": "17.0.0",
+        "version": "17.5.0",
         "summary": "测试数据生成",
         "inDev": true
     },
@@ -130,7 +130,7 @@
         "inDev": true
     },
     "ipython": {
-        "version": "8.10.0",
+        "version": "8.11.0",
         "summary": "交互式python"
     },
     "jieba": {
@@ -210,7 +210,7 @@
         "summary": "实用的Python-Markdown扩展"
     },
     "python-dotenv": {
-        "version": "0.21.1",
+        "version": "1.0.0",
         "summary": "环境变量获取"
     },
     "qrcode": {

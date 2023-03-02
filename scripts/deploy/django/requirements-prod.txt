@@ -6,13 +6,13 @@ Whoosh==2.7.4
 beautifulsoup4==4.11.2
 colorama==0.4.6
 django-compressor==4.3.1
-django-cors-headers==3.13.0
+django-cors-headers==3.14.0
 django-cors-middleware==1.5.0
 django-crontab==0.7.1
 django-debug-toolbar==3.8.1
 django-filter==22.1
 django-haystack==3.2.1
-django-import-export==3.0.2
+django-import-export==3.1.0
 django-jazzmin==2.6.0
 django-matomo==0.1.6
 django-recaptcha==3.0.0
@@ -23,7 +23,7 @@ fake-useragent==1.1.1
 fontawesomefree==6.3.0
 gunicorn==20.1.0
 igraph==0.10.4
-ipython==8.10.0
+ipython==8.11.0
 jieba==0.42.1
 matplotlib==3.7.0
 mysql-connector-python==8.0.29
@@ -34,7 +34,7 @@ numpy==1.24.2
 pandas==1.5.3
 pydub==0.25.1
 pymdown-extensions==9.9.2
-python-dotenv==0.21.1
+python-dotenv==1.0.0
 qcloudsms-py==0.1.4
 qrcode==7.4.2
 readtime==2.0.0
