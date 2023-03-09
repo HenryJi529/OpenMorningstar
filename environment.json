@@ -108,7 +108,7 @@
         "inDev": true
     },
     "Faker": {
-        "version": "17.5.0",
+        "version": "17.6.0",
         "summary": "测试数据生成",
         "inDev": true
     },
@@ -125,7 +125,7 @@
         "summary": "动态web服务器"
     },
     "ipykernel": {
-        "version": "6.21.2",
+        "version": "6.21.3",
         "summary": "用于支持ipynb笔记本",
         "inDev": true
     },
@@ -138,7 +138,7 @@
         "summary": "中文分词"
     },
     "matplotlib": {
-        "version": "3.7.0",
+        "version": "3.7.1",
         "summary": "绘图工具"
     },
     "SciencePlots": {
@@ -192,7 +192,7 @@
         "inDev": true
     },
     "pipdeptree": {
-        "version": "2.5.0",
+        "version": "2.5.2",
         "summary": "python依赖关系展示工具",
         "inDev": true
     },
@@ -206,7 +206,7 @@
         "summary": "音频处理库"
     },
     "pymdown-extensions": {
-        "version": "9.9.2",
+        "version": "9.10",
         "summary": "实用的Python-Markdown扩展"
     },
     "python-dotenv": {
@@ -245,5 +245,11 @@
     "Whoosh": {
         "version": "2.7.4",
         "summary": "实现站内搜索"
+    },
+    "torch": {
+        "version": "1.13.1"
+    },
+    "scikit-learn": {
+        "version": "1.2.2"
     }
 }

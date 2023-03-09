@@ -25,7 +25,7 @@ gunicorn==20.1.0
 igraph==0.10.4
 ipython==8.11.0
 jieba==0.42.1
-matplotlib==3.7.0
+matplotlib==3.7.1
 mysql-connector-python==8.0.29
 mysql-to-sqlite3==1.4.14
 mysqlclient==2.1.1
@@ -33,15 +33,17 @@ networkx==3.0
 numpy==1.24.2
 pandas==1.5.3
 pydub==0.25.1
-pymdown-extensions==9.9.2
+pymdown-extensions==9.10
 python-dotenv==1.0.0
 qcloudsms-py==0.1.4
 qrcode==7.4.2
 readtime==2.0.0
 redis==4.5.1
 requests==2.28.2
+scikit-learn==1.2.2
 scipy==1.10.1
 seaborn==0.12.2
 sh==2.0.2
 simpy==4.0.1
 sqlite3-to-mysql==1.4.16
+torch==1.13.1
