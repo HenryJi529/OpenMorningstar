@@ -399,6 +399,11 @@
 					"image": "/media/nav/img/Manual/SciPy.svg"
 				},
 				{
+					"name": "PyTorch",
+					"url": "https://pytorch.org/docs/stable/index.html",
+					"image": "/media/nav/img/Manual/PyTorch.svg"
+				},
+				{
 					"name": "Matplotlib",
 					"url": "https://matplotlib.org/stable/tutorials/index.html",
 					"image": "/media/nav/img/Manual/Matplotlib.png"
@@ -412,11 +417,6 @@
 					"name": "Networkx",
 					"url": "https://networkx.org/documentation/stable/tutorial.html",
 					"image": "/media/nav/img/Manual/Networkx.svg"
-				},
-				{
-					"name": "igraph",
-					"url": "https://igraph.org/python/versions/latest/",
-					"image": "/media/nav/img/Manual/igraph.ico"
 				},
 				{
 					"name": "印记中文",
