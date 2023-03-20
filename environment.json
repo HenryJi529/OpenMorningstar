@@ -249,6 +249,9 @@
     "torch": {
         "version": "1.13.1"
     },
+    "torchmetrics": {
+        "version": "0.11.4"
+    },
     "scikit-learn": {
         "version": "1.2.2"
     }
