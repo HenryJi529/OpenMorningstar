@@ -48,3 +48,4 @@ simpy==4.0.1
 sqlite3-to-mysql==1.4.16
 torch==1.13.1
 torchmetrics==0.11.4
+tqdm==4.64.1

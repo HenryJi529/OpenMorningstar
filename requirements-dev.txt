@@ -6,7 +6,7 @@ SciencePlots==2.0.1
 Whoosh==2.7.4
 beautifulsoup4==4.11.2
 colorama==0.4.6
-coverage==7.2.1
+coverage==7.2.2
 django-compressor==4.3.1
 django-cors-headers==3.14.0
 django-cors-middleware==1.5.0
@@ -30,7 +30,7 @@ ipykernel==6.21.3
 ipython==8.11.0
 jieba==0.42.1
 matplotlib==3.7.1
-mdutils==1.5.0
+mdutils==1.5.1
 mysql-connector-python==8.0.29
 mysql-to-sqlite3==1.4.14
 mysqlclient==2.1.1
@@ -57,3 +57,4 @@ simpy==4.0.1
 sqlite3-to-mysql==1.4.16
 torch==1.13.1
 torchmetrics==0.11.4
+tqdm==4.64.1

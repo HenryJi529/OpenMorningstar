@@ -38,7 +38,7 @@
         "summary": "创建彩色字符串"
     },
     "coverage": {
-        "version": "7.2.1",
+        "version": "7.2.2",
         "summary": "计算测试覆盖率",
         "inDev": true
     },
@@ -153,7 +153,7 @@
         "version": "3.4.1"
     },
     "mdutils": {
-        "version": "1.5.0",
+        "version": "1.5.1",
         "summary": "Markdown生成器",
         "inDev": true
     },
@@ -238,6 +238,10 @@
     "sh": {
         "version": "2.0.2",
         "summary": "执行shell命令"
+    },
+    "tqdm": {
+        "version": "4.64.1",
+        "summary": "生成进度条"
     },
     "sqlite3-to-mysql": {
         "version": "1.4.16"
