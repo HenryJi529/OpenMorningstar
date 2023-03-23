@@ -26,6 +26,7 @@ igraph==0.10.4
 ipython==8.11.0
 jieba==0.42.1
 matplotlib==3.7.1
+mlxtend==0.21.0
 mysql-connector-python==8.0.29
 mysql-to-sqlite3==1.4.14
 mysqlclient==2.1.1
@@ -46,6 +47,6 @@ seaborn==0.12.2
 sh==2.0.2
 simpy==4.0.1
 sqlite3-to-mysql==1.4.16
-torch==1.13.1
+torch==2.0.0
 torchmetrics==0.11.4
-tqdm==4.64.1
+tqdm==4.65.0

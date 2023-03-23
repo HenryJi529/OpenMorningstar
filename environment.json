@@ -192,7 +192,7 @@
         "inDev": true
     },
     "pipdeptree": {
-        "version": "2.5.2",
+        "version": "2.6.0",
         "summary": "python依赖关系展示工具",
         "inDev": true
     },
@@ -240,7 +240,7 @@
         "summary": "执行shell命令"
     },
     "tqdm": {
-        "version": "4.64.1",
+        "version": "4.65.0",
         "summary": "生成进度条"
     },
     "sqlite3-to-mysql": {
@@ -251,12 +251,15 @@
         "summary": "实现站内搜索"
     },
     "torch": {
-        "version": "1.13.1"
+        "version": "2.0.0"
     },
     "torchmetrics": {
         "version": "0.11.4"
     },
     "scikit-learn": {
         "version": "1.2.2"
+    },
+    "mlxtend": {
+        "version": "0.21.0"
     }
 }
