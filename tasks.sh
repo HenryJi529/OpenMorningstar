@@ -28,9 +28,9 @@ dev() {
 	echo "迁移模型到数据库..."
 	python manage.py makemigrations && python manage.py migrate
 	echo "==================================="
-	echo "重建索引..."
-	python manage.py rebuild_index --noinput
-	echo "==================================="
+	# echo "重建索引..."
+	# python manage.py rebuild_index --noinput
+	# echo "==================================="
 	# echo "启动定时任务..."
 	# python manage.py crontab add
 	# echo "==================================="
@@ -39,9 +39,9 @@ dev() {
 	# npm run build_js & # NOTE: 可用Typescript官方插件提供的命令替换
 	# bash scripts/frontend/build_sass.sh & # NOTE: 可用live-sass-compiler替换
 	# echo "==================================="
-	echo "获取静态文件..."
-	python manage.py collectstatic --noinput
-	echo "==================================="
+	# echo "获取静态文件..."
+	# python manage.py collectstatic --noinput
+	# echo "==================================="
 	echo "启动django-server..."
 	python manage.py runserver 0:8000
 }
