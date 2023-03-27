@@ -253,6 +253,9 @@
     "torch": {
         "version": "2.0.0"
     },
+    "torch_geometric": {
+        "version": "2.2.0"
+    },
     "torchmetrics": {
         "version": "0.11.4"
     },
