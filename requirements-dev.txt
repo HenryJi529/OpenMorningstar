@@ -1,6 +1,6 @@
 Django==4.1.7
 Faker==17.6.0
-Markdown==3.4.1
+Markdown==3.4.3
 Pillow==9.4.0
 SciencePlots==2.0.1
 Whoosh==2.7.4
