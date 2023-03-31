@@ -12,5 +12,5 @@ class ViewTestCase(TestCase):
 
     def test_config(self):
         response = self.client.get(reverse('proxy:config'))
-        self.assertEqual(response.status_code, 302)  
+        self.assertEqual(response.status_code, 302)
     
