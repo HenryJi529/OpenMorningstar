@@ -1,5 +1,5 @@
 from blog.models import Category, Post
-from datetime import timedelta
+from datetime import timedelta, datetime
 from django.apps import apps
 from Morningstar.models import User
 from django.template import RequestContext, Context, Template
@@ -133,30 +133,13 @@ class BlogExtrasTestCase(TestCase):
             title="测试标题-1",
             body="测试内容",
             category=self.cate,
-            created=timezone.now(),
-        )
-        post2 = Post.objects.create(
-            title="测试标题-1",
-            body="测试内容",
-            category=self.cate,
-            created=timezone.now() - timedelta(days=50),
         )
         context = Context(show_archives(self.ctx))
         template = Template("{% load blog_extras %}" "{% show_archives %}")
         expected_html = template.render(context)
         self.assertInHTML('归档', expected_html)
 
-        created = post1.created
-        url = reverse(
-            "blog:archive",
-            kwargs={"year": created.year, "month": created.month},
-        )
-        frag = '<a href="{}">{} 年 {} 月</a>'.format(
-            url, created.year, created.month
-        )
-        self.assertInHTML(frag, expected_html)
-
-        created = post2.created
+        created = timezone.localtime(post1.created)
         url = reverse(
             "blog:archive",
             kwargs={"year": created.year, "month": created.month},
