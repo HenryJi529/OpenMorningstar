@@ -55,7 +55,7 @@ initialize() {
 coverage() {
 	COVERAGE=$(pwd)/VENV/bin/coverage
 	${COVERAGE} erase --rcfile=scripts/coverage/.coveragerc
-	${COVERAGE} run --rcfile=scripts/coverage/.coveragerc manage.py test Morningstar/ apps/ --failfast --keepdb --noinput
+	${COVERAGE} run --rcfile=scripts/coverage/.coveragerc manage.py test Morningstar/ apps/ --failfast --noinput
 	${COVERAGE} report --rcfile=scripts/coverage/.coveragerc
 	${COVERAGE} html --rcfile=scripts/coverage/.coveragerc
 	live-server vercel/_coverage
