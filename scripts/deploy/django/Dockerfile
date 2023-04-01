@@ -9,7 +9,7 @@ WORKDIR /app
 
 RUN apt-get update
 RUN apt-get install -y iputils-ping net-tools vim rsync
-RUN apt-get install -y python3.9 mysql-client libmysqlclient-dev
+RUN apt-get install -y python3.9 python3-pip mysql-client libmysqlclient-dev
 RUN apt-get install -y nodejs npm
 RUN apt-get install -y cron
 RUN apt-get install -y supervisor
