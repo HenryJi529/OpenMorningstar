@@ -55,8 +55,9 @@
         "summary": "压缩css/js"
     },
     "django-cors-headers": {
-        "version": "3.14.0",
-        "summary": "跨域访问之headers"
+        "version": "3.13.0",
+        "summary": "跨域访问之headers",
+        "locked": true
     },
     "django-cors-middleware": {
         "version": "1.5.0",
