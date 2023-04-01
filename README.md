@@ -73,7 +73,7 @@ $ git clone git@github.com:HenryJi529/OpenMorningstar.git
 **`/task.sh`中已提供常见的开发快捷方式...**
 
 ```bash
-$ virtualenv VENV
+$ virtualenv VENV --python python3.9
 $ source VENV/bin/activate
 $ python scripts/dep/dependencyManager.py install --verbose
 $ python manage.py runserver 0:8000
