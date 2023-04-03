@@ -328,7 +328,11 @@
 				<div class="modal-box relative">
 					<label for="serverModal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
 					<h3 class="text-4xl font-bold text-center">本站服务</h3>
-					<div class="py-4 text-2xl text-center">
+					<div class="py-4 text-2xl flex flex-col items-center justify-center" id="serviceList">
+						<div class="overflow-visible whitespace-nowrap">
+							<i class="fa-solid fa-fire fa-beat"></i>
+							<a href="{% url 'game:index' %}" target="_blank">三国杀(建设中)</a>
+						</div>
 						<div>
 							<i class="fa-solid fa-compass"></i>
 							<a href="{% url 'nav:index' %}" target="_blank">晨星导航</a>
@@ -354,6 +358,11 @@
 							<a href="{% url 'share:index' %}" target="_blank">链接分享</a>
 						</div>
 					</div>
+					<style>
+						#serviceList div {
+							width: 6em;
+						}
+					</style>
 				</div>
 			</div>
 		</div>
