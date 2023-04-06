@@ -3,8 +3,8 @@ on:
   schedule:
     - cron: "0 9 * * 6"
 jobs:
-  test-github-mirror:
-    name: test github mirror
+  test-mirror:
+    name: test mirror
     runs-on: ubuntu-latest
     steps:
       - name: ping jsdelivr
@@ -16,6 +16,6 @@ jobs:
           port: 22
           script: |
             ping -c 20 cdn.jsdelivr.net
-      - name: clone repo with fastgit
+      - name: clone mirror repo with gitlab
         run: |
-          git clone https://hub.fastgit.xyz/HenryJi529/OpenMorningstar.git
+          git clone https://gitlab.com/HenryJi529/OpenMorningstar.git
