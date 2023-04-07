@@ -20,7 +20,7 @@
         "note": "被mysql-to-sqlite3, sqlite3-to-mysql依赖特定版本"
     },
     "beautifulsoup4": {
-        "version": "4.11.2",
+        "version": "4.12.0",
         "summary": "处理web页面信息",
         "dependencies": [
             "lxml"
@@ -114,7 +114,7 @@
         "inDev": true
     },
     "fake-useragent": {
-        "version": "1.1.1",
+        "version": "1.1.3",
         "summary": "用户代理模拟"
     },
     "fontawesomefree": {
@@ -126,7 +126,7 @@
         "summary": "动态web服务器"
     },
     "ipykernel": {
-        "version": "6.21.3",
+        "version": "6.22.0",
         "summary": "用于支持ipynb笔记本",
         "inDev": true
     },
@@ -159,7 +159,7 @@
         "inDev": true
     },
     "nbformat": {
-        "version": "5.7.3",
+        "version": "5.8.0",
         "summary": "用于支持ipynb笔记本",
         "inDev": true
     },
@@ -259,6 +259,9 @@
     },
     "torchmetrics": {
         "version": "0.11.4"
+    },
+    "torchinfo": {
+        "version": "1.7.2"
     },
     "scikit-learn": {
         "version": "1.2.2"
