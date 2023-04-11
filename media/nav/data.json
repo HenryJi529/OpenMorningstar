@@ -1271,8 +1271,8 @@
 					]
 				},
 				{
-					"name": "常见服务",
-					"slug": "common-service",
+					"name": "常见接口",
+					"slug": "common-api",
 					"display": "modal",
 					"entries": [
 						{
