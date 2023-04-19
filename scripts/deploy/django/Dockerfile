@@ -5,12 +5,11 @@ WORKDIR /app
 # RUN apt-get update
 # RUN apt-get install -y ca-certificates
 # RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak
-# COPY ./_mirror_cn/tuna-sources.list /etc/apt/sources.list
-COPY ./_mirror_cn/pip.conf /root/.pip/pip.conf
+# COPY ./_mirror_cn/tuna-sources-debian.list /etc/apt/sources.list
+# COPY ./_mirror_cn/pip.conf /root/.pip/pip.conf
 
 RUN apt-get update
 RUN apt-get install -y iputils-ping net-tools vim rsync
-# RUN apt-get install -y zlib1g=1:1.2.11.dfsg-2ubuntu1.5 libc6-dev  # 解决依赖问题
 RUN apt-get install -y python3.9 python3-pip mysql-client libmysqlclient-dev
 RUN apt-get install -y nodejs npm
 RUN apt-get install -y cron
