@@ -451,6 +451,18 @@
 					"desc": "涵盖绝大部分出版的学术期刊"
 				},
 				{
+					"name": "ACM Digital Library",
+					"url": "https://dl.acm.org/",
+					"image": "/media/nav/img/Research/ACMDigitalLibrary.jpeg",
+					"desc": "专注于计算机科学领域"
+				},
+				{
+					"name": "arXiv",
+					"url": "https://arxiv.org/",
+					"image": "/media/nav/img/Research/arXiv.jpeg",
+					"desc": "在线开放的科学预印本库"
+				},
+				{
 					"name": "IEEE Xplore",
 					"url": "https://ieeexplore.ieee.org/Xplore/home.jsp",
 					"image": "/media/nav/img/Research/IEEE.png",
