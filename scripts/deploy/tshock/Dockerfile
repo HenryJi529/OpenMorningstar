@@ -25,6 +25,7 @@ RUN apt-get install -y gnupg ca-certificates \
 
 # 安装必要工具
 RUN apt-get install -y unzip vim wget
+
 # 安装tshock
 RUN wget https://github.com/Pryaxis/TShock/releases/download/v${tshock_version}/TShock${tshock_version}_Terraria${terraria_version}.zip -O /root/tshock.zip
 RUN unzip tshock.zip -d /root/TShock/ && rm tshock.zip
