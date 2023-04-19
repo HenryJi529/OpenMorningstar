@@ -13,6 +13,15 @@ load_dotenv(dotenv_path=env_path, verbose=True)
 DEV_PASSWORD = os.getenv("DEV_PASSWORD")
 CLOUD_USERNAME = os.getenv("CLOUD_USERNAME")
 
+DOMAIN_LIST = [
+    "morningstar369.com",
+    "beancount.morningstar369.com",
+    "code.morningstar369.com",
+    "frps.morningstar369.com",
+    "matomo.morningstar369.com",
+    "portainer.morningstar369.com",
+    "ssh.morningstar369.com"
+]
 
 def runcmd1(command):
     ret = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding="utf-8", timeout=1, universal_newlines=True)
@@ -112,7 +121,8 @@ def upgrade(c):
         better_print("配置HTTPS...")
         c.run('docker exec morningstar_nginx bash /start.sh')
         # c.run('docker exec -it morningstar_nginx certbot --nginx -n --domains xxx.com')
-        c.run('docker exec -it morningstar_nginx certbot --nginx')
+        commandTemplate = "docker exec -it morningstar_nginx certbot --nginx --non-interactive"
+        c.run(commandTemplate + " -d " + " -d ".join(DOMAIN_LIST))
 
     print("Done!!")
 
