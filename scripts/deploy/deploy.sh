@@ -249,6 +249,8 @@ full_process() {
     read -s -n1 -p "按任意键继续..."
     echo ""
   }
+  print_step "换中国源..."
+  change_cn_source
   print_step "配置远程连接..."
   config_remote_connect
   print_step "配置shell..."
