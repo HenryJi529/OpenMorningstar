@@ -2,8 +2,8 @@ FROM ubuntu:latest
 
 WORKDIR /app
 
-RUN apt-get update
-RUN apt-get install -y ca-certificates
+# RUN apt-get update
+# RUN apt-get install -y ca-certificates
 RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak
 COPY ./_mirror_cn/tuna-sources.list /etc/apt/sources.list
 COPY ./_mirror_cn/pip.conf /root/.pip/pip.conf
