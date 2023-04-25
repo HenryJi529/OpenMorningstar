@@ -131,7 +131,7 @@
         "inDev": true
     },
     "ipython": {
-        "version": "8.11.0",
+        "version": "8.12.0",
         "summary": "交互式python"
     },
     "jieba": {
@@ -172,7 +172,7 @@
         "summary": "mysql -> sqlite3"
     },
     "networkx": {
-        "version": "3.0",
+        "version": "3.1",
         "summary": "图和网络分析工具"
     },
     "numpy": {
@@ -180,7 +180,7 @@
         "summary": "矩阵计算"
     },
     "pandas": {
-        "version": "1.5.3",
+        "version": "2.0.0",
         "summary": "表数据处理"
     },
     "Pillow": {
@@ -254,6 +254,9 @@
     "torch": {
         "version": "2.0.0"
     },
+    "tensorboard": {
+        "version": "2.12.2"
+    },
     "torch_geometric": {
         "version": "2.2.0"
     },
@@ -267,6 +270,6 @@
         "version": "1.2.2"
     },
     "mlxtend": {
-        "version": "0.21.0"
+        "version": "0.22.0"
     }
 }
