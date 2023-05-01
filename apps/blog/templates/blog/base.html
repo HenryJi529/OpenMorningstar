@@ -405,9 +405,12 @@
 						<div class="flex justify-center p-2" id="toggleThemeButton" title="模式">
 							<i class="fa-solid text-2xl" id="themeIcon"></i>
 						</div>
+						{% show_lover as isShowLover %}
+						{% if isShowLover %}
 						<div class="flex justify-center p-2" id="loverButton" title="爱人">
 							<a href="{% url 'lover:index' %}" target="_blank" class="text-2xl fa-solid fa-heart"></a>
 						</div>
+						{% endif %}
 						<div class="flex justify-center p-2" id="bookButton" title="书单">
 							<a href="{% url 'book:index' %}" target="_blank"
 								class="text-2xl fa-solid fa-book-atlas"></a>

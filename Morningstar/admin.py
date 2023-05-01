@@ -10,6 +10,14 @@ from import_export.admin import ImportExportModelAdmin
 from .models import User
 
 
+from .models import VisiableSetting
+
+@admin.register(VisiableSetting)
+class VisiableSettingAdmin(admin.ModelAdmin):
+    list_display = ('key', 'value')
+    search_fields = ('key',)
+
+
 class UserResource(resources.ModelResource):
     username = Field(attribute='username', column_name='用户名')
     password = Field(attribute='password', column_name='密码')
@@ -32,6 +40,5 @@ class UserAdmin(ImportExportModelAdmin):
     list_display = ('id', 'username', 'email', 'phone', 'is_staff',
                     'is_active', 'is_superuser', 'last_login', 'date_joined')
 # admin.site.register(User, UserAdmin)
-
 
 admin.site.site_header = "项目后台"

@@ -1,7 +1,9 @@
 from django import template
-
-from ..models import Post, Category, Tag
 from django.db.models.aggregates import Count, Max
+from Morningstar.models import VisiableSetting
+from ..models import Post, Category, Tag
+
+
 register = template.Library()
 
 
@@ -54,3 +56,11 @@ def show_hot_posts(context,num=5):
 @register.inclusion_tag('blog/inclusions/_other_links.html', takes_context=False)
 def show_other_links():
     pass
+
+
+@register.simple_tag(takes_context=False)
+def show_lover():
+    try:
+        return VisiableSetting.objects.get(key='lover').value
+    except VisiableSetting.DoesNotExist:
+        return True

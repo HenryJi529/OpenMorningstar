@@ -22,3 +22,19 @@ class User(AbstractUser):
         if not self.nickname:
             self.nickname = get_random_nickname()
         super().save(*args, **kwargs)
+
+
+class VisiableSetting(models.Model):
+    CHOICES = (
+        'lover',
+    )
+
+    key = models.CharField(max_length=255, unique=True, choices=[(val, val) for val in CHOICES])
+    value = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.key
+
+    class Meta:
+        verbose_name = "显示"
+        verbose_name_plural = verbose_name
