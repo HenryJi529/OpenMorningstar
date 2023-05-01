@@ -9,8 +9,8 @@ from .models import Post, Category, Tag, Comment
 
 @admin.register(Post)
 class PostAdmin(ImportExportModelAdmin):
-    list_display = ['title', 'category', 'created', 'updated', 'readtime']
-    fields = ['title', 'body', 'category', 'tags', 'readtime']
+    list_display = ['title', 'category', 'created', 'updated', 'readtime', 'requireLogin']
+    fields = ['title', 'body', 'category', 'tags', 'readtime', 'requireLogin']
     search_fields = ['title']
     list_filter = ['created', 'updated']
 

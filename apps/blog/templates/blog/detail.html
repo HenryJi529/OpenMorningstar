@@ -51,8 +51,20 @@
     </div>
 
     <div class="post-body">
+        {% if post.requireLogin %}
+
+        {% if user.is_authenticated %}
         {{ post.html|safe }}
+        {% else %}
+        <p class="text-pink-500 text-3xl">预知详情，还请登录～</p>
+        {% endif %}
+
+        {% else %}
+
+        {{ post.html|safe }}
+        {% endif %}
     </div>
+
 </article>
 
 <div class="divider"></div>
