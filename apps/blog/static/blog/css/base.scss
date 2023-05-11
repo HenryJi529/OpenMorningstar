@@ -258,6 +258,50 @@ mjx-container {
             padding: 0.5rem 0 0.5rem 0.75rem;
             margin-bottom: 0.5rem;
         }
+
+        /* Table元素样式 */
+        table {
+            width: 70%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            padding-top: 20px;
+
+            /* 表格边框 */
+            border: 1px solid #ccc;
+
+            /* 表头样式 */
+            thead {
+                font-weight: bold;
+
+                th {
+                    padding: 10px;
+                    border: 1px solid #ccc;
+                }
+            }
+
+            /* 表体样式 */
+            tbody {
+                tr:nth-child(odd) {
+                    background-color: #d5cfcf;
+                }
+
+                /* 鼠标悬停样式 */
+                tr:hover {
+                    background-color: #e0e0e0;
+                }
+
+                td {
+                    padding: 10px;
+
+                    /* 单元格边框 */
+                    border-top: 1px solid #ccc;
+                    border-left: 1px solid #ccc;
+                    /* 增加左边框 */
+                    border-right: 1px solid #ccc;
+                    /* 增加右边框 */
+                }
+            }
+        }
     }
 }
 
