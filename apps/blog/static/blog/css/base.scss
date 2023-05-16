@@ -25,7 +25,7 @@ mjx-container {
 .toc {
 
     ul {
-        padding-left: 1rem;
+        padding-left: 1em;
 
         li {
             list-style-type: disc;
@@ -42,10 +42,182 @@ mjx-container {
 }
 
 
+@mixin light-mode {
+    strong {
+        font-weight: bold;
+    }
+
+    em {
+        font-style: italic;
+    }
+
+    p {
+        // @extend.mb-4;
+        margin-bottom: 1rem;
+    }
+
+    ol,
+    ul {
+        padding-left: 2rem;
+    }
+
+    ol {
+        li {
+            list-style-type: decimal;
+            margin-bottom: 0.2rem;
+
+            li {
+                list-style-type: lower-roman;
+
+                li {
+                    list-style-type: lower-alpha;
+
+                    li {
+                        list-style-type: lower-greek;
+                    }
+                }
+            }
+        }
+    }
+
+    ul {
+        li {
+            list-style-type: disc;
+            margin-bottom: 0.2rem;
+
+            li {
+                list-style-type: circle;
+
+                li {
+                    list-style-type: square;
+
+                    li {
+                        list-style-type: "👉 ";
+                    }
+                }
+            }
+        }
+    }
+
+    a {
+        color: $post-link-color;
+        font-weight: bold;
+
+        text-decoration: {
+            line: underline;
+            thickness: 2px;
+        }
+
+        margin: {
+            left: 0.2rem;
+            right: 0.2rem;
+        }
+
+        &:hover {
+            color: cyan;
+        }
+    }
+
+    blockquote {
+        border: {
+            radius: 0;
+            width: 0 0rem 0rem 0.35rem;
+            style: solid;
+            color: greenyellow;
+        }
+
+        padding: 0.5rem 0 0.5rem 0.75rem;
+        margin-bottom: 0.5rem;
+    }
+
+    img {
+        // @extend .block;
+        display: block;
+        // @extend .w-10/12;
+        width: 83.333333%;
+
+        margin: {
+            // @extend .mx-auto;
+            left: auto;
+            right: auto;
+            // @extend .my-2;
+            top: 0.5rem;
+            bottom: 0.5rem;
+        }
+    }
+
+    code {
+        font-family: monospace;
+        font-size: 1.2rem;
+        color: $post-inline-code-color;
+        margin-left: 0.3rem;
+        margin-right: 0.3rem;
+    }
+
+    table:not(code table) {
+        width: 70%;
+        border-collapse: collapse;
+        margin: 0 auto;
+        padding-top: 20px;
+
+        /* 表格边框 */
+        border: 1px solid #ccc;
+
+        /* 表头样式 */
+        thead {
+            font-weight: bold;
+
+            th {
+                padding: 10px;
+                border: 1px solid #ccc;
+            }
+        }
+
+        /* 表体样式 */
+        tbody {
+            tr:nth-child(odd) {
+                background-color: #e0dbdb;
+            }
+
+            /* 鼠标悬停样式 */
+            tr:hover {
+                background-color: #e0e0e0;
+            }
+
+            td {
+                padding: 10px;
+
+                /* 单元格边框 */
+                border-top: 1px solid #ccc;
+                border-left: 1px solid #ccc;
+                /* 增加左边框 */
+                border-right: 1px solid #ccc;
+                /* 增加右边框 */
+            }
+        }
+    }
+}
+
+
+@mixin dark-mode {
+    table:not(code table) tbody {
+        tr:nth-child(odd) {
+            background-color: rgb(87, 72, 72);
+        }
+
+        tr:hover {
+            background-color: #2b1e1e;
+        }
+    }
+}
+
+
 .post {
-    margin-bottom: 1rem;
+    margin-bottom: 1em;
 
     .post-body {
+        @include light-mode;
+
         h2 {
             // @extend .text-3xl;
             font-size: 1.875rem;
@@ -106,38 +278,6 @@ mjx-container {
             }
         }
 
-        p {
-            // @extend.mb-4;
-            margin-bottom: 1rem;
-        }
-
-        a {
-            color: $post-link-color;
-            font-weight: bold;
-
-            text-decoration: {
-                line: underline;
-                thickness: 2px;
-            }
-
-            margin: {
-                left: 0.2rem;
-                right: 0.2rem;
-            }
-
-            &:hover {
-                color: cyan;
-            }
-        }
-
-        code {
-            font-family: monospace;
-            font-size: 1.2rem;
-            color: $post-inline-code-color;
-            margin-left: 0.3rem;
-            margin-right: 0.3rem;
-        }
-
         pre {
             margin-bottom: 0.5rem;
 
@@ -180,134 +320,13 @@ mjx-container {
 
         }
 
-        img {
-            // @extend .block;
-            display: block;
-            // @extend .w-10/12;
-            width: 83.333333%;
-
-            margin: {
-                // @extend .mx-auto;
-                left: auto;
-                right: auto;
-                // @extend .my-2;
-                top: 0.5rem;
-                bottom: 0.5rem;
-            }
-        }
-
-        strong {
-            font-weight: bold;
-        }
-
-        em {
-            font-style: italic;
-        }
-
-        ol,
-        ul {
-            padding-left: 2rem;
-        }
-
-        ol {
-            li {
-                list-style-type: decimal;
-                margin-bottom: 0.2rem;
-
-                li {
-                    list-style-type: lower-roman;
-
-                    li {
-                        list-style-type: lower-alpha;
-
-                        li {
-                            list-style-type: lower-greek;
-                        }
-                    }
-                }
-            }
-        }
-
-        ul {
-            li {
-                list-style-type: disc;
-                margin-bottom: 0.2rem;
-
-                li {
-                    list-style-type: circle;
-
-                    li {
-                        list-style-type: square;
-
-                        li {
-                            list-style-type: "👉 ";
-                        }
-                    }
-                }
-            }
-        }
-
-        blockquote {
-            border: {
-                radius: 0;
-                width: 0 0rem 0rem 0.35rem;
-                style: solid;
-                color: greenyellow;
-            }
-
-            padding: 0.5rem 0 0.5rem 0.75rem;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Table元素样式 */
-        table {
-            width: 70%;
-            border-collapse: collapse;
-            margin: 0 auto;
-            padding-top: 20px;
-
-            /* 表格边框 */
-            border: 1px solid #ccc;
-
-            /* 表头样式 */
-            thead {
-                font-weight: bold;
-
-                th {
-                    padding: 10px;
-                    border: 1px solid #ccc;
-                }
-            }
-
-            /* 表体样式 */
-            tbody {
-                tr:nth-child(odd) {
-                    background-color: #d5cfcf;
-                }
-
-                /* 鼠标悬停样式 */
-                tr:hover {
-                    background-color: #e0e0e0;
-                }
-
-                td {
-                    padding: 10px;
-
-                    /* 单元格边框 */
-                    border-top: 1px solid #ccc;
-                    border-left: 1px solid #ccc;
-                    /* 增加左边框 */
-                    border-right: 1px solid #ccc;
-                    /* 增加右边框 */
-                }
-            }
-        }
     }
 }
 
 
-#commentPreview,
 .comment-body {
+    @include light-mode;
+
     h1 {
         // @extend .text-2xl;
         font-size: 1.5rem;
@@ -359,38 +378,6 @@ mjx-container {
         }
     }
 
-    p {
-        // @extend.mb-4;
-        margin-bottom: 1rem;
-    }
-
-    a {
-        color: $post-link-color;
-        font-weight: bold;
-
-        text-decoration: {
-            line: underline;
-            thickness: 2px;
-        }
-
-        margin: {
-            left: 0.2rem;
-            right: 0.2rem;
-        }
-
-        &:hover {
-            color: cyan;
-        }
-    }
-
-    code {
-        font-family: monospace;
-        font-size: 1.2rem;
-        color: $post-inline-code-color;
-        margin-left: 0.3rem;
-        margin-right: 0.3rem;
-    }
-
     pre {
         margin-bottom: 0.35rem;
 
@@ -432,83 +419,15 @@ mjx-container {
 
     }
 
-    img {
-        // @extend .block;
-        display: block;
-        // @extend .w-10/12;
-        width: 83.333333%;
+}
 
-        margin: {
-            // @extend .mx-auto;
-            left: auto;
-            right: auto;
-            // @extend .my-2;
-            top: 0.5rem;
-            bottom: 0.5rem;
-        }
+
+.dark {
+    .post .post-body {
+        @include dark-mode;
     }
 
-    strong {
-        font-weight: bold;
-    }
-
-    em {
-        font-style: italic;
-    }
-
-    ol,
-    ul {
-        padding-left: 2rem;
-    }
-
-    ol {
-        li {
-            list-style-type: decimal;
-            margin-bottom: 0.2rem;
-
-            li {
-                list-style-type: lower-roman;
-
-                li {
-                    list-style-type: lower-alpha;
-
-                    li {
-                        list-style-type: lower-greek;
-                    }
-                }
-            }
-        }
-    }
-
-    ul {
-        li {
-            list-style-type: disc;
-            margin-bottom: 0.2rem;
-
-            li {
-                list-style-type: circle;
-
-                li {
-                    list-style-type: square;
-
-                    li {
-                        list-style-type: "👉 ";
-                    }
-                }
-            }
-        }
-    }
-
-    blockquote {
-        border: {
-            radius: 0;
-            width: 0 0rem 0rem 0.35rem;
-            style: solid;
-            color: greenyellow;
-        }
-
-        padding: 0.35rem 0 0.35rem 0.75rem;
-        margin-bottom: 0.5rem;
-
+    .comment-body {
+        @include dark-mode;
     }
 }
