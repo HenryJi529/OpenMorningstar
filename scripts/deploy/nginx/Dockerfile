@@ -1,9 +1,9 @@
 FROM nginx:latest
 
-# RUN apt-get update
-# RUN apt-get install -y ca-certificates
-# RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak
-# COPY ./_mirror_cn/tuna-sources-debian.list /etc/apt/sources.list
+RUN apt-get update
+RUN apt-get install -y ca-certificates
+RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak
+COPY ./_mirror_cn/tuna-sources-debian.list /etc/apt/sources.list
 
 RUN apt-get update
 RUN apt-get install -y certbot python3-certbot-nginx vim cron
@@ -17,4 +17,3 @@ RUN chmod +x /start.sh
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 COPY ./nginx/conf/main.conf /etc/nginx/conf.d/main.conf
 COPY ./nginx/conf/others.conf /etc/nginx/conf.d/others.conf
-
