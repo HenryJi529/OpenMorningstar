@@ -78,7 +78,7 @@ class Post(models.Model):
         Category, verbose_name="分类", on_delete=models.CASCADE, blank=True
     )
     tags = models.ManyToManyField(Tag, verbose_name="标签", blank=True)
-    readtime = models.IntegerField("阅读时间", default=0, null=True)
+    readtime = models.IntegerField("阅读时间", default=0, null=True, blank=True)
     views = models.PositiveIntegerField(default=0, editable=False)  # 不可修改!
     requireLogin = models.BooleanField(default=False)
 
