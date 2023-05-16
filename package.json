@@ -35,9 +35,9 @@
     "npm-check-updates": "^16.10.12",
     "sass": "^1.62.1",
     "tailwindcss": "~3.3.2",
-    "terser": "^5.17.3",
+    "terser": "^5.17.4",
     "typescript": "^5.0.4",
-    "vercel": "^29.1.1",
+    "vercel": "^29.3.0",
     "watchify": "^4.0.0"
   },
   "dependencies": {
@@ -49,7 +49,7 @@
     "highlightjs-copy": "^1.0.3",
     "highlightjs-line-numbers.js": "^2.8.0",
     "localstorage-slim": "^2.4.0",
-    "marked": "^5.0.1",
+    "marked": "^5.0.2",
     "masonry-layout": "^4.2.2",
     "mathjax": "^3.2.2",
     "pace-js": "^1.2.4"
