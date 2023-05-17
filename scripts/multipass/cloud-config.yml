@@ -1,5 +1,5 @@
 # 创建镜像:
-# multipass launch --name master --cpus 2 --mem 2G --disk 10G --cloud-init cloud-config.yml
+# multipass launch --name master --cpus 2 --memory 2G --disk 10G --cloud-init cloud-config.yml
 # 挂载目录:
 # multipass mount ./data master:/home/ubuntu/data
 
