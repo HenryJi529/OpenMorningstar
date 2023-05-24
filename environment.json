@@ -109,7 +109,7 @@
         "inDev": true
     },
     "Faker": {
-        "version": "18.7.0",
+        "version": "18.9.0",
         "summary": "测试数据生成",
         "inDev": true
     },
@@ -126,7 +126,7 @@
         "summary": "动态web服务器"
     },
     "ipykernel": {
-        "version": "6.22.0",
+        "version": "6.23.1",
         "summary": "用于支持ipynb笔记本",
         "inDev": true
     },
@@ -168,7 +168,7 @@
         "summary": "mysql的pythonAPI"
     },
     "mysql-to-sqlite3": {
-        "version": "1.4.14",
+        "version": "1.4.17",
         "summary": "mysql -> sqlite3"
     },
     "networkx": {
@@ -193,7 +193,7 @@
         "inDev": true
     },
     "pipdeptree": {
-        "version": "2.7.0",
+        "version": "2.7.1",
         "summary": "python依赖关系展示工具",
         "inDev": true
     },
@@ -252,10 +252,10 @@
         "summary": "实现站内搜索"
     },
     "torch": {
-        "version": "2.0.0"
+        "version": "2.0.1"
     },
     "tensorboard": {
-        "version": "2.12.2"
+        "version": "2.13.0"
     },
     "torch_geometric": {
         "version": "2.2.0"

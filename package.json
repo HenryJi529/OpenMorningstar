@@ -35,9 +35,9 @@
     "npm-check-updates": "^16.10.12",
     "sass": "^1.62.1",
     "tailwindcss": "~3.3.2",
-    "terser": "^5.17.4",
+    "terser": "^5.17.6",
     "typescript": "^5.0.4",
-    "vercel": "^29.3.0",
+    "vercel": "^29.4.0",
     "watchify": "^4.0.0"
   },
   "dependencies": {

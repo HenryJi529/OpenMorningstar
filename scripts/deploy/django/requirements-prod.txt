@@ -28,7 +28,7 @@ jieba==0.42.1
 matplotlib==3.7.1
 mlxtend==0.22.0
 mysql-connector-python==8.0.29
-mysql-to-sqlite3==1.4.14
+mysql-to-sqlite3==1.4.17
 mysqlclient==2.1.1
 networkx==3.1
 numpy==1.24.3
@@ -47,8 +47,8 @@ seaborn==0.12.2
 sh==2.0.3
 simpy==4.0.1
 sqlite3-to-mysql==1.4.16
-tensorboard==2.12.2
-torch==2.0.0
+tensorboard==2.13.0
+torch==2.0.1
 torch_geometric==2.2.0
 torchinfo==1.7.2
 torchmetrics==0.11.4
