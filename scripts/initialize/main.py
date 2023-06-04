@@ -1,5 +1,5 @@
 import os
-import pathlib # NOTE: read_text
+import pathlib  # NOTE: read_text
 import random
 import sys
 from datetime import timedelta
@@ -10,15 +10,21 @@ import django
 import colorama
 
 from django.core.files.base import ContentFile, File
-from django.core.files.images import ImageFile 
+from django.core.files.images import ImageFile
+
 
 def better_print(var):
-    formatted_output = colorama.Fore.YELLOW + colorama.Style.BRIGHT + str(var) + colorama.Style.RESET_ALL
+    formatted_output = (
+        colorama.Fore.YELLOW
+        + colorama.Style.BRIGHT
+        + str(var)
+        + colorama.Style.RESET_ALL
+    )
     print(formatted_output)
 
 
 # 将项目根目录添加到 Python 的模块搜索路径中
-back = os.path.dirname # 获取文件夹名称
+back = os.path.dirname  # 获取文件夹名称
 BASE_DIR = back(back(back(os.path.abspath(__file__))))
 sys.path.append(BASE_DIR)
 
@@ -55,28 +61,51 @@ def clean_database():
 
 def init_user():
     fake = faker.Faker()
-    superuser = User.objects.create_superuser(username='admin', email='admin@morningstar.com', phone='19850000001', password='admin')
+    superuser = User.objects.create_superuser(
+        username="admin",
+        email="admin@morningstar.com",
+        phone="19850000001",
+        password="admin",
+    )
     # 创建邮箱账户
     for _ in range(10):
         try:
-            User.objects.create_user(username=fake.name().lower().replace(' ', ''), email=fake.email(), password=fake.password(), is_staff=True)
+            User.objects.create_user(
+                username=fake.name().lower().replace(" ", ""),
+                email=fake.email(),
+                password=fake.password(),
+                is_staff=True,
+            )
         except Exception:
             pass
     # 创建手机账户
     for _ in range(10):
         try:
-            User.objects.create_user(username=fake.name().lower().replace(' ', ''), phone='198' + str(random.randint(10000000,99999999)), password=fake.password())
+            User.objects.create_user(
+                username=fake.name().lower().replace(" ", ""),
+                phone="198" + str(random.randint(10000000, 99999999)),
+                password=fake.password(),
+            )
         except Exception:
             pass
     return superuser
 
 
 def init_blog():
-    """ 创建分类和标签 """
+    """创建分类和标签"""
     print("创建分类与标签...")
-    category_list = ['Python学习笔记', '开源项目', '工具资源', '程序员生活感悟', 'test category']
-    tag_list = ['django', 'Python', 'Virtualenv', 'Docker', 'Nginx',
-                'Elasticsearch', 'Gunicorn', 'Supervisor', 'test tag']
+    category_list = ["Python学习笔记", "开源项目", "工具资源", "程序员生活感悟", "test category"]
+    tag_list = [
+        "django",
+        "Python",
+        "Virtualenv",
+        "Docker",
+        "Nginx",
+        "Elasticsearch",
+        "Gunicorn",
+        "Supervisor",
+        "test tag",
+    ]
     a_year_ago = timezone.now() - timedelta(days=365)
     for cate in category_list:
         blog.models.Category.objects.create(name=cate)
@@ -88,28 +117,32 @@ def init_blog():
     # 50篇英文
     fake = faker.Faker()
     for _ in range(50):
-        cate = blog.models.Category.objects.order_by('?').first()
-        created = fake.date_time_between(start_date='-1y', end_date="now", tzinfo=timezone.get_current_timezone())
+        cate = blog.models.Category.objects.order_by("?").first()
+        created = fake.date_time_between(
+            start_date="-1y", end_date="now", tzinfo=timezone.get_current_timezone()
+        )
         post = blog.models.Post.objects.create(
-            title=fake.sentence().rstrip('.'),
-            body='\n\n'.join(fake.paragraphs(10)),
+            title=fake.sentence().rstrip("."),
+            body="\n\n".join(fake.paragraphs(10)),
             created=created,
             category=cate,
         )
-        tag4post = blog.models.Tag.objects.all()[:random.randint(0,len(tag_list))]
+        tag4post = blog.models.Tag.objects.all()[: random.randint(0, len(tag_list))]
         post.tags.add(*tag4post)
         post.save()
     # 50篇中文
-    fake = faker.Faker('zh_CN')
+    fake = faker.Faker("zh_CN")
     for _ in range(50):  # Chinese
-        tags = blog.models.Tag.objects.order_by('?')
+        tags = blog.models.Tag.objects.order_by("?")
         tag1 = tags.first()
         tag2 = tags.last()
-        cate = blog.models.Category.objects.order_by('?').first()
-        created = fake.date_time_between(start_date='-1y', end_date="now", tzinfo=timezone.get_current_timezone())
+        cate = blog.models.Category.objects.order_by("?").first()
+        created = fake.date_time_between(
+            start_date="-1y", end_date="now", tzinfo=timezone.get_current_timezone()
+        )
         post = blog.models.Post.objects.create(
-            title=fake.sentence().rstrip('.'),
-            body='\n\n'.join(fake.paragraphs(10)),
+            title=fake.sentence().rstrip("."),
+            body="\n\n".join(fake.paragraphs(10)),
             created=created,
             category=cate,
         )
@@ -120,26 +153,32 @@ def init_blog():
     print("创建评论...")
     for post in blog.models.Post.objects.all()[:90]:
         post_created = post.created
-        delta_in_days = '-' + str((timezone.now() - post_created).days) + 'd'
+        delta_in_days = "-" + str((timezone.now() - post_created).days) + "d"
         for _ in range(random.randint(3, 15)):
             comment1 = blog.models.Comment.objects.create(
-                user=User.objects.order_by('?').first(),
+                user=User.objects.order_by("?").first(),
                 body=fake.paragraph(),
-                created=fake.date_time_between(start_date=delta_in_days, end_date="now", tzinfo=timezone.get_current_timezone()),
+                created=fake.date_time_between(
+                    start_date=delta_in_days,
+                    end_date="now",
+                    tzinfo=timezone.get_current_timezone(),
+                ),
                 post=post,
             )
-            for ind in range(random.randint(0,50)):
-                comment1.thumbs_up.add(User.objects.order_by('?').first())
-            for ind in range(random.randint(0,20)):
-                comment1.thumbs_down.add(User.objects.order_by('?').first())
+            for ind in range(random.randint(0, 50)):
+                comment1.thumbs_up.add(User.objects.order_by("?").first())
+            for ind in range(random.randint(0, 20)):
+                comment1.thumbs_down.add(User.objects.order_by("?").first())
             comment1.save()
 
 
 def init_book():
-    fake = faker.Faker('zh_CN')
+    fake = faker.Faker("zh_CN")
     for _ in range(100):
         try:
-            book.models.Category.objects.create(name=fake.text()[:random.randint(5,10)])
+            book.models.Category.objects.create(
+                name=fake.text()[: random.randint(5, 10)]
+            )
         except:
             pass
     for _ in range(100):
@@ -155,37 +194,56 @@ def init_book():
     for _ in range(100):
         if round(random.random()):
             book.models.Book.objects.create(
-                book_name=fake.text()[:random.randint(5,10)],
-                category=book.models.Category.objects.order_by('?').first(), 
-                author=book.models.Author.objects.order_by('?').first(),
-                translator=book.models.Translator.objects.order_by('?').first(),
-                file=ContentFile("It is a file",name=fake.text()[:random.randint(5,10)]+".epub")
+                book_name=fake.text()[: random.randint(5, 10)],
+                category=book.models.Category.objects.order_by("?").first(),
+                author=book.models.Author.objects.order_by("?").first(),
+                translator=book.models.Translator.objects.order_by("?").first(),
+                file=ContentFile(
+                    "It is a file", name=fake.text()[: random.randint(5, 10)] + ".epub"
+                ),
             )
         else:
             book.models.Book.objects.create(
-                book_name=fake.text()[:random.randint(5,10)],
-                category=book.models.Category.objects.order_by('?').first(), 
-                author=book.models.Author.objects.order_by('?').first(),
-                file=ContentFile("It is a file",name=fake.text()[:random.randint(5,10)]+".epub")
-            )            
+                book_name=fake.text()[: random.randint(5, 10)],
+                category=book.models.Category.objects.order_by("?").first(),
+                author=book.models.Author.objects.order_by("?").first(),
+                file=ContentFile(
+                    "It is a file", name=fake.text()[: random.randint(5, 10)] + ".epub"
+                ),
+            )
 
 
 def init_joke():
-    fake = faker.Faker('zh_CN')
+    fake = faker.Faker("zh_CN")
     for _ in range(100):
-        joke.models.Text.objects.create(body=fake.text(),title=fake.text()[:random.randint(10,15)])
+        joke.models.Text.objects.create(
+            body=fake.text(), title=fake.text()[: random.randint(10, 15)]
+        )
     for _ in range(100):
-        photo1 = joke.models.Photo.objects.create(title=fake.text()[:random.randint(10,15)])
-        photo1.image.save(fake.text()[:random.randint(5,10)]+'.jpg', ContentFile(fake.image(size=(random.randint(200,500),random.randint(400,800)))))
+        photo1 = joke.models.Photo.objects.create(
+            title=fake.text()[: random.randint(10, 15)]
+        )
+        photo1.image.save(
+            fake.text()[: random.randint(5, 10)] + ".jpg",
+            ContentFile(
+                fake.image(size=(random.randint(200, 500), random.randint(400, 800)))
+            ),
+        )
 
 
 def init_poll():
-    fake = faker.Faker('zh_CN')
+    fake = faker.Faker("zh_CN")
     for _ in range(100):
-        question = poll.models.Question.objects.create(question_text=fake.text()[:random.randint(20,24)])
+        question = poll.models.Question.objects.create(
+            question_text=fake.text()[: random.randint(20, 24)]
+        )
         answer_num = random.randint(2, 5)
         for ind in range(answer_num):
-            poll.models.Choice.objects.create(question=question,choice_text=fake.text()[:random.randint(15,24)],votes=abs(fake.random_int()))
+            poll.models.Choice.objects.create(
+                question=question,
+                choice_text=fake.text()[: random.randint(15, 24)],
+                votes=abs(fake.random_int()),
+            )
 
 
 def init_share():
@@ -194,7 +252,7 @@ def init_share():
         share.models.Item.objects.create(url=fake.url())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     better_print("清空数据库...")
     clean_database()
 
@@ -216,4 +274,4 @@ if __name__ == '__main__':
     better_print("创建分享数据...")
     init_share()
 
-    better_print('DONE!!!!')
+    better_print("DONE!!!!")
