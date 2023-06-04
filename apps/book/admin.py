@@ -1,4 +1,5 @@
 from django.contrib import admin
+
 # https://django-import-export.readthedocs.io/en/latest/getting_started.html
 from import_export import resources
 from import_export.formats import base_formats
@@ -12,8 +13,8 @@ from .models import Book, Category, Author, Translator
 
 @admin.register(Book)
 class BookAdmin(ImportExportModelAdmin):
-    list_display = ['id', 'book_name', '链接', 'category', 'author', 'translator']
-    fields = ['book_name', 'category', 'author', 'translator', 'file', 'foreign_url']
+    list_display = ["id", "book_name", "链接", "category", "author", "translator"]
+    fields = ["book_name", "category", "author", "translator", "file", "foreign_url"]
 
     def 链接(self, obj):
         return unquote(obj.foreign_url if obj.foreign_url else obj.file.url)

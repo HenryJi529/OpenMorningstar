@@ -8,7 +8,6 @@ from .models import Question
 
 
 class QuestionModelTests(TestCase):
-
     def test_was_published_recently_with_future_question(self):
         """
         was_published_recently() returns False for questions whose pub_date
@@ -40,8 +39,7 @@ def create_question(question_text, days, choices=["Yes", "No"]):
     in the past, positive for questions that have yet to be published).
     """
     time = timezone.now() + datetime.timedelta(days=days)
-    question = Question.objects.create(
-        question_text=question_text, pub_date=time)
+    question = Question.objects.create(question_text=question_text, pub_date=time)
     # question.choice
     if choices is not None:
         for choice in choices:
@@ -54,9 +52,9 @@ class QuestionIndexViewTests(TestCase):
         """
         If no questions exist, an appropriate message is displayed.
         """
-        response = self.client.get(reverse('poll:index'))
+        response = self.client.get(reverse("poll:index"))
         self.assertEqual(response.status_code, 200)
-        self.assertQuerysetEqual(response.context['latest_question_list'], [])
+        self.assertQuerysetEqual(response.context["latest_question_list"], [])
 
     def test_past_question(self):
         """
@@ -64,9 +62,9 @@ class QuestionIndexViewTests(TestCase):
         index page.
         """
         question = create_question(question_text="Past question.", days=-30)
-        response = self.client.get(reverse('poll:index'))
+        response = self.client.get(reverse("poll:index"))
         self.assertQuerysetEqual(
-            response.context['latest_question_list'],
+            response.context["latest_question_list"],
             [question],
         )
 
@@ -76,15 +74,15 @@ class QuestionIndexViewTests(TestCase):
         the index page.
         """
         create_question(question_text="Future question.", days=30)
-        response = self.client.get(reverse('poll:index'))
-        self.assertQuerysetEqual(response.context['latest_question_list'], [])
+        response = self.client.get(reverse("poll:index"))
+        self.assertQuerysetEqual(response.context["latest_question_list"], [])
 
     def test_future_question_and_past_question(self):
         question = create_question(question_text="Past question.", days=-30)
         create_question(question_text="Future question.", days=30)
-        response = self.client.get(reverse('poll:index'))
+        response = self.client.get(reverse("poll:index"))
         self.assertQuerysetEqual(
-            response.context['latest_question_list'],
+            response.context["latest_question_list"],
             [question],
         )
 
@@ -94,9 +92,9 @@ class QuestionIndexViewTests(TestCase):
         """
         question1 = create_question(question_text="Past question 1.", days=-30)
         question2 = create_question(question_text="Past question 2.", days=-5)
-        response = self.client.get(reverse('poll:index'))
+        response = self.client.get(reverse("poll:index"))
         self.assertQuerysetEqual(
-            response.context['latest_question_list'],
+            response.context["latest_question_list"],
             [question2, question1],
         )
 
@@ -104,12 +102,11 @@ class QuestionIndexViewTests(TestCase):
         """
         创造没有选项的问题，确保不显示在索引页上
         """
-        question1 = create_question(
-            question_text="question 1", days=-10, choices=None)
+        question1 = create_question(question_text="question 1", days=-10, choices=None)
         question2 = create_question(question_text="question 2", days=-5)
-        response = self.client.get(reverse('poll:index'))
+        response = self.client.get(reverse("poll:index"))
         self.assertQuerysetEqual(
-            response.context['latest_question_list'],
+            response.context["latest_question_list"],
             [question2],
         )
 
@@ -121,9 +118,8 @@ class QuestionDetailViewTests(TestCase):
         returns a 404 not found.
         测试未来的问题能否被访问
         """
-        future_question = create_question(
-            question_text='Future question.', days=5)
-        url = reverse('poll:detail', args=(future_question.id,))
+        future_question = create_question(question_text="Future question.", days=5)
+        url = reverse("poll:detail", args=(future_question.id,))
         response = self.client.get(url)
         self.assertEqual(response.status_code, 404)
 
@@ -132,9 +128,8 @@ class QuestionDetailViewTests(TestCase):
         The detail view of a question with a pub_date in the past
         displays the question's text.
         """
-        past_question = create_question(
-            question_text='Past Question.', days=-5)
-        url = reverse('poll:detail', args=(past_question.id,))
+        past_question = create_question(question_text="Past Question.", days=-5)
+        url = reverse("poll:detail", args=(past_question.id,))
         response = self.client.get(url)
         self.assertContains(response, past_question.question_text)
 
@@ -145,9 +140,8 @@ class QuestionResultsViewTests(TestCase):
         The detail view of a question with a pub_date in the future
         returns a 404 not found.
         """
-        future_question = create_question(
-            question_text='Future question.', days=5)
-        url = reverse('poll:results', args=(future_question.id,))
+        future_question = create_question(question_text="Future question.", days=5)
+        url = reverse("poll:results", args=(future_question.id,))
         response = self.client.get(url)
         self.assertEqual(response.status_code, 404)
 
@@ -156,8 +150,7 @@ class QuestionResultsViewTests(TestCase):
         The detail view of a question with a pub_date in the past
         displays the question's text.
         """
-        past_question = create_question(
-            question_text='Past Question.', days=-5)
-        url = reverse('poll:results', args=(past_question.id,))
+        past_question = create_question(question_text="Past Question.", days=-5)
+        url = reverse("poll:results", args=(past_question.id,))
         response = self.client.get(url)
         self.assertContains(response, past_question.question_text)

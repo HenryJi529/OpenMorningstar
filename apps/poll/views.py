@@ -8,8 +8,8 @@ from .models import Choice, Question
 
 
 class IndexView(generic.ListView):
-    template_name = 'poll/index.html'
-    context_object_name = 'latest_question_list'
+    template_name = "poll/index.html"
+    context_object_name = "latest_question_list"
 
     def get_queryset(self):
         """Return the last five published questions."""
@@ -21,7 +21,11 @@ class IndexView(generic.ListView):
             else:
                 return False
 
-        return list(filter(has_choices, list(Question.objects.filter(pub_date__lte=timezone.now()))))[:5]
+        return list(
+            filter(
+                has_choices, list(Question.objects.filter(pub_date__lte=timezone.now()))
+            )
+        )[:5]
 
 
 # def index(request):
@@ -34,13 +38,14 @@ class IndexView(generic.ListView):
 
 class DetailView(generic.DetailView):
     model = Question
-    template_name = 'poll/detail.html'
+    template_name = "poll/detail.html"
 
     def get_queryset(self):
         """
         Excludes any questions that aren't published yet.
         """
         return Question.objects.filter(pub_date__lte=timezone.now())
+
 
 # def detail(request, question_id):
 #     question = get_object_or_404(Question, pk=question_id)
@@ -49,13 +54,14 @@ class DetailView(generic.DetailView):
 
 class ResultsView(generic.DetailView):
     model = Question
-    template_name = 'poll/results.html'
+    template_name = "poll/results.html"
 
     def get_queryset(self):
         """
         Excludes any questions that aren't published yet.
         """
         return Question.objects.filter(pub_date__lte=timezone.now())
+
 
 # def results(request, question_id):
 #     question = get_object_or_404(Question, pk=question_id)
@@ -65,13 +71,17 @@ class ResultsView(generic.DetailView):
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     try:
-        selected_choice = question.choice_set.get(pk=request.POST['choice'])
+        selected_choice = question.choice_set.get(pk=request.POST["choice"])
     except (KeyError, Choice.DoesNotExist):
-        return render(request, 'poll/detail.html', {
-            'question': question,
-            'error_message': "You didn't select a choice.",
-        })
+        return render(
+            request,
+            "poll/detail.html",
+            {
+                "question": question,
+                "error_message": "You didn't select a choice.",
+            },
+        )
     else:
         selected_choice.votes += 1
         selected_choice.save()
-    return HttpResponseRedirect(reverse('poll:results', args=(question.id,)))
+    return HttpResponseRedirect(reverse("poll:results", args=(question.id,)))

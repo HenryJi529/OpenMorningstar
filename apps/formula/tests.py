@@ -8,5 +8,5 @@ class ViewTestCase(TestCase):
         self.client = Client()
 
     def test_index(self):
-        response = self.client.get(reverse('formula:index'))
+        response = self.client.get(reverse("formula:index"))
         self.assertContains(response, "LaTex公式转换")

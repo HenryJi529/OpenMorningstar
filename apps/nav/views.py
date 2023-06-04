@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 import os
 import json
 from Morningstar.settings.common import MEDIA_ROOT
+
 JSON_FILE = os.path.join(MEDIA_ROOT, "nav/data.json")
 
 
@@ -21,4 +22,3 @@ def index(request):
             if category.get("level") == "admin":
                 categories.remove(category)
     return render(request, "nav/index.html", context={"categories": categories})
-

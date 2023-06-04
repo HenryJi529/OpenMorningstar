@@ -24,6 +24,7 @@ def get_items(site):
     def get_text(link):
         # 针对有些网站证书无效
         from requests.packages.urllib3.exceptions import InsecureRequestWarning
+
         requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
         r = requests.get(link, timeout=120, verify=False)  # 针对反爬，需要增加timeout
@@ -32,23 +33,25 @@ def get_items(site):
         return r.text
 
     items = []
-    text = get_text(site['link'])
+    text = get_text(site["link"])
     pattern = site["feed"]["pattern"]
     p = re.compile(pattern)
     matches = p.findall(text)
     for match in matches:
-        link = match[site["feed"]["link_index"]-1]
-        title = match[site["feed"]["title_index"]-1]
-        pubDate = match[site["feed"]["pubDate_index"]-1]
-        description = site["feed"]["description"].format(pubDate=pubDate, title=title, link=link)
+        link = match[site["feed"]["link_index"] - 1]
+        title = match[site["feed"]["title_index"] - 1]
+        pubDate = match[site["feed"]["pubDate_index"] - 1]
+        description = site["feed"]["description"].format(
+            pubDate=pubDate, title=title, link=link
+        )
 
         item = {
             "link": link,
             "title": title,
-            "pubDate": pubDate, 
-            "description": description
+            "pubDate": pubDate,
+            "description": description,
         }
-        items.append(item)    
+        items.append(item)
     return items
 
 
@@ -61,5 +64,3 @@ def get_data(site_index):
     items = get_items(site)
     lastBuildDate = items[0]["pubDate"]
     return (title, link, description, language, items, lastBuildDate)
-
-
