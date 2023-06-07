@@ -16,3 +16,17 @@ class Node(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class SubscribeUrl(models.Model):
+    name = models.CharField("名称", max_length=64, unique=True)
+    link = models.TextField("订阅链接")
+    updated = models.DateTimeField("更新时间", auto_now=True)
+
+    class Meta:
+        verbose_name = "订阅"
+        verbose_name_plural = verbose_name
+        ordering = ["-updated"]
+
+    def __str__(self):
+        return self.name

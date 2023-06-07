@@ -9,7 +9,7 @@ from import_export.formats import base_formats
 from import_export.fields import Field
 from import_export.admin import ImportExportModelAdmin
 
-from .models import Node
+from .models import Node, SubscribeUrl
 
 
 @admin.register(Node)
@@ -47,3 +47,11 @@ class NodeAdmin(ImportExportModelAdmin):
         obj.link = convert(obj.link, obj.name)
 
         super().save_model(request, obj, form, change)
+
+
+@admin.register(SubscribeUrl)
+class SubscribeUrlAdmin(ImportExportModelAdmin):
+    list_display = (
+        "id",
+        "name",
+    )
