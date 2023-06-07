@@ -25,4 +25,17 @@ SITES = [
             "description": "通知时间: {pubDate}<br>\n公告内容: {title}",
         },
     },
+    {
+        "title": "江苏师范大学研究生学院招生公告",
+        "link": "http://yjsy.jsnu.edu.cn/sszs/list.htm",
+        "description": "江苏师范大学研究生学院招生公告, 通过晨星小站抓取",
+        "language": "zh-Hans",
+        "feed": {
+            "pattern": r"<tr>\s*<td>\s*<span class=\"bg-success\">(\d{4}-\d{2}-\d{2})<\/span> &nbsp;<a href='(\/\w{2}\/\w{2}\/c10936a\d{6}\/page\.htm)' target='_blank' title='(.*)'>(?:.*)<\/a>\s<\/td>\s*<\/tr>",
+            "link_index": 2,
+            "title_index": 3,
+            "pubDate_index": 1,
+            "description": "通知时间: {pubDate}<br>\n公告内容: {title}",
+        },
+    },
 ]
