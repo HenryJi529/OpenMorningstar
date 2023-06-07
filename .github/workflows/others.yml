@@ -18,8 +18,8 @@ jobs:
             ping -c 20 cdn.jsdelivr.net
       - name: clone mirror repo with gitlab
         run: |
-          git clone https://gitlab.com/HenryJi529/OpenMorningstar.git
+          git clone https://gitlab.com/HenryJi529/OpenMorningstar.git gitlab
 
       - name: clone mirror repo with fastgit
         run: |
-          git clone https://hub.fgit.gq/HenryJi529/OpenMorningstar.git
+          git clone https://hub.fgit.gq/HenryJi529/OpenMorningstar.git fastgit
