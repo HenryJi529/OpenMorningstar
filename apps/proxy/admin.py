@@ -1,5 +1,7 @@
 import base64
 import json
+import hashlib
+import uuid
 
 from django.contrib import admin
 
@@ -9,7 +11,7 @@ from import_export.formats import base_formats
 from import_export.fields import Field
 from import_export.admin import ImportExportModelAdmin
 
-from .models import Node, SubscribeUrl
+from .models import Node, SubscribeUrl, Account
 
 
 @admin.register(Node)
@@ -55,3 +57,21 @@ class SubscribeUrlAdmin(ImportExportModelAdmin):
         "id",
         "name",
     )
+
+
+@admin.register(Account)
+class AccountAdmin(ImportExportModelAdmin):
+    list_display = ("id", "user", "token")
+
+    def save_model(self, request, obj, form, change):
+        def generate_token(id):
+            # 使用 uuid4 生成一个随机字符串
+            salt = uuid.uuid4().hex
+            # 将 salt 和 id 拼接，然后计算其 SHA-256 哈希值
+            hashed = hashlib.sha256(salt.encode() + str(id).encode()).hexdigest()
+            # 将 salt 和 hashed 值拼接，作为最终的 token
+            return (salt + hashed)[:16]
+
+        obj.token = generate_token(obj.user.id) if not obj.token else obj.token
+        print(generate_token(obj.user.id))
+        super().save_model(request, obj, form, change)

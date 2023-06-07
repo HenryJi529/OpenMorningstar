@@ -1,13 +1,17 @@
 import base64
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, redirect
 
 from .lib import Ghelper
-from .models import Node, SubscribeUrl
+from .models import Node, SubscribeUrl, Account
 
 
-def index(request):
+def index(request: HttpRequest):
+    if request.GET.get("token") not in [
+        account.token for account in Account.objects.all()
+    ]:
+        return HttpResponse("You Need A Token...")
     links = [node.link for node in Node.objects.all()]
     for ind, subscribeUrl in enumerate(SubscribeUrl.objects.all()):
         url = subscribeUrl.link

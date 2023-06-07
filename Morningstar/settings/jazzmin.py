@@ -111,6 +111,7 @@ JAZZMIN_SETTINGS = {
         "poll.question": "fas fa-question",
         "poll.choice": "fas fa-arrow-circle-right",
         "proxy": "fas fa-project-diagram",
+        "proxy.account": "fas fa-user-circle",
         "proxy.node": "fas fa-link",
         "proxy.subscribeurl": "fas fa-external-link-square-alt",
         "share": "fas fa-share-alt",
