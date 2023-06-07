@@ -1,5 +1,5 @@
 Django==4.2.1
-Faker==18.9.0
+Faker==18.10.1
 Markdown==3.4.3
 Pillow==9.5.0
 SciencePlots==2.0.1

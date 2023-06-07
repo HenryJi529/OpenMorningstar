@@ -109,7 +109,7 @@
         "inDev": true
     },
     "Faker": {
-        "version": "18.9.0",
+        "version": "18.10.1",
         "summary": "测试数据生成",
         "inDev": true
     },
