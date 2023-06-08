@@ -1,5 +1,24 @@
 # 更新日志
 
+## v0.2.8:
+
+本次更新如下内容:
+
+1. 常规更新(UI, 依赖, 数据)
+1. 固定django-cors-headers版本, 固定python版本
+1. 部分python代码使用black格式化
+1. 更新GithubAction
+1. 更新生产系统版本, 更换IP, 更新multipass脚本, 更新自动化安装脚本
+1. fabric: 实现certbot自动化配置
+1. docker: 更新dockerfile, 更新.dockerignore, 容器镜像换源
+1. nginx: 解决code.morningstar369.com无法正常访问问题
+1. **blog**: 更新UI, 更新post readtime字段属性, 支持表格, 实现visableSetting, 实现requireLogin
+1. **proxy**: 添加token机制, 敏感数据分离, 更新线路, 更新测试
+1. **resume**: 更新信息
+1. **rss**: 更新"河海大学研究生学院通知公告", 适配"江苏师范研究生院招生公告"
+
+
+
 ## v0.2.7:
 
 本次更新如下内容:
