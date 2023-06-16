@@ -168,7 +168,7 @@
         "summary": "mysql的pythonAPI"
     },
     "mysql-to-sqlite3": {
-        "version": "1.4.17",
+        "version": "1.4.18",
         "summary": "mysql -> sqlite3"
     },
     "networkx": {
@@ -193,7 +193,7 @@
         "inDev": true
     },
     "pipdeptree": {
-        "version": "2.7.1",
+        "version": "2.9.0",
         "summary": "python依赖关系展示工具",
         "inDev": true
     },

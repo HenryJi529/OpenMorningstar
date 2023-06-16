@@ -28,7 +28,7 @@ jieba==0.42.1
 matplotlib==3.7.1
 mlxtend==0.22.0
 mysql-connector-python==8.0.29
-mysql-to-sqlite3==1.4.17
+mysql-to-sqlite3==1.4.18
 mysqlclient==2.1.1
 networkx==3.1
 numpy==1.24.3
