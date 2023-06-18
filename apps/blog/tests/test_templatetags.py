@@ -24,54 +24,75 @@ from .test_models import CommentDataTestCase
 class BlogExtrasTestCase(TestCase):
     def setUp(self):
         apps.get_app_config("haystack").signal_processor.teardown()
-        self.user = User.objects.create_superuser(username="admin", email="admin@morningstar.com", password="admin")
+        self.user = User.objects.create_superuser(
+            username="admin", email="admin@morningstar.com", password="admin"
+        )
         self.cate = Category.objects.create(name="测试")
         self.ctx = Context()
 
     def test_show_recent_posts_without_any_post(self):
         template = Template("{% load blog_extras %}" "{% show_recent_posts %}")
         expected_html = template.render(self.ctx)
-        self.assertInHTML('最新', expected_html)
+        self.assertInHTML("最新", expected_html)
 
     def test_show_recent_posts_with_posts(self):
-        post = Post.objects.create(title="测试标题", body="测试内容", category=self.cate,)
+        post = Post.objects.create(
+            title="测试标题",
+            body="测试内容",
+            category=self.cate,
+        )
         context = Context(show_recent_posts(self.ctx))
         template = Template("{% load blog_extras %}" "{% show_recent_posts %}")
         expected_html = template.render(context)
-        self.assertInHTML('最新', expected_html)
-        self.assertInHTML(f'<a href="{post.get_absolute_url()}">{post.title}</a>', expected_html)
+        self.assertInHTML("最新", expected_html)
+        self.assertInHTML(
+            f'<a href="{post.get_absolute_url()}">{post.title}</a>', expected_html
+        )
 
     def test_show_recent_posts_nums_specified(self):
         post_list = []
         for i in range(7):
-            post = Post.objects.create(title=f"测试标题-{i}", body="测试内容", category=self.cate)
+            post = Post.objects.create(
+                title=f"测试标题-{i}", body="测试内容", category=self.cate
+            )
             post_list.insert(0, post)
         context = Context(show_recent_posts(self.ctx, 3))
         template = Template("{% load blog_extras %}" "{% show_recent_posts %}")
         expected_html = template.render(context)
-        self.assertInHTML('最新', expected_html)
-        self.assertInHTML(f'<a href="{post_list[0].get_absolute_url()}">{post_list[0].title}</a>', expected_html)
-        self.assertInHTML(f'<a href="{post_list[1].get_absolute_url()}">{post_list[1].title}</a>', expected_html)
-        self.assertInHTML(f'<a href="{post_list[2].get_absolute_url()}">{post_list[2].title}</a>', expected_html)
+        self.assertInHTML("最新", expected_html)
+        self.assertInHTML(
+            f'<a href="{post_list[0].get_absolute_url()}">{post_list[0].title}</a>',
+            expected_html,
+        )
+        self.assertInHTML(
+            f'<a href="{post_list[1].get_absolute_url()}">{post_list[1].title}</a>',
+            expected_html,
+        )
+        self.assertInHTML(
+            f'<a href="{post_list[2].get_absolute_url()}">{post_list[2].title}</a>',
+            expected_html,
+        )
 
     def test_show_categories_without_any_category(self):
         self.cate.delete()
         context = Context(show_categories(self.ctx))
         template = Template("{% load blog_extras %}" "{% show_categories %}")
         expected_html = template.render(context)
-        self.assertInHTML('分类', expected_html)
+        self.assertInHTML("分类", expected_html)
         self.assertInHTML("暂无分类！", expected_html)
 
     def test_show_categories_with_categories(self):
         cate_with_posts = Category.objects.create(name="有文章的分类")
         Post.objects.create(title="测试标题-1", body="测试内容", category=cate_with_posts)
         another_cate_with_posts = Category.objects.create(name="另一个有文章的分类")
-        Post.objects.create(title="测试标题-2", body="测试内容", category=another_cate_with_posts)
+        Post.objects.create(
+            title="测试标题-2", body="测试内容", category=another_cate_with_posts
+        )
 
         context = Context(show_categories(self.ctx))
         template = Template("{% load blog_extras %}" "{% show_categories %}")
         expected_html = template.render(context)
-        self.assertInHTML('分类', expected_html)
+        self.assertInHTML("分类", expected_html)
 
         url = reverse("blog:category", kwargs={"pk": cate_with_posts.pk})
         num_posts = cate_with_posts.post_set.count()
@@ -87,7 +108,7 @@ class BlogExtrasTestCase(TestCase):
         context = Context(show_tags(self.ctx))
         template = Template("{% load blog_extras %}" "{% show_tags %}")
         expected_html = template.render(context)
-        self.assertInHTML('标签', expected_html)
+        self.assertInHTML("标签", expected_html)
         self.assertInHTML("暂无标签！", expected_html)
 
     def test_show_tags_with_tags(self):
@@ -98,7 +119,9 @@ class BlogExtrasTestCase(TestCase):
         tag2_post.tags.add(tag2)
         tag2_post.save()
 
-        another_tag2_post = Post.objects.create(title="测试标题", body="测试内容", category=self.cate)
+        another_tag2_post = Post.objects.create(
+            title="测试标题", body="测试内容", category=self.cate
+        )
         another_tag2_post.tags.add(tag2)
         another_tag2_post.save()
 
@@ -109,7 +132,7 @@ class BlogExtrasTestCase(TestCase):
         context = Context(show_tags(self.ctx))
         template = Template("{% load blog_extras %}" "{% show_tags %}")
         expected_html = template.render(context)
-        self.assertInHTML('标签', expected_html)
+        self.assertInHTML("标签", expected_html)
 
         tag2_url = reverse("blog:tag", kwargs={"pk": tag2.pk})
         tag2_num_posts = tag2.post_set.count()
@@ -125,7 +148,7 @@ class BlogExtrasTestCase(TestCase):
         context = Context(show_archives(self.ctx))
         template = Template("{% load blog_extras %}" "{% show_archives %}")
         expected_html = template.render(context)
-        self.assertInHTML('归档', expected_html)
+        self.assertInHTML("归档", expected_html)
         self.assertInHTML("暂无归档！", expected_html)
 
     def test_show_archives_with_post(self):
@@ -137,16 +160,14 @@ class BlogExtrasTestCase(TestCase):
         context = Context(show_archives(self.ctx))
         template = Template("{% load blog_extras %}" "{% show_archives %}")
         expected_html = template.render(context)
-        self.assertInHTML('归档', expected_html)
+        self.assertInHTML("归档", expected_html)
 
         created = timezone.localtime(post1.created)
         url = reverse(
             "blog:archive",
             kwargs={"year": created.year, "month": created.month},
         )
-        frag = '<a href="{}">{} 年 {} 月</a>'.format(
-            url, created.year, created.month
-        )
+        frag = '<a href="{}">{} 年 {} 月</a>'.format(url, created.year, created.month)
         self.assertInHTML(frag, expected_html)
 
 
@@ -164,7 +185,9 @@ class CommentExtraTestCase(CommentDataTestCase):
             self.assertInHTML(str(field), expected_html)
 
     def test_show_comment_form_with_invalid_bound_form(self):
-        template = Template("{% load comments_extras %}" "{% show_comment_form post form %}")
+        template = Template(
+            "{% load comments_extras %}" "{% show_comment_form post form %}"
+        )
         invalid_data = {
             "email": "invalid_email",
         }
@@ -177,18 +200,16 @@ class CommentExtraTestCase(CommentDataTestCase):
             self.assertInHTML(str(field.errors), expected_html)
 
     def test_show_comments_with_comments(self):
-        comment1 = Comment.objects.create(
-            user=self.user, 
-            body="评论内容1", 
-            post=self.post
-        )
+        comment1 = Comment.objects.create(user=self.user, body="评论内容1", post=self.post)
         comment2 = Comment.objects.create(
             user=self.user,
             body="评论内容2",
             post=self.post,
             created=timezone.now() - timedelta(days=1),
         )
-        template = Template("{% load comments_extras %}" "{% show_comments post user %}")
+        template = Template(
+            "{% load comments_extras %}" "{% show_comments post user %}"
+        )
         ctx_dict = show_comments(self.post, self.user)
         ctx_dict["post"] = self.post
         context = Context(ctx_dict)
