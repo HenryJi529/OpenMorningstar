@@ -5,7 +5,9 @@ from django.utils.timezone import now
 
 
 class Photo(models.Model):
-    image = models.ImageField("本站托管图片", upload_to='joke/photo/%Y%m%d%H%M%S/', blank=True)
+    image = models.ImageField(
+        "本站托管图片", upload_to="joke/photo/%Y%m%d%H%M%S/", blank=True
+    )
     foreign_url = models.URLField("外部图片链接", blank=True)
     title = models.CharField("标题", max_length=50, blank=True)
     description = models.CharField("描述", max_length=120, blank=True)
@@ -21,8 +23,8 @@ class Photo(models.Model):
     class Meta:
         verbose_name = "照片"
         verbose_name_plural = verbose_name
-        ordering = ('-created',)
-        app_label = 'joke'
+        ordering = ("-created",)
+        app_label = "joke"
 
 
 class Text(models.Model):
@@ -41,5 +43,5 @@ class Text(models.Model):
     class Meta:
         verbose_name = "文本"
         verbose_name_plural = verbose_name
-        ordering = ('-created',)
-        app_label = 'joke'
+        ordering = ("-created",)
+        app_label = "joke"
