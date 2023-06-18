@@ -70,7 +70,6 @@ updateDep() {
 	echo "Python: 更新依赖..."
 	${PYTHON} scripts/dep/dependencyManager.py upgrade --verbose
 	${PYTHON} scripts/dep/dependencyManager.py export --verbose
-	cp requirements-prod.txt scripts/deploy/django/requirements-prod.txt
 	${PIPDEPTREE} -fl >pipdeptree.txt
 	echo "==================================="
 	echo "DONE!!!"
