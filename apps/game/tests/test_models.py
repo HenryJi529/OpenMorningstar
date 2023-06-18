@@ -8,16 +8,18 @@ from ..models.base import Player, Room
 class PlayerTest(TestCase):
     def setUp(self):
         # 生成测试用户列表
-        usernameList = [ "username" + str(ind) for ind in range(0, 7) ]
-        passwordList = [ "password" + str(ind) for ind in range(0, 7) ]
-        self.userList = [User.objects.create(username=username, password=password) for username, password in zip(usernameList, passwordList)]
+        usernameList = ["username" + str(ind) for ind in range(0, 7)]
+        passwordList = ["password" + str(ind) for ind in range(0, 7)]
+        self.userList = [
+            User.objects.create(username=username, password=password)
+            for username, password in zip(usernameList, passwordList)
+        ]
         # 创建测试玩家列表
-        self.playerList = [ Player.objects.create(user=user) for user in self.userList]
+        self.playerList = [Player.objects.create(user=user) for user in self.userList]
 
-    
     def test_str_representation(self):
         self.playerList[0].create_room()
-        self.assertEqual(self.playerList[0].__str__(), 'username0 in Room 1')
+        self.assertEqual(self.playerList[0].__str__(), "username0 in Room 1")
 
     def test_create_room(self):
         room1 = self.playerList[0].create_room()
@@ -43,6 +45,3 @@ class PlayerTest(TestCase):
         # player2也离开room1，房间自毁，此时房间总数为0
         self.playerList[1].leave_room()
         self.assertEqual(Room.objects.count(), 0)
-
-
-

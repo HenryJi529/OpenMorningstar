@@ -8,7 +8,7 @@ from .models.heros import 刘备
 
 
 def get_available_rooms():
-    rooms = [ room for room in Room.objects.filter(isLocked=False) if not room.isFull ]
+    rooms = [room for room in Room.objects.filter(isLocked=False) if not room.isFull]
     return rooms
 
 

@@ -4,7 +4,7 @@ from django.views.decorators.cache import cache_page
 from . import views
 
 
-app_name = 'game'
+app_name = "game"
 urlpatterns = [
-    path('', views.index, name='index'),
+    path("", views.index, name="index"),
 ]
