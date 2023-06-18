@@ -126,7 +126,7 @@
         "summary": "动态web服务器"
     },
     "ipykernel": {
-        "version": "6.23.1",
+        "version": "6.23.2",
         "summary": "用于支持ipynb笔记本",
         "inDev": true
     },
