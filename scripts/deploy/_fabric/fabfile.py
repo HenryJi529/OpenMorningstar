@@ -147,7 +147,7 @@ def upgrade(c):
         c.run("docker exec -it morningstar_django service supervisor start")
         # NOTE: 重启Django确保数据库无连接错误
         c.run("docker exec -it morningstar_django bash /production.sh")
-        c.run("docker exec -it morningstar_django supervisorctl restart django")
+        c.run("docker exec -it morningstar_django supervisorctl start django")
 
         better_print("配置HTTPS...")
         c.run("docker exec morningstar_nginx bash /start.sh")
