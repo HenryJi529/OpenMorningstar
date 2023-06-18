@@ -19,7 +19,7 @@ class 曹擦(Hero):
 
 class 刘备(Hero):
     def __init__(self):
-        super().__init__(country=Country.SHU, health=4,  sex=Sex.MALE)
+        super().__init__(country=Country.SHU, health=4, sex=Sex.MALE)
         self._skillList = ["仁德"]
         self._lordSkillList = ["激将"]
 
@@ -73,13 +73,12 @@ class 甄姬(Hero):
         pass
 
 
-
 class 张辽(Hero):
     def __init__(self):
         super().__init__(country=Country.WEI, health=4, sex=Sex.MALE)
         self._skillList = ["突袭"]
 
-    def 突袭(self, targetHero1: Hero, targetHero2: Hero=None):
+    def 突袭(self, targetHero1: Hero, targetHero2: Hero = None):
         pass
 
 
@@ -122,12 +121,13 @@ class 关羽(Hero):
         pass
 
 
-class 张飞(Hero): 
+class 张飞(Hero):
     # https://sanguosha.fandom.com/zh/wiki/%E5%BC%A0%E9%A3%9E
     """
     咆哮:
     替身:
     """
+
     def __init__(self):
         super().__init__(country=Country.SHU, health=4, sex=Sex.MALE)
         self._skillList = ["咆哮", "替身"]
@@ -137,6 +137,7 @@ class 张飞(Hero):
 
     def 替身(self):
         pass
+
 
 class 诸葛亮(Hero):
     def __init__(self):
@@ -197,6 +198,7 @@ class 吕蒙(Hero):
     def 克己(self):
         pass
 
+
 class 周瑜(Hero):
     def __init__(self):
         super().__init__(country=Country.WU, health=3, sex=Sex.MALE)
@@ -212,7 +214,9 @@ class 周瑜(Hero):
 class 周盖(Hero):
     def __init__(self):
         super().__init__(country=Country.WU, health=4, sex=Sex.MALE)
-        self._skillList = ["苦肉", ]
+        self._skillList = [
+            "苦肉",
+        ]
 
     def 苦肉(self):
         pass
@@ -273,7 +277,6 @@ class 吕布(Hero):
 
     def 无双(self):
         pass
-
 
 
 if __name__ == "__main__":

@@ -58,7 +58,6 @@ class Room(models.Model):
         self.game.start()
 
 
-
 class Player(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
     room = models.ForeignKey("Room", on_delete=models.SET_NULL, null=True, blank=True)
@@ -83,7 +82,7 @@ class Player(models.Model):
             raise Exception("You already own a room!")
 
         self.room = Room()
-        self.room.save() # 只有先保存才能增加player
+        self.room.save()  # 只有先保存才能增加player
         self.room.add_player(self)
         self.save()
 
@@ -95,7 +94,7 @@ class Player(models.Model):
 
         self.room = room
         self.room.add_player(self)
-        
+
         self.save()
 
     def leave_room(self):
@@ -169,11 +168,11 @@ class Hero:
     @property
     def health(self):
         return self._health
-    
+
     @property
     def sex(self):
         return self._sex
-    
+
     @property
     def skillList(self):
         return self._skillList
@@ -185,4 +184,3 @@ class Hero:
     @property
     def currentSkillList(self):
         return self._currentSkillList
-
