@@ -5,7 +5,7 @@ from blog.models import Post
 
 
 class BlogSitemap(Sitemap):
-    changefreq = 'weekly'
+    changefreq = "weekly"
     priority = 0.5
 
     def items(self):
@@ -21,10 +21,10 @@ class BlogSitemap(Sitemap):
 
 class BookSitemap(Sitemap):
     priority = 1
-    changefreq = 'monthly'
+    changefreq = "monthly"
 
     def items(self):
-        return ['book:index']
+        return ["book:index"]
 
     def location(self, item):
         return reverse(item)
@@ -32,10 +32,10 @@ class BookSitemap(Sitemap):
 
 class LoverSitemap(Sitemap):
     priority = 1
-    changefreq = 'monthly'
+    changefreq = "monthly"
 
     def items(self):
-        return ['lover:index']
+        return ["lover:index"]
 
     def location(self, item):
         return reverse(item)
@@ -43,10 +43,10 @@ class LoverSitemap(Sitemap):
 
 class NavSitemap(Sitemap):
     priority = 1
-    changefreq = 'daily'
+    changefreq = "daily"
 
     def items(self):
-        return ['nav:index']
+        return ["nav:index"]
 
     def location(self, item):
         return reverse(item)
@@ -54,10 +54,10 @@ class NavSitemap(Sitemap):
 
 class RssSitemap(Sitemap):
     priority = 1
-    changefreq = 'daily'
+    changefreq = "daily"
 
     def items(self):
-        return ['rss:index']
+        return ["rss:index"]
 
     def location(self, item):
         return reverse(item)

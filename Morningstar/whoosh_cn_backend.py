@@ -40,8 +40,7 @@ except ImportError:
 
 # Handle minimum requirement.
 if not hasattr(whoosh, "__version__") or whoosh.__version__ < (2, 5, 0):
-    raise MissingDependency(
-        "The 'whoosh' backend requires version 2.5.0 or greater.")
+    raise MissingDependency("The 'whoosh' backend requires version 2.5.0 or greater.")
 
 # Bubble up the correct error.
 from whoosh import index
@@ -107,8 +106,7 @@ class WhooshSearchBackend(BaseSearchBackend):
         super().__init__(connection_alias, **connection_options)
         self.setup_complete = False
         self.use_file_storage = True
-        self.post_limit = getattr(
-            connection_options, "POST_LIMIT", 128 * 1024 * 1024)
+        self.post_limit = getattr(connection_options, "POST_LIMIT", 128 * 1024 * 1024)
         self.path = connection_options.get("PATH")
 
         if connection_options.get("STORAGE", "file") != "file":
@@ -152,8 +150,7 @@ class WhooshSearchBackend(BaseSearchBackend):
             self.storage = LOCALS.RAM_STORE
 
         self.content_field_name, self.schema = self.build_schema(
-            connections[self.connection_alias].get_unified_index(
-            ).all_searchfields()
+            connections[self.connection_alias].get_unified_index().all_searchfields()
         )
         self.parser = QueryParser(self.content_field_name, schema=self.schema)
         self.parser.add_plugins([FuzzyTermPlugin])
@@ -285,8 +282,7 @@ class WhooshSearchBackend(BaseSearchBackend):
                     self.log.error(
                         "%s while preparing object for update" % e.__class__.__name__,
                         exc_info=True,
-                        extra={"data": {"index": index,
-                                        "object": get_identifier(obj)}},
+                        extra={"data": {"index": index, "object": get_identifier(obj)}},
                     )
 
         if len(iterable) > 0:
@@ -303,8 +299,7 @@ class WhooshSearchBackend(BaseSearchBackend):
         whoosh_id = get_identifier(obj_or_string)
 
         try:
-            self.index.delete_by_query(
-                q=self.parser.parse('%s:"%s"' % (ID, whoosh_id)))
+            self.index.delete_by_query(q=self.parser.parse('%s:"%s"' % (ID, whoosh_id)))
         except Exception as e:
             if not self.silently_fail:
                 raise
@@ -332,8 +327,7 @@ class WhooshSearchBackend(BaseSearchBackend):
                 models_to_delete = []
 
                 for model in models:
-                    models_to_delete.append("%s:%s" % (
-                        DJANGO_CT, get_model_ct(model)))
+                    models_to_delete.append("%s:%s" % (DJANGO_CT, get_model_ct(model)))
 
                 self.index.delete_by_query(
                     q=self.parser.parse(" OR ".join(models_to_delete))
@@ -350,8 +344,7 @@ class WhooshSearchBackend(BaseSearchBackend):
                     exc_info=True,
                 )
             else:
-                self.log.error(
-                    "Failed to clear Whoosh index: %s", e, exc_info=True)
+                self.log.error("Failed to clear Whoosh index: %s", e, exc_info=True)
 
     def delete_index(self):
         # Per the Whoosh mailing list, if wiping out everything from the index,
@@ -487,8 +480,7 @@ class WhooshSearchBackend(BaseSearchBackend):
                 gap_by = value["gap_by"]
                 gap_amount = value.get("gap_amount", 1)
                 gap = RelativeDelta(**{"%ss" % gap_by: gap_amount})
-                group_by.append(DateRangeFacet(
-                    key, start, end, gap, maptype=Count))
+                group_by.append(DateRangeFacet(key, start, end, gap, maptype=Count))
                 facet_types[key] = "dates"
 
         if query_facets is not None:
@@ -518,8 +510,7 @@ class WhooshSearchBackend(BaseSearchBackend):
                 narrow_queries = set()
 
             narrow_queries.add(
-                " OR ".join(["%s:%s" % (DJANGO_CT, rm)
-                            for rm in model_choices])
+                " OR ".join(["%s:%s" % (DJANGO_CT, rm) for rm in model_choices])
             )
 
         narrow_searcher = None
@@ -551,8 +542,7 @@ class WhooshSearchBackend(BaseSearchBackend):
             if parsed_query is None:
                 return {"results": [], "hits": 0}
 
-            page_num, page_length = self.calculate_page(
-                start_offset, end_offset)
+            page_num, page_length = self.calculate_page(start_offset, end_offset)
 
             search_kwargs = {
                 "pagelen": page_length,
@@ -566,8 +556,7 @@ class WhooshSearchBackend(BaseSearchBackend):
                 search_kwargs["filter"] = narrowed_results
 
             try:
-                raw_page = searcher.search_page(
-                    parsed_query, page_num, **search_kwargs)
+                raw_page = searcher.search_page(parsed_query, page_num, **search_kwargs)
             except ValueError:
                 if not self.silently_fail:
                     raise
@@ -600,8 +589,7 @@ class WhooshSearchBackend(BaseSearchBackend):
                         spelling_query
                     )
                 else:
-                    spelling_suggestion = self.create_spelling_suggestion(
-                        query_string)
+                    spelling_suggestion = self.create_spelling_suggestion(query_string)
             else:
                 spelling_suggestion = None
 
@@ -649,8 +637,7 @@ class WhooshSearchBackend(BaseSearchBackend):
                 narrow_queries = set()
 
             narrow_queries.add(
-                " OR ".join(["%s:%s" % (DJANGO_CT, rm)
-                            for rm in model_choices])
+                " OR ".join(["%s:%s" % (DJANGO_CT, rm) for rm in model_choices])
             )
 
         if additional_query_string and additional_query_string != "*":
@@ -688,8 +675,7 @@ class WhooshSearchBackend(BaseSearchBackend):
             results = searcher.search(parsed_query)
 
             if len(results):
-                raw_results = results[0].more_like_this(
-                    field_name, top=end_offset)
+                raw_results = results[0].more_like_this(field_name, top=end_offset)
 
             # Handle the case where the results have been narrowed.
             if narrowed_results is not None and hasattr(raw_results, "filter"):
@@ -791,8 +777,7 @@ class WhooshSearchBackend(BaseSearchBackend):
                             if value is None or len(value) == 0:
                                 additional_fields[string_key] = []
                             else:
-                                additional_fields[string_key] = value.split(
-                                    ",")
+                                additional_fields[string_key] = value.split(",")
                         else:
                             additional_fields[string_key] = index.fields[
                                 string_key
@@ -832,11 +817,9 @@ class WhooshSearchBackend(BaseSearchBackend):
 
         if self.include_spelling:
             if spelling_query:
-                spelling_suggestion = self.create_spelling_suggestion(
-                    spelling_query)
+                spelling_suggestion = self.create_spelling_suggestion(spelling_query)
             else:
-                spelling_suggestion = self.create_spelling_suggestion(
-                    query_string)
+                spelling_suggestion = self.create_spelling_suggestion(query_string)
 
         return {
             "results": results,
@@ -1045,28 +1028,24 @@ class WhooshSearchQuery(BaseSearchQuery):
                         possible_values = prepared_value.split(" ")
                     else:
                         if is_datetime is True:
-                            prepared_value = self._convert_datetime(
-                                prepared_value)
+                            prepared_value = self._convert_datetime(prepared_value)
 
                         possible_values = [prepared_value]
 
                     for possible_value in possible_values:
-                        possible_value_str = self.backend._from_python(
-                            possible_value)
+                        possible_value_str = self.backend._from_python(possible_value)
                         if filter_type == "fuzzy":
                             terms.append(
                                 filter_types[filter_type]
                                 % (
                                     possible_value_str,
                                     min(
-                                        FUZZY_WHOOSH_MIN_PREFIX, len(
-                                            possible_value_str)
+                                        FUZZY_WHOOSH_MIN_PREFIX, len(possible_value_str)
                                     ),
                                 )
                             )
                         else:
-                            terms.append(
-                                filter_types[filter_type] % possible_value_str)
+                            terms.append(filter_types[filter_type] % possible_value_str)
 
                     if len(terms) == 1:
                         query_frag = terms[0]

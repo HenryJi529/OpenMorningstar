@@ -3,12 +3,25 @@ from django.contrib.auth.models import AbstractUser
 
 from Morningstar.lib.nickname_generator import get_random_nickname
 
+
 class User(AbstractUser):
-    nickname = models.CharField(unique=True, verbose_name="昵称", max_length=200, blank=True, null=True)
-    email = models.EmailField(unique=True, max_length=200, blank=True, null=True, verbose_name='邮箱')
-    phone = models.CharField(unique=True, verbose_name="手机号", max_length=32, blank=True, null=True)
+    nickname = models.CharField(
+        unique=True, verbose_name="昵称", max_length=200, blank=True, null=True
+    )
+    email = models.EmailField(
+        unique=True, max_length=200, blank=True, null=True, verbose_name="邮箱"
+    )
+    phone = models.CharField(
+        unique=True, verbose_name="手机号", max_length=32, blank=True, null=True
+    )
     bio = models.TextField(verbose_name="个人简介", blank=True, null=True)
-    avatar = models.ImageField(verbose_name="头像", default="avatar/default.svg", upload_to='avatar/%Y%m%d%H%M%S/', blank=True, null=True)
+    avatar = models.ImageField(
+        verbose_name="头像",
+        default="avatar/default.svg",
+        upload_to="avatar/%Y%m%d%H%M%S/",
+        blank=True,
+        null=True,
+    )
     REQUIRED_FIELDS = []
 
     class Meta:
@@ -25,11 +38,11 @@ class User(AbstractUser):
 
 
 class VisiableSetting(models.Model):
-    CHOICES = (
-        'lover',
-    )
+    CHOICES = ("lover",)
 
-    key = models.CharField(max_length=255, unique=True, choices=[(val, val) for val in CHOICES])
+    key = models.CharField(
+        max_length=255, unique=True, choices=[(val, val) for val in CHOICES]
+    )
     value = models.BooleanField(default=True)
 
     def __str__(self):
