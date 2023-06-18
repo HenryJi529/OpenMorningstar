@@ -15,22 +15,24 @@ class ViewTestCase(TestCase):
         Author.objects.create(name="author1")
         Book.objects.create(
             book_name="book1",
-            category=Category.objects.get(name="category1"), 
+            category=Category.objects.get(name="category1"),
             author=Author.objects.get(name="author1"),
-            file=ContentFile("It is a file",name="file1")
+            file=ContentFile("It is a file", name="file1"),
         )
 
     def test_get(self):
-        response = self.client.get(reverse('book:index'))
+        response = self.client.get(reverse("book:index"))
         self.assertContains(response, "author1")
 
     def test_post(self):
-        response = self.client.post(reverse('book:index'), {
-            "bookId": 1,
-        })
+        response = self.client.post(
+            reverse("book:index"),
+            {
+                "bookId": 1,
+            },
+        )
         self.assertNotContains(response, "author1")
 
     def test_api(self):
-        response = self.client.get(reverse('book:api'))
+        response = self.client.get(reverse("book:api"))
         self.assertContains(response, "author1")
-

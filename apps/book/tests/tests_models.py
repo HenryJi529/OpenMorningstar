@@ -38,7 +38,7 @@ class TranslatorModelTestCase(TestCase):
     def setUp(self):
         Translator.objects.create(name="translator1")
         Translator.objects.create(name="translator2")
-    
+
     def test_translator_can_add(self):
         translator1 = Translator.objects.get(name="translator1")
         translator2 = Translator.objects.get(name="translator2")
@@ -54,9 +54,9 @@ class BookModelTestCase(TestCase):
         Author.objects.create(name="author1")
         Book.objects.create(
             book_name="book1",
-            category=Category.objects.get(name="category1"), 
+            category=Category.objects.get(name="category1"),
             author=Author.objects.get(name="author1"),
-            file=ContentFile("It is a file",name="file1")
+            file=ContentFile("It is a file", name="file1"),
         )
 
     def test_book_can_add(self):
@@ -67,4 +67,3 @@ class BookModelTestCase(TestCase):
         self.assertEqual(book1.author.name, "author1")
         self.assertTrue("file1" in str(book1.file))
         self.assertTrue(re.match(r"\/media\/book\/[0-9]{14}\/file1", book1.uri))
-
