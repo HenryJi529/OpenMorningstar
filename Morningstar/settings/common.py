@@ -162,10 +162,7 @@ USE_I18N = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")  # 收集静态
 STATICFILES_DIRS = [  # NOTE: 除app/static/外的静态文件
-    # os.path.join(BASE_DIR, 'Morningstar', 'static')
-    BASE_DIR
-    / "Morningstar"
-    / "static"
+    os.path.join(BASE_DIR, "Morningstar", "static"),
 ]
 
 
