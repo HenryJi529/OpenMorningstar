@@ -1,5 +1,5 @@
 FROM ubuntu:latest
-
+ARG PYTHON_VERSION=3.9
 WORKDIR /app
 
 RUN apt-get update
@@ -10,7 +10,7 @@ COPY ./_mirror_cn/ustc-sources.list /etc/apt/sources.list
 
 RUN apt-get update
 RUN apt-get install -y iputils-ping net-tools vim rsync
-RUN apt-get install -y python3.9 python3-pip mysql-client libmysqlclient-dev
+RUN apt-get install -y python${PYTHON_VERSION} python3-pip mysql-client libmysqlclient-dev
 RUN apt-get install -y nodejs npm
 RUN apt-get install -y cron
 RUN apt-get install -y supervisor
