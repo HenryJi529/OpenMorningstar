@@ -21,7 +21,7 @@ RUN dpkg-reconfigure -f noninteractive tzdata
 RUN apt-get install -y gnupg ca-certificates && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF && "deb https://download.mono-project.com/repo/ubuntu stable-focal main" | tee /etc/apt/sources.list.d/mono-official-stable.list && apt-get update && apt-get install -y mono-devel
 
 # 安装必要工具
-RUN apt-get install -y unzip vim wget
+RUN apt-get install -y unzip vim wget tmux
 
 # 安装tshock
 RUN wget https://github.com/Pryaxis/TShock/releases/download/v5.2.0/TShock-5.2-for-Terraria-1.4.4.9-linux-x64-Release.zip -O /root/tshock.zip

@@ -163,6 +163,8 @@ config_node() {
 install_tiny_tool() {
   echo "安装tldr..."
   sudo apt install -y tldr
+  echo "安装tmux..."
+  sudo apt install -y tmux
   echo "安装rename..."
   sudo apt install -y rename
   echo "安装cmatrix,cowsay,ninvaders,moon-buggy..."
