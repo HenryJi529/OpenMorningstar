@@ -978,6 +978,11 @@
 					"image": "/media/nav/img/Recreation/三国杀.png"
 				},
 				{
+					"name": "泰拉瑞亚",
+					"url": "https://terraria.wiki.gg/zh/wiki/Terraria_Wiki",
+					"image": "/media/nav/img/Recreation/Terraria.jpeg"
+				},
+				{
 					"name": "CSSBattle",
 					"url": "https://cssbattle.dev/",
 					"image": "/media/nav/img/Recreation/CSSBattle.png"
