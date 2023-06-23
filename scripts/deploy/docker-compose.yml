@@ -80,7 +80,6 @@ services:
       - 6003:80
     environment:
       - MATOMO_DATABASE_HOST=db2
-      - MATOMO_DATABASE_TABLES_PREFIX=mat_
       - MATOMO_DATABASE_USERNAME=matomo
       - MATOMO_DATABASE_PASSWORD=matomo
       - MATOMO_DATABASE_DBNAME=matomo
@@ -90,7 +89,7 @@ services:
       - db2:db2
 
   db2:
-    image: yobasystems/alpine-mariadb:latest
+    image: mariadb:latest
     container_name: morningstar_db2
     restart: always
     environment:
