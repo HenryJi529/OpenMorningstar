@@ -38,7 +38,7 @@
         "summary": "创建彩色字符串"
     },
     "coverage": {
-        "version": "7.2.5",
+        "version": "7.2.7",
         "summary": "计算测试覆盖率",
         "inDev": true
     },
@@ -207,7 +207,7 @@
         "summary": "音频处理库"
     },
     "pymdown-extensions": {
-        "version": "9.11",
+        "version": "10.0.1",
         "summary": "实用的Python-Markdown扩展"
     },
     "python-dotenv": {
@@ -237,7 +237,7 @@
         "version": "4.0.1"
     },
     "sh": {
-        "version": "2.0.3",
+        "version": "2.0.4",
         "summary": "执行shell命令"
     },
     "tqdm": {
@@ -264,7 +264,7 @@
         "version": "0.11.4"
     },
     "torchinfo": {
-        "version": "1.7.2"
+        "version": "1.8.0"
     },
     "scikit-learn": {
         "version": "1.2.2"
