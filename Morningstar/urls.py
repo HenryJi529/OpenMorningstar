@@ -73,7 +73,7 @@ urlpatterns = [
     path("joke/", include("joke.urls")),
     path("lover/", include("lover.urls")),
     path("nav/", include("nav.urls")),
-    path("notes/", include("notes.urls")),
+    path("api/notes/", include("notes.urls")),
     path("poll/", include("poll.urls")),
     path("proxy/", include("proxy.urls")),
     path("rss/", include("rss.urls")),

@@ -6,4 +6,4 @@ from django.views.generic.base import TemplateView
 from . import views
 
 app_name = "notes"
-urlpatterns = [path("api/", views.api, name="api")]
+urlpatterns = [path("", views.api, name="api")]
