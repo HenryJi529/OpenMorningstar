@@ -25,12 +25,6 @@
 					"desc": "致敬那些伟大的同类～"
 				},
 				{
-					"name": "在线笔记",
-					"url": "https://notes-app-beta-puce.vercel.app",
-					"image": "/media/nav/img/Work/在线笔记.png",
-					"desc": "简易的笔记应用～"
-				},
-				{
 					"name": "在线测验",
 					"url": "https://quiz-app-omega-seven.vercel.app",
 					"image": "/media/nav/img/Work/在线测验.png",
@@ -77,6 +71,12 @@
 					"url": "/rss/",
 					"image": "/media/nav/img/Work/rss.png",
 					"desc": "仿照Feed43生成RSS源"
+				},
+				{
+					"name": "在线笔记",
+					"url": "https://morningstar369.com/notes/",
+					"image": "/media/nav/img/Work/在线笔记.png",
+					"desc": "简易的笔记应用～"
 				},
 				{
 					"name": "公式转换",
