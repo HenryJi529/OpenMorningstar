@@ -40,9 +40,12 @@ RECAPTCHA_PRIVATE_KEY = "6Le20wwdAAAAAIyF33a5fiD-PJ7uioonJQ9ycilI"
 COMPRESS_ENABLED = False
 
 
-"""跨站资源共享"""
+"""跨站资源共享"""  # NOTE: 先判定regex
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^https?://127\.0\.0\.1(:\d+)?$",
+]
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8000",  # NOTE: 测试专用
+    "http://localhost:8000",  # NOTE: 后端测试专用
 ]
 
 
