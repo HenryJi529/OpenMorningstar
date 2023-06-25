@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "vite build --outDir ../../../scripts/deploy/nginx/www/notes",
+    "build": "vite build --outDir ../../../scripts/deploy/nginx/www/notes --emptyOutDir",
     "preview": "vite preview"
   },
   "dependencies": {
