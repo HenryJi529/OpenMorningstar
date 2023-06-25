@@ -12,7 +12,7 @@ runRemoteCommand() {
 # 简单运行
 serve() {
 	echo "启动django-server..."
-	python manage.py runserver 0:8000
+	python manage.py runserver 127.0.0.1:8000
 }
 
 # 检视信息

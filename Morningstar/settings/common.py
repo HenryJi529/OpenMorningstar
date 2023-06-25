@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "apps.joke.apps.JokeConfig",  # 笑话
     "apps.lover.apps.LoverConfig",  # 爱人
     "apps.nav.apps.NavConfig",  # 导航
+    "apps.notes.apps.NotesConfig",  # 笔记
     "apps.poll.apps.PollConfig",  # 投票
     "apps.proxy.apps.ProxyConfig",  # 代理
     "apps.rss.apps.RssConfig",  # RSS
@@ -109,7 +110,7 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [  # BASE_DIR / 'templates', 减少根目录文件夹数量?
-            os.path.join(BASE_DIR, "Morningstar", "templates")
+            os.path.join(BASE_DIR, "Morningstar", "templates"),
         ],
         "APP_DIRS": True,
         "OPTIONS": {
