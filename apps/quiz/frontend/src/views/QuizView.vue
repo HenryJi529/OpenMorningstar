@@ -2,7 +2,7 @@
 import Question from '../components/Question.vue';
 import QuizHeader from '../components/QuizHeader.vue';
 import Result from '../components/Result.vue';
-import q from '../data/quizzes.json';
+import q from '../assets/data/quizzes.json';
 import { useRoute } from 'vue-router';
 import { ref, watch, computed } from 'vue';
 
@@ -33,8 +33,8 @@ const onOptionSelected = (isCorrect) => {
     <div>
         <QuizHeader :questionStatus="questionStatus" :barPercentage="barPercentage" />
         <div>
-            <Question v-if="currentQuestionIndex < quiz.questions.length"
-                :question="quiz.questions[currentQuestionIndex]" @selectOption="onOptionSelected" />
+            <Question v-if="currentQuestionIndex < quiz.questions.length" :question="quiz.questions[currentQuestionIndex]"
+                @selectOption="onOptionSelected" />
             <Result v-else :results="`${numberOfCorrectAnswers}/${quiz.questions.length}`" />
         </div>
     </div>

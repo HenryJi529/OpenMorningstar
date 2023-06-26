@@ -1,5 +1,5 @@
 <script setup>
-import q from '../data/quizzes.json'
+import q from '../assets/data/quizzes.json';
 import { ref, watch } from 'vue'
 import gsap from 'gsap'
 import Card from '../components/Card.vue'
