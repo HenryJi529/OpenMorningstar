@@ -21,7 +21,6 @@ class ShortCutViewTest(TestCase):
             "license",
             "coverage",
             "task",
-            "resume",
             "wechatpp",
             "qiniu",
             "lanzou",
