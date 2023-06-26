@@ -19,7 +19,6 @@ class ShortCutViewTest(TestCase):
             "domain",
             "namecheap",
             "license",
-            "coverage",
             "task",
             "wechatpp",
             "qiniu",

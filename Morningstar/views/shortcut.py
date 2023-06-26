@@ -13,7 +13,6 @@ def shortcut(request, name):
         "domain",
         "namecheap",
         "license",
-        "coverage",
         "task",
         "wechatpp",
     ]:
@@ -36,8 +35,6 @@ def shortcut(request, name):
             return redirect(
                 "https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/LICENSE"
             )
-        elif name == "coverage":
-            return redirect("https://coverage.morningstar369.com/")
         elif name == "task":
             return redirect("https://ticktick.com/webapp#m/all/matrix")
         elif name == "wechatpp":

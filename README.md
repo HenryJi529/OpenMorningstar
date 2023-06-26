@@ -8,7 +8,7 @@
 		<img src="https://img.shields.io/badge/docker-passing-brightgreen"
 			alt="Docker Passing" />
 	</a>
-	<a href="https://coverage.morningstar369.com/">
+	<a href="https://morningstar369.com/coverage/">
 		<img src="https://img.shields.io/badge/coverage-click-brightgreen"
 			alt="Coverage Badge" />
 	</a>

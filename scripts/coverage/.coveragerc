@@ -17,4 +17,4 @@ show_missing = True
 skip_covered = True
 
 [html]
-directory = vercel/_coverage
+directory = scripts/deploy/nginx/www/coverage

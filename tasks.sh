@@ -58,7 +58,7 @@ coverage() {
 	${COVERAGE} run --rcfile=scripts/coverage/.coveragerc manage.py test Morningstar/ apps/ --failfast --noinput
 	${COVERAGE} report --rcfile=scripts/coverage/.coveragerc
 	${COVERAGE} html --rcfile=scripts/coverage/.coveragerc
-	live-server vercel/_coverage
+	live-server scripts/deploy/nginx/www/coverage
 }
 
 # 更新依赖

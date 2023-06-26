@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Coverage for Morningstar/lib/qrcoder.py: 50%</title>
+    <link rel="icon" sizes="32x32" href="favicon_32.png">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <script type="text/javascript" src="coverage_html.js" defer></script>
+</head>
+<body class="pyfile">
+<header>
+    <div class="content">
+        <h1>
+            <span class="text">Coverage for </span><b>Morningstar/lib/qrcoder.py</b>:
+            <span class="pc_cov">50%</span>
+        </h1>
+        <aside id="help_panel_wrapper">
+            <input id="help_panel_state" type="checkbox">
+            <label for="help_panel_state">
+                <img id="keyboard_icon" src="keybd_closed.png" alt="Show/hide keyboard shortcuts" />
+            </label>
+            <div id="help_panel">
+                <p class="legend">Shortcuts on this page</p>
+                <div class="keyhelp">
+                    <p>
+                        <kbd>r</kbd>
+                        <kbd>m</kbd>
+                        <kbd>x</kbd>
+                        <kbd>p</kbd>
+                        &nbsp; toggle line displays
+                    </p>
+                    <p>
+                        <kbd>j</kbd>
+                        <kbd>k</kbd>
+                        &nbsp; next/prev highlighted chunk
+                    </p>
+                    <p>
+                        <kbd>0</kbd> &nbsp; (zero) top of page
+                    </p>
+                    <p>
+                        <kbd>1</kbd> &nbsp; (one) first highlighted chunk
+                    </p>
+                    <p>
+                        <kbd>[</kbd>
+                        <kbd>]</kbd>
+                        &nbsp; prev/next file
+                    </p>
+                    <p>
+                        <kbd>u</kbd> &nbsp; up to the index
+                    </p>
+                    <p>
+                        <kbd>?</kbd> &nbsp; show/hide this help
+                    </p>
+                </div>
+            </div>
+        </aside>
+        <h2>
+            <span class="text">26 statements &nbsp;</span>
+            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">14<span class="text"> run</span></button>
+            <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">12<span class="text"> missing</span></button>
+            <button type="button" class="exc show_exc button_toggle_exc" value="exc" data-shortcut="x" title="Toggle lines excluded">0<span class="text"> excluded</span></button>
+            <button type="button" class="par run show_par button_toggle_par" value="par" data-shortcut="p" title="Toggle lines partially run">2<span class="text"> partial</span></button>
+        </h2>
+        <p class="text">
+            <a id="prevFileLink" class="nav" href="d_f69501f76bd75a5a_nickname_generator_py.html">&#xab; prev</a> &nbsp; &nbsp;
+            <a id="indexLink" class="nav" href="index.html">&Hat; index</a> &nbsp; &nbsp;
+            <a id="nextFileLink" class="nav" href="d_f69501f76bd75a5a_sms_py.html">&#xbb; next</a>
+            &nbsp; &nbsp; &nbsp;
+            <a class="nav" href="https://coverage.readthedocs.io/en/7.2.7">coverage.py v7.2.7</a>,
+            created at 2023-06-26 10:51 +0800
+        </p>
+        <aside class="hidden">
+            <button type="button" class="button_next_chunk" data-shortcut="j"/>
+            <button type="button" class="button_prev_chunk" data-shortcut="k"/>
+            <button type="button" class="button_top_of_page" data-shortcut="0"/>
+            <button type="button" class="button_first_chunk" data-shortcut="1"/>
+            <button type="button" class="button_prev_file" data-shortcut="["/>
+            <button type="button" class="button_next_file" data-shortcut="]"/>
+            <button type="button" class="button_to_index" data-shortcut="u"/>
+            <button type="button" class="button_show_hide_help" data-shortcut="?"/>
+        </aside>
+    </div>
+</header>
+<main id="source">
+    <p class="run"><span class="n"><a id="t1" href="#t1">1</a></span><span class="t"><span class="key">import</span> <span class="nam">os</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t2" href="#t2">2</a></span><span class="t"><span class="key">from</span> <span class="nam">PIL</span> <span class="key">import</span> <span class="nam">Image</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t3" href="#t3">3</a></span><span class="t"><span class="key">import</span> <span class="nam">qrcode</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t4" href="#t4">4</a></span><span class="t"><span class="key">from</span> <span class="nam">qrcode</span><span class="op">.</span><span class="nam">image</span><span class="op">.</span><span class="nam">styledpil</span> <span class="key">import</span> <span class="nam">StyledPilImage</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t5" href="#t5">5</a></span><span class="t"><span class="key">from</span> <span class="nam">qrcode</span><span class="op">.</span><span class="nam">image</span><span class="op">.</span><span class="nam">styles</span><span class="op">.</span><span class="nam">moduledrawers</span> <span class="key">import</span> <span class="nam">RoundedModuleDrawer</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t6" href="#t6">6</a></span><span class="t"><span class="key">from</span> <span class="nam">qrcode</span><span class="op">.</span><span class="nam">image</span><span class="op">.</span><span class="nam">styles</span><span class="op">.</span><span class="nam">colormasks</span> <span class="key">import</span> <span class="nam">RadialGradiantColorMask</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t7" href="#t7">7</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t8" href="#t8">8</a></span><span class="t"><span class="key">def</span> <span class="nam">make_qrcode</span><span class="op">(</span><span class="nam">data</span><span class="op">,</span> <span class="nam">box_size</span><span class="op">=</span><span class="num">10</span><span class="op">,</span> <span class="nam">border</span><span class="op">=</span><span class="num">4</span><span class="op">,</span> <span class="nam">box_radius_ratio</span><span class="op">=</span><span class="num">0.7</span><span class="op">,</span> <span class="nam">image_size</span><span class="op">=</span><span class="op">(</span><span class="num">500</span><span class="op">,</span> <span class="num">500</span><span class="op">)</span><span class="op">,</span> <span class="nam">icon_path</span><span class="op">=</span><span class="key">None</span><span class="op">,</span> <span class="nam">width_ratio</span><span class="op">=</span><span class="num">4</span><span class="op">,</span> <span class="nam">back_color</span><span class="op">=</span><span class="key">None</span><span class="op">,</span> <span class="nam">center_color</span><span class="op">=</span><span class="key">None</span><span class="op">,</span> <span class="nam">edge_color</span><span class="op">=</span><span class="key">None</span><span class="op">,</span> <span class="nam">fill_color</span><span class="op">=</span><span class="key">None</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t9" href="#t9">9</a></span><span class="t">    <span class="str">"""&#21487;&#29983;&#25104;&#21547;&#26377;logo&#30340;&#20108;&#32500;&#30721;</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t10" href="#t10">10</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t11" href="#t11">11</a></span><span class="t"><span class="str">    &#24403;icon_path&#23384;&#22312;&#26102;&#65292;&#29983;&#25104;&#21547;&#26377;logo&#30340;&#20108;&#32500;&#30721;</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t12" href="#t12">12</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t13" href="#t13">13</a></span><span class="t"><span class="str">    :param data: &#20108;&#32500;&#30721;&#20013;&#30340;&#25968;&#25454;</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t14" href="#t14">14</a></span><span class="t"><span class="str">    :param box_size: &#21333;&#20010;&#20803;&#32032;&#22823;&#23567;</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t15" href="#t15">15</a></span><span class="t"><span class="str">    :param border: &#30456;&#37051;&#20803;&#32032;&#38388;&#36317;&#31163;</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t16" href="#t16">16</a></span><span class="t"><span class="str">    :param box_radius_ratio: &#20803;&#32032;&#24418;&#29366;(0:&#27491;&#26041;&#24418;, 1: &#22278;&#24418;)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t17" href="#t17">17</a></span><span class="t"><span class="str">    :param image_size: &#20108;&#32500;&#30721;&#23610;&#23544;(&#38271;&#12289;&#23485;)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t18" href="#t18">18</a></span><span class="t"><span class="str">    :param icon_path: logo&#20301;&#32622;</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t19" href="#t19">19</a></span><span class="t"><span class="str">    :param width_ratio: &#20108;&#32500;&#30721;&#23485;&#24230;&#19982;&#20013;&#22830;logo&#23485;&#24230;&#20043;&#27604;</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t20" href="#t20">20</a></span><span class="t"><span class="str">    :param back_color: &#32972;&#26223;&#39068;&#33394;</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t21" href="#t21">21</a></span><span class="t"><span class="str">    :param center_color: &#20013;&#22830;&#39068;&#33394;</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t22" href="#t22">22</a></span><span class="t"><span class="str">    :param edge_color: &#36793;&#32536;&#39068;&#33394;</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t23" href="#t23">23</a></span><span class="t"><span class="str">    :param fill_color: &#22635;&#20805;&#39068;&#33394;</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t24" href="#t24">24</a></span><span class="t"><span class="str">    :returns: A buffered writable file descriptor</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t25" href="#t25">25</a></span><span class="t"><span class="str">    """</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t26" href="#t26">26</a></span><span class="t">    <span class="com"># &#29983;&#25104;&#20108;&#32500;&#30721;&#20027;&#20307;</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t27" href="#t27">27</a></span><span class="t">    <span class="nam">qr</span> <span class="op">=</span> <span class="nam">qrcode</span><span class="op">.</span><span class="nam">QRCode</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t28" href="#t28">28</a></span><span class="t">        <span class="nam">version</span><span class="op">=</span><span class="num">1</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t29" href="#t29">29</a></span><span class="t">        <span class="nam">error_correction</span><span class="op">=</span><span class="nam">qrcode</span><span class="op">.</span><span class="nam">constants</span><span class="op">.</span><span class="nam">ERROR_CORRECT_H</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t30" href="#t30">30</a></span><span class="t">        <span class="nam">box_size</span><span class="op">=</span><span class="nam">box_size</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t31" href="#t31">31</a></span><span class="t">        <span class="nam">border</span><span class="op">=</span><span class="nam">border</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t32" href="#t32">32</a></span><span class="t">    <span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t33" href="#t33">33</a></span><span class="t">    <span class="nam">qr</span><span class="op">.</span><span class="nam">add_data</span><span class="op">(</span><span class="nam">data</span><span class="op">)</span>  <span class="com"># &#21521;&#20108;&#32500;&#30721;&#20889;&#20837;&#25968;&#25454;</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t34" href="#t34">34</a></span><span class="t">    <span class="nam">qr</span><span class="op">.</span><span class="nam">make</span><span class="op">(</span><span class="nam">fit</span><span class="op">=</span><span class="key">True</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="par run show_par"><span class="n"><a id="t35" href="#t35">35</a></span><span class="t">    <span class="key">if</span> <span class="nam">back_color</span> <span class="key">and</span> <span class="nam">center_color</span> <span class="key">and</span> <span class="nam">edge_color</span><span class="op">:</span>&nbsp;</span><span class="r"><span class="annotate short">35&#x202F;&#x219B;&#x202F;38</span><span class="annotate long">line 35 didn't jump to line 38, because the condition on line 35 was never false</span></span></p>
+    <p class="run"><span class="n"><a id="t36" href="#t36">36</a></span><span class="t">        <span class="nam">qrcode_image</span> <span class="op">=</span> <span class="nam">qr</span><span class="op">.</span><span class="nam">make_image</span><span class="op">(</span><span class="nam">image_factory</span><span class="op">=</span><span class="nam">StyledPilImage</span><span class="op">,</span> <span class="nam">module_drawer</span><span class="op">=</span><span class="nam">RoundedModuleDrawer</span><span class="op">(</span><span class="nam">box_radius_ratio</span><span class="op">)</span><span class="op">,</span> <span class="nam">color_mask</span><span class="op">=</span><span class="nam">RadialGradiantColorMask</span><span class="op">(</span><span class="nam">back_color</span><span class="op">=</span><span class="nam">back_color</span><span class="op">,</span> <span class="nam">center_color</span><span class="op">=</span><span class="nam">center_color</span><span class="op">,</span><span class="nam">edge_color</span><span class="op">=</span><span class="nam">edge_color</span><span class="op">)</span><span class="op">)</span> <span class="xx">\</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t37" href="#t37">37</a></span><span class="t">            <span class="op">.</span><span class="nam">resize</span><span class="op">(</span><span class="nam">image_size</span><span class="op">,</span> <span class="nam">Image</span><span class="op">.</span><span class="nam">Resampling</span><span class="op">.</span><span class="nam">LANCZOS</span><span class="op">)</span><span class="op">.</span><span class="nam">convert</span><span class="op">(</span><span class="str">'RGBA'</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t38" href="#t38">38</a></span><span class="t">    <span class="key">elif</span> <span class="nam">back_color</span> <span class="key">and</span> <span class="nam">fill_color</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t39" href="#t39">39</a></span><span class="t">        <span class="nam">qrcode_image</span> <span class="op">=</span> <span class="nam">qr</span><span class="op">.</span><span class="nam">make_image</span><span class="op">(</span><span class="nam">back_color</span><span class="op">=</span><span class="nam">back_color</span><span class="op">,</span> <span class="nam">fill_color</span><span class="op">=</span><span class="nam">fill_color</span><span class="op">,</span> <span class="nam">module_drawer</span><span class="op">=</span><span class="nam">RoundedModuleDrawer</span><span class="op">(</span><span class="nam">box_radius_ratio</span><span class="op">)</span><span class="op">)</span> <span class="op">.</span><span class="nam">resize</span><span class="op">(</span><span class="nam">image_size</span><span class="op">,</span> <span class="nam">Image</span><span class="op">.</span><span class="nam">Resampling</span><span class="op">.</span><span class="nam">LANCZOS</span><span class="op">)</span><span class="op">.</span><span class="nam">convert</span><span class="op">(</span><span class="str">'RGBA'</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t40" href="#t40">40</a></span><span class="t">    <span class="key">else</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t41" href="#t41">41</a></span><span class="t">        <span class="nam">qrcode_image</span> <span class="op">=</span> <span class="nam">qr</span><span class="op">.</span><span class="nam">make_image</span><span class="op">(</span><span class="nam">image_factory</span><span class="op">=</span><span class="nam">StyledPilImage</span><span class="op">,</span> <span class="nam">module_drawer</span><span class="op">=</span><span class="nam">RoundedModuleDrawer</span><span class="op">(</span><span class="nam">box_radius_ratio</span><span class="op">)</span><span class="op">)</span> <span class="xx">\</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t42" href="#t42">42</a></span><span class="t">            <span class="op">.</span><span class="nam">resize</span><span class="op">(</span><span class="nam">image_size</span><span class="op">,</span> <span class="nam">Image</span><span class="op">.</span><span class="nam">Resampling</span><span class="op">.</span><span class="nam">LANCZOS</span><span class="op">)</span><span class="op">.</span><span class="nam">convert</span><span class="op">(</span><span class="str">'RGBA'</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t43" href="#t43">43</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="par run show_par"><span class="n"><a id="t44" href="#t44">44</a></span><span class="t">    <span class="key">if</span> <span class="nam">icon_path</span><span class="op">:</span>  <span class="com"># &#22312;&#20108;&#32500;&#30721;&#20013;&#38388;&#36148;&#19978;&#22270;&#26631;</span>&nbsp;</span><span class="r"><span class="annotate short">44&#x202F;&#x219B;&#x202F;45</span><span class="annotate long">line 44 didn't jump to line 45, because the condition on line 44 was never true</span></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t45" href="#t45">45</a></span><span class="t">        <span class="nam">icon_origin</span> <span class="op">=</span> <span class="nam">Image</span><span class="op">.</span><span class="nam">open</span><span class="op">(</span><span class="nam">icon_path</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t46" href="#t46">46</a></span><span class="t">        <span class="nam">icon_size</span> <span class="op">=</span> <span class="nam">int</span><span class="op">(</span><span class="nam">image_size</span><span class="op">[</span><span class="num">0</span><span class="op">]</span> <span class="op">/</span> <span class="nam">width_ratio</span><span class="op">)</span><span class="op">,</span> <span class="nam">int</span><span class="op">(</span><span class="nam">image_size</span><span class="op">[</span><span class="num">0</span><span class="op">]</span> <span class="op">/</span> <span class="nam">width_ratio</span> <span class="op">*</span> <span class="nam">icon_origin</span><span class="op">.</span><span class="nam">size</span><span class="op">[</span><span class="num">1</span><span class="op">]</span> <span class="op">/</span> <span class="nam">icon_origin</span><span class="op">.</span><span class="nam">size</span><span class="op">[</span><span class="num">0</span><span class="op">]</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t47" href="#t47">47</a></span><span class="t">        <span class="nam">icon</span> <span class="op">=</span> <span class="nam">icon_origin</span><span class="op">.</span><span class="nam">resize</span><span class="op">(</span><span class="nam">icon_size</span><span class="op">,</span> <span class="nam">Image</span><span class="op">.</span><span class="nam">Resampling</span><span class="op">.</span><span class="nam">LANCZOS</span><span class="op">)</span><span class="op">.</span><span class="nam">convert</span><span class="op">(</span><span class="str">'RGBA'</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t48" href="#t48">48</a></span><span class="t">        <span class="nam">icon_margin</span> <span class="op">=</span> <span class="nam">int</span><span class="op">(</span><span class="op">(</span><span class="nam">image_size</span><span class="op">[</span><span class="num">0</span><span class="op">]</span> <span class="op">-</span> <span class="nam">icon_size</span><span class="op">[</span><span class="num">0</span><span class="op">]</span><span class="op">)</span> <span class="op">/</span> <span class="num">2</span><span class="op">)</span><span class="op">,</span> <span class="nam">int</span><span class="op">(</span><span class="op">(</span><span class="nam">image_size</span><span class="op">[</span><span class="num">1</span><span class="op">]</span> <span class="op">-</span> <span class="nam">icon_size</span><span class="op">[</span><span class="num">1</span><span class="op">]</span><span class="op">)</span> <span class="op">/</span> <span class="num">2</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t49" href="#t49">49</a></span><span class="t">        <span class="nam">mask_size</span> <span class="op">=</span> <span class="op">(</span><span class="nam">icon_size</span><span class="op">[</span><span class="num">0</span><span class="op">]</span><span class="op">+</span><span class="nam">box_size</span><span class="op">*</span><span class="num">2</span><span class="op">,</span><span class="nam">icon_size</span><span class="op">[</span><span class="num">1</span><span class="op">]</span><span class="op">+</span><span class="nam">box_size</span><span class="op">*</span><span class="num">2</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t50" href="#t50">50</a></span><span class="t">        <span class="nam">mask_margin</span> <span class="op">=</span> <span class="nam">int</span><span class="op">(</span><span class="op">(</span><span class="nam">image_size</span><span class="op">[</span><span class="num">0</span><span class="op">]</span> <span class="op">-</span> <span class="nam">mask_size</span><span class="op">[</span><span class="num">0</span><span class="op">]</span><span class="op">)</span> <span class="op">/</span> <span class="num">2</span><span class="op">)</span><span class="op">,</span> <span class="nam">int</span><span class="op">(</span><span class="op">(</span><span class="nam">image_size</span><span class="op">[</span><span class="num">1</span><span class="op">]</span> <span class="op">-</span> <span class="nam">mask_size</span><span class="op">[</span><span class="num">1</span><span class="op">]</span><span class="op">)</span> <span class="op">/</span> <span class="num">2</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t51" href="#t51">51</a></span><span class="t">        <span class="nam">mask</span> <span class="op">=</span> <span class="nam">Image</span><span class="op">.</span><span class="nam">new</span><span class="op">(</span><span class="str">'RGBA'</span><span class="op">,</span> <span class="nam">mask_size</span><span class="op">,</span> <span class="nam">color</span><span class="op">=</span><span class="str">'white'</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t52" href="#t52">52</a></span><span class="t">        <span class="nam">qrcode_image</span><span class="op">.</span><span class="nam">paste</span><span class="op">(</span><span class="nam">mask</span><span class="op">,</span> <span class="nam">mask_margin</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t53" href="#t53">53</a></span><span class="t">        <span class="nam">qrcode_image</span><span class="op">.</span><span class="nam">paste</span><span class="op">(</span><span class="nam">icon</span><span class="op">,</span> <span class="nam">icon_margin</span><span class="op">,</span> <span class="nam">icon</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t54" href="#t54">54</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t55" href="#t55">55</a></span><span class="t">    <span class="key">return</span> <span class="nam">qrcode_image</span>&nbsp;</span><span class="r"></span></p>
+</main>
+<footer>
+    <div class="content">
+        <p>
+            <a id="prevFileLink" class="nav" href="d_f69501f76bd75a5a_nickname_generator_py.html">&#xab; prev</a> &nbsp; &nbsp;
+            <a id="indexLink" class="nav" href="index.html">&Hat; index</a> &nbsp; &nbsp;
+            <a id="nextFileLink" class="nav" href="d_f69501f76bd75a5a_sms_py.html">&#xbb; next</a>
+            &nbsp; &nbsp; &nbsp;
+            <a class="nav" href="https://coverage.readthedocs.io/en/7.2.7">coverage.py v7.2.7</a>,
+            created at 2023-06-26 10:51 +0800
+        </p>
+    </div>
+</footer>
+</body>
+</html>
