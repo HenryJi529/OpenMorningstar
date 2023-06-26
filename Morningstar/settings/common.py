@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     "apps.notes.apps.NotesConfig",  # 笔记
     "apps.poll.apps.PollConfig",  # 投票
     "apps.proxy.apps.ProxyConfig",  # 代理
+    "apps.quiz.apps.QuizConfig",  # 测验
     "apps.rss.apps.RssConfig",  # RSS
     "apps.share.apps.ShareConfig",  # 分享
     "captcha",  # google recaptcha

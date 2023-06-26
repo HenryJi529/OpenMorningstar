@@ -131,17 +131,6 @@ publicPackage() {
 	docker tag henry529/dev ghcr.io/henryji529/morningstar-dev && docker push ghcr.io/henryji529/morningstar-dev
 }
 
-publicVercel() {
-	path="vercel"
-	for project in $(ls $path); do
-		echo "updating \"$project\"..."
-		cd $path/$project
-		vercel --prod
-		cd ../../
-		echo ""
-	done
-}
-
 publicLedger() {
 	runRemoteCommand updateLedger
 }
@@ -157,9 +146,8 @@ echo "运行命令:
 a. backupDockerVolume();
 b. restoreDockerVolume();
 c. publicPackage();
-d. publicVercel();
-e. publicLedger();
-f. check();
+d. publicLedger();
+e. check();
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 0. serve();
 1. dev();
@@ -183,9 +171,8 @@ case $order in
 a) backupDockerVolume ;;
 b) restoreDockerVolume ;;
 c) publicPackage ;;
-d) publicVercel ;;
-e) publicLedger ;;
-f) check ;;
+d) publicLedger ;;
+e) check ;;
 # ==========================
 0) serve ;;
 1) dev ;;

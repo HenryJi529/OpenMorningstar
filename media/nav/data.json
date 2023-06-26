@@ -8,25 +8,25 @@
 			"items": [
 				{
 					"name": "在线画板",
-					"url": "https://online-canvas.vercel.app/",
+					"url": "/canvas/",
 					"image": "/media/nav/img/Work/在线画板.png",
 					"desc": "一个简易的绘画玩具"
 				},
 				{
 					"name": "架子鼓",
-					"url": "https://drum-kit-topaz.vercel.app/",
+					"url": "/drumkit/",
 					"image": "/media/nav/img/Work/架子鼓.png",
 					"desc": "在线架子鼓～"
 				},
 				{
 					"name": "致敬页",
-					"url": "https://tribute-page-woad.vercel.app/",
+					"url": "/tribute/",
 					"image": "/media/nav/img/Work/致敬页.png",
 					"desc": "致敬那些伟大的同类～"
 				},
 				{
 					"name": "在线测验",
-					"url": "https://quiz-app-omega-seven.vercel.app",
+					"url": "/quiz/",
 					"image": "/media/nav/img/Work/在线测验.png",
 					"desc": "简易的测验应用～"
 				},
@@ -74,7 +74,7 @@
 				},
 				{
 					"name": "在线笔记",
-					"url": "https://morningstar369.com/notes/",
+					"url": "/notes/",
 					"image": "/media/nav/img/Work/在线笔记.png",
 					"desc": "简易的笔记应用～"
 				},
