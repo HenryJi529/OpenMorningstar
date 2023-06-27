@@ -240,7 +240,7 @@ def updatePackage(c):
 
 
 @task()
-def updateLedger(c):
+def syncLedger(c):
     home_path = "~/"
     with c.cd(home_path):
         better_print("传递数据至文件夹...")
@@ -255,3 +255,23 @@ def updateLedger(c):
         )
 
     print("Done!!")
+
+
+@task()
+def syncNginx(c):
+    home_path = "~/"
+    with c.cd(home_path):
+        better_print("同步配置文件...")
+        c.run(
+            "sshpass -p "
+            + DEV_PASSWORD
+            + " scp -P 1022 -r henry529@server.morningstar369.com:~/Projects/OpenMorningstar/scripts/deploy/nginx/conf/  ~/morningstar/scripts/deploy/nginx/conf/"
+        )
+        better_print("同步前端页面...")
+        c.run(
+            "sshpass -p "
+            + DEV_PASSWORD
+            + " scp -P 1022 -r henry529@server.morningstar369.com:~/Projects/OpenMorningstar/scripts/deploy/nginx/www  ~/morningstar/scripts/deploy/nginx"
+        )
+        better_print("加载新配置文件...")
+        c.run("docker exec -it morningstar_nginx nginx -s reload")

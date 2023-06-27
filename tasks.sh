@@ -131,8 +131,12 @@ publicPackage() {
 	docker tag henry529/dev ghcr.io/henryji529/morningstar-dev && docker push ghcr.io/henryji529/morningstar-dev
 }
 
-publicLedger() {
-	runRemoteCommand updateLedger
+syncLedger() {
+	runRemoteCommand syncLedger
+}
+
+syncNginx() {
+	runRemoteCommand syncNginx
 }
 
 #==================================================================
@@ -146,8 +150,9 @@ echo "运行命令:
 a. backupDockerVolume();
 b. restoreDockerVolume();
 c. publicPackage();
-d. publicLedger();
-e. check();
+d. syncLedger();
+e. syncNginx();
+f. check();
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 0. serve();
 1. dev();
@@ -171,8 +176,9 @@ case $order in
 a) backupDockerVolume ;;
 b) restoreDockerVolume ;;
 c) publicPackage ;;
-d) publicLedger ;;
-e) check ;;
+d) syncLedger ;;
+e) syncNginx ;;
+f) check ;;
 # ==========================
 0) serve ;;
 1) dev ;;

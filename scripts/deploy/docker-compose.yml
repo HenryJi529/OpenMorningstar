@@ -157,7 +157,8 @@ services:
       - morningstar_nginx_data:/etc/letsencrypt
       - morningstar_django_static:/apps/django/static
       - morningstar_django_media:/apps/django/media
-      - ./nginx/www:/usr/share/nginx/html/www/
+      - ./nginx/www:/usr/share/nginx/html/www
+      - ./nginx/conf:/etc/nginx/conf.d
     restart: always
     ports:
       - "80:80"
