@@ -275,5 +275,9 @@ def syncNginx(c):
         )
         better_print("加载新配置文件...")
         c.run("docker exec -it morningstar_nginx nginx -s reload")
+        commandTemplate = (
+            "docker exec -it morningstar_nginx certbot --nginx --non-interactive"
+        )
+        c.run(commandTemplate + " -d " + " -d ".join(DOMAIN_LIST))  # NOTE:解决HTTPS失效问题
 
     print("Done!!")
