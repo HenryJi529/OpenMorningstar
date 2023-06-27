@@ -48,15 +48,11 @@ def shortcut(request, name):
         else:
             pass
     # 其他快捷链接
-    elif name in ["gist", "sgs", "cook", "news"]:
+    elif name in ["gist", "cook"]:
         if name == "gist":
             return redirect("https://gist.github.com/HenryJi529")
-        elif name == "sgs":
-            return redirect("https://web.sanguosha.com/login/index.html")
         elif name == "cook":
             return redirect("https://github.com/Anduin2017/HowToCook")
-        elif name == "news":
-            return redirect("https://github.com/ruanyf/weekly")
         else:
             pass
     else:
