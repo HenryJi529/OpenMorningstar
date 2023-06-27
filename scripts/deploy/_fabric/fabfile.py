@@ -275,3 +275,5 @@ def syncNginx(c):
         )
         better_print("加载新配置文件...")
         c.run("docker exec -it morningstar_nginx nginx -s reload")
+
+    print("Done!!")
