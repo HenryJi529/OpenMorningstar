@@ -7,7 +7,6 @@ def shortcut(request, name):
         "issue",
         "auto",
         "src",
-        "src-mirror",
         "host",
         "vercel",
         "domain",
@@ -20,11 +19,8 @@ def shortcut(request, name):
             return redirect("https://github.com/HenryJi529/OpenMorningstar/issues")
         elif name == "auto":
             return redirect("https://github.com/HenryJi529/OpenMorningstar/actions")
-        elif name in ["src"]:
-            if name == "src":
-                return redirect("https://github.com/HenryJi529/OpenMorningstar")
-            else:
-                pass
+        elif name == "src":
+            return redirect("https://github.com/HenryJi529/OpenMorningstar")
         elif name == "host" or name == "vercel":
             return redirect("https://vercel.com/dashboard")
         elif name == "domain" or name == "namecheap":
