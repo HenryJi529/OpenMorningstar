@@ -988,6 +988,11 @@
 					"image": "/media/nav/img/Recreation/Terraria.jpeg"
 				},
 				{
+					"name": "塞尔达传说",
+					"url": "https://zelda.fandom.com/wiki/Main_Page",
+					"image": "/media/nav/img/Recreation/塞尔达传说.png"
+				},
+				{
 					"name": "CSSBattle",
 					"url": "https://cssbattle.dev/",
 					"image": "/media/nav/img/Recreation/CSSBattle.png"
