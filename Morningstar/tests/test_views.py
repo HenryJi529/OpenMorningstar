@@ -23,8 +23,6 @@ class ShortCutViewTest(TestCase):
             "wechatpp",
             "qiniu",
             "lanzou",
-            "gist",
-            "cook",
         ]
         for slug in SLUGS:
             response = self.client.get(reverse("shortcut", args=[slug]))

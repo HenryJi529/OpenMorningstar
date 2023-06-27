@@ -47,13 +47,5 @@ def shortcut(request, name):
             return redirect("https://pc.woozooo.com/mydisk.php")
         else:
             pass
-    # 其他快捷链接
-    elif name in ["gist", "cook"]:
-        if name == "gist":
-            return redirect("https://gist.github.com/HenryJi529")
-        elif name == "cook":
-            return redirect("https://github.com/Anduin2017/HowToCook")
-        else:
-            pass
     else:
         return render(request, "404.html")
