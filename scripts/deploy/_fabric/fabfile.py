@@ -265,7 +265,7 @@ def syncNginx(c):
         c.run(
             "sshpass -p "
             + DEV_PASSWORD
-            + " scp -P 1022 -r henry529@server.morningstar369.com:~/Projects/OpenMorningstar/scripts/deploy/nginx/conf/  ~/morningstar/scripts/deploy/nginx/conf/"
+            + " scp -P 1022 -r henry529@server.morningstar369.com:~/Projects/OpenMorningstar/scripts/deploy/nginx/conf  ~/morningstar/scripts/deploy/nginx/"
         )
         better_print("同步前端页面...")
         c.run(
