@@ -20,7 +20,7 @@ const navigateToQuiz = () => {
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .card {
     width: 310px;
     overflow: hidden;
@@ -29,19 +29,19 @@ const navigateToQuiz = () => {
     margin-bottom: 35px;
     margin-right: 20px;
     cursor: pointer;
-}
 
-.card img {
-    width: 100%;
-    height: 200px;
-    margin: 0;
-}
+    img {
+        width: 100%;
+        height: 200px;
+        margin: 0;
+    }
 
-.card .card-text {
-    padding: 0 5px;
-}
+    .card-text {
+        padding: 0 5px;
 
-.card .card-text h2 {
-    font-weight: bold;
+        h2 {
+            font-weight: bold;
+        }
+    }
 }
 </style>

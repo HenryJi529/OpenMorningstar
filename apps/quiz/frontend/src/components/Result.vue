@@ -16,7 +16,7 @@ const { results } = defineProps(['results'])
     </Transition>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .results {
     text-align: center;
     padding: 100px 0;

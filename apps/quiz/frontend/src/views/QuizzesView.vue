@@ -1,5 +1,5 @@
 <script setup>
-import q from '../assets/data/quizzes.json';
+import q from '../data/quizzes.json';
 import { ref, watch } from 'vue'
 import gsap from 'gsap'
 import Card from '../components/Card.vue'
@@ -51,7 +51,7 @@ const enter = (el) => {
 </template>
 
 
-<style scoped>
+<style scoped lang="scss">
 .container {
     max-width: 1000px;
     margin: 0 auto;
@@ -62,20 +62,19 @@ header {
     margin-top: 30px;
     display: flex;
     align-items: center;
-}
 
-header h1 {
-    font-weight: bold;
-    margin-right: 30px;
-}
+    h1 {
+        font-weight: bold;
+        margin-right: 30px;
+    }
 
-header input {
-    border: none;
-    background-color: rgba(128, 128, 128, 0.1);
-    padding: 10px;
-    border-radius: 5px;
+    input {
+        border: none;
+        background-color: rgba(128, 128, 128, 0.1);
+        padding: 10px;
+        border-radius: 5px;
+    }
 }
-
 
 .cards-container {
     display: flex;

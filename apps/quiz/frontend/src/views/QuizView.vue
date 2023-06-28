@@ -2,7 +2,7 @@
 import Question from '../components/Question.vue';
 import QuizHeader from '../components/QuizHeader.vue';
 import Result from '../components/Result.vue';
-import q from '../assets/data/quizzes.json';
+import q from '../data/quizzes.json';
 import { useRoute } from 'vue-router';
 import { ref, watch, computed } from 'vue';
 

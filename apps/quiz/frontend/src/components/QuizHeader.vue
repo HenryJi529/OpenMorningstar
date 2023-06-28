@@ -13,13 +13,13 @@ const { questionStatus, barPercentage } = defineProps(['questionStatus', 'barPer
     </header>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 header {
     margin-top: 20px;
-}
 
-header h4 {
-    font-size: 30px;
+    h4 {
+        font-size: 30px;
+    }
 }
 
 .bar {

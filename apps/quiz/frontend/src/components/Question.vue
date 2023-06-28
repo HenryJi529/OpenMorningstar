@@ -24,7 +24,7 @@ const emitSelectOption = (isCorrect) => {
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .question-container {
     margin-top: 20px;
 }
@@ -73,11 +73,11 @@ const emitSelectOption = (isCorrect) => {
     width: 100%;
     font-size: 30px;
     padding: 0 20px;
-}
 
-.option-value p {
-    height: 50px;
-    line-height: 50px;
+    p {
+        height: 50px;
+        line-height: 50px;
+    }
 }
 
 .fade-enter-from {
