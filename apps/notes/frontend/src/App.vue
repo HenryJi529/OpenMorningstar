@@ -1,10 +1,11 @@
 <script setup>
 import { ref } from "vue"
 
+
 const showModal = ref(false)
 const newNote = ref("")
 const errorMessage = ref("");
-const notes = ref([])
+const notes = ref(localStorage.getItem("notes") !== null ? JSON.parse(localStorage.getItem("notes")) : [])
 
 function getRandomColor() {
   return "hsl(" + Math.random() * 360 + ", 100%, 75%)";
@@ -19,13 +20,22 @@ const addNote = () => {
   notes.value.push({
     id: Math.floor(Math.random() * 1000000),
     text: newNote.value,
-    date: new Date().toDateString(),
+    date: new Date().toLocaleString('en-US'),
     backgroundColor: getRandomColor()
   })
 
   showModal.value = false
   newNote.value = ""
   errorMessage.value = ""
+  localStorage.setItem('notes', JSON.stringify(notes.value))
+}
+
+const deleteNote = (note) => {
+  const index = notes.value.indexOf(note);
+  if (index !== -1) {
+    notes.value.splice(index, 1);
+    localStorage.setItem('notes', JSON.stringify(notes.value));
+  }
 }
 
 </script>
@@ -46,7 +56,9 @@ const addNote = () => {
         <button @click="showModal = true">+</button>
       </header>
       <div class="cards-container">
-        <div v-for="note in notes" class="card" :key="note.id" :style="{ backgroundColor: note.backgroundColor }">
+        <div v-for="note in  notes " class="card" :key="note.id"
+          :style="{ backgroundColor: note.backgroundColor, position: 'relative' }">
+          <font-awesome-icon icon="fa-solid fa-trash" class="delete-icon" @click="deleteNote(note)" />
           <p class="main-text">{{ note.text }}</p>
           <p class="date">{{ note.date }}</p>
         </div>
@@ -107,6 +119,12 @@ header button {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.delete-icon {
+  position: absolute;
+  right: 15px;
+  top: 15px;
 }
 
 .date {
