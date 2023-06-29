@@ -52,7 +52,7 @@
 
 ## ✨ 技术栈:
 
-- **前端**：Sass, TailwindCSS, DaisyUI, TypeScript, Vue3
+- **前端**：Sass, TailwindCSS, DaisyUI, TypeScript, Vue3, NaiveUI
 - **后端**：Django, DRF, Redis, MySQL
 - **部署**：Docker, Nginx, Fabric, Supervisor
 - **测试**：unittest(py), Coverage
