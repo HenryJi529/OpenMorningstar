@@ -72,7 +72,7 @@ def check(c):
 
 
 @task()
-def update(c):
+def updateProd(c):
     project_root_path = "~/morningstar"
     home_path = "~/"
 
@@ -102,7 +102,7 @@ def update(c):
 
 
 @task()
-def upgrade(c):
+def upgradeProd(c):
     home_path = "~/"
     with c.cd(home_path):
         """更新项目"""
@@ -164,7 +164,7 @@ def upgrade(c):
 
 
 @task()
-def backup(c):
+def backupDatabase(c):
     project_root_path = "~/morningstar"
     with c.cd(project_root_path):
         try:
@@ -183,7 +183,16 @@ def backup(c):
 
 
 @task()
-def restore(c):
+def backupDockerVolume(c):
+    home_path = "~/"
+    with c.cd(home_path):
+        c.run("bash ~/deploy.sh a")
+
+    print("Done!!")
+
+
+@task()
+def restoreDatabase(c):
     project_root_path = "~/morningstar"
     with c.cd(project_root_path):
         try:
@@ -198,18 +207,6 @@ def restore(c):
         c.run(
             'docker exec -it morningstar_django bash -c "python3 manage.py loaddata --settings=Morningstar.settings.production database/all.json"'
         )
-    print("Done!!")
-
-
-# ================================================================
-
-
-@task()
-def backupDockerVolume(c):
-    home_path = "~/"
-    with c.cd(home_path):
-        c.run("bash ~/deploy.sh a")
-
     print("Done!!")
 
 

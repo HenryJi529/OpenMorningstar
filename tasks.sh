@@ -15,11 +15,6 @@ serve() {
 	python manage.py runserver 127.0.0.1:8000
 }
 
-# 检视信息
-check() {
-	runRemoteCommand check --prompt-for-login-password
-}
-
 # 本地开发
 dev() {
 	echo "同步JavaScript模块..."
@@ -75,27 +70,42 @@ updateDep() {
 	echo "DONE!!!"
 }
 
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
 # 远程同步
 updateProd() {
-	runRemoteCommand update
+	runRemoteCommand updateProd
 }
 
 # 整体更新
 upgradeProd() {
-	runRemoteCommand upgrade
+	runRemoteCommand upgradeProd
 }
 
-# 数据库备份
-backupDatabase() {
-	runRemoteCommand backup
+# 同步nginx配置(包含前端代码)
+syncNginx() {
+	runRemoteCommand syncNginx
 }
 
-# 数据库还原
-restoreDatabase() {
-	runRemoteCommand restore
+# 数据备份
+backupProd() {
+	# 数据库备份
+	runRemoteCommand backupDatabase
+	# 备份volume为压缩包
+	runRemoteCommand backupDockerVolume
+	# 同步压缩包到本地
+	rsync -avz ${CLOUD_USERNAME}@server.morningstar369.com:~/backup/docker_volume ./database/
 }
+
+# 数据还原
+restoreProd() {
+	# 数据库还原
+	runRemoteCommand restoreDatabase
+	# 同步压缩包到远处
+	rsync -avz ./database/docker_volume ${CLOUD_USERNAME}@server.morningstar369.com:~/backup/
+	# 复原压缩包为volume
+	runRemoteCommand restoreDockerVolume
+}
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 # 生成压缩包
 archiveMain() {
@@ -103,22 +113,7 @@ archiveMain() {
 	git archive --format=tar main | gzip >release/main_${time}.tar.gz
 }
 
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-backupDockerVolume() {
-	# 备份volume为压缩包
-	runRemoteCommand backupDockerVolume
-	# 同步压缩包到本地
-	rsync -avz ${CLOUD_USERNAME}@server.morningstar369.com:~/backup/docker_volume ./database/
-}
-
-restoreDockerVolume() {
-	# 同步压缩包到远处
-	rsync -avz ./database/docker_volume ${CLOUD_USERNAME}@server.morningstar369.com:~/backup/
-	# 复原压缩包为volume
-	runRemoteCommand restoreDockerVolume
-}
-
+# 发布Docker Image
 publicPackage() {
 	echo "更新生产环境下的容器..."
 	runRemoteCommand updatePackage
@@ -131,12 +126,14 @@ publicPackage() {
 	docker tag henry529/dev ghcr.io/henryji529/morningstar-dev && docker push ghcr.io/henryji529/morningstar-dev
 }
 
+# 同步账本
 syncLedger() {
 	runRemoteCommand syncLedger
 }
 
-syncNginx() {
-	runRemoteCommand syncNginx
+# 检视信息
+check() {
+	runRemoteCommand check --prompt-for-login-password
 }
 
 #==================================================================
@@ -147,12 +144,10 @@ _haibara_
 
 echo "运行命令:
 ============================================================
-a. backupDockerVolume();
-b. restoreDockerVolume();
-c. publicPackage();
-d. syncLedger();
-e. syncNginx();
-f. check();
+a. archiveMain();
+b. publicPackage();
+c. syncLedger();
+d. check();
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 0. serve();
 1. dev();
@@ -161,11 +156,11 @@ f. check();
 4. updateDep();
 5. updateProd();
 6. upgradeProd();
-7. backupDatabase();
-8. restoreDatabase();
-9. archiveMain();
+7. syncNginx();
+8. backupProd();
+9. restoreProd();
 "
-read -p "输入序号(a-g|0-9): " order
+read -p "输入序号(a-d|0-9): " order
 
 start_time=$(date +%s)
 
@@ -173,12 +168,10 @@ start_time=$(date +%s)
 source $(pwd)/VENV/bin/activate
 
 case $order in
-a) backupDockerVolume ;;
-b) restoreDockerVolume ;;
-c) publicPackage ;;
-d) syncLedger ;;
-e) syncNginx ;;
-f) check ;;
+a) archiveMain ;;
+b) publicPackage ;;
+c) syncLedger ;;
+d) check ;;
 # ==========================
 0) serve ;;
 1) dev ;;
@@ -187,9 +180,9 @@ f) check ;;
 4) updateDep ;;
 5) updateProd ;;
 6) upgradeProd ;;
-7) backupDatabase ;;
-8) restoreDatabase ;;
-9) archiveMain ;;
+7) syncNginx ;;
+8) backupProd ;;
+9) restoreProd ;;
 *) echo "输入错误" ;;
 esac
 end_time=$(date +%s)
