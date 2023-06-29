@@ -1,8 +1,14 @@
 <script setup>
-import q from '../data/quizzes.json';
+import axios from "axios";
 import { ref, watch } from 'vue'
 import gsap from 'gsap'
+
 import Card from '../components/Card.vue'
+
+const response = await axios.get("http://localhost:8000/api/quiz/");
+console.log(response)
+const q = response.data;
+
 
 const quizzes = ref(q)
 const search = ref("")

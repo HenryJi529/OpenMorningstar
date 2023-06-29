@@ -6,7 +6,16 @@ import { RouterLink, RouterView } from 'vue-router'
     <!-- <RouterLink active-class="active" to="/">Home</RouterLink> -->
     <div class="container">
         <Transition name="router">
-            <RouterView />
+            <Suspense>
+                <template #default>
+                    <RouterView />
+                </template>
+                <template #fallback>
+                    <div>
+                        <p>Loading...</p>
+                    </div>
+                </template>
+            </Suspense>
         </Transition>
     </div>
 </template>
