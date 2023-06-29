@@ -314,7 +314,12 @@
 					"image": "/media/nav/img/Manual/CSS.png"
 				},
 				{
-					"name": "Tailwindcss",
+					"name": "Sass",
+					"url": "https://www.sass.hk/docs/",
+					"image": "/media/nav/img/Manual/Sass.svg"
+				},
+				{
+					"name": "TailwindCSS",
 					"url": "https://tailwindcss.com/",
 					"image": "/media/nav/img/Manual/Tailwindcss.svg"
 				},
@@ -329,9 +334,9 @@
 					"image": "/media/nav/img/Manual/AnimateCSS.png"
 				},
 				{
-					"name": "Sass",
-					"url": "https://www.sass.hk/docs/",
-					"image": "/media/nav/img/Manual/Sass.svg"
+					"name": "ECharts",
+					"url": "https://echarts.apache.org/en/index.html",
+					"image": "/media/nav/img/Manual/ECharts.png"
 				},
 				{
 					"name": "JavaScript",
@@ -354,9 +359,9 @@
 					"image": "/media/nav/img/Manual/Vue.png"
 				},
 				{
-					"name": "ECharts",
-					"url": "https://echarts.apache.org/en/index.html",
-					"image": "/media/nav/img/Manual/ECharts.png"
+					"name": "NaiveUI",
+					"url": "https://www.naiveui.com/zh-CN/os-theme",
+					"image": "/media/nav/img/Manual/NaiveUI.png"
 				},
 				{
 					"name": "Chrome插件",
