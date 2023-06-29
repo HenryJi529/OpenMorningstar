@@ -42,11 +42,12 @@ COMPRESS_ENABLED = False
 
 """跨站资源共享"""  # NOTE: 先判定regex
 CORS_ALLOWED_ORIGIN_REGEXES = [
-    r"^https?://127\.0\.0\.1(:\d+)?$",
+    r"^https?://127\.0\.0\.1:(?:\d+)?$",
+    r"^http?://localhost:(?:\d+)?$",
 ]
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8000",  # NOTE: 后端测试专用
-]
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:8000",  # NOTE: 后端测试专用
+# ]
 
 
 """ 添加测试环境的配置 """
