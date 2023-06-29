@@ -5,12 +5,12 @@ import gsap from 'gsap'
 
 import Card from '../components/Card.vue'
 
-const response = await axios.get("http://localhost:8000/api/quiz/");
-console.log(response)
-const q = response.data;
+// const response = await axios.get("http://localhost:8000/api/quiz/");
 
+axios.defaults.baseURL = process.env.BASE_URL
+const response = await axios.get("/");
 
-const quizzes = ref(q)
+const quizzes = ref(response.data);
 const search = ref("")
 
 watch(search, () => {
