@@ -5,5 +5,5 @@ from . import views
 
 app_name = "quiz"
 urlpatterns = [
-    path("", cache_page(CACHE_TIMEOUT)(views.api), name="api"),
+    path("", cache_page(CACHE_TIMEOUT)(views.quiz_list), name="quiz_list"),
 ]
