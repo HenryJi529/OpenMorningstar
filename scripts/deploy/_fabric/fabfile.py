@@ -74,6 +74,7 @@ def check(c):
 @task()
 def update(c):
     project_root_path = "~/morningstar"
+    home_path = "~/"
 
     better_print("更新代码...")
     try:
@@ -81,21 +82,23 @@ def update(c):
             c.run("git checkout .")
             c.run("git pull")
     except:
-        c.run("sudo rm -rf ~/morningstar/")
-        c.run(
-            "git clone https://github.com/HenryJi529/OpenMorningstar.git ~/morningstar"
-        )
+        with c.cd(home_path):
+            c.run("sudo rm -rf ~/morningstar/")
+            c.run(
+                "git clone https://github.com/HenryJi529/OpenMorningstar.git ~/morningstar"
+            )
 
-    better_print("转移媒体文件...")
-    c.run("docker cp ~/morningstar/media morningstar_django:/app")
+    with c.cd(home_path):
+        better_print("转移媒体文件...")
+        c.run("docker cp ~/morningstar/media morningstar_django:/app")
 
-    better_print("运行更新脚本...")
-    c.run("docker exec -it morningstar_django bash /production.sh")
+        better_print("运行更新脚本...")
+        c.run("docker exec -it morningstar_django bash /production.sh")
 
-    better_print("重启服务...")
-    c.run("docker exec -it morningstar_django supervisorctl restart django")
+        better_print("重启服务...")
+        c.run("docker exec -it morningstar_django supervisorctl restart django")
 
-    print("Done!!")
+        print("Done!!")
 
 
 @task()
