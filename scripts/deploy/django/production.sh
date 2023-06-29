@@ -11,6 +11,7 @@ python3 manage.py makemigrations --settings=Morningstar.settings.production
 python3 manage.py migrate --settings=Morningstar.settings.production
 # 定时任务启动
 service cron start
+test -d "/app/log" || mkdir /app/log
 touch /app/log/cron.log && python3 manage.py crontab add --settings=Morningstar.settings.production
 # 更新检索
 python3 manage.py rebuild_index --settings=Morningstar.settings.production --noinput
