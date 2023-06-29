@@ -6,7 +6,7 @@ import { RouterLink, RouterView } from 'vue-router'
     <!-- <RouterLink active-class="active" to="/">Home</RouterLink> -->
     <div class="container">
         <Transition name="router">
-            <Suspense>
+            <!-- <Suspense>
                 <template #default>
                     <RouterView />
                 </template>
@@ -15,7 +15,8 @@ import { RouterLink, RouterView } from 'vue-router'
                         <p>Loading...</p>
                     </div>
                 </template>
-            </Suspense>
+            </Suspense> -->
+            <RouterView />
         </Transition>
     </div>
 </template>

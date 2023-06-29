@@ -1,14 +1,19 @@
 <script setup>
 import axios from "axios";
-import { ref, watch } from 'vue'
+axios.defaults.baseURL = process.env.BASE_URL
+
+import { ref, watch, onMounted } from 'vue'
 import gsap from 'gsap'
 
 import Card from '../components/Card.vue'
 
-axios.defaults.baseURL = process.env.BASE_URL
-const response = await axios.get("/");
+const quizzes = ref(null)
 
-const quizzes = ref(response.data);
+onMounted(async () => {
+    const response = await axios.get("/");
+    quizzes.value = response.data;
+})
+
 const search = ref("")
 
 watch(search, () => {
