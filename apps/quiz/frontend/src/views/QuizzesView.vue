@@ -5,8 +5,6 @@ import gsap from 'gsap'
 
 import Card from '../components/Card.vue'
 
-// const response = await axios.get("http://localhost:8000/api/quiz/");
-
 axios.defaults.baseURL = process.env.BASE_URL
 const response = await axios.get("/");
 
