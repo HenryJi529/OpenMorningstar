@@ -5,6 +5,4 @@ from . import views
 
 
 app_name = "formula"
-urlpatterns = [
-    path("", views.index, name="index"),
-]
+urlpatterns = []

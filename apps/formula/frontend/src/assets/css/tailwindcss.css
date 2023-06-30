@@ -1,6 +1,12 @@
+/* /src/css/tailwindcss.css*/
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Lora";
+  src: url("../font/Lora-MediumItalic.ttf");
+}
 
 /* 扩展组件 */
 /* .morningstar-btn {
