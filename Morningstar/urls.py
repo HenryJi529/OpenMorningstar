@@ -68,7 +68,7 @@ urlpatterns = [
     # 应用
     path("", include("blog.urls")),
     path("book/", include("book.urls")),
-    path("formula/", include("formula.urls")),
+    path("api/formula/", include("formula.urls")),
     path("game/", include("game.urls")),
     path("joke/", include("joke.urls")),
     path("lover/", include("lover.urls")),
