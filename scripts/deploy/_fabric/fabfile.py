@@ -77,16 +77,9 @@ def updateProd(c):
     home_path = "~/"
 
     better_print("更新代码...")
-    try:
-        with c.cd(project_root_path):
-            c.run("git checkout .")
-            c.run("git pull")
-    except:
-        with c.cd(home_path):
-            c.run("sudo rm -rf ~/morningstar/")
-            c.run(
-                "git clone https://github.com/HenryJi529/OpenMorningstar.git ~/morningstar"
-            )
+    with c.cd(project_root_path):
+        c.run("git checkout .")
+        c.run("git pull -f")
 
     with c.cd(home_path):
         better_print("转移媒体文件...")
