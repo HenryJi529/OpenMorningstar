@@ -4,6 +4,7 @@ axios.defaults.baseURL = process.env.BASE_URL
 
 import { ref, watch, onMounted } from 'vue'
 import gsap from 'gsap'
+import NSpin from 'naive-ui'
 
 import Card from '../components/Card.vue'
 
@@ -45,16 +46,15 @@ const enter = (el) => {
             <input v-model.trim="search" type="text" placeholder="Search...">
         </header>
         <div class="cards-container">
-            <TransitionGroup appear @before-enter="beforeEnter" @enter="enter">
+            <TransitionGroup v-if="quizzes" appear @before-enter="beforeEnter" @enter="enter">
                 <Card v-for="(quiz, index) in quizzes" :key="quiz.id" :quiz="quiz" :data-index="index" />
-                <!-- <div class="card" v-for="quiz in quizzes" :key="quiz.id">
-                    <img :src="quiz.img" alt="">
-                    <div class="card-text">
-                        <h2>{{ quiz.name }}</h2>
-                        <p>{{ quiz.questions.length }} questions</p>
-                    </div>
-                </div> -->
             </TransitionGroup>
+            <div v-else class="spin-container">
+                <p class="desc">Loading...</p>
+                <!-- <n-spin size="medium" class="spin" >
+                    <p class="desc">Loading...</p>
+                </n-spin> -->
+            </div>
         </div>
     </div>
 </template>
@@ -91,6 +91,26 @@ header {
     margin-top: 40px;
 }
 
+
+.spin-container {
+    width: 700px;
+    height: 500px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .spin {
+        background-color: aqua;
+    }
+
+    .desc {
+        font-size: 40px;
+    }
+}
+
+
+// NOTE: 基础的进场动画
 /* .card-enter-from {
     opacity: 0;
     transform: translateY(-50px);
