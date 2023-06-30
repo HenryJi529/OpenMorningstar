@@ -49,6 +49,7 @@
     "localstorage-slim": "^2.4.0",
     "marked": "^5.1.0",
     "masonry-layout": "^4.2.2",
+    "mathjax": "^3.2.2",
     "pace-js": "^1.2.4"
   }
 }
