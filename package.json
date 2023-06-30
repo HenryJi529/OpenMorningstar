@@ -6,8 +6,6 @@
     "blog_base": "while true; do npx sass apps/blog/static/blog/css/base.scss apps/blog/static/blog/css/base.css --no-source-map --style compressed && echo '✔︎ build blog/base.css'; sleep 5; done;",
     "book_tailwind": "npx tailwindcss -c apps/book/tailwind.config.js -i apps/book/static/book/css/_build.css -o apps/book/static/book/css/_tailwind.css --watch --minify",
     "book_base": "while true; do npx sass apps/book/static/book/css/base.scss apps/book/static/book/css/base.css --no-source-map --style compressed && echo '✔︎ build book/base.css'; sleep 5; done;",
-    "formula_tailwind": "npx tailwindcss -c apps/formula/tailwind.config.js -i apps/formula/static/formula/css/_build.css -o apps/formula/static/formula/css/_tailwind.css --watch --minify",
-    "formula_style": "while true; do npx sass apps/formula/static/formula/css/style.scss apps/formula/static/formula/css/style.css --no-source-map --style compressed && echo '✔︎ build formula/style.css'; sleep 5; done;",
     "joke_tailwind": "npx tailwindcss -c apps/joke/tailwind.config.js -i apps/joke/static/joke/css/_build.css -o apps/joke/static/joke/css/_tailwind.css --watch --minify",
     "joke_style": "while true; do npx sass apps/joke/static/joke/css/style.scss apps/joke/static/joke/css/style.css --no-source-map --style compressed && echo '✔︎ build joke/style.css'; sleep 5; done;",
     "lover_tailwind": "npx tailwindcss -c apps/lover/tailwind.config.js -i apps/lover/static/lover/css/_build.css -o apps/lover/static/lover/css/_tailwind.css --watch --minify",
@@ -17,7 +15,7 @@
     "rss_tailwind": "npx tailwindcss -c apps/rss/tailwind.config.js -i apps/rss/static/rss/css/_build.css -o apps/rss/static/rss/css/_tailwind.css --watch --minify",
     "share_tailwind": "npx tailwindcss -c apps/share/tailwind.config.js -i apps/share/static/share/css/_build.css -o apps/share/static/share/css/_tailwind.css --watch --minify",
     "share_base": "while true; do npx sass apps/share/static/share/css/base.scss apps/share/static/share/css/base.css --no-source-map --style compressed && echo '✔︎ build share/base.css'; sleep 5; done;",
-    "build_css": "npx concurrently \"npm run base_tailwind\" \"npm run base_base\" \"npm run blog_tailwind\" \"npm run blog_base\"  \"npm run book_tailwind\" \"npm run book_base\" \"npm run formula_tailwind\" \"npm run formula_style\" \"npm run joke_tailwind\" \"npm run joke_style\" \"npm run lover_tailwind\" \"npm run lover_style\" \"npm run nav_tailwind\" \"npm run nav_style\"  \"npm run rss_tailwind\" \"npm run share_tailwind\" \"npm run share_base\"",
+    "build_css": "npx concurrently \"npm run base_tailwind\" \"npm run base_base\" \"npm run blog_tailwind\" \"npm run blog_base\"  \"npm run book_tailwind\" \"npm run book_base\" \"npm run joke_tailwind\" \"npm run joke_style\" \"npm run lover_tailwind\" \"npm run lover_style\" \"npm run nav_tailwind\" \"npm run nav_style\"  \"npm run rss_tailwind\" \"npm run share_tailwind\" \"npm run share_base\"",
     "build_nav_js": "npx tsc -p apps/nav/ --watch",
     "build_highlightjs_bundle_watch": "npx watchify apps/blog/static/blog/js/highlight.js -vo 'npx terser --compress --mangle > apps/blog/static/blog/dist/highlight.bundle.js'",
     "build_highlightjs_bundle": "npx browserify apps/blog/static/blog/js/highlight.js | npx terser --compress --mangle > apps/blog/static/blog/dist/highlight.bundle.js",
@@ -51,7 +49,6 @@
     "localstorage-slim": "^2.4.0",
     "marked": "^5.1.0",
     "masonry-layout": "^4.2.2",
-    "mathjax": "^3.2.2",
     "pace-js": "^1.2.4"
   }
 }
