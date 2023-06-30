@@ -73,10 +73,10 @@
 					"desc": "仿照Feed43生成RSS源"
 				},
 				{
-					"name": "在线笔记",
+					"name": "在线便签",
 					"url": "/notes/",
-					"image": "/media/nav/img/Work/在线笔记.png",
-					"desc": "简易的笔记应用～"
+					"image": "/media/nav/img/Work/在线便签.png",
+					"desc": "简易的便签应用～"
 				},
 				{
 					"name": "公式转换",
