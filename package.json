@@ -1,25 +1,42 @@
 {
   "scripts": {
-    "base_tailwind": "npx tailwindcss -c Morningstar/tailwind.config.js -i Morningstar/static/base/css/_build.css -o Morningstar/static/base/css/_tailwind.css --watch --minify",
-    "base_base": "while true; do npx sass Morningstar/static/base/css/base.scss Morningstar/static/base/css/base.css --no-source-map --style compressed && echo '✔︎ build base/base.css'; sleep 5; done;",
-    "blog_tailwind": "npx tailwindcss -c apps/blog/tailwind.config.js -i apps/blog/static/blog/css/_build.css -o apps/blog/static/blog/css/_tailwind.css --watch --minify",
-    "blog_base": "while true; do npx sass apps/blog/static/blog/css/base.scss apps/blog/static/blog/css/base.css --no-source-map --style compressed && echo '✔︎ build blog/base.css'; sleep 5; done;",
-    "book_tailwind": "npx tailwindcss -c apps/book/tailwind.config.js -i apps/book/static/book/css/_build.css -o apps/book/static/book/css/_tailwind.css --watch --minify",
-    "book_base": "while true; do npx sass apps/book/static/book/css/base.scss apps/book/static/book/css/base.css --no-source-map --style compressed && echo '✔︎ build book/base.css'; sleep 5; done;",
-    "joke_tailwind": "npx tailwindcss -c apps/joke/tailwind.config.js -i apps/joke/static/joke/css/_build.css -o apps/joke/static/joke/css/_tailwind.css --watch --minify",
-    "joke_style": "while true; do npx sass apps/joke/static/joke/css/style.scss apps/joke/static/joke/css/style.css --no-source-map --style compressed && echo '✔︎ build joke/style.css'; sleep 5; done;",
-    "lover_tailwind": "npx tailwindcss -c apps/lover/tailwind.config.js -i apps/lover/static/lover/css/_build.css -o apps/lover/static/lover/css/_tailwind.css --watch --minify",
-    "lover_style": "while true; do npx sass apps/lover/static/lover/css/style.scss apps/lover/static/lover/css/style.css --no-source-map --style compressed && echo '✔︎ build lover/style.css'; sleep 5; done;",
-    "nav_tailwind": "npx tailwindcss -c apps/nav/tailwind.config.js -i apps/nav/static/nav/css/_build.css -o apps/nav/static/nav/css/_tailwind.css --watch --minify",
-    "nav_style": "while true; do npx sass apps/nav/static/nav/css/style.scss apps/nav/static/nav/css/style.css --no-source-map --style compressed && echo '✔︎ build nav/style.css'; sleep 5; done;",
-    "rss_tailwind": "npx tailwindcss -c apps/rss/tailwind.config.js -i apps/rss/static/rss/css/_build.css -o apps/rss/static/rss/css/_tailwind.css --watch --minify",
-    "share_tailwind": "npx tailwindcss -c apps/share/tailwind.config.js -i apps/share/static/share/css/_build.css -o apps/share/static/share/css/_tailwind.css --watch --minify",
-    "share_base": "while true; do npx sass apps/share/static/share/css/base.scss apps/share/static/share/css/base.css --no-source-map --style compressed && echo '✔︎ build share/base.css'; sleep 5; done;",
-    "build_css": "npx concurrently \"npm run base_tailwind\" \"npm run base_base\" \"npm run blog_tailwind\" \"npm run blog_base\"  \"npm run book_tailwind\" \"npm run book_base\" \"npm run joke_tailwind\" \"npm run joke_style\" \"npm run lover_tailwind\" \"npm run lover_style\" \"npm run nav_tailwind\" \"npm run nav_style\"  \"npm run rss_tailwind\" \"npm run share_tailwind\" \"npm run share_base\"",
-    "build_nav_js": "npx tsc -p apps/nav/ --watch",
-    "build_highlightjs_bundle_watch": "npx watchify apps/blog/static/blog/js/highlight.js -vo 'npx terser --compress --mangle > apps/blog/static/blog/dist/highlight.bundle.js'",
-    "build_highlightjs_bundle": "npx browserify apps/blog/static/blog/js/highlight.js | npx terser --compress --mangle > apps/blog/static/blog/dist/highlight.bundle.js",
-    "build_js": "npx concurrently \"npm run build_nav_js\" \"npm run build_highlightjs_bundle_watch\" "
+    "build_css_base_tailwind": "npx tailwindcss -c Morningstar/tailwind.config.js -i Morningstar/static/base/css/_build.css -o Morningstar/static/base/css/_tailwind.css --watch --minify",
+    "build_css_base_base": "while true; do npx sass Morningstar/static/base/css/base.scss Morningstar/static/base/css/base.css --no-source-map --style compressed && echo '✔︎ build base/base.css'; sleep 5; done;",
+    "build_css_base": "npx concurrently 'npm run build_css_base_tailwind' 'npm run build_css_base_base'",
+
+    "build_css_blog_tailwind": "npx tailwindcss -c apps/blog/tailwind.config.js -i apps/blog/static/blog/css/_build.css -o apps/blog/static/blog/css/_tailwind.css --watch --minify",
+    "build_css_blog_base": "while true; do npx sass apps/blog/static/blog/css/base.scss apps/blog/static/blog/css/base.css --no-source-map --style compressed && echo '✔︎ build blog/base.css'; sleep 5; done;",
+    "build_css_blog": "npx concurrently 'npm run build_css_blog_tailwind' 'npm run build_css_blog_base'",
+    "build_js_blog_highlightjs_bundle_watch": "npx watchify apps/blog/static/blog/js/highlight.js -vo 'npx terser --compress --mangle > apps/blog/static/blog/dist/highlight.bundle.js'",
+    "build_js_blog_highlightjs_bundle": "npx browserify apps/blog/static/blog/js/highlight.js | npx terser --compress --mangle > apps/blog/static/blog/dist/highlight.bundle.js",
+    "build_js_blog": "npx concurrently 'npm run build_js_blog_highlightjs_bundle_watch'",
+
+    "build_css_book_tailwind": "npx tailwindcss -c apps/book/tailwind.config.js -i apps/book/static/book/css/_build.css -o apps/book/static/book/css/_tailwind.css --watch --minify",
+    "build_css_book_base": "while true; do npx sass apps/book/static/book/css/base.scss apps/book/static/book/css/base.css --no-source-map --style compressed && echo '✔︎ build book/base.css'; sleep 5; done;",
+    "build_css_book": "npx concurrently 'npm run build_css_book_tailwind' 'npm run build_css_book_base'",
+
+    "build_css_joke_tailwind": "npx tailwindcss -c apps/joke/tailwind.config.js -i apps/joke/static/joke/css/_build.css -o apps/joke/static/joke/css/_tailwind.css --watch --minify",
+    "build_css_joke_style": "while true; do npx sass apps/joke/static/joke/css/style.scss apps/joke/static/joke/css/style.css --no-source-map --style compressed && echo '✔︎ build joke/style.css'; sleep 5; done;",
+    "build_css_joke": "npx concurrently 'npm run build_css_joke_tailwind' 'npm run build_css_joke_style'",
+
+    "build_css_lover_tailwind": "npx tailwindcss -c apps/lover/tailwind.config.js -i apps/lover/static/lover/css/_build.css -o apps/lover/static/lover/css/_tailwind.css --watch --minify",
+    "build_css_lover_style": "while true; do npx sass apps/lover/static/lover/css/style.scss apps/lover/static/lover/css/style.css --no-source-map --style compressed && echo '✔︎ build lover/style.css'; sleep 5; done;",
+    "build_css_lover": "npx concurrently 'npm run build_css_lover_tailwind' 'npm run build_css_lover_style'",
+
+    "build_css_nav_tailwind": "npx tailwindcss -c apps/nav/tailwind.config.js -i apps/nav/static/nav/css/_build.css -o apps/nav/static/nav/css/_tailwind.css --watch --minify",
+    "build_css_nav_style": "while true; do npx sass apps/nav/static/nav/css/style.scss apps/nav/static/nav/css/style.css --no-source-map --style compressed && echo '✔︎ build nav/style.css'; sleep 5; done;",
+    "build_css_nav": "npx concurrently 'npm run build_css_nav_tailwind' 'npm run build_css_nav_style'",
+
+    "build_css_rss_tailwind": "npx tailwindcss -c apps/rss/tailwind.config.js -i apps/rss/static/rss/css/_build.css -o apps/rss/static/rss/css/_tailwind.css --watch --minify",
+    "build_css_rss": "npx concurrently 'npm run build_css_rss_tailwind'",
+
+    "build_css_share_tailwind": "npx tailwindcss -c apps/share/tailwind.config.js -i apps/share/static/share/css/_build.css -o apps/share/static/share/css/_tailwind.css --watch --minify",
+    "build_css_share_base": "while true; do npx sass apps/share/static/share/css/base.scss apps/share/static/share/css/base.css --no-source-map --style compressed && echo '✔︎ build share/base.css'; sleep 5; done;",
+    "build_css_share": "npx concurrently 'npm run build_css_share_tailwind' 'npm run build_css_share_base'",
+
+    "build_css": "npx concurrently \"npm run build_css_base\" \"npm run build_css_blog\" \"npm run build_css_book\" \"npm run build_css_joke\" \"npm run build_css_lover\" \"npm run build_css_nav\" \"npm run build_css_rss\" \"npm run build_css_share\"",
+    "build_js": "npx concurrently \"npm run build_js_blog\"",
+    "build": "npx concurrently \"npm run build_css\" \"npm run build_js\""
   },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",
