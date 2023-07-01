@@ -31,7 +31,7 @@ dev() {
 	# echo "==================================="
 	echo "编译CSS/JS库..."
 	npm run build &
-	# bash scripts/frontend/build_sass.sh & # NOTE: 可用live-sass-compiler替换
+	# bash scripts/build/build_sass.sh & # NOTE: 可用live-sass-compiler替换
 	echo "==================================="
 	# echo "获取静态文件..."
 	# python manage.py collectstatic --noinput
