@@ -49,15 +49,13 @@
 	</a>
 </div>
 
-
 ## ✨ 技术栈:
 
-- **前端**：Sass, TailwindCSS, DaisyUI, TypeScript, Vue3, NaiveUI
+- **前端**：Sass, TailwindCSS, DaisyUI, Vue3, NaiveUI
 - **后端**：Django, DRF, Redis, MySQL
 - **部署**：Docker, Nginx, Fabric, Supervisor
 - **测试**：unittest(py), Coverage
 - **集成**：Github Action
-
 
 ## 🚀 开发&部署
 
@@ -84,30 +82,30 @@ $ python manage.py runserver 0:8000
 **`/task.sh`中已提供常见的部署快捷方式...**
 
 1. 通用部署方式
-	```bash
-	$ docker-compose -f scripts/deploy/docker-compose.yml up --build -d
-	```
+
+   ```bash
+   $ docker-compose -f scripts/deploy/docker-compose.yml up --build -d
+   ```
 
 2. [本站](https://morningstar369.com)部署方式(需裸机环境)
-	1. 部署基础环境: 通过scp传输`.env`与`scripts/deploy/deploy.sh`, 执行`deploy.sh`从而
-		- 安装oh-my-bash
-		- 安装vim与vimPlus
-		- 安装code-server
-		- 安装docker与docker-compose
-		- 安装supervisor
-		- 安装nvm与node
-		- 安装其他生产力工具
-	2. 通过`task.sh`中的`upgradeProd`完成后续的自动化部署
-
+   1. 部署基础环境: 通过 scp 传输`.env`与`scripts/deploy/deploy.sh`, 执行`deploy.sh`从而
+      - 安装 oh-my-bash
+      - 安装 vim 与 vimPlus
+      - 安装 code-server
+      - 安装 docker 与 docker-compose
+      - 安装 supervisor
+      - 安装 nvm 与 node
+      - 安装其他生产力工具
+   2. 通过`task.sh`中的`upgradeProd`完成后续的自动化部署
 
 ## 🙈 欢迎支持(~~宗旨是不退款！~~)
 
-|    微信    |    支付宝    |    小荷包    |
-| :-------: | :-------: | :-------: |
+|                                                                    微信                                                                     |                                                                    支付宝                                                                     |                                                                      小荷包                                                                      |
+| :-----------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------: |
 | <img src="https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/Morningstar/static/base/img/微信收款码.png" alt="Wechat" width="150"> | <img src="https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/Morningstar/static/base/img/支付宝收款码.png" alt="Alipay" width="150"> | <img src="https://cdn.jsdelivr.net/gh/HenryJi529/OpenMorningstar@main/Morningstar/static/base/img/小荷包收款码.png" alt="PiggyBank" width="150"> |
 
-
 ## 🙏 感谢
+
 <a href="https://www.djangoproject.com/">
 	<img width="20%"
 		src="https://www.vectorlogo.zone/logos/djangoproject/djangoproject-icon.svg"
@@ -124,8 +122,7 @@ $ python manage.py runserver 0:8000
 		alt="pycharm">
 </a>
 
-
 ## 📝 许可证
 
-Copyright © 2022 *[Henry Ji](https://github.com/HenryJi529)*.<br/>
+Copyright © 2022 _[Henry Ji](https://github.com/HenryJi529)_.<br/>
 This project is [AGPL v3](https://raw.githubusercontent.com/HenryJi529/OpenMorningstar/main/LICENSE) licensed.
