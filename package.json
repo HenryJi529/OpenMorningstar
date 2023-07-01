@@ -46,7 +46,6 @@
     "browserify": "^17.0.0",
     "concurrently": "^8.2.0",
     "daisyui": "^3.1.6",
-    "live-server": "^1.2.2",
     "npm-check-updates": "^16.10.13",
     "sass": "^1.63.6",
     "tailwindcss": "~3.3.2",
