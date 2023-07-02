@@ -1193,7 +1193,7 @@
 			"items": [
 				{
 					"name": "开发规范",
-					"slug": "coding",
+					"slug": "development-specification",
 					"display": "modal",
 					"entries": [
 						{
@@ -1220,7 +1220,7 @@
 				},
 				{
 					"name": "随机生成",
-					"slug": "random",
+					"slug": "random-generation",
 					"display": "modal",
 					"entries": [
 						{
@@ -1238,27 +1238,8 @@
 					]
 				},
 				{
-					"name": "版本控制",
-					"slug": "version-control",
-					"display": "modal",
-					"entries": [
-						{
-							"name": "Gitignore生成",
-							"link": "https://www.toptal.com/developers/gitignore/"
-						},
-						{
-							"name": "Gitmoji使用",
-							"link": "https://gitmoji.dev/"
-						},
-						{
-							"name": "Readme徽章生成",
-							"link": "https://shields.io/#your-badge"
-						}
-					]
-				},
-				{
 					"name": "测试工具",
-					"slug": "test",
+					"slug": "test-tool",
 					"display": "modal",
 					"entries": [
 						{
@@ -1345,8 +1326,76 @@
 					]
 				},
 				{
+					"name": "廉价算力",
+					"slug": "cheap-computing",
+					"display": "modal",
+					"entries": [
+						{
+							"name": "矩池云",
+							"link": "https://www.matpool.com/user"
+						},
+						{
+							"name": "Google Colab",
+							"link": "https://colab.research.google.com/"
+						}
+					]
+				},
+				{
+					"name": "配置生成",
+					"slug": "config-generation",
+					"display": "modal",
+					"entries": [
+						{
+							"name": "Crontab",
+							"link": "https://crontab.guru/"
+						},
+						{
+							"name": "Nginx",
+							"link": "https://www.digitalocean.com/community/tools/nginx"
+						},
+						{
+							"name": "Readme Badge",
+							"link": "https://shields.io/#your-badge"
+						},
+						{
+							"name": "Gitignore",
+							"link": "https://www.toptal.com/developers/gitignore/"
+						}
+					]
+				},
+				{
+					"name": "代码分享",
+					"slug": "code-sharing",
+					"display": "modal",
+					"entries": [
+						{
+							"name": "前端页面分享",
+							"link": "https://codepen.io/your-work"
+						},
+						{
+							"name": "代码转图",
+							"link": "https://carbon.now.sh/"
+						}
+					]
+				},
+				{
 					"name": "网站托管",
-					"url": "https://vercel.com/dashboard"
+					"slug": "website-hosting",
+					"display": "modal",
+					"entries": [
+						{
+							"name": "前端托管",
+							"link": "https://vercel.com/dashboard"
+						},
+						{
+							"name": "后端托管",
+							"link": "https://supabase.com/"
+						}
+					]
+				},
+				{
+					"name": "正则测试",
+					"url": "https://regex101.com/"
 				},
 				{
 					"name": "远程连接",
@@ -1357,44 +1406,12 @@
 					"url": "https://www.apifox.cn/"
 				},
 				{
-					"name": "代码转图",
-					"url": "https://carbon.now.sh/"
-				},
-				{
-					"name": "廉价算力",
-					"url": "https://www.matpool.com/user"
-				},
-				{
-					"name": "正则测试",
-					"url": "https://regex101.com/"
-				},
-				{
-					"name": "前端展示",
-					"url": "https://codepen.io/your-work"
-				},
-				{
 					"name": "项目保护",
 					"url": "https://dashboard.gitguardian.com/"
 				},
 				{
-					"name": "工作计时",
+					"name": "编码计时",
 					"url": "https://wakatime.com/"
-				},
-				{
-					"name": "域名解析",
-					"url": "https://www.nslookup.io/"
-				},
-				{
-					"name": "兼容性表",
-					"url": "https://caniuse.com/"
-				},
-				{
-					"name": "定时任务",
-					"url": "https://crontab.guru/"
-				},
-				{
-					"name": "Nginx配置",
-					"url": "https://www.digitalocean.com/community/tools/nginx"
 				}
 			]
 		}
