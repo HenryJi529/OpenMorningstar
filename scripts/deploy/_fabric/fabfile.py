@@ -72,7 +72,7 @@ def check(c):
 
 
 @task()
-def updateProd(c):
+def updateDjango(c):
     project_root_path = "~/morningstar"
     home_path = "~/"
 
@@ -94,7 +94,7 @@ def updateProd(c):
 
 
 @task()
-def upgradeProd(c):
+def updateAll(c):
     home_path = "~/"
     with c.cd(home_path):
         """更新项目"""
@@ -250,7 +250,7 @@ def syncLedger(c):
 
 
 @task()
-def syncNginx(c):
+def updateNginx(c):
     home_path = "~/"
     with c.cd(home_path):
         better_print("同步配置文件...")

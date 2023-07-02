@@ -69,19 +69,19 @@ updateDep() {
 	echo "DONE!!!"
 }
 
-# 远程同步
-updateProd() {
-	runRemoteCommand updateProd
+# 更新Django
+updateDjango() {
+	runRemoteCommand updateDjango
+}
+
+# 更新nginx(配置及前端代码)
+updateNginx() {
+	runRemoteCommand updateNginx
 }
 
 # 整体更新
-upgradeProd() {
-	runRemoteCommand upgradeProd
-}
-
-# 同步nginx配置(包含前端代码)
-syncNginx() {
-	runRemoteCommand syncNginx
+updateAll() {
+	runRemoteCommand updateAll
 }
 
 # 数据备份
@@ -157,9 +157,9 @@ d. check();
 2. initialize();
 3. coverage();
 4. updateDep();
-5. updateProd();
-6. upgradeProd();
-7. syncNginx();
+5. updateDjango();
+6. updateNginx();
+7. updateAll();
 8. backupProd();
 9. restoreProd();
 "
@@ -181,9 +181,9 @@ d) check ;;
 2) initialize ;;
 3) coverage ;;
 4) updateDep ;;
-5) updateProd ;;
-6) upgradeProd ;;
-7) syncNginx ;;
+5) updateDjango ;;
+6) updateNginx ;;
+7) updateAll ;;
 8) backupProd ;;
 9) restoreProd ;;
 *) echo "输入错误" ;;
