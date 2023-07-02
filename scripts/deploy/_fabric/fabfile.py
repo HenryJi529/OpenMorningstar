@@ -78,8 +78,7 @@ def updateProd(c):
 
     better_print("更新代码...")
     with c.cd(project_root_path):
-        c.run("git checkout .")
-        c.run("git pull -f")
+        c.run("git fetch --all && git reset --hard origin/main")
 
     with c.cd(home_path):
         better_print("转移媒体文件...")
