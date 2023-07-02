@@ -70,7 +70,7 @@ urlpatterns = [
     path("book/", include("book.urls")),
     path("api/formula/", include("formula.urls")),
     path("game/", include("game.urls")),
-    path("joke/", include("joke.urls")),
+    path("api/joke/", include("joke.urls")),
     path("lover/", include("lover.urls")),
     path("nav/", include("nav.urls")),
     path("api/notes/", include("notes.urls")),
