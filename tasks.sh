@@ -80,8 +80,9 @@ updateNginx() {
 }
 
 # 整体更新
-updateAll() {
+updateProd() {
 	runRemoteCommand updateAll
+	updateNginx
 }
 
 # 数据备份
@@ -159,7 +160,7 @@ d. check();
 4. updateDep();
 5. updateDjango();
 6. updateNginx();
-7. updateAll();
+7. updateProd();
 8. backupProd();
 9. restoreProd();
 "
@@ -183,7 +184,7 @@ d) check ;;
 4) updateDep ;;
 5) updateDjango ;;
 6) updateNginx ;;
-7) updateAll ;;
+7) updateProd ;;
 8) backupProd ;;
 9) restoreProd ;;
 *) echo "输入错误" ;;
