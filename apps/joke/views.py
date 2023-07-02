@@ -2,6 +2,9 @@ import random
 
 from django.shortcuts import render, HttpResponse, redirect
 from django.http import JsonResponse
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
 from Morningstar.lib.cors import add_cors_header
 from .models import Photo, Text
 
@@ -23,7 +26,8 @@ def index(request):
 
 
 @add_cors_header
-def api(request):
+@api_view(["GET"])
+def images(request):
     if request.method == "GET":
         num = request.GET.get("n", 1)
         try:
@@ -32,8 +36,8 @@ def api(request):
             links = [
                 protocol + request.META["HTTP_HOST"] + photo.uri for photo in photos
             ]
-            return JsonResponse({"status": "ok", "links": links})
+            return Response({"status": "ok", "links": links})
         except:
-            return JsonResponse(
+            return Response(
                 {"status": "error", "links": [], "message": "{n} should be an integer"}
             )
