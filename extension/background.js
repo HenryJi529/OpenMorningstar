@@ -1,10 +1,7 @@
 chrome.commands.onCommand.addListener((command) => {
     switch (command) {
-        case "ai":
-            chrome.tabs.create({ url: "https://chat.openai.com/" });
-            break;
-        case "joke":
-            chrome.tabs.create({ url: "https://morningstar369.com/joke/" });
+        case "chat":
+            chrome.tabs.create({ url: "https://chat.morningstar369.com/" });
             break;
         case "nav":
             chrome.tabs.create({ url: "https://morningstar369.com/nav/" });

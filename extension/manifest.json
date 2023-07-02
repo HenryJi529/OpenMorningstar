@@ -14,18 +14,12 @@
         "activeTab"
     ],
     "commands": {
-        "ai": {
+        "chat": {
             "suggested_key": {
                 "default": "Ctrl+Shift+C",
                 "mac": "MacCtrl+Shift+C"
             },
-            "description": "Open ChatGPT"
-        },
-        "joke": {
-            "suggested_key": {
-                "default": "Alt+Shift+J"
-            },
-            "description": "Open Morningstar Joke"
+            "description": "Open Morningstar Chat"
         },
         "nav": {
             "suggested_key": {
