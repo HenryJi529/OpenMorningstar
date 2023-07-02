@@ -106,10 +106,14 @@ restoreProd() {
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-# 生成压缩包
-archiveMain() {
+# 发布源码和插件压缩包
+publicArchive() {
 	time=$(date "+%Y-%m-%d")
+	# 压缩源代码
 	git archive --format=tar main | gzip >release/main_${time}.tar.gz
+	# 打包插件
+	cd extension && make build && cd ..
+	zip -r release/extension_${time}.zip extension/dist/*
 }
 
 # 发布Docker Image
@@ -143,7 +147,7 @@ _haibara_
 
 echo "运行命令:
 ============================================================
-a. archiveMain();
+a. publicArchive();
 b. publicPackage();
 c. syncLedger();
 d. check();
@@ -167,7 +171,7 @@ start_time=$(date +%s)
 source $(pwd)/VENV/bin/activate
 
 case $order in
-a) archiveMain ;;
+a) publicArchive ;;
 b) publicPackage ;;
 c) syncLedger ;;
 d) check ;;
