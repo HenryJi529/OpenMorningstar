@@ -27,7 +27,7 @@ def index(request):
 
 @add_cors_header
 @api_view(["GET"])
-def images(request):
+def getRandomImages(request):
     if request.method == "GET":
         num = request.GET.get("n", 1)
         try:
@@ -47,7 +47,7 @@ def images(request):
 
 @add_cors_header
 @api_view(["GET"])
-def texts(request):
+def getRandomTexts(request):
     if request.method == "GET":
         num = request.GET.get("n", 1)
         try:

@@ -7,6 +7,6 @@ from . import views
 app_name = "joke"
 urlpatterns = [
     path("", views.index, name="index"),
-    path("images/random", views.images, name="images"),
-    path("texts/random", views.texts, name="texts"),
+    path("images/random", views.getRandomImages, name="getRandomImages"),
+    path("texts/random", views.getRandomTexts, name="getRandomTexts"),
 ]
