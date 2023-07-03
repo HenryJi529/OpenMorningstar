@@ -2,12 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 扩展组件 */
-/* .morningstar-btn {
-    @apply btn text-3xl;
-} */
-
 @font-face {
-    font-family: "Lora";
-    src: url("/static/font/Lora-MediumItalic.ttf");
+  font-family: "Lora";
+  src: url("/static/font/Lora-MediumItalic.ttf");
 }
