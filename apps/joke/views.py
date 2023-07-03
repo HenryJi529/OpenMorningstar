@@ -25,6 +25,7 @@ def index(request):
     return render(request, "joke/index.html", context=context)
 
 
+@add_cors_header
 @api_view(["GET"])
 def images(request):
     if request.method == "GET":
@@ -44,8 +45,8 @@ def images(request):
             return Response({"status": "error", "message": "{n} should be an integer"})
 
 
-@api_view(["GET"])
 @add_cors_header
+@api_view(["GET"])
 def texts(request):
     if request.method == "GET":
         num = request.GET.get("n", 1)
