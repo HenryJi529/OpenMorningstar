@@ -25,7 +25,6 @@ def index(request):
     return render(request, "joke/index.html", context=context)
 
 
-@add_cors_header
 @api_view(["GET"])
 def images(request):
     if request.method == "GET":
@@ -33,11 +32,28 @@ def images(request):
         try:
             photos = Photo.objects.order_by("?")[: int(num)]
             protocol = "https://" if request.is_secure() else "http://"
-            links = [
-                protocol + request.META["HTTP_HOST"] + photo.uri for photo in photos
+            objects = [
+                {
+                    "id": photo.pk,
+                    "link": protocol + request.META["HTTP_HOST"] + photo.uri,
+                }
+                for photo in photos
             ]
-            return Response({"status": "ok", "links": links})
+            return Response({"status": "ok", "objects": objects})
         except:
-            return Response(
-                {"status": "error", "links": [], "message": "{n} should be an integer"}
-            )
+            return Response({"status": "error", "message": "{n} should be an integer"})
+
+
+@api_view(["GET"])
+@add_cors_header
+def texts(request):
+    if request.method == "GET":
+        num = request.GET.get("n", 1)
+        try:
+            objects = [
+                {"id": text.pk, "body": text.body}
+                for text in Text.objects.order_by("?")[: int(num)]
+            ]
+            return Response({"status": "ok", "objects": objects})
+        except:
+            return Response({"status": "error", "message": "{n} should be an integer"})
