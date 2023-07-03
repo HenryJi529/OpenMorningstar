@@ -1384,11 +1384,11 @@
 					"display": "modal",
 					"entries": [
 						{
-							"name": "前端托管",
+							"name": "前端托管(Vercel)",
 							"link": "https://vercel.com/dashboard"
 						},
 						{
-							"name": "后端托管",
+							"name": "后端托管(Supabase)",
 							"link": "https://supabase.com/"
 						}
 					]
