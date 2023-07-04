@@ -1,7 +1,5 @@
 <template>
-  <div class="about">
-    <p>This is an about page</p>
-  </div>
+  <p>This is an about page</p>
 </template>
 
 <style scoped lang="scss">
