@@ -9,12 +9,12 @@ COPY ./_mirror_cn/ustc-sources.list /etc/apt/sources.list
 # COPY ./_mirror_cn/pip.conf /root/.pip/pip.conf
 
 RUN apt-get update
-RUN apt-get install -y iputils-ping net-tools vim rsync
+RUN apt-get install -y iputils-ping net-tools vim rsync curl
 RUN apt-get install -y python${PYTHON_VERSION} python3-pip mysql-client libmysqlclient-dev
-RUN apt-get install -y nodejs npm
+RUN curl -sL https://deb.nodesource.com/setup_20.x | bash - && apt-get install -y nodejs
+RUN npm install -g yarn
 RUN apt-get install -y cron
 RUN apt-get install -y supervisor
-RUN npm install -g yarn
 # NOTE: 分离python依赖安装，加快构建速度
 # COPY ./django/requirements-prod.txt /app/requirements-prod.txt
 # RUN python3 -m pip install -r /app/requirements-prod.txt
