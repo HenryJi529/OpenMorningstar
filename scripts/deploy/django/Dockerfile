@@ -11,7 +11,7 @@ COPY ./_mirror_cn/ustc-sources.list /etc/apt/sources.list
 RUN apt-get update
 RUN apt-get install -y iputils-ping net-tools vim rsync
 RUN apt-get install -y python${PYTHON_VERSION} python3-pip mysql-client libmysqlclient-dev
-RUN apt-get install -y nodejs npm
+RUN apt-get install -y nodejs npm yarn
 RUN apt-get install -y cron
 RUN apt-get install -y supervisor
 # NOTE: 分离python依赖安装，加快构建速度

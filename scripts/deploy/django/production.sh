@@ -3,7 +3,7 @@ cd /app
 # 更新Python依赖...
 python3 -m pip install -r /app/requirements-prod.txt
 # 更新并迁移JavaScript依赖...
-npm install --production
+yarn install --production
 test -d "/app/static" || mkdir /app/static
 rsync -a /app/node_modules /app/static
 # 迁移数据库
