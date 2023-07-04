@@ -90,6 +90,11 @@ def updateDjango(c):
         better_print("重启服务...")
         c.run("docker exec -it morningstar_django supervisorctl restart django")
 
+        better_print("更新HTTPS...")
+        commandTemplate = (
+            "docker exec -it morningstar_nginx certbot --nginx --non-interactive"
+        )
+        c.run(commandTemplate + " -d " + " -d ".join(DOMAIN_LIST))  # NOTE:解决HTTPS失效问题
         print("Done!!")
 
 
