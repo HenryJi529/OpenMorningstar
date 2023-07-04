@@ -43,6 +43,7 @@ def getRandomJokes(request):
             }
             for text in texts
         ]
+        random.shuffle(objects)
         return Response({"status": "ok", "objects": objects})
 
 
