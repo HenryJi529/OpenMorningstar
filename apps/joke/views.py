@@ -9,52 +9,81 @@ from Morningstar.lib.cors import add_cors_header
 from .models import Photo, Text
 
 
-def index(request):
-    photo_list = [
-        {"type": "photo", "content": content} for content in list(Photo.objects.all())
-    ]
-    text_list = [
-        {"type": "text", "content": content} for content in list(Text.objects.all())
-    ]
-    try:
-        joke_list = random.sample(photo_list + text_list, 20)
-    except ValueError:
-        joke_list = photo_list + text_list
-        random.shuffle(joke_list)
-    context = {"joke_list": joke_list}
-    return render(request, "joke/index.html", context=context)
+@add_cors_header
+@api_view(["GET"])
+def getRandomJokes(request):
+    if request.method == "GET":
+        try:
+            numRandomAll = int(request.GET.get("n", 20))
+            if numRandomAll > 100:
+                raise Exception("{n} is too large")
+        except ValueError:
+            return Response({"status": "error", "message": "{n} should be an integer"})
+        except Exception as e:
+            return Response({"status": "error", "message": str(e)})
+        numPhoto = Photo.objects.count()
+        numText = Text.objects.count()
+        numRandomPhoto = int(numPhoto / (numPhoto + numText) * numRandomAll)
+        numRandomText = numRandomAll - numRandomPhoto
+        protocol = "https://" if request.is_secure() else "http://"
+        photos = Photo.objects.order_by("?")[:numRandomPhoto]
+        texts = Text.objects.order_by("?")[:numRandomText]
+        objects = [
+            {
+                "type": "photo",
+                "title": photo.title,
+                "link": protocol + request.META["HTTP_HOST"] + photo.uri,
+            }
+            for photo in photos
+        ] + [
+            {
+                "type": "text",
+                "title": text.title,
+                "body": text.body,
+            }
+            for text in texts
+        ]
+        return Response({"status": "ok", "objects": objects})
 
 
 @add_cors_header
 @api_view(["GET"])
 def getRandomImages(request):
     if request.method == "GET":
-        num = request.GET.get("n", 1)
         try:
-            photos = Photo.objects.order_by("?")[: int(num)]
-            protocol = "https://" if request.is_secure() else "http://"
-            objects = [
-                {
-                    "id": photo.pk,
-                    "link": protocol + request.META["HTTP_HOST"] + photo.uri,
-                }
-                for photo in photos
-            ]
-            return Response({"status": "ok", "objects": objects})
-        except:
+            num = int(request.GET.get("n", 1))
+            if num > Photo.objects.count():
+                raise Exception("{n} is to large")
+        except ValueError:
             return Response({"status": "error", "message": "{n} should be an integer"})
+        except Exception as e:
+            return Response({"status": "error", "message": str(e)})
+        photos = Photo.objects.order_by("?")[:num]
+        protocol = "https://" if request.is_secure() else "http://"
+        objects = [
+            {
+                "id": photo.pk,
+                "link": protocol + request.META["HTTP_HOST"] + photo.uri,
+            }
+            for photo in photos
+        ]
+        return Response({"status": "ok", "objects": objects})
 
 
 @add_cors_header
 @api_view(["GET"])
 def getRandomTexts(request):
     if request.method == "GET":
-        num = request.GET.get("n", 1)
         try:
-            objects = [
-                {"id": text.pk, "body": text.body}
-                for text in Text.objects.order_by("?")[: int(num)]
-            ]
-            return Response({"status": "ok", "objects": objects})
-        except:
+            num = int(request.GET.get("n", 1))
+            if num > Text.objects.count():
+                raise Exception("{n} is to large")
+        except ValueError:
             return Response({"status": "error", "message": "{n} should be an integer"})
+        except Exception as e:
+            return Response({"status": "error", "message": str(e)})
+        objects = [
+            {"id": text.pk, "body": text.body}
+            for text in Text.objects.order_by("?")[:num]
+        ]
+        return Response({"status": "ok", "objects": objects})
