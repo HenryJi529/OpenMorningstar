@@ -31,6 +31,7 @@ def getRandomJokes(request):
         objects = [
             {
                 "type": "photo",
+                "id": photo.pk,
                 "title": photo.title,
                 "link": protocol + request.META["HTTP_HOST"] + photo.uri,
             }
@@ -38,6 +39,7 @@ def getRandomJokes(request):
         ] + [
             {
                 "type": "text",
+                "id": text.pk,
                 "title": text.title,
                 "body": text.body,
             }
