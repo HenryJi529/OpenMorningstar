@@ -44,8 +44,7 @@ urlpatterns = [
     ),
     path("login-by-token/<str:token>/", tool.login_by_token, name="login_by_token"),
     # 开发
-    path("dev/info/", dev.info, name="dev-info"),
-    path("dev/map/", dev.map, name="dev-map"),
+    path("dev/", dev.index, name="dev_index"),
     # 信息
     path("me/", cache_page(CACHE_TIMEOUT)(info.me), name="me"),
     path(
