@@ -23,10 +23,7 @@
     "build_css_nav": "npx concurrently 'npm run build_css_nav_tailwind' 'npm run build_css_nav_style'",
     "build_css_rss_tailwind": "npx tailwindcss -c apps/rss/tailwind.config.js -i apps/rss/static/rss/css/_build.css -o apps/rss/static/rss/css/_tailwind.css --watch --minify",
     "build_css_rss": "npx concurrently 'npm run build_css_rss_tailwind'",
-    "build_css_share_tailwind": "npx tailwindcss -c apps/share/tailwind.config.js -i apps/share/static/share/css/_build.css -o apps/share/static/share/css/_tailwind.css --watch --minify",
-    "build_css_share_base": "while true; do npx sass apps/share/static/share/css/base.scss apps/share/static/share/css/base.css --no-source-map --style compressed && echo '✔︎ build share/base.css'; sleep 5; done;",
-    "build_css_share": "npx concurrently 'npm run build_css_share_tailwind' 'npm run build_css_share_base'",
-    "build_css": "npx concurrently \"npm run build_css_base\" \"npm run build_css_blog\" \"npm run build_css_book\" \"npm run build_css_joke\" \"npm run build_css_lover\" \"npm run build_css_nav\" \"npm run build_css_rss\" \"npm run build_css_share\"",
+    "build_css": "npx concurrently \"npm run build_css_base\" \"npm run build_css_blog\" \"npm run build_css_book\" \"npm run build_css_joke\" \"npm run build_css_lover\" \"npm run build_css_nav\" \"npm run build_css_rss\"",
     "build_js": "npx concurrently \"npm run build_js_blog\"",
     "build": "npx concurrently \"npm run build_css\" \"npm run build_js\""
   },
