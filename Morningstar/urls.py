@@ -77,7 +77,7 @@ urlpatterns = [
     path("proxy/", include("proxy.urls")),
     path("api/quiz/", include("quiz.urls")),
     path("rss/", include("rss.urls")),
-    path("share/", include("share.urls")),
+    path("api/share/", include("share.urls")),
     # 快捷
     path(
         "shortcut/<slug:name>/",
