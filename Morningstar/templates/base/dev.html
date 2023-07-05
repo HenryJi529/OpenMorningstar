@@ -35,18 +35,28 @@ Dev - 访客信息
     </div>
     <div class="text-2xl">屏幕/浏览器尺寸:</div>
     <ul>
-        <li>screen.height = <span id="screen-height"></span></li>
-        <li>screen.width = <span id="screen-width"></span></li>
-        <li>screen.availHeight * window.devicePixelRatio =
+        <li>
+            screen.height = <span id="screen-height"></span>
+        </li>
+        <li>
+            screen.width = <span id="screen-width"></span>
+        </li>
+        <li>
+            screen.availHeight * window.devicePixelRatio =
             <span id="screen-availHeight-window-devicePixelRatio"></span>
         </li>
-        <li>screen.availWidth * window.devicePixelRatio =
+        <li>
+            screen.availWidth * window.devicePixelRatio =
             <span id="screen-availWidth-window-devicePixelRatio"></span>
         </li>
         <li>window.outerHeight = <span id="window-outerHeight"></span></li>
         <li>window.outerWidth = <span id="window-outerWidth"></span></li>
         <li>window.innerHeight = <span id="window-innerHeight"></span></li>
         <li>window.innerWidth = <span id="window-innerWidth"></span></li>
+        <li>
+            document.documentElement.clientWidth(layout viewport) =
+            <span id="document-documentElement-clientWidth"></span>
+        </li>
     </ul>
 </div>
 
@@ -63,5 +73,6 @@ Dev - 访客信息
     document.querySelector('#window-outerWidth').textContent = window.outerWidth;
     document.querySelector('#window-innerHeight').textContent = window.innerHeight;
     document.querySelector('#window-innerWidth').textContent = window.innerWidth;
+    document.querySelector('#document-documentElement-clientWidth').textContent = document.documentElement.clientWidth;
 </script>
 {% endblock custom_js %}
