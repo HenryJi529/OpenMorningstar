@@ -23,16 +23,16 @@ from ..models import User
 
 
 def get_image_captcha(request):
-    """ 生成图片验证码 """
+    """生成图片验证码"""
     image_object, code = generate_image()
     session_key = request.session._session_key
 
     conn = get_redis_connection("default")
-    conn.set(f'{session_key}-image-captcha', code, ex=60)
+    conn.set(f"{session_key}-image-captcha", code, ex=60)
 
     stream = io.BytesIO()
-    image_object.save(stream, 'png')
-    return HttpResponse(stream.getvalue(),"image/png")
+    image_object.save(stream, "png")
+    return HttpResponse(stream.getvalue(), "image/png")
 
 
 def activate_by_email(request):
@@ -40,7 +40,7 @@ def activate_by_email(request):
         username = request.GET["username"]
         code = request.GET["code"]
         conn = get_redis_connection("default")
-        redis_code_bin = conn.get(f'{username}-activate')
+        redis_code_bin = conn.get(f"{username}-activate")
         if not redis_code_bin:
             return HttpResponse("激活链接已经超时")
         else:
@@ -49,7 +49,7 @@ def activate_by_email(request):
                 user = User.objects.get(username=username)
                 user.is_active = True
                 user.save()
-                conn.delete(f'{username}-activate')
+                conn.delete(f"{username}-activate")
                 auth.login(request, user)
                 return redirect("/")
             else:
@@ -62,7 +62,7 @@ def activate_by_email(request):
 def send_phone_code(request, template):
     request = fix_fetched_post(request)
     identity = request.POST.get("identity")
-    if not identity or not re.match(r'^(1[3|4|5|6|7|8|9])\d{9}$', identity):
+    if not identity or not re.match(r"^(1[3|4|5|6|7|8|9])\d{9}$", identity):
         return JsonResponse({"status": "error", "msg": "手机号格式错误"})
     if template in list(TENCENT_SMS_TEMPLATE.keys()):
         code = random.randint(100000, 999999)
@@ -72,13 +72,21 @@ def send_phone_code(request, template):
         else:
             if User.objects.filter(phone=identity).exists():
                 return JsonResponse({"status": "error", "msg": "手机号已存在"})
-        response = send_sms_single(identity, template, [code,])
-        if response['result']==0:
+        response = send_sms_single(
+            identity,
+            template,
+            [
+                code,
+            ],
+        )
+        if response["result"] == 0:
             conn = get_redis_connection("default")
-            conn.set(f'{identity}-{template}', code, ex=600)
+            conn.set(f"{identity}-{template}", code, ex=600)
             return JsonResponse({"status": "success", "msg": "验证码已发送"})
         else:
-            return JsonResponse({"status": "error", "msg": f"短信发送失败: {response['msg']}"})
+            return JsonResponse(
+                {"status": "error", "msg": f"短信发送失败: {response['msg']}"}
+            )
     else:
         return JsonResponse({"status": "error", "msg": "错误的模板名称"})
 
@@ -87,7 +95,9 @@ def send_phone_code(request, template):
 def send_email_code(request, template):
     request = fix_fetched_post(request)
     identity = request.POST.get("identity")
-    if not identity or not re.match(r'^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$', identity):
+    if not identity or not re.match(
+        r"^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", identity
+    ):
         return JsonResponse({"status": "error", "msg": "邮箱格式错误"})
     if template in EMAIL_TEMPLATE_TEXT.keys():
         code = random.randint(100000, 999999)
@@ -97,10 +107,18 @@ def send_email_code(request, template):
         else:
             if User.objects.filter(email=identity).exists():
                 return JsonResponse({"status": "error", "msg": "邮箱已存在"})
-        response = send_mail_from_host_by_template([identity,], template, [code,])
+        response = send_mail_from_host_by_template(
+            [
+                identity,
+            ],
+            template,
+            [
+                code,
+            ],
+        )
         if response:
             conn = get_redis_connection("default")
-            conn.set(f'{identity}-{template}', code, ex=600)
+            conn.set(f"{identity}-{template}", code, ex=600)
             return JsonResponse({"status": "success", "msg": "验证码已发送"})
         else:
             return JsonResponse({"status": "error", "msg": "邮件发送失败"})
@@ -121,25 +139,43 @@ def get_login_token(request, identity):
         username = user.username
         password = user.password
         token = html.escape(password[-20:])
-        protocol = "https://" if os.environ.get('DJANGO_SETTINGS_MODULE', 'Morningstar.settings.dev') == 'Morningstar.settings.production' else "http://"
-        link = protocol + request.get_host() + reverse("login_by_token",args=[token,]) 
+        protocol = (
+            "https://"
+            if os.environ.get("DJANGO_SETTINGS_MODULE", "Morningstar.settings.dev")
+            == "Morningstar.settings.production"
+            else "http://"
+        )
+        link = (
+            protocol
+            + request.get_host()
+            + reverse(
+                "login_by_token",
+                args=[
+                    token,
+                ],
+            )
+        )
         conn = get_redis_connection("default")
-        conn.set(f'{token}-login-token', password, ex=24*60*60)
-        return render(request, "base/login_token.html", {"username": username, "token": token, "link": link})
+        conn.set(f"{token}-login-token", password, ex=24 * 60 * 60)
+        return render(
+            request,
+            "base/login_token.html",
+            {"username": username, "token": token, "link": link},
+        )
     else:
         return HttpResponse("用户不存在")
 
 
 def login_by_token(request, token):
     conn = get_redis_connection("default")
-    redis_login_token = conn.get(f'{token}-login-token')
+    redis_login_token = conn.get(f"{token}-login-token")
     if not redis_login_token:
         return HttpResponse("登录链接已经超时/令牌无效")
     password = str(redis_login_token.decode())
     user = User.objects.get(password=password)
     auth.login(request, user)
     try:
-        conn.delete(f'{token}-login-token')
+        conn.delete(f"{token}-login-token")
     except:
         pass
-    return redirect(reverse('blog:index'))
+    return redirect(reverse("blog:index"))

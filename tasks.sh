@@ -76,6 +76,11 @@ updateDjango() {
 
 # 更新nginx(配置及前端代码)
 updateNginx() {
+	# NOTE: rebuild All
+	apps=('formula' 'joke' 'notes' 'quiz' 'share')
+	for app in "${apps[@]}"; do
+		cd apps/${app}/frontend/ && npm run build && cd ../../../
+	done
 	runRemoteCommand updateNginx
 }
 

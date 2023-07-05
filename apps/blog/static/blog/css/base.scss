@@ -154,7 +154,7 @@ mjx-container {
         color: $post-inline-code-color;
         margin-left: 0.3rem;
         margin-right: 0.3rem;
-        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
 
     table:not(code table) {

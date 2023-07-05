@@ -1,27 +1,38 @@
 import os
 import io
 
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, HttpResponse
+from django.http import JsonResponse
 from django.urls import reverse
 from django_redis import get_redis_connection
+
+from django.middleware.csrf import get_token
+
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.response import Response
+from rest_framework import status
 
 from Morningstar.lib import qrcoder
 from Morningstar.settings.common import BASE_DIR
 
 from .models import Item
-from .forms import ItemForm
 
 
-def index(request):
-    return render(request, "share/index.html", locals())
+def get_csrf_token(request):
+    if request.method == "GET":
+        csrf_token = get_token(request)
+        return JsonResponse({"csrfToken": csrf_token})
 
 
+@api_view(["GET"])
 def route(request, id):
     try:
         url = Item.objects.get(id=id).url
-        return render(request, "share/route.html", context={"url": url})
+        return Response({"status": "ok", "url": url})
     except Item.DoesNotExist:
-        return HttpResponse("此短链接不存在...")
+        return Response({"status": "error", "message": "此链接不存在"})
 
 
 def get_qrcode(request):
@@ -36,7 +47,7 @@ def get_qrcode(request):
     )
     qrcode_image = qrcoder.make_qrcode(
         data=link,
-        image_size=(400, 400),
+        image_size=(200, 200),
         box_radius_ratio=0.5,
         icon_path=icon_path,
         back_color=back_color,
@@ -48,28 +59,18 @@ def get_qrcode(request):
     return HttpResponse(stream.getvalue(), "image/png")
 
 
+@api_view(["POST"])
 def submit(request):
     if request.method == "POST":
-        item_form = ItemForm(request.POST)
-        if item_form.is_valid():
-            item_form.save()
-            success = True
-            url = item_form.cleaned_data["url"]
-            items = Item.objects.filter(url=url)
-            id = items.first().id
-            protocol = (
-                "https://"
-                if os.environ.get("DJANGO_SETTINGS_MODULE", "Morningstar.settings.dev")
-                == "Morningstar.settings.production"
-                else "http://"
-            )
-            link = (
-                protocol + request.META["HTTP_HOST"] + reverse("share:route", args=[id])
-            )
-            session_key = request.session._session_key
-            conn = get_redis_connection("default")
-            conn.set(f"{session_key}-share-qrcode", link, ex=60 * 10)
-            image_url = reverse("share:qrcode")
-        else:
-            success = False
-        return render(request, "share/result.html", locals())
+        item = Item(url=request.data["url"])
+        item.save()
+        id = item.id
+        link = f"redirect/{id}/"
+        session_key = request.session._session_key
+        conn = get_redis_connection("default")
+        conn.set(
+            f"{session_key}-share-qrcode",
+            "https://morningstar369.com/share/" + link,
+            ex=60 * 10,
+        )
+        return Response({"link": link})

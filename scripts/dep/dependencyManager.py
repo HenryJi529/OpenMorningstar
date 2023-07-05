@@ -14,11 +14,21 @@ PROD_REQUIREMENTS_PATH = "requirements-prod.txt"
 PKL_PATH = "scripts/dep/dependencyManager.pkl"
 PACKAGES_INFO_PATH = "scripts/dep/packagesInfo.csv"
 
-EXPIRE_TIME = 24*60*60
+EXPIRE_TIME = 24 * 60 * 60
 
 
 class Package:
-    def __init__(self, name, version, summary=None, homepage=None, locked=False, note=None, dependencies=[], inDev=False):
+    def __init__(
+        self,
+        name,
+        version,
+        summary=None,
+        homepage=None,
+        locked=False,
+        note=None,
+        dependencies=[],
+        inDev=False,
+    ):
         """
         name: 名称
         version: 版本
@@ -44,6 +54,7 @@ class Package:
     @property
     def version(self):
         return self._version
+
     @version.setter
     def version(self, version):
         self._version = version
@@ -51,6 +62,7 @@ class Package:
     @property
     def summary(self):
         return self._summary
+
     @summary.setter
     def summary(self, summary):
         if self._summary:
@@ -60,6 +72,7 @@ class Package:
     @property
     def homepage(self):
         return self._homepage
+
     @homepage.setter
     def homepage(self, homepage):
         if self._homepage:
@@ -69,6 +82,7 @@ class Package:
     @property
     def requires(self):
         return self._requires
+
     @requires.setter
     def requires(self, requires):
         self._requires = requires
@@ -78,13 +92,24 @@ class Package:
     @property
     def latestVersion(self):
         return self._latestVersion
+
     @latestVersion.setter
     def latestVersion(self, latestVersion):
         self._latestVersion = latestVersion
 
 
 class Manager:
-    def __init__(self, environment_path=ENVIRONMENT_PATH, dev_requirements_path=DEV_REQUIREMENTS_PATH, prod_requirements_path=PROD_REQUIREMENTS_PATH, pkl_path=PKL_PATH, packages_info_path=PACKAGES_INFO_PATH, flag_verbose=False, flag_update=False, is_install=False):
+    def __init__(
+        self,
+        environment_path=ENVIRONMENT_PATH,
+        dev_requirements_path=DEV_REQUIREMENTS_PATH,
+        prod_requirements_path=PROD_REQUIREMENTS_PATH,
+        pkl_path=PKL_PATH,
+        packages_info_path=PACKAGES_INFO_PATH,
+        flag_verbose=False,
+        flag_update=False,
+        is_install=False,
+    ):
         self.environment_path = environment_path
         self.dev_requirements_path = dev_requirements_path
         self.prod_requirements_path = prod_requirements_path
@@ -97,10 +122,12 @@ class Manager:
 
         # 首先同步版本
         def synchronizeVersion(environment_path):
-            result = subprocess.run(["pip", "list", "--format=json"], stdout=subprocess.PIPE)
+            result = subprocess.run(
+                ["pip", "list", "--format=json"], stdout=subprocess.PIPE
+            )
             versionInfo = list(json.loads(result.stdout))
 
-            with open(environment_path, 'r') as f:
+            with open(environment_path, "r") as f:
                 data = dict(json.load(f))
 
             for packageName in data:
@@ -108,7 +135,7 @@ class Manager:
                     if each["name"] == packageName:
                         data[packageName]["version"] = each["version"]
 
-            with open(environment_path, 'w') as f:
+            with open(environment_path, "w") as f:
                 json.dump(data, f, indent=4, ensure_ascii=False)
 
         if not is_install:
@@ -129,16 +156,20 @@ class Manager:
             with open(json_path) as f:
                 data = dict(json.load(f))
             return data
-        
+
         data = read_json_as_dict(self.environment_path)
 
         packages = []
         for name, info in data.items():
             package = Package(
-                name=name, version=info["version"], 
-                summary=info.get("summary", None), homepage=info.get("homepage",None), 
-                locked=info.get("locked", False), note=info.get("note", None), 
-                dependencies=info.get("dependencies",[]), inDev=info.get("inDev", False)
+                name=name,
+                version=info["version"],
+                summary=info.get("summary", None),
+                homepage=info.get("homepage", None),
+                locked=info.get("locked", False),
+                note=info.get("note", None),
+                dependencies=info.get("dependencies", []),
+                inDev=info.get("inDev", False),
             )
             packages.append(package)
 
@@ -146,21 +177,28 @@ class Manager:
 
     def _getDevPackageNames(self):
         return [package.name for package in self.packages]
-    
+
     def _getProdPackageNames(self):
         return [package.name for package in self.packages if not package.inDev]
 
     @cached_property
     def latestVersionInfo(self):
-        if "latestVersionInfo" in self.pipCache and self.pipCache["latestVersionInfo"]["time"] > time.time() - self.expire_time and not self.flag_update:
+        if (
+            "latestVersionInfo" in self.pipCache
+            and self.pipCache["latestVersionInfo"]["time"]
+            > time.time() - self.expire_time
+            and not self.flag_update
+        ):
             return self.pipCache["latestVersionInfo"]["data"]
         else:
-            result = subprocess.run(["pip", "list", "--outdated", "--format=json"], stdout=subprocess.PIPE)
+            result = subprocess.run(
+                ["pip", "list", "--outdated", "--format=json"], stdout=subprocess.PIPE
+            )
             latestVersionInfo = list(json.loads(result.stdout))
 
             self.pipCache["latestVersionInfo"] = {
-                "time": time.time(), 
-                "data": latestVersionInfo
+                "time": time.time(),
+                "data": latestVersionInfo,
             }
             with open(self.pkl_path, "wb") as f:
                 pickle.dump(self.pipCache, f)
@@ -177,14 +215,18 @@ class Manager:
 
     @property
     def outdatedPackageNames(self):
-        return [ item["name"] for item in self.latestVersionInfo if item["name"] in 
-        [package.name for package in self.packages]
+        return [
+            item["name"]
+            for item in self.latestVersionInfo
+            if item["name"] in [package.name for package in self.packages]
         ]
 
     @property
     def outdatedNotLockedPackageNames(self):
-        return [ packageName for packageName in self.outdatedPackageNames
-        if self.isPackageLocked(packageName) == False
+        return [
+            packageName
+            for packageName in self.outdatedPackageNames
+            if self.isPackageLocked(packageName) == False
         ]
 
     def getLatestVersion(self, packageName):
@@ -201,7 +243,10 @@ class Manager:
             if self.flag_verbose:
                 result = subprocess.run(["pip", "install", "-U", f"{packageName}"])
             else:
-                result = subprocess.run(["pip", "install", "-U", f"{packageName}"], stdout=subprocess.DEVNULL)
+                result = subprocess.run(
+                    ["pip", "install", "-U", f"{packageName}"],
+                    stdout=subprocess.DEVNULL,
+                )
             version = self.getLatestVersion(packageName)
             if result.returncode != 0:
                 return {
@@ -225,10 +270,10 @@ class Manager:
             with open(self.pkl_path, "wb") as f:
                 pickle.dump(self.pipCache, f)
             # 更新数据到环境文件中
-            with open(self.environment_path, 'r') as f:
+            with open(self.environment_path, "r") as f:
                 data = dict(json.load(f))
             data[packageName]["version"] = self.getLatestVersion(packageName)
-            with open(self.environment_path, 'w') as f:
+            with open(self.environment_path, "w") as f:
                 json.dump(data, f, indent=4, ensure_ascii=False)
 
             return {
@@ -247,34 +292,49 @@ class Manager:
 
     @lru_cache
     def _getTextsFromPipShow(self, packageName):
-        if f"pipShow-{str(packageName)}" in self.pipCache and self.pipCache[f"pipShow-{str(packageName)}"]["time"] > time.time() - self.expire_time and not self.flag_update:
+        if (
+            f"pipShow-{str(packageName)}" in self.pipCache
+            and self.pipCache[f"pipShow-{str(packageName)}"]["time"]
+            > time.time() - self.expire_time
+            and not self.flag_update
+        ):
             return self.pipCache[f"pipShow-{str(packageName)}"]["data"]
         else:
-            result = subprocess.run(["pip", "show", str(packageName)], stdout=subprocess.PIPE)
-            texts = result.stdout.decode("utf-8").split('\n')
-            
+            result = subprocess.run(
+                ["pip", "show", str(packageName)], stdout=subprocess.PIPE
+            )
+            texts = result.stdout.decode("utf-8").split("\n")
+
             self.pipCache[f"pipShow-{str(packageName)}"] = {
                 "time": time.time(),
-                "data": texts
+                "data": texts,
             }
             with open(self.pkl_path, "wb") as f:
                 pickle.dump(self.pipCache, f)
 
             return texts
+
     def _getPackageInfoFromPipShow(self, packageName, infoName):
         texts = self._getTextsFromPipShow(packageName)
         try:
-            info = [text.split(":", 1)[1].strip() for text in texts if text.startswith(infoName)][0]
+            info = [
+                text.split(":", 1)[1].strip()
+                for text in texts
+                if text.startswith(infoName)
+            ][0]
         except:
             info = None
         return info
+
     def getPackageSummaryFromPipShow(self, packageName):
         return self._getPackageInfoFromPipShow(packageName, "Summary")
+
     def getPackageHomepageFromPipShow(self, packageName):
         return self._getPackageInfoFromPipShow(packageName, "Home-page")
+
     def getPackageRequiresFromPipShow(self, packageName):
         requires_str = self._getPackageInfoFromPipShow(packageName, "Requires")
-        requires = requires_str.split(',')
+        requires = requires_str.split(",")
         return requires
 
     def updatePackageInfo(self, packageName):
@@ -291,9 +351,14 @@ class Manager:
     def installPackages(self):
         for package in self.packages:
             if self.flag_verbose:
-                result = subprocess.run(["pip", "install", f"{package.name}=={package.version}"])
+                result = subprocess.run(
+                    ["pip", "install", f"{package.name}=={package.version}"]
+                )
             else:
-                result = subprocess.run(["pip", "install", f"{package.name}=={package.version}"], stdout=subprocess.DEVNULL)
+                result = subprocess.run(
+                    ["pip", "install", f"{package.name}=={package.version}"],
+                    stdout=subprocess.DEVNULL,
+                )
             print(f"安装成功: {package.name}=={package.version}")
         print("安装完成: 共安装了{}个包".format(len(self.packages)))
 
@@ -330,27 +395,37 @@ def handle(args):
         if pathlib.Path(args.environmentPath).parent.exists():
             environment_path = args.environmentPath
         else:
-            raise Exception(f"environmentPath {str(pathlib.Path(args.environmentPath).parent)} is not exist")
+            raise Exception(
+                f"environmentPath {str(pathlib.Path(args.environmentPath).parent)} is not exist"
+            )
     if args.devRequirementsPath:
         if pathlib.Path(args.devRequirementsPath).parent.exists():
             dev_requirements_path = args.devRequirementsPath
         else:
-            raise Exception(f"devRequirementsPath {str(pathlib.Path(args.devRequirementsPath).parent)} is not exist")
+            raise Exception(
+                f"devRequirementsPath {str(pathlib.Path(args.devRequirementsPath).parent)} is not exist"
+            )
     if args.prodRequirementsPath:
         if pathlib.Path(args.prodRequirementsPath).parent.exists():
             prod_requirements_path = args.prodRequirementsPath
         else:
-            raise Exception(f"prodRequirementsPath {str(pathlib.Path(args.prodRequirementsPath).parent)} is not exist")
+            raise Exception(
+                f"prodRequirementsPath {str(pathlib.Path(args.prodRequirementsPath).parent)} is not exist"
+            )
     if args.pklPath:
         if pathlib.Path(args.pklPath).parent.exists():
             pkl_path = args.pklPath
         else:
-            raise Exception(f"pklPath {str(pathlib.Path(args.pklPath).parent)} is not exist")
+            raise Exception(
+                f"pklPath {str(pathlib.Path(args.pklPath).parent)} is not exist"
+            )
     if args.packagesInfoPath:
         if pathlib.Path(args.packagesInfoPath).parent.exists():
             packages_info_path = args.packagesInfoPath
         else:
-            raise Exception(f"packagesInfoPath {str(pathlib.Path(args.packagesInfoPath).parent)} is not exist")
+            raise Exception(
+                f"packagesInfoPath {str(pathlib.Path(args.packagesInfoPath).parent)} is not exist"
+            )
     if args.verbose:
         flag_verbose = True
     if args.update:
@@ -359,9 +434,19 @@ def handle(args):
     if args.action == "install":
         is_install = True
 
-    manager = Manager(environment_path=environment_path, dev_requirements_path=dev_requirements_path, prod_requirements_path=prod_requirements_path, pkl_path=pkl_path, packages_info_path=packages_info_path, flag_verbose=flag_verbose, flag_update=flag_update, is_install=is_install)
+    manager = Manager(
+        environment_path=environment_path,
+        dev_requirements_path=dev_requirements_path,
+        prod_requirements_path=prod_requirements_path,
+        pkl_path=pkl_path,
+        packages_info_path=packages_info_path,
+        flag_verbose=flag_verbose,
+        flag_update=flag_update,
+        is_install=is_install,
+    )
 
     if args.action == "show":
+
         def showPackageInfo(packageName):
             manager.updatePackageInfo(packageName)
             for package in manager.packages:
@@ -379,7 +464,19 @@ def handle(args):
         if not args.packageName:
             with open(manager.packages_info_path, "w") as f:
                 writer = csv.writer(f)
-                writer.writerow(['名称', '版本', '最新版本', '用途/概要', '主页', '是否锁定版本', '关于版本的说明', '依赖', '是否在开发中使用'])
+                writer.writerow(
+                    [
+                        "名称",
+                        "版本",
+                        "最新版本",
+                        "用途/概要",
+                        "主页",
+                        "是否锁定版本",
+                        "关于版本的说明",
+                        "依赖",
+                        "是否在开发中使用",
+                    ]
+                )
             for packageName in manager.devPackageNames:
                 showPackageInfo(packageName)
                 print("====================================================")
@@ -387,7 +484,19 @@ def handle(args):
                     writer = csv.writer(f)
                     for package in manager.packages:
                         if package.name == packageName:
-                            writer.writerow([package.name, package.version, package.latestVersion, package.summary, package.homepage, package.locked, package.note, package.requires, package.inDev])
+                            writer.writerow(
+                                [
+                                    package.name,
+                                    package.version,
+                                    package.latestVersion,
+                                    package.summary,
+                                    package.homepage,
+                                    package.locked,
+                                    package.note,
+                                    package.requires,
+                                    package.inDev,
+                                ]
+                            )
 
         elif args.packageName not in manager.devPackageNames:
             raise Exception(f"{args.packageName}不在environment.json中")
@@ -413,21 +522,29 @@ def handle(args):
     else:
         raise Exception(f"未知的action: {args.action}")
 
+
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='一个简单易用的Python环境管理工具(只维护environment.json中的核心包)')
-    parser.add_argument('action', nargs=1, help='操作', choices=['show', 'upgrade', 'install', 'export'])
-    parser.add_argument('-p', '--packageName', required=False, help='包名')
-    parser.add_argument('--environmentPath', required=False, help='设置environment.json路径')
-    parser.add_argument('--devRequirementsPath', required=False, help='设置requirements-dev.txt路径')
-    parser.add_argument('--prodRequirementsPath', required=False, help='设置requirements-prod.txt路径')
-    parser.add_argument('--pklPath', required=False, help='设置pip数据库路径')
-    parser.add_argument('--packagesInfoPath', required=False, help='设置packagesInfo.csv路径')
-    parser.add_argument('--update', action='store_true', help='更新pip数据库')
-    parser.add_argument('--verbose', action='store_true', help='输出更多信息')
+    parser = argparse.ArgumentParser(
+        description="一个简单易用的Python环境管理工具(只维护environment.json中的核心包)"
+    )
+    parser.add_argument(
+        "action", nargs=1, help="操作", choices=["show", "upgrade", "install", "export"]
+    )
+    parser.add_argument("-p", "--packageName", required=False, help="包名")
+    parser.add_argument(
+        "--environmentPath", required=False, help="设置environment.json路径"
+    )
+    parser.add_argument(
+        "--devRequirementsPath", required=False, help="设置requirements-dev.txt路径"
+    )
+    parser.add_argument(
+        "--prodRequirementsPath", required=False, help="设置requirements-prod.txt路径"
+    )
+    parser.add_argument("--pklPath", required=False, help="设置pip数据库路径")
+    parser.add_argument(
+        "--packagesInfoPath", required=False, help="设置packagesInfo.csv路径"
+    )
+    parser.add_argument("--update", action="store_true", help="更新pip数据库")
+    parser.add_argument("--verbose", action="store_true", help="输出更多信息")
     args = parser.parse_args()
     handle(args)
-
-
-
-
-

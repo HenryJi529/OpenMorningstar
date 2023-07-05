@@ -147,6 +147,15 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+"""Restful配置"""
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.BasicAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+    ]
+}
+
+
 """语言与时区"""
 # 语言
 LANGUAGE_CODE = "zh-Hans"
