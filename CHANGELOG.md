@@ -4,13 +4,32 @@
 
 本次更新如下内容:
 
-1. 常规更新(UI, 依赖, 数据)
-1. 更新 GithubAction
+1. 常规更新(UI, 依赖, 数据, 测试)
+1. workflow:
+    - fabric: 解决流程执行中的不确定
+    - `tasks.sh`: 整合常用命令
+    - 更新GithubAction
 1. deploy:
-   - Nginx: 整合前后端 Nginx 配置
-   - Docker: 分离 Python 依赖安装，加快构建速度
-   - Fabric: 更新流程
-1. **blog**: 更新 UI,
+    - nginx: 
+        - 整合前后端Nginx配置
+        - 纯静态网页转换部署方式(From Vercel)
+        - 分离数据配置与基础设施
+    - docker: 
+        - django: 
+            - 分离Python依赖与版本，加快构建速度
+            - 更新node版本
+        - tshock: 添加`tmux`，更新配置
+        - matomo: 更新配置
+1. apps:
+    - **extension**: 用vue重构
+    - **blog**: 更新视图与UI
+    - **formula**: 用vue重构
+    - **joke**: 用vue重构，前后端分离
+    - **nav**: ts转换为js
+    - **notes**: 整合进主站
+    - **quiz**: 整合进主站
+    - **share**: 用vue重构，前后端分离
+
 
 ## v0.2.8:
 
