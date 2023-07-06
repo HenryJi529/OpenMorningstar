@@ -48,7 +48,7 @@ const handleSubmit = async ()=>{
   <div v-else>
     <div class="md:text-2xl my-10 text-center">
       <i class="fa-solid fa-link"></i>
-      <a :href="`${currentPath}${link}`" class="text-lime-600">{{ currentPath + link }}</a>
+      <a :href="`${currentPath}${link}`" class="text-lime-600 break-words">{{ currentPath + link }}</a>
     </div>
     <div class="flex justify-center">
         <img :src="`${baseURL}qrcode/`" alt="链接二维码" class="h-[8rem] md:h-[16rem]">
