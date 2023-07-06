@@ -31,8 +31,10 @@ onMounted(async ()=>{
         <div class="text-3xl text-red-500 mb-10">
             {{ errorMessage }}
         </div>
-        <div>
-            <a :href="url" class="link text-3xl break-words" target="_blank" >{{ url }}</a>
+        <div class="max-w-[100vw] text-xl md:text-3xl">
+            <a :href="url" class="link break-words" target="_blank" >
+                {{ url }}
+            </a>
         </div>
     </main>
 </template>

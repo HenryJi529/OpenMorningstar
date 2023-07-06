@@ -45,10 +45,11 @@ const handleSubmit = async ()=>{
         <button type="submit" class="btn btn-square" @click="handleSubmit">GO</button>
     </div>
   </div>
-  <div v-else>
-    <div class="md:text-2xl my-10 text-center">
-      <i class="fa-solid fa-link"></i>
-      <a :href="`${currentPath}${link}`" class="text-lime-600 break-words">{{ currentPath + link }}</a>
+  <div v-else class="max-w-[100vw] overflow-hidden p-4">
+    <div class="text-base md:text-2xl my-10 text-lime-600 break-words">
+      <a :href="`${currentPath}${link}`">
+        {{ currentPath + link }}
+      </a>
     </div>
     <div class="flex justify-center">
         <img :src="`${baseURL}qrcode/`" alt="链接二维码" class="h-[8rem] md:h-[16rem]">
