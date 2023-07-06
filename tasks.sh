@@ -6,7 +6,7 @@ PYTHON=$(pwd)/VENV/bin/python
 PIPDEPTREE=$(pwd)/VENV/bin/pipdeptree
 
 runRemoteCommand() {
-	fab -H $CLOUD_USERNAME@${PUBLIC_IP} -r scripts/deploy/_fabric -p $1
+	fab -H $CLOUD_USERNAME@${PUBLIC_IP} -r scripts/fabric -p $1
 }
 
 # 简单运行
