@@ -15,6 +15,7 @@ hljs.registerLanguage('mathematica', require('highlight.js/lib/languages/mathema
 hljs.registerLanguage('nginx', require('highlight.js/lib/languages/nginx'));
 hljs.registerLanguage('plaintext', require('highlight.js/lib/languages/plaintext'));
 hljs.registerLanguage('python', require('highlight.js/lib/languages/python'));
+hljs.registerLanguage('java', require('highlight.js/lib/languages/java'));
 hljs.registerLanguage('scss', require('highlight.js/lib/languages/scss'));
 hljs.registerLanguage('sql', require('highlight.js/lib/languages/sql'));
 hljs.registerLanguage('typescript', require('highlight.js/lib/languages/typescript'));
