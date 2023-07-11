@@ -92,6 +92,9 @@
 						class="grid justify-around grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pr-8 pl-4">
 						{% for item in category.items %}
 
+						{% if item.level == "admin" and not user.is_superuser %}
+						{% else %}
+
 						{% if item.display == "hide" %}
 
 						{% elif item.display == "modal" %}
@@ -133,6 +136,8 @@
 							<div class="desc relative bottom-2 indent-4">{{item.desc}}</div>
 							{% endif %}
 						</a>
+						{% endif %}
+
 						{% endif %}
 
 						{% endfor %}
