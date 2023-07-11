@@ -427,7 +427,7 @@
 					"name": "印记中文",
 					"url": "https://docschina.org/",
 					"image": "/media/nav/img/Manual/印记中文.png",
-					"display": "hide"
+					"level": "admin"
 				}
 			]
 		},
@@ -624,6 +624,13 @@
 					"desc": "综合性的CS学习笔记"
 				},
 				{
+					"name": "CS自学指南",
+					"url": "https://csdiy.wiki/",
+					"image": "/media/nav/img/Learn/CS自学指南.png",
+					"desc": "学习路径+网课推荐",
+					"level": "admin"
+				},
+				{
 					"name": "润学笔记",
 					"url": "https://github.com/lidangzzz/How-to-run",
 					"image": "/media/nav/img/Learn/润学笔记.png",
@@ -665,16 +672,6 @@
 					"slug": "picture",
 					"display": "modal",
 					"entries": [
-						{
-							"name": "图像放大",
-							"link": "https://bigjpg.com/",
-							"class": "special"
-						},
-						{
-							"name": "图像压缩",
-							"link": "https://tinypng.com/",
-							"class": "special"
-						},
 						{
 							"name": "wallpaperup",
 							"link": "https://www.wallpaperup.com/"
@@ -1151,8 +1148,22 @@
 					"display": "modal",
 					"entries": [
 						{
+							"name": "Photopea(在线PS)",
+							"link": "https://www.photopea.com/"
+						},
+						{
 							"name": "图片处理(尺寸,裁剪,水印,转换)",
 							"link": "https://www.iloveimg.com/zh-cn"
+						},
+						{
+							"name": "图像放大",
+							"link": "https://bigjpg.com/",
+							"class": "special"
+						},
+						{
+							"name": "图像压缩",
+							"link": "https://tinypng.com/",
+							"class": "special"
 						},
 						{
 							"name": "图片去底",
