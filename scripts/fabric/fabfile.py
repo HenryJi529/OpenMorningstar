@@ -17,6 +17,7 @@ CLOUD_USERNAME = os.getenv("CLOUD_USERNAME")
 DOMAIN_LIST = [
     "morningstar369.com",
     "beancount.morningstar369.com",
+    "chatbot.morningstar369.com",
     "code.morningstar369.com",
     "frps.morningstar369.com",
     "matomo.morningstar369.com",
@@ -221,7 +222,7 @@ def updatePackage(c):
     home_path = "~/"
     with c.cd(home_path):
         """发布包(dockerhub与ghcr)"""
-        packages = ["nginx", "beancount", "tshock", "django"]
+        packages = ["beancount", "tshock"]
         for package in packages:
             try:
                 c.run(f"docker rmi ghcr.io/henryji529/morningstar-{package}")
