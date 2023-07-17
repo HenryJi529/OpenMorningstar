@@ -1,4 +1,4 @@
-Django==4.2.1
+Django==4.2.3
 Markdown==3.4.3
 Pillow==9.5.0
 SciencePlots==2.1.0
