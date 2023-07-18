@@ -22,7 +22,7 @@ DOMAIN_LIST = [
     "frps.morningstar369.com",
     "matomo.morningstar369.com",
     "portainer.morningstar369.com",
-    "ssh.morningstar369.com",
+    "sshwifty.morningstar369.com",
 ]
 
 
