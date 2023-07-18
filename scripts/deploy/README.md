@@ -9,7 +9,7 @@
     - 3307: MySQL
     - 5299: Code-Server
     - 6379: Redis
-    - 7500: frps
+    - 7500: Frps
     - 6001: Beancount
     - 6002: TShock
     - 6003: Matomo
@@ -20,7 +20,5 @@
     - 6008: RSSHub
     - 6009: Send
     - 6010: Sshwifty
-
-    - 连续端口: 6000~6010
 - 内网穿透:
     - 1022: MacBookPro-HenryJi529的SSH
