@@ -13,6 +13,7 @@ volumes:
   morningstar_ftp_log: null
   # morningstar_gitea_data: null
   morningstar_jellyfin_config: null
+  morningstar_jellyfin_cache: null
   morningstar_jellyfin_media: null
   morningstar_portainer_data: null
   # morningstar_send_data: null
@@ -218,6 +219,7 @@ services:
     container_name: morningstar_jellyfin
     hostname: henry-jellyfin
     volumes:
+      - morningstar_jellyfin_cache:/cache
       - morningstar_jellyfin_config:/config
       - morningstar_jellyfin_media:/media
     restart: 'unless-stopped'
