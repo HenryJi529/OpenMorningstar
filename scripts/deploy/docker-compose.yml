@@ -211,6 +211,21 @@ services:
       - "6005:3000"
     command: bash /start.sh
 
+  jellyfin:
+    image: jellyfin/jellyfin
+    container_name: morningstar_jellyfin
+    hostname: henry-jellyfin
+    volumes:
+      - /path/to/config:/config
+      - /path/to/cache:/cache
+      - /path/to/media:/media
+      - /path/to/media2:/media2:ro
+    restart: 'unless-stopped'
+    ports:
+      - "6006:8096"
+    environment:
+      - JELLYFIN_PublishedServerUrl=https://jellyfin.morningstar369.com
+
   portainer:
     image: portainer/portainer:latest
     container_name: morningstar_portainer
@@ -249,9 +264,9 @@ services:
   #   ports:
   #     - "6009:1443"
 
-  ssh:
+  sshwifty:
     image: niruix/sshwifty:latest
-    container_name: morningstar_ssh
+    container_name: morningstar_sshwifty
     tty: true
     restart: always
     ports:
