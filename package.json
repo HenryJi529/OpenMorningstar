@@ -35,7 +35,7 @@
     "npm-check-updates": "^16.10.16",
     "sass": "^1.63.6",
     "tailwindcss": "~3.3.3",
-    "terser": "^5.19.0",
+    "terser": "^5.19.1",
     "typescript": "^5.1.6",
     "watchify": "^4.0.0"
   },
