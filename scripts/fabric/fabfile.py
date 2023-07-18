@@ -20,6 +20,7 @@ DOMAIN_LIST = [
     "chatbot.morningstar369.com",
     "code.morningstar369.com",
     "frps.morningstar369.com",
+    "jellyfin.morningstar369.com",
     "matomo.morningstar369.com",
     "portainer.morningstar369.com",
     "sshwifty.morningstar369.com",
