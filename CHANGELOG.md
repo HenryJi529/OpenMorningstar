@@ -1,5 +1,20 @@
 # 更新日志
 
+## v0.2.10:
+
+本次更新如下内容:
+
+1. 常规更新(UI, 依赖, 数据)
+1. deploy:
+    - multipass:
+        - 更新node版本
+    - nginx:
+        - 设置chatbot重定向
+    - docker:
+        - 将chatbot整合进站点
+1. apps:
+    - **blog**: highlightJS支持java语言高亮
+
 ## v0.2.9:
 
 本次更新如下内容:
