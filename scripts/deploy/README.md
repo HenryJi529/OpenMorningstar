@@ -10,6 +10,7 @@
     - 5299: Code-Server
     - 6379: Redis
     - 7500: Frps
+    - 6000: Django(main)
     - 6001: Beancount
     - 6002: TShock
     - 6003: Matomo
