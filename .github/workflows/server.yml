@@ -1,7 +1,7 @@
 name: Check Server
 on:
   schedule:
-    - cron: "0 9 * * *"
+    - cron: "0 1 * * 1"
 jobs:
   show-docker-status:
     name: show docker status
