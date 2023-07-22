@@ -1,3 +1,4 @@
-/exercises_random.ipynb
-/exercises_with_hints_with_solutions.md
-/exercises.ipynb
+*.md
+*.ipynb
+
+!README.md

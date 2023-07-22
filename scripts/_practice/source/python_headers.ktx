@@ -9,15 +9,9 @@ Enjoy the puzzles!
 < sub_header
 File automatically generated. See the [readme](./README.md) to update questions/answers/hints programmatically.
 
-
 < jupyter_instruction
 Run the `initialize.py` module, then for each question you can query the
 answer or an hint with `hint(n)` or `answer(n)` for `n` question number.
-
-
-< jupyter_instruction_rand
-Run the `initialize.py` module, then call a random question with `pick()` an hint towards its solution with
-`hint(n)` and the answer with `answer(n)`, where n is the number of the picked question.
 
 < describe_import_all
 Import all the python libraries which may be used during practice.

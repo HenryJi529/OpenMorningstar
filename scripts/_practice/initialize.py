@@ -1,20 +1,23 @@
-import numpy as np
+import argparse
 
-from generators import NUM, QHA
+from generators import Parser
+
+
+argParser = argparse.ArgumentParser(description="Parser Configuration")
+argParser.add_argument("--category", type=str, help="Exercise Category")
+args = argParser.parse_args()
+
+parser = Parser(args.category)
+QHA = parser.contentDict
 
 
 def question(n):
-    print(f'{n}. ' + QHA[f'q{n}'])
+    print(f"{n}. " + QHA[f"q{n}"])
 
 
 def hint(n):
-    print(QHA[f'h{n}'])
+    print(QHA[f"h{n}"])
 
 
 def answer(n):
-    print(QHA[f'a{n}'])
-
-
-def pick():
-    n = np.random.randint(1, NUM+1)
-    question(n)
+    print(QHA[f"a{n}"])
