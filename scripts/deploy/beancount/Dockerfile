@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:jammy
 LABEL maintainer="jeep.jipu@gmail.com" version="1.0"
 WORKDIR /root/
 

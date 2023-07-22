@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:jammy
 ARG PYTHON_VERSION=3.9
 WORKDIR /app
 

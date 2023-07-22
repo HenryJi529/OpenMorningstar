@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:jammy
 LABEL maintainer="jeep.jipu@gmail.com" version="1.0"
 ARG tshock_version=5.1.3
 ARG terraria_version=1.4.4.9

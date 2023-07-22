@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:jammy
 WORKDIR /root
 
 # 切换中国镜像
