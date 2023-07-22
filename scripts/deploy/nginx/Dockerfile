@@ -1,10 +1,6 @@
 FROM nginx:latest
 
 # NOTE: 不再支持sources.list直接更新
-# RUN apt-get update
-# RUN apt-get install -y ca-certificates
-# RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak
-# COPY ./_mirror_cn/tuna-sources-debian.list /etc/apt/sources.list
 
 RUN apt-get update
 RUN apt-get install -y certbot python3-certbot-nginx vim cron
