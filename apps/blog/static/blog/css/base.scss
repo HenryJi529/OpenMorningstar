@@ -159,6 +159,12 @@ mjx-container {
 
     table:not(code table) {
         width: 70%;
+
+        @media (max-width: 560px) {
+            width: 95%;
+            margin: 0 auto;
+        }
+
         border-collapse: collapse;
         margin: 0 auto;
         padding-top: 20px;
