@@ -43,6 +43,7 @@ class Category(models.Model):
         verbose_name = "分类"
         verbose_name_plural = verbose_name
         app_label = "blog"
+        ordering = ["name"]
 
     def __str__(self):
         return self.name
@@ -59,6 +60,7 @@ class Tag(models.Model):
         verbose_name = "标签"
         verbose_name_plural = verbose_name
         app_label = "blog"
+        ordering = ["name"]
 
     def __str__(self):
         return self.name
