@@ -1,6 +1,7 @@
 {% extends 'blog/base.html' %}
 {% load compress %}
 {% load comments_extras %}
+{% load blog_extras %}
 
 {% block custom_css %}
 
@@ -84,7 +85,9 @@
 {% endblock main %}
 
 {% block toc %}
-{% if post.toc %}
+
+{% toc_not_null post.toc as tocNotNull %}
+{% if tocNotNull %}
 <div class="widget p-2 relative">
     <input class="widget-toggle hidden absolute w-full" type="checkbox" />
     <h3 class="widget-title text-2xl">目录</h3>
@@ -94,6 +97,7 @@
 </div>
 <div class="divider"></div>
 {% endif %}
+
 {% endblock toc %}
 
 {% block custom_js %}
