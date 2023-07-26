@@ -254,6 +254,9 @@
     "torch": {
         "version": "2.0.1"
     },
+    "torchvision": {
+        "version": "0.15.2"
+    },
     "tensorboard": {
         "version": "2.13.0"
     },
