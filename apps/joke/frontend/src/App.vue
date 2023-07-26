@@ -11,7 +11,7 @@ const endpoint = "/jokes/random?n=30"
 import Nav from "./components/Nav.vue"
 import Footer from "./components/Footer.vue"
 import MasonryGrid from "./components/MasonryGrid.vue";
-import {useLoadStore} from "./stores/load.js"
+import { useLoadStore } from "./stores/load.js"
 
 const items = ref([])
 const load = useLoadStore()
@@ -31,21 +31,21 @@ const onRefreshData = async () => {
     console.log("Start Refreshing...")
     load.isLoading = true
     const response = await axios.get(endpoint);
-    items.value = response.data.status==="ok" ? response.data.objects : [];
+    items.value = response.data.status === "ok" ? response.data.objects : [];
     load.isLoading = false
     console.log("Finish Refreshing...")
-} 
+}
 
 const onUpdateData = async () => {
     console.log("Start Updating...")
     load.isLoading = true;
     const response = await axios.get(endpoint);
-    items.value = items.value.concat(response.data.status==="ok" ? response.data.objects : []);
+    items.value = items.value.concat(response.data.status === "ok" ? response.data.objects : []);
     load.isLoading = false
     console.log("Finish Updating...")
 }
 
-onMounted(()=>{
+onMounted(() => {
     window.addEventListener('scroll', handleScroll);
     onRefreshData()
 })
@@ -55,9 +55,9 @@ onMounted(()=>{
 <template>
     <div class="min-h-screen relative">
         <github-corners fixed target="__blank" href="https://github.com/HenryJi529/OpenMorningstar" />
-        <Nav @refreshData="onRefreshData"/>
+        <Nav @refreshData="onRefreshData" />
         <div class="pb-20">
-            <MasonryGrid :items="items" v-if="items.length > 0"/>
+            <MasonryGrid :items="items" v-if="items.length > 0" />
             <div v-else class="flex justify-center items-center h-[80vh]">
                 <span class="loading loading-infinity w-[5rem] md:w-[10rem]"></span>
             </div>
@@ -65,10 +65,8 @@ onMounted(()=>{
                 <span class="loading loading-dots w-[3rem] md:w-[5rem]"></span>
             </div>
         </div>
-        <Footer :fixed="!items"/>
+        <Footer :fixed="!items" />
     </div>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>
