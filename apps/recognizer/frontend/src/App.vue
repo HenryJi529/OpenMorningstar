@@ -56,7 +56,7 @@ const uploadImage = async () => {
 <template>
   <Header />
 
-  <main class="flex justify-center items-center flex-col space-y-6 w-80 mx-auto mt-[2em] mb:mt-[4em]">
+  <main class="flex justify-center items-center flex-col space-y-6 w-80 mx-auto mt-[2em] mb:mt-[4em] pb-[6em]">
     <input class="file-input file-input-bordered file-input-primary w-full max-w-xs" accept="image/*" type="file"
       @change="handleFileChange" />
 
@@ -76,7 +76,7 @@ const uploadImage = async () => {
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
           d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
       </svg>
-      <span>预测结果: {{ categoryName }}({{ `${(score * 100).toFixed(1)}%` }})</span>
+      <span><span class="font-bold">预测结果</span>: {{ categoryName }}({{ `${(score * 100).toFixed(1)}%` }})</span>
     </div>
 
   </main>

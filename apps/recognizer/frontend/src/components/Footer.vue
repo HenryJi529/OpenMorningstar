@@ -34,7 +34,7 @@ setInterval(() => {
 </script>
 
 <template>
-    <div class="absolute bottom-2 mx-auto w-full">
+    <div class="fixed bottom-2 mx-auto w-full">
         <div class="text-center">
             <div id="runtime_span">不温不火运行: {{ runTime.dayNum }} 天 {{ runTime.hourNum }} 小时 {{ runTime.minuteNum }} 分钟 {{
                 runTime.secondNum }} 秒</div>
