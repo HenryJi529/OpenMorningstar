@@ -57,7 +57,7 @@ class PretrainedModelHandler(ModelHandler):
 
     @cached_property
     def params(self):
-        params_path = Path("./params") / self.WEIGHTS.url.split("/")[-1]
+        params_path = Path(__file__).parent / "params" / self.WEIGHTS.url.split("/")[-1]
         if not params_path.is_file():
             request = requests.get(self.WEIGHTS.url)
             with open(params_path, "wb") as f:
