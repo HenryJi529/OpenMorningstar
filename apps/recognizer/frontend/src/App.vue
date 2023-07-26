@@ -1,3 +1,8 @@
+<script setup>
+
+</script>
+
+
 <template>
   <div class=" md:mx-auto relative bg-white overflow-hidden border-b">
     <div class="h-12 md:ml-10 md:pr-4 md:space-x-8 flex justify-center">
@@ -9,3 +14,6 @@
     </div>
   </div>
 </template>
+
+
+<style scoped></style>
