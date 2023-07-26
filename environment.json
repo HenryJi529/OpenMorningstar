@@ -27,7 +27,7 @@
         ]
     },
     "igraph": {
-        "version": "0.10.4",
+        "version": "0.10.6",
         "summary": "分析与绘制图和网络",
         "dependencies": [
             "cairocffi"
@@ -43,7 +43,7 @@
         "inDev": true
     },
     "Django": {
-        "version": "4.2.1",
+        "version": "4.2.3",
         "summary": "提供web后端"
     },
     "djangorestframework": {
@@ -51,7 +51,7 @@
         "summary": "REST framework for Django"
     },
     "django-compressor": {
-        "version": "4.3.1",
+        "version": "4.4",
         "summary": "压缩css/js"
     },
     "django-cors-headers": {
@@ -96,7 +96,7 @@
         "summary": "Google Recaptcha验证"
     },
     "django-redis": {
-        "version": "5.2.0",
+        "version": "5.3.0",
         "summary": "django的全局redis"
     },
     "django-user-agents": {
@@ -109,7 +109,7 @@
         "inDev": true
     },
     "Faker": {
-        "version": "18.10.1",
+        "version": "19.2.0",
         "summary": "测试数据生成",
         "inDev": true
     },
@@ -126,12 +126,12 @@
         "summary": "动态web服务器"
     },
     "ipykernel": {
-        "version": "6.23.2",
+        "version": "6.25.0",
         "summary": "用于支持ipynb笔记本",
         "inDev": true
     },
     "ipython": {
-        "version": "8.13.2",
+        "version": "8.14.0",
         "summary": "交互式python"
     },
     "jieba": {
@@ -139,7 +139,7 @@
         "summary": "中文分词"
     },
     "matplotlib": {
-        "version": "3.7.1",
+        "version": "3.7.2",
         "summary": "绘图工具"
     },
     "SciencePlots": {
@@ -165,7 +165,8 @@
     },
     "mysqlclient": {
         "version": "2.1.1",
-        "summary": "mysql的pythonAPI"
+        "summary": "mysql的pythonAPI",
+        "locked": true
     },
     "mysql-to-sqlite3": {
         "version": "2.0.3",
@@ -184,7 +185,7 @@
         "summary": "表数据处理"
     },
     "Pillow": {
-        "version": "9.5.0",
+        "version": "10.0.0",
         "summary": "图像处理"
     },
     "pip": {
@@ -193,7 +194,7 @@
         "inDev": true
     },
     "pipdeptree": {
-        "version": "2.9.0",
+        "version": "2.11.0",
         "summary": "python依赖关系展示工具",
         "inDev": true
     },
@@ -264,13 +265,13 @@
         "version": "2.2.0"
     },
     "torchmetrics": {
-        "version": "0.11.4"
+        "version": "1.0.1"
     },
     "torchinfo": {
         "version": "1.8.0"
     },
     "scikit-learn": {
-        "version": "1.2.2"
+        "version": "1.3.0"
     },
     "mlxtend": {
         "version": "0.22.0"
