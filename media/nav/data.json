@@ -49,6 +49,12 @@
 					"desc": "只用来保链接证分享者的隐私"
 				},
 				{
+					"name": "图像识别",
+					"url": "/recognizer/",
+					"image": "/media/nav/img/Work/recognizer.png",
+					"desc": "只用来保链接证分享者的隐私"
+				},
+				{
 					"name": "个人博客",
 					"url": "/",
 					"image": "/media/nav/img/Work/blog.png",
