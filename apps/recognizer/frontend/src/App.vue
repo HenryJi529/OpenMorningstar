@@ -12,6 +12,7 @@ const selectedImage = ref(null);
 const imageDataURL = ref(null);
 const categoryName = ref("");
 const score = ref(0);
+const isLoading = ref(false);
 
 const handleFileChange = (event) => {
   const selectedFile = event.target.files[0];
@@ -34,6 +35,7 @@ const clearImage = (event) => {
 }
 
 const uploadImage = async () => {
+  isLoading.value = true
   const { data: { csrfToken } } = await axios.get('csrf-token/')
   axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
   const response = await axios.post(endpoint, {
@@ -44,6 +46,7 @@ const uploadImage = async () => {
     categoryName.value = response.data.categoryName
     score.value = response.data.score
   }
+  isLoading.value = false
 
 }
 
@@ -53,14 +56,16 @@ const uploadImage = async () => {
 <template>
   <Header />
 
-  <main class="flex justify-center items-center flex-col space-y-6 w-80 mx-auto mt-[4em]">
+  <main class="flex justify-center items-center flex-col space-y-6 w-80 mx-auto mt-[2em] mb:mt-[4em]">
     <input class="file-input file-input-bordered file-input-primary w-full max-w-xs" accept="image/*" type="file"
       @change="handleFileChange" />
 
-    <div class="flex justify-between items-center w-full my-3 pb-10">
+    <div class="flex justify-between items-center w-full my-3 md:pb-10">
       <button class="btn btn-outline px-5 text-lg" @click="clearImage">清 除</button>
-      <button class="btn btn-outline px-5 text-lg btn-primary" @click="uploadImage" :disabled="!selectedImage">上
-        传</button>
+      <button class="btn btn-outline px-5 text-lg btn-primary" @click="uploadImage" :disabled="!selectedImage">
+        <span class="loading loading-spinner loading-sm" v-if="isLoading"></span>
+        <span v-else>上传</span>
+      </button>
     </div>
     <div class="flex justify-center items-center">
       <img v-if="selectedImage" :src="imageDataURL" alt="Selected Image">
