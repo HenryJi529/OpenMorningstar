@@ -1,18 +1,82 @@
 <script setup>
+import { ref } from "vue"
+
+import axios from "axios";
+axios.defaults.baseURL = process.env.BASE_URL
+const endpoint = "/"
+
+import Header from "./components/Header.vue"
+import Footer from "./components/Footer.vue"
+
+const selectedImage = ref(null);
+const imageDataURL = ref(null);
+const categoryName = ref("");
+const score = ref(0);
+
+const handleFileChange = (event) => {
+  const selectedFile = event.target.files[0];
+  if (selectedFile) {
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      selectedImage.value = selectedFile;
+      imageDataURL.value = reader.result;
+    };
+
+    reader.readAsDataURL(selectedFile);
+  }
+}
+
+const clearImage = (event) => {
+  selectedImage.value = null;
+  imageDataURL.value = null;
+  event.target.files = null;
+}
+
+const uploadImage = async () => {
+  const { data: { csrfToken } } = await axios.get('csrf-token/')
+  axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
+  const response = await axios.post(endpoint, {
+    "imageDataURL": imageDataURL.value
+  })
+
+  if (response.status === 200) {
+    categoryName.value = response.data.categoryName
+    score.value = response.data.score
+  }
+
+}
 
 </script>
 
 
 <template>
-  <div class=" md:mx-auto relative bg-white overflow-hidden border-b">
-    <div class="h-12 md:ml-10 md:pr-4 md:space-x-8 flex justify-center">
-      <a href="#" class="font-medium text-gray-500 hover:text-gray-900 flex items-center">Home</a>
-      <a href="#" class="font-medium text-gray-500 hover:text-gray-900 flex items-center">Product</a>
-      <a href="#" class="font-medium text-gray-500 hover:text-gray-900 flex items-center">Article</a>
-      <a href="#" class="font-medium text-gray-500 hover:text-gray-900 flex items-center">About</a>
-      <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500 flex items-center">Log in</a>
+  <Header />
+
+  <main class="flex justify-center items-center flex-col space-y-6 w-80 mx-auto mt-[4em]">
+    <input class="file-input file-input-bordered file-input-primary w-full max-w-xs" accept="image/*" type="file"
+      @change="handleFileChange" />
+
+    <div class="flex justify-between items-center w-full my-3 pb-10">
+      <button class="btn btn-outline px-5 text-lg" @click="clearImage">清 除</button>
+      <button class="btn btn-outline px-5 text-lg btn-primary" @click="uploadImage" :disabled="!selectedImage">上
+        传</button>
     </div>
-  </div>
+    <div class="flex justify-center items-center">
+      <img v-if="selectedImage" :src="imageDataURL" alt="Selected Image">
+    </div>
+
+    <div class="alert alert-info pt-4" v-if="categoryName">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      <span>预测结果: {{ categoryName }}({{ `${(score * 100).toFixed(1)}%` }})</span>
+    </div>
+
+  </main>
+
+  <Footer />
 </template>
 
 
