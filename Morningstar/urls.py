@@ -76,6 +76,7 @@ urlpatterns = [
     path("poll/", include("poll.urls")),
     path("proxy/", include("proxy.urls")),
     path("api/quiz/", include("quiz.urls")),
+    path("api/recognizer/", include("recognizer.urls")),
     path("rss/", include("rss.urls")),
     path("api/share/", include("share.urls")),
     # 快捷
