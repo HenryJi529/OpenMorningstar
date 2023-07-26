@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build --outDir ../../../scripts/deploy/nginx/www/recognizer --emptyOutDir",
     "preview": "vite preview"
   },
   "dependencies": {
