@@ -817,11 +817,6 @@
 					"display": "modal",
 					"entries": [
 						{
-							"name": "Favicon生成",
-							"link": "https://favicon.io/favicon-converter/",
-							"class": "special"
-						},
-						{
 							"name": "OpenMoji",
 							"link": "https://www.openmoji.org/"
 						},
@@ -1163,6 +1158,11 @@
 						{
 							"name": "图像压缩",
 							"link": "https://tinypng.com/",
+							"class": "special"
+						},
+						{
+							"name": "Favicon(ico)生成",
+							"link": "https://favicon.io/favicon-converter/",
 							"class": "special"
 						},
 						{
