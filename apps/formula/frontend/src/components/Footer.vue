@@ -1,5 +1,5 @@
 <script setup>
-import {ref} from 'vue';
+import { ref } from 'vue';
 
 const getRunTime = () => {
     const currentTime = new Date();
@@ -36,14 +36,14 @@ setInterval(() => {
 <template>
     <div class="absolute bottom-2 mx-auto w-full">
         <div class="text-center">
-            <div id="runtime_span">不温不火运行: {{ runTime.dayNum }} 天 {{ runTime.hourNum }} 小时 {{ runTime.minuteNum }} 分钟 {{ runTime.secondNum }} 秒</div>
+            <div id="runtime_span">不温不火运行: {{ runTime.dayNum }} 天 {{ runTime.hourNum }} 小时 {{ runTime.minuteNum }} 分钟 {{
+                runTime.secondNum }} 秒</div>
             <div id="copyright">
                 <span>© 2022
                     <a href="https://linktr.ee/Henry529" class="font-bold" style="font-family: Lora">Henry Ji</a>
                 </span>
                 <span class="brightness-0"> / </span>
-                <span>License: <a href="https://www.gnu.org/licenses/agpl-3.0.en.html"
-                        class="font-bold">AGPLv3</a></span>
+                <span>License: <a href="https://www.gnu.org/licenses/agpl-3.0.en.html" class="font-bold">AGPLv3</a></span>
                 <span class="brightness-0"> / </span>
                 <span>Powered by <a href="https://www.djangoproject.com/" class="font-bold">Django</a></span>
             </div>
@@ -52,5 +52,4 @@ setInterval(() => {
 </template>
 
 
-<style scoped>
-</style>
+<style scoped></style>
