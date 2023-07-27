@@ -122,7 +122,7 @@
         "summary": "fontawesome free字体管理"
     },
     "gunicorn": {
-        "version": "20.1.0",
+        "version": "21.2.0",
         "summary": "动态web服务器"
     },
     "ipykernel": {
@@ -193,7 +193,7 @@
         "summary": "图像处理"
     },
     "pip": {
-        "version": "23.1.2",
+        "version": "23.2.1",
         "summary": "包管理工具",
         "inDev": true
     },
@@ -212,7 +212,7 @@
         "summary": "音频处理库"
     },
     "pymdown-extensions": {
-        "version": "10.0.1",
+        "version": "10.1",
         "summary": "实用的Python-Markdown扩展"
     },
     "python-dotenv": {
