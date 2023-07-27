@@ -155,7 +155,7 @@
         "summary": "更高级的绘图工具"
     },
     "Markdown": {
-        "version": "3.4.3"
+        "version": "3.4.4"
     },
     "mdutils": {
         "version": "1.6.0",
@@ -223,7 +223,7 @@
         "version": "7.4.2"
     },
     "readtime": {
-        "version": "2.0.0",
+        "version": "3.0.0",
         "summary": "阅读时间计算",
         "dependencies": [
             "lxml"
