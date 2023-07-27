@@ -1,5 +1,26 @@
 # 更新日志
 
+## v0.2.11:
+
+本次更新如下内容:
+
+1. 常规更新(UI, 依赖, 数据)
+1. `_practice`: 重构
+1. workflow:
+    - fabric: 更新域名
+    - ci: 调整schedule
+1. apps:
+    - **blog**: 修正目录样式, 修正表格样式, 更新分页文章数量
+    - **recognizer**: 图像识别app初始化
+1. deploy:
+    - nginx:
+        - 删除镜像换源配置
+        - 添加`recognizer`配置
+    - docker: 
+        - 固定ubuntu版本为jammy
+        - 更新端口说明
+        - jellyfin: 整合进项目
+
 ## v0.2.10:
 
 本次更新如下内容:
