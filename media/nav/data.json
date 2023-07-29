@@ -679,6 +679,11 @@
 					"display": "modal",
 					"entries": [
 						{
+							"name": "Vega AI(图片生成, 支持中文prompt)",
+							"link": "https://rightbrain.art/",
+							"class": "special"
+						},
+						{
 							"name": "wallpaperup",
 							"link": "https://www.wallpaperup.com/"
 						},
@@ -699,7 +704,7 @@
 							"link": "https://www.freepik.com/"
 						},
 						{
-							"name": "pexels",
+							"name": "Pexels",
 							"link": "https://www.pexels.com/"
 						}
 					]
