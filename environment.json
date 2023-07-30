@@ -198,7 +198,7 @@
         "inDev": true
     },
     "pipdeptree": {
-        "version": "2.11.0",
+        "version": "2.12.0",
         "summary": "python依赖关系展示工具",
         "inDev": true
     },
