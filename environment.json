@@ -163,7 +163,7 @@
         "inDev": true
     },
     "nbformat": {
-        "version": "5.9.1",
+        "version": "5.9.2",
         "summary": "用于支持ipynb笔记本",
         "inDev": true
     },
@@ -181,7 +181,7 @@
         "summary": "图和网络分析工具"
     },
     "numpy": {
-        "version": "1.25.1",
+        "version": "1.25.2",
         "summary": "矩阵计算"
     },
     "pandas": {
@@ -239,7 +239,7 @@
         "version": "1.11.1"
     },
     "simpy": {
-        "version": "4.0.1"
+        "version": "4.0.2"
     },
     "sh": {
         "version": "2.0.4",

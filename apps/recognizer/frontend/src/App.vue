@@ -9,8 +9,9 @@ import Header from "./components/Header.vue"
 import Footer from "./components/Footer.vue"
 
 const selectedImage = ref(null);
+const selectedModelName = ref("请选择模型");
 const imageDataURL = ref(null);
-const categoryName = ref("");
+const category = ref("");
 const score = ref(0);
 const isLoading = ref(false);
 
@@ -39,11 +40,12 @@ const uploadImage = async () => {
   const { data: { csrfToken } } = await axios.get('csrf-token/')
   axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
   const response = await axios.post(endpoint, {
-    "imageDataURL": imageDataURL.value
+    "imageDataURL": imageDataURL.value,
+    "modelName": selectedModelName.value
   })
 
   if (response.status === 200) {
-    categoryName.value = response.data.categoryName
+    category.value = response.data.category
     score.value = response.data.score
   }
   isLoading.value = false
@@ -57,6 +59,14 @@ const uploadImage = async () => {
   <Header />
 
   <main class="flex justify-center items-center flex-col space-y-6 w-80 mx-auto mt-[2em] mb:mt-[4em] pb-[6em]">
+    <select class="select w-full max-w-xs" v-model="selectedModelName">
+      <option disabled selected>请选择模型</option>
+      <option>EfficientNetB2</option>
+      <option>TinyVGG</option>
+      <option>GoogLeNet</option>
+      <option>ViT</option>
+    </select>
+
     <input class="file-input file-input-bordered file-input-primary w-full max-w-xs" accept="image/*" type="file"
       @change="handleFileChange" />
 
@@ -71,12 +81,12 @@ const uploadImage = async () => {
       <img v-if="selectedImage" :src="imageDataURL" alt="Selected Image">
     </div>
 
-    <div class="alert alert-info pt-4" v-if="categoryName">
+    <div class="alert alert-info pt-4" v-if="category">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
           d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
       </svg>
-      <span><span class="font-bold">预测结果</span>: {{ categoryName }}({{ `${(score * 100).toFixed(1)}%` }})</span>
+      <span><span class="font-bold">预测结果</span>: {{ category }}({{ `${(score * 100).toFixed(1)}%` }})</span>
     </div>
 
   </main>

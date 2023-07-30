@@ -14,21 +14,36 @@ from rest_framework.request import Request
 
 from PIL import Image
 
-from .lib.model_handler import ModelhandlerLoader, EfficientNetB2Handler
+from .lib.model_handler import (
+    ModelhandlerLoader,
+    EfficientNetB2Handler,
+    GoogLeNetHandler,
+    TinyVGGHandler,
+)
 
 
 @api_view(["post"])
 def index(request: Request):
     imageDataURL = request.data["imageDataURL"]
+    modelName = request.data["modelName"]
     image_data = imageDataURL.split(",")[1]  # 获取逗号后的Base64编码数据
     decoded_data = base64.b64decode(image_data)
 
     image = Image.open(io.BytesIO(decoded_data))
-    handler = ModelhandlerLoader.getModelHandler(EfficientNetB2Handler)
+
+    if modelName == "EfficientNetB2":
+        handler = ModelhandlerLoader.getModelHandler(EfficientNetB2Handler)
+    elif modelName == "GoogLeNet":
+        handler = ModelhandlerLoader.getModelHandler(GoogLeNetHandler)
+    elif modelName == "TinyVGG":
+        handler = ModelhandlerLoader.getModelHandler(TinyVGGHandler)
+    else:
+        handler = ModelhandlerLoader.getModelHandler(EfficientNetB2Handler)
+
     result = handler.predict(image)
     return Response(
         {
-            "categoryName": Translator(to_lang="zh").translate(result["category_name"]),
+            "category": Translator(to_lang="zh").translate(result["category"]),
             "score": round(result["score"], 3),
         },
         status=status.HTTP_200_OK,
