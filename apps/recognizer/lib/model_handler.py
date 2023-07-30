@@ -9,9 +9,30 @@ from PIL.Image import Image
 import torchvision
 
 
+class ModelhandlerLoader:
+    _modelHandlerDict = dict()
+
+    @classmethod
+    def loadModelHandler(cls, modelHandlerClass):
+        if cls._modelHandlerDict.get(modelHandlerClass.__name__) is None:
+            cls._modelHandlerDict[modelHandlerClass.__name__] = modelHandlerClass()
+
+    @classmethod
+    def getModelHandler(cls, modelHandlerClass) -> "ModelHandler":
+        if cls._modelHandlerDict.get(modelHandlerClass.__name__) is None:
+            cls.loadModelHandler(modelHandlerClass)
+        return cls._modelHandlerDict[modelHandlerClass.__name__]
+
+
 class ModelHandler:
     def __init__(self, device="cpu"):
         self._device = device
+
+    @classmethod
+    def get_model(cls):
+        if cls._model is None:
+            cls.load_model()
+        return cls._model
 
     @cached_property
     def transform(self):
@@ -97,3 +118,15 @@ class AlexNetHandler(PretrainedModelHandler):
     @cached_property
     def blank_model(self) -> Module:
         return torchvision.models.alexnet()
+
+
+if __name__ == "__main__":
+    import torch
+    from PIL.Image import open as open_image
+
+    DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+    from model_handler import EfficientNetB2Handler
+
+    img = open_image("./test.jpeg")
+    result = EfficientNetB2Handler().predict(img)
+    print(f"{result['category_name']}: {100 * result['score']:.1f}%")

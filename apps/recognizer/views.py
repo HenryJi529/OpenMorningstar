@@ -14,7 +14,7 @@ from rest_framework.request import Request
 
 from PIL import Image
 
-from .lib.model_handler import EfficientNetB2Handler
+from .lib.model_handler import ModelhandlerLoader, EfficientNetB2Handler
 
 
 @api_view(["post"])
@@ -24,9 +24,8 @@ def index(request: Request):
     decoded_data = base64.b64decode(image_data)
 
     image = Image.open(io.BytesIO(decoded_data))
-    handler = EfficientNetB2Handler()
+    handler = ModelhandlerLoader.getModelHandler(EfficientNetB2Handler)
     result = handler.predict(image)
-
     return Response(
         {
             "categoryName": Translator(to_lang="zh").translate(result["category_name"]),
