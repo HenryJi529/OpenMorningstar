@@ -2,7 +2,32 @@ from typing import Tuple, Dict, List
 
 import torch
 from torch import nn
-from torch.utils.data import DataLoader
+
+from torchvision import datasets, transforms, models
+
+# IMAGE_LENGTH = 224  # NOTE: Table 3 in the ViT paper
+IMAGE_LENGTH = 64  # NOTE: TinyVGG default
+
+
+def create_transforms(
+    image_length: int = IMAGE_LENGTH,
+) -> Tuple[transforms.Compose, transforms.Compose]:
+    transform = transforms.Compose(
+        [
+            transforms.Grayscale(num_output_channels=3),
+            transforms.Resize((image_length, image_length)),
+            transforms.TrivialAugmentWide(31),
+            transforms.ToTensor(),
+        ]
+    )
+    test_transform = transforms.Compose(
+        [
+            transforms.Grayscale(num_output_channels=3),
+            transforms.Resize((image_length, image_length)),
+            transforms.ToTensor(),
+        ]
+    )
+    return transform, test_transform
 
 
 class LinearRegressionModel(nn.Module):
@@ -45,23 +70,22 @@ class TinyVGG(nn.Module):
     See the original architecture here: https://poloclub.github.io/cnn-explainer/
 
     Args:
-    input_shape: An integer indicating number of input channels.
     hidden_units: An integer indicating number of hidden units between layers.
     output_shape: An integer indicating number of output units.
     """
 
     def __init__(
         self,
-        input_shape: int,
         hidden_units_num: int,
         output_shape: int,
         image_length: int,
     ) -> None:
         super().__init__()
+        self.image_length = image_length
         rows, cols = image_length, image_length
         self.conv_block_1 = nn.Sequential(
             nn.Conv2d(
-                in_channels=input_shape,
+                in_channels=3,
                 out_channels=hidden_units_num,
                 kernel_size=3,
                 stride=1,
@@ -105,3 +129,44 @@ class TinyVGG(nn.Module):
         x = self.classifier(x)
         return x
         # return self.classifier(self.block_2(self.block_1(x))) # <- leverage the benefits of operator fusion
+
+    @property
+    def transforms(self):
+        return create_transforms(
+            image_length=self.image_length,
+        )
+
+
+class NiceViTB16(nn.Module):
+    WEIGHTS = models.ViT_B_16_Weights.IMAGENET1K_V1
+
+    def __init__(self, hidden_units_num: int, output_shape: int):
+        super().__init__()
+        model = models.vit_b_16(weights=self.WEIGHTS)
+
+        for param in model.conv_proj.parameters():
+            param.requires_grad = False
+        for param in model.encoder.parameters():
+            param.requires_grad = False
+
+        model.heads = nn.Sequential(
+            nn.Linear(
+                in_features=768,
+                out_features=hidden_units_num,
+            ),
+            torch.nn.Dropout(p=0.2, inplace=True),
+            torch.nn.Linear(
+                in_features=hidden_units_num,
+                out_features=output_shape,
+                bias=True,
+            ),
+        )
+        self.model = model
+
+    def forward(self, x: torch.Tensor):
+        return self.model.forward(x)
+
+    @property
+    def transforms(self):
+        transform = self.WEIGHTS.transforms()
+        return transform, transform  # NOTE: 分别看作train_transform和test_transform
