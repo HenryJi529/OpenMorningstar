@@ -10,7 +10,6 @@ clear_output()
 # 创建目录
 from pathlib import Path
 Path('data').mkdir(exist_ok=True)
-Path('params').mkdir(exist_ok=True)
 
 # 导入脚本
 try:
