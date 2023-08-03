@@ -10,29 +10,6 @@ from torch.utils.data import DataLoader
 from torch.utils.data import random_split
 
 BATCH_SIZE = 32
-# IMAGE_LENGTH = 224  # NOTE: Table 3 in the ViT paper
-IMAGE_LENGTH = 64  # NOTE: TinyVGG default
-
-
-def create_transforms(
-    image_length: int = IMAGE_LENGTH,
-) -> Tuple[transforms.Compose, transforms.Compose]:
-    transform = transforms.Compose(
-        [
-            transforms.Grayscale(num_output_channels=3),
-            transforms.Resize((image_length, image_length)),
-            transforms.TrivialAugmentWide(31),
-            transforms.ToTensor(),
-        ]
-    )
-    test_transform = transforms.Compose(
-        [
-            transforms.Grayscale(num_output_channels=3),
-            transforms.Resize((image_length, image_length)),
-            transforms.ToTensor(),
-        ]
-    )
-    return transform, test_transform
 
 
 def create_dataloaders(
