@@ -53,7 +53,7 @@ def main(args):
             hidden_units_num=HIDDEN_UNITS_NUM,
             output_shape=len(categories),
         )
-        IMAGE_LENGTH = model.image_size  # NOTE: 原始模型上的设定
+        IMAGE_LENGTH = model.origin_model.image_size  # NOTE: 原始模型上的设定
     else:
         raise ValueError("不支持的模型")
 

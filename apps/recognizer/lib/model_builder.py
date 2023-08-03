@@ -142,14 +142,14 @@ class NiceViTB16(nn.Module):
 
     def __init__(self, hidden_units_num: int, output_shape: int):
         super().__init__()
-        model = models.vit_b_16(weights=self.WEIGHTS)
+        origin_model = models.vit_b_16(weights=self.WEIGHTS)
 
-        for param in model.conv_proj.parameters():
+        for param in origin_model.conv_proj.parameters():
             param.requires_grad = False
-        for param in model.encoder.parameters():
+        for param in origin_model.encoder.parameters():
             param.requires_grad = False
 
-        model.heads = nn.Sequential(
+        origin_model.heads = nn.Sequential(
             nn.Linear(
                 in_features=768,
                 out_features=hidden_units_num,
@@ -161,10 +161,10 @@ class NiceViTB16(nn.Module):
                 bias=True,
             ),
         )
-        self.model = model
+        self.origin_model = origin_model
 
     def forward(self, x: torch.Tensor):
-        return self.model.forward(x)
+        return self.origin_model.forward(x)
 
     @property
     def transforms(self):
