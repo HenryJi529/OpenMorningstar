@@ -168,5 +168,9 @@ class NiceViTB16(nn.Module):
 
     @property
     def transforms(self):
-        transform = self.WEIGHTS.transforms()
+        origin_transform = self.WEIGHTS.transforms()
+        transform = transforms.Compose(
+            [transforms.Grayscale(num_output_channels=3), origin_transform]
+        )
+
         return transform, transform  # NOTE: 分别看作train_transform和test_transform
