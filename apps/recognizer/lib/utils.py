@@ -12,10 +12,6 @@ from PIL import Image
 import torchvision
 from torchvision import transforms
 
-from torchmetrics import ConfusionMatrix, Accuracy
-from mlxtend.plotting import plot_confusion_matrix
-
-
 from torch.cuda import is_available as is_cuda_available
 from torch.backends.mps import is_built as is_mps_built
 
