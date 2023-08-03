@@ -139,3 +139,20 @@ def create_dataloaders(
     )
 
     return train_dataloader, val_dataloader, test_dataloader, categories
+
+
+if __name__ == "__main__":
+    from torchvision.datasets import Caltech256
+
+    transform = transforms.Compose(
+        [
+            transforms.Grayscale(num_output_channels=3),
+            transforms.Resize((16, 16)),
+            transforms.ToTensor(),
+        ]
+    )
+    create_dataloaders(
+        transformTuple=(transform,),
+        datasetClass=Caltech256,
+        # datadirTuple: Tuple[str, str, str] = None,
+    )
