@@ -1,4 +1,5 @@
 import json
+from typing import List
 from functools import cached_property
 import requests
 from pathlib import Path
@@ -195,7 +196,6 @@ class TinyVGGHandler(CustomModelHandler):
     @cached_property
     def blank_model(self) -> Module:
         return TinyVGG(
-            input_shape=3,
             hidden_units_num=int(self.hyperparameters["hidden"]),
             output_shape=len(self.categories),
             image_length=int(self.hyperparameters["image"]),
@@ -219,11 +219,23 @@ if __name__ == "__main__":
     import torch
     from PIL.Image import open as open_image
 
-    DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+    modelHandlerList: List[ModelHandler] = [
+        EfficientNetB2Handler,
+        GoogLeNetHandler,
+        TinyVGGHandler,
+        NiceViTB16Handler,
+    ]
+
+    print("加载参数: ")
+    for modelHandler in modelHandlerList:
+        print(f"- 加载{modelHandler.__name__}参数...")
+        _ = modelHandler().params
+
+    print("=============================")
 
     img = open_image("./data/test.jpeg")
-    # result = EfficientNetB2Handler().predict(img)
-    # result = GoogLeNetHandler().predict(img)
-    # result = TinyVGGHandler().predict(img)
-    result = NiceViTB16Handler().predict(img)
-    print(f"{result['category']}: {100 * result['score']:.1f}%")
+    print("预测测试: ")
+    for modelHandler in modelHandlerList:
+        print(f"- 使用{modelHandler.__name__}预测...")
+        result = modelHandler().predict(img)
+        print(f"    {result['category']}: {100 * result['score']:.1f}%")
