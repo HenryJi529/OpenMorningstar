@@ -9,7 +9,7 @@ import Header from "./components/Header.vue"
 import Footer from "./components/Footer.vue"
 
 const selectedImage = ref(null);
-const selectedModelName = ref("请选择模型");
+const selectedModelName = ref("NiceViTB16");
 const imageDataURL = ref(null);
 const category = ref("");
 const score = ref(0);
@@ -60,11 +60,11 @@ const uploadImage = async () => {
 
   <main class="flex justify-center items-center flex-col space-y-6 w-80 mx-auto mt-[2em] mb:mt-[4em] pb-[6em]">
     <select class="select w-full max-w-xs" v-model="selectedModelName">
-      <option disabled selected>请选择模型</option>
+      <option disabled>请选择模型</option>
+      <option selected>NiceViTB16</option>
       <option>EfficientNetB2</option>
-      <option>TinyVGG</option>
       <option>GoogLeNet</option>
-      <option>ViT</option>
+      <option>TinyVGG</option>
     </select>
 
     <input class="file-input file-input-bordered file-input-primary w-full max-w-xs" accept="image/*" type="file"
