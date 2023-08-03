@@ -233,7 +233,7 @@ if __name__ == "__main__":
 
     print("=============================")
 
-    img = open_image("./data/test.jpeg")
+    img = open_image(Path(__file__).parent / "data/test.jpeg")
     print("预测测试: ")
     for modelHandler in modelHandlerList:
         print(f"- 使用{modelHandler.__name__}预测...")
