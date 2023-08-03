@@ -12,6 +12,7 @@ def train_step(
     dataloader: DataLoader,
     loss_fn: torch.nn.Module,
     optimizer: torch.optim.Optimizer,
+    epoch: int,
     device: torch.device = DEVICE,
 ) -> Tuple[float, float]:
     """Trains a PyTorch model for a single epoch.
@@ -25,6 +26,7 @@ def train_step(
         dataloader: A DataLoader instance for the model to be trained on.
         loss_fn: A PyTorch loss function to minimize.
         optimizer: A PyTorch optimizer to help minimize the loss function.
+        epoch: A number indicating which epoch is being trained.
         device: A target device to compute on (e.g. "cuda", "mps", "cpu").
 
     Returns:
@@ -38,8 +40,11 @@ def train_step(
     train_loss, train_acc = 0, 0
 
     # Loop through data loader data batches
-    for batch, (X, y) in enumerate(dataloader):
+    for batch in tqdm(
+        dataloader, total=len(dataloader), desc=f"Training(Epoch{epoch})", leave=False
+    ):
         # Send data to target device
+        X, y = batch
         X, y = X.to(device), y.to(device)
 
         # 1. Forward pass
@@ -68,6 +73,7 @@ def val_step(
     model: torch.nn.Module,
     dataloader: DataLoader,
     loss_fn: torch.nn.Module,
+    epoch: int,
     device: torch.device = DEVICE,
 ) -> Tuple[float, float]:
     """Validates a PyTorch model for a single epoch.
@@ -79,6 +85,7 @@ def val_step(
         model: A PyTorch model to be validated.
         dataloader: A DataLoader instance for the model to be validated on.
         loss_fn: A PyTorch loss function to calculate loss on the validation data.
+        epoch: A number indicating which epoch is being trained.
         device: A target device to compute on (e.g. "cuda", "mps", "cpu").
 
     Returns:
@@ -94,7 +101,13 @@ def val_step(
     # Turn on inference context manager
     with torch.inference_mode():
         # Loop through DataLoader batches
-        for batch, (X, y) in enumerate(dataloader):
+        for batch in tqdm(
+            dataloader,
+            total=len(dataloader),
+            desc=f"Validating(Epoch{epoch})",
+            leave=False,
+        ):
+            X, y = batch
             # Send data to target device
             X, y = X.to(device), y.to(device)
 
@@ -167,18 +180,20 @@ def train(
     model.to(device)
 
     # Loop through training and validating steps for a number of epochs
-    for epoch in tqdm(range(epochs)):
+    for epoch in tqdm(range(epochs), desc=f"Total Epochs", leave=True):
         train_loss, train_acc = train_step(
             model=model,
             dataloader=train_dataloader,
             loss_fn=loss_fn,
             optimizer=optimizer,
+            epoch=epoch,
             device=device,  # NOTE: 实际上这个device是用来迁移数据的
         )
         val_loss, val_acc = val_step(
             model=model,
             dataloader=val_dataloader,
             loss_fn=loss_fn,
+            epoch=epoch,
             device=device,  # NOTE: 实际上这个device是用来迁移数据的
         )
 
