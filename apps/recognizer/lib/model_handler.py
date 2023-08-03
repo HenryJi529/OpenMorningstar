@@ -68,8 +68,8 @@ class ModelHandler:
     def blank_model(self) -> Module:
         raise NotImplementedError
 
-    def summary(self, *args, **kwargs):
-        return summary(self.model, *args, **kwargs)
+    def summary(self):
+        return summary(self.model, col_names=["num_params", "trainable"])
 
     @cached_property
     def model(self) -> Module:
