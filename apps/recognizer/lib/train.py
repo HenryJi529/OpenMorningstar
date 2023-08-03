@@ -1,9 +1,11 @@
 """
 Example running of train.py:
-    python train.py --image_length 64 --hidden_units_num 128 --epochs_num 5 --batch_size 32 --learning_rate 0.001 --dataset_id 0 --environment colab
+    python train.py --model_name TinyVGG --image_length 64 --hidden_units_num 128 --epochs_num 5 --batch_size 32 --learning_rate 0.001 --dataset_id 0 --environment colab
 """
 
 import argparse
+import json
+from pathlib import Path
 
 import torch
 import torchvision
@@ -17,6 +19,7 @@ set_seeds(42)
 @time
 def main(args):
     # Setup hyperparameters
+    MODEL_NAME = args.model_name
     HIDDEN_UNITS_NUM = args.hidden_units_num
     IMAGE_LENGTH = args.image_length
     EPOCHS_NUM = args.epochs_num
@@ -24,13 +27,39 @@ def main(args):
     LEARNING_RATE = args.learning_rate
     DATASET_ID = args.dataset_id
 
+    # 设置数据集
     if DATASET_ID == 0:
         datasetClass = torchvision.datasets.CIFAR10
     else:
         datasetClass = torchvision.datasets.Caltech256
 
-    transform, test_transform = data_processor.create_transforms(IMAGE_LENGTH)
+    # 读取分类信息
+    categories_path = (
+        Path(__file__).parent / f"data/categories_{datasetClass.__name__}.json"
+    )
+    with open(categories_path, "r") as json_file:
+        categories = json.load(json_file)
 
+    # 设置模型
+    if MODEL_NAME == "TinyVGG":
+        model = model_builder.TinyVGG(
+            hidden_units_num=HIDDEN_UNITS_NUM,
+            output_shape=len(categories),
+            image_length=IMAGE_LENGTH,
+        )
+    if MODEL_NAME == "NiceViTB16":
+        model = model_builder.NiceViTB16(
+            hidden_units_num=HIDDEN_UNITS_NUM,
+            output_shape=len(categories),
+        )
+        IMAGE_LENGTH = model.image_size  # NOTE: 原始模型上的设定
+    else:
+        raise ValueError("不支持的模型")
+
+    # 获取模型对应的transforms
+    transform, test_transform = model.transforms
+
+    # 创建Dataloader
     (
         train_dataloader,
         val_dataloader,
@@ -41,13 +70,6 @@ def main(args):
         datasetClass=datasetClass,
         pin_memory=False,
         batch_size=BATCH_SIZE,
-    )
-
-    model = model_builder.TinyVGG(
-        input_shape=3,
-        hidden_units_num=HIDDEN_UNITS_NUM,
-        output_shape=len(categories),
-        image_length=next(iter(train_dataloader))[0][0].shape[1],
     )
 
     # Set loss and optimizer
@@ -84,6 +106,13 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Train")
+    parser.add_argument(
+        "--model_name",
+        choices=["TinyVGG", "NiceViTB16"],
+        required=False,
+        default="TinyVGG",
+        help="选择模型(支持TinyVGG和NiceViTB16)",
+    )
     parser.add_argument(
         "--image_length", required=False, type=int, default=64, help="设置image_length"
     )
