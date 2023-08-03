@@ -23,4 +23,8 @@ except:
     !rm __init__.py
     !rm -rf OpenMorningstar
     print("[INFO] Finish downloading...")
+
+# 挂在Google Drive
+from google.colab import drive
+drive.mount('/content/drive')
 ```

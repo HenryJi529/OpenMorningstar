@@ -1,6 +1,6 @@
 """
 Example running of train.py:
-    python train.py --image_length 64 --hidden_units_num 128 --epochs_num 5 --batch_size 32 --learning_rate 0.001 --dataset_id 0
+    python train.py --image_length 64 --hidden_units_num 128 --epochs_num 5 --batch_size 32 --learning_rate 0.001 --dataset_id 0 --environment colab
 """
 
 import argparse
@@ -70,9 +70,14 @@ def main(args):
     print(results["val_loss"])
     print(results["val_acc"])
 
+    if args.environment == "local":
+        target_dir = "params"
+    else:
+        target_dir = "drive/MyDrive/params"
+
     utils.save_model(
         model=model,
-        target_dir="params",
+        target_dir=target_dir,
         model_name=f"{type(model).__name__}_image{IMAGE_LENGTH}_hidden{HIDDEN_UNITS_NUM}_epochs{EPOCHS_NUM}_batch{BATCH_SIZE}_lr{LEARNING_RATE}_dataset{DATASET_ID}.pth",
     )
 
@@ -109,5 +114,13 @@ if __name__ == "__main__":
         default=0,
         help="选择dataset",
     )
+    parser.add_argument(
+        "--environment",
+        choices=["local", "colab"],
+        required=False,
+        default="local",
+        help="选择环境(支持local和colab)",
+    )
+
     args = parser.parse_args()
     main(args)
