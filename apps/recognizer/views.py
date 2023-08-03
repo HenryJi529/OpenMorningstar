@@ -19,6 +19,7 @@ from .lib.model_handler import (
     EfficientNetB2Handler,
     GoogLeNetHandler,
     TinyVGGHandler,
+    NiceViTB16Handler,
 )
 
 
@@ -37,6 +38,8 @@ def index(request: Request):
         handler = ModelhandlerLoader.getModelHandler(GoogLeNetHandler)
     elif modelName == "TinyVGG":
         handler = ModelhandlerLoader.getModelHandler(TinyVGGHandler)
+    elif modelName == "NiceViTB16":
+        handler = ModelhandlerLoader.getModelHandler(NiceViTB16Handler)
     else:
         handler = ModelhandlerLoader.getModelHandler(EfficientNetB2Handler)
 
