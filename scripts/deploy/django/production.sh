@@ -17,6 +17,7 @@ touch /app/log/cron.log && python3 manage.py crontab add --settings=Morningstar.
 python3 manage.py rebuild_index --settings=Morningstar.settings.production --noinput
 # 收集静态
 python3 manage.py collectstatic --settings=Morningstar.settings.production --noinput
-
+# 加载/检测AI模型(参数)
+python3 apps/recognizer/lib/model_handler.py
 # 初始时需创建超级管理员
 # python3 manage.py createsuperuser --settings=Morningstar.settings.production
