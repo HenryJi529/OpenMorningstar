@@ -195,7 +195,7 @@ class CustomModelHandler(ModelHandler):
 
 
 class TinyVGGHandler(CustomModelHandler):
-    WEIGHTS_FILENAME = "TinyVGG_image64_hidden128_epochs5_batch32_lr0.001_dataset0.pth"
+    WEIGHTS_FILENAME = "TinyVGG_image64_hidden128_epochs20_batch32_lr0.001_dataset1.pth"
 
     @cached_property
     def blank_model(self) -> Module:
