@@ -18,14 +18,9 @@ except ImportError:
     from utils import DEVICE
 
 try:
-    from .model_builder import TinyVGG
+    from .model_builder import TinyVGG, NiceViTB16
 except ImportError:
-    from model_builder import TinyVGG
-
-try:
-    from .data_processor import create_transforms
-except ImportError:
-    from data_processor import create_transforms
+    from model_builder import TinyVGG, NiceViTB16
 
 
 def download_file_from_ftp(filename: str):
@@ -171,7 +166,7 @@ class CustomModelHandler(ModelHandler):
 
     @cached_property
     def transform(self):
-        _, test_transform = create_transforms(int(self.hyperparameters["image"]))
+        _, test_transform = self.blank_model.transforms
         return test_transform
 
     @cached_property
@@ -207,15 +202,28 @@ class TinyVGGHandler(CustomModelHandler):
         )
 
 
+class NiceViTB16Handler(CustomModelHandler):
+    WEIGHTS_FILENAME = (
+        "NiceViTB16_image224_hidden128_epochs20_batch32_lr0.001_dataset1.pth"
+    )
+
+    @cached_property
+    def blank_model(self) -> Module:
+        return NiceViTB16(
+            hidden_units_num=int(self.hyperparameters["hidden"]),
+            output_shape=len(self.categories),
+        )
+
+
 if __name__ == "__main__":
     import torch
     from PIL.Image import open as open_image
 
     DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-    from model_handler import EfficientNetB2Handler, GoogLeNetHandler, TinyVGGHandler
 
     img = open_image("./data/test.jpeg")
     # result = EfficientNetB2Handler().predict(img)
     # result = GoogLeNetHandler().predict(img)
-    result = TinyVGGHandler().predict(img)
+    # result = TinyVGGHandler().predict(img)
+    result = NiceViTB16Handler().predict(img)
     print(f"{result['category']}: {100 * result['score']:.1f}%")
