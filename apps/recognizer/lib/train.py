@@ -1,6 +1,7 @@
 """
 Example running of train.py:
-    python train.py --model_name TinyVGG --image_length 64 --hidden_units_num 128 --epochs_num 5 --batch_size 32 --learning_rate 0.001 --dataset_id 0 --environment colab
+1. python train.py --model_name TinyVGG --image_length 64 --hidden_units_num 128 --epochs_num 5 --batch_size 32 --learning_rate 0.001 --dataset_id 0 --environment colab
+2. python train.py --model_name NiceViTB16 --image_length 224 --hidden_units_num 128 --epochs_num 20 --batch_size 32 --learning_rate 0.001 --dataset_id 1 --environment colab
 """
 
 import argparse
