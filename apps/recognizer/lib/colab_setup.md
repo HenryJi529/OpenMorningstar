@@ -4,9 +4,6 @@
 !pip install -U mlxtend
 !pip install torchinfo
 
-from IPython.display import clear_output
-clear_output()
-
 # 创建目录
 from pathlib import Path
 Path('data').mkdir(exist_ok=True)
@@ -27,4 +24,8 @@ except:
 # 挂在Google Drive
 from google.colab import drive
 drive.mount('/content/drive')
+
+# 清理cell
+from IPython.display import clear_output
+clear_output()
 ```
