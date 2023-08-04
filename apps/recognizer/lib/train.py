@@ -48,7 +48,7 @@ def main(args):
             output_shape=len(categories),
             image_length=IMAGE_LENGTH,
         )
-    if MODEL_NAME == "NiceViTB16":
+    elif MODEL_NAME == "NiceViTB16":
         model = model_builder.NiceViTB16(
             hidden_units_num=HIDDEN_UNITS_NUM,
             output_shape=len(categories),
@@ -89,9 +89,9 @@ def main(args):
     )
 
     print(results["train_loss"])
-    print(results["train_acc"])
+    print(results["train_metrics"])
     print(results["val_loss"])
-    print(results["val_acc"])
+    print(results["val_metrics"])
 
     if args.environment == "local":
         target_dir = "params"
@@ -110,6 +110,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--model_name",
         choices=["TinyVGG", "NiceViTB16"],
+        type=str,
         required=False,
         default="TinyVGG",
         help="选择模型(支持TinyVGG和NiceViTB16)",
