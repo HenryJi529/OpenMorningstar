@@ -72,13 +72,13 @@ def train_step(
         # train_accuracy += (train_pred_label == y).sum().item() / len(train_pred_logits)
         train_accuracy += accuracy_score(y.cpu(), train_pred_labels.detach().cpu())
         train_recall += recall_score(
-            y.cpu(), train_pred_labels.detach().cpu(), average="macro"
+            y.cpu(), train_pred_labels.detach().cpu(), average="macro", zero_division=1
         )
         train_precision += precision_score(
-            y.cpu(), train_pred_labels.detach().cpu(), average="macro"
+            y.cpu(), train_pred_labels.detach().cpu(), average="macro", zero_division=1
         )
         train_f1_score += f1_score(
-            y.cpu(), train_pred_labels.detach().cpu(), average="macro"
+            y.cpu(), train_pred_labels.detach().cpu(), average="macro", zero_division=1
         )
 
     train_loss = train_loss / len(dataloader)
@@ -148,13 +148,22 @@ def val_step(
             # val_accuracy += (val_pred_labels == y).sum().item() / len(val_pred_labels)
             val_accuracy += accuracy_score(y.cpu(), val_pred_labels.detach().cpu())
             val_recall += recall_score(
-                y.cpu(), val_pred_labels.detach().cpu(), average="macro"
+                y.cpu(),
+                val_pred_labels.detach().cpu(),
+                average="macro",
+                zero_division=1,
             )
             val_precision += precision_score(
-                y.cpu(), val_pred_labels.detach().cpu(), average="macro"
+                y.cpu(),
+                val_pred_labels.detach().cpu(),
+                average="macro",
+                zero_division=1,
             )
             val_f1_score += f1_score(
-                y.cpu(), val_pred_labels.detach().cpu(), average="macro"
+                y.cpu(),
+                val_pred_labels.detach().cpu(),
+                average="macro",
+                zero_division=1,
             )
 
     val_loss = val_loss / len(dataloader)
