@@ -63,6 +63,18 @@ class LinearRegressionModelV2(nn.Module):
         return self.linear_layer(x)
 
 
+class LinearReLURegressor(torch.nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.layer1 = torch.nn.Linear(2, 8)
+        self.layer2 = torch.nn.Linear(8, 4)
+        self.layer3 = torch.nn.Linear(4, 1)
+        self.relu = torch.nn.ReLU()
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        return self.layer3(self.relu(self.layer2(self.relu(self.layer1(x)))))
+
+
 class TinyVGG(nn.Module):
     """Creates the TinyVGG architecture.
 
@@ -70,7 +82,7 @@ class TinyVGG(nn.Module):
     See the original architecture here: https://poloclub.github.io/cnn-explainer/
 
     Args:
-    hidden_units: An integer indicating number of hidden units between layers.
+    hidden_units_num: An integer indicating number of hidden units between layers.
     output_shape: An integer indicating number of output units.
     """
 
