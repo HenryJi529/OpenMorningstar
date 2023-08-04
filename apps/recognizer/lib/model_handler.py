@@ -5,11 +5,12 @@ import requests
 from pathlib import Path
 from ftplib import FTP
 
+import numpy as np
+from PIL import Image
+
 from torch.nn import Module
 from torch import inference_mode, load, Tensor
 from torchinfo import summary
-
-from PIL.Image import Image
 import torchvision
 
 
@@ -32,6 +33,24 @@ def download_file_from_ftp(filename: str):
         ftp.retrbinary("RETR " + filename, file.write)
 
     ftp.quit()
+
+
+def create_random_image() -> Image.Image:
+    # 图像尺寸和像素值范围
+    width = 256
+    height = 256
+    min_value = 0
+    max_value = 255
+
+    # 生成随机像素值
+    random_pixels = np.random.randint(
+        min_value, max_value, size=(height, width, 3), dtype=np.uint8
+    )
+
+    # 创建 PIL 图像对象
+    image = Image.fromarray(random_pixels)
+
+    return image
 
 
 class ModelhandlerLoader:
@@ -70,7 +89,25 @@ class ModelHandler:
         raise NotImplementedError
 
     def summary(self):
-        return summary(self.model, col_names=["num_params", "trainable"])
+        return summary(
+            self.model,
+            input_size=[10, 3, self.image_length, self.image_length],
+            col_names=[
+                "input_size",
+                "output_size",
+                "num_params",
+                "params_percent",
+                "trainable",
+            ],
+            depth=3,
+            col_width=18,
+            row_settings=["var_names"],
+            verbose=1,
+        )
+
+    @cached_property
+    def image_length(self):
+        raise NotImplementedError
 
     @cached_property
     def model(self) -> Module:
@@ -78,7 +115,7 @@ class ModelHandler:
         model.load_state_dict(self.params)
         return model
 
-    def predict(self, image: Image):
+    def predict(self, image: Image.Image):
         self.model.eval()
         transformed_image = self.transform(image)
         batch = transformed_image.unsqueeze(0).to(self._device)
@@ -109,6 +146,11 @@ class PretrainedModelHandler(ModelHandler):
             with open(params_path, "wb") as f:
                 f.write(request.content)
         return load(f=params_path)
+
+    @cached_property
+    def image_length(self):
+        image = create_random_image()
+        return self.transform(image).shape[-1]
 
     @cached_property
     def categories(self):
@@ -166,6 +208,10 @@ class CustomModelHandler(ModelHandler):
         return hyperparameters
 
     @cached_property
+    def image_length(self):
+        return int(self.hyperparameters["image"])
+
+    @cached_property
     def transform(self):
         _, test_transform = self.blank_model.transforms
         return test_transform
@@ -216,9 +262,6 @@ class NiceViTB16Handler(CustomModelHandler):
 
 
 if __name__ == "__main__":
-    import torch
-    from PIL.Image import open as open_image
-
     modelHandlerList: List[ModelHandler] = [
         EfficientNetB2Handler,
         GoogLeNetHandler,
@@ -229,11 +272,12 @@ if __name__ == "__main__":
     print("加载参数: ")
     for modelHandler in modelHandlerList:
         print(f"- 加载{modelHandler.__name__}参数...")
+        modelHandler().summary()
         _ = modelHandler().params
 
     print("=============================")
 
-    img = open_image(Path(__file__).parent / "data/test.jpeg")
+    img = Image.open(Path(__file__).parent / "data/test.jpeg")
     print("预测测试: ")
     for modelHandler in modelHandlerList:
         print(f"- 使用{modelHandler.__name__}预测...")
