@@ -1,7 +1,9 @@
+from typing import Dict, List, Tuple
+from tqdm.auto import tqdm
+
+from sklearn.metrics import accuracy_score, recall_score, precision_score, f1_score
 import torch
 from torch.utils.data import DataLoader
-from tqdm.auto import tqdm
-from typing import Dict, List, Tuple
 
 
 from utils import DEVICE
@@ -14,7 +16,7 @@ def train_step(
     optimizer: torch.optim.Optimizer,
     epoch: int,
     device: torch.device = DEVICE,
-) -> Tuple[float, float]:
+) -> Tuple[float, Dict[str, float]]:
     """Trains a PyTorch model for a single epoch.
 
     Turns a target PyTorch model to training mode and then
@@ -30,14 +32,20 @@ def train_step(
         device: A target device to compute on (e.g. "cuda", "mps", "cpu").
 
     Returns:
-        A tuple of training loss and training accuracy metrics.
-        In the form (train_loss, train_accuracy).
+        A tuple of training loss and training metrics.
+        In the form (train_loss, train_metrics).
     """
     # Put model in train mode
     model.train()
 
-    # Setup train loss and train accuracy values
-    train_loss, train_acc = 0, 0
+    # Setup train loss and train metrics values
+    train_loss, train_accuracy, train_recall, train_precision, train_f1_score = (
+        0,
+        0,
+        0,
+        0,
+        0,
+    )
 
     # Loop through data loader data batches
     for batch in tqdm(
@@ -60,13 +68,31 @@ def train_step(
         optimizer.step()
 
         # Calculate and accumulate accuracy metric across all batches
-        train_pred_label = torch.argmax(torch.softmax(train_pred_logits, dim=1), dim=1)
-        train_acc += (train_pred_label == y).sum().item() / len(train_pred_logits)
+        train_pred_labels = torch.argmax(torch.softmax(train_pred_logits, dim=1), dim=1)
+        # train_accuracy += (train_pred_label == y).sum().item() / len(train_pred_logits)
+        train_accuracy += accuracy_score(y.cpu(), train_pred_labels.detach().cpu())
+        train_recall += recall_score(
+            y.cpu(), train_pred_labels.detach().cpu(), average="macro"
+        )
+        train_precision += precision_score(
+            y.cpu(), train_pred_labels.detach().cpu(), average="macro"
+        )
+        train_f1_score += f1_score(
+            y.cpu(), train_pred_labels.detach().cpu(), average="macro"
+        )
 
-    # Adjust metrics to get average loss and accuracy per batch
     train_loss = train_loss / len(dataloader)
-    train_acc = train_acc / len(dataloader)
-    return train_loss, train_acc
+    train_accuracy = train_accuracy / len(dataloader)
+    train_recall = train_recall / len(dataloader)
+    train_precision = train_precision / len(dataloader)
+    train_f1_score = train_f1_score / len(dataloader)
+
+    return train_loss, {
+        "train_accuracy": train_accuracy,
+        "train_recall": train_recall,
+        "train_precision": train_precision,
+        "train_f1_score": train_f1_score,
+    }
 
 
 def val_step(
@@ -89,14 +115,14 @@ def val_step(
         device: A target device to compute on (e.g. "cuda", "mps", "cpu").
 
     Returns:
-        A tuple of validation loss and validation accuracy metrics.
-        In the form (val_loss, val_accuracy).
+        A tuple of validation loss and validation metrics.
+        In the form (val_loss, val_metrics).
     """
     # Put model in eval mode
     model.eval()
 
-    # Setup val loss and val accuracy values
-    val_loss, val_acc = 0, 0
+    # Setup val loss and val metrics values
+    val_loss, val_accuracy, val_recall, val_precision, val_f1_score = 0, 0, 0, 0, 0
 
     # Turn on inference context manager
     with torch.inference_mode():
@@ -119,12 +145,29 @@ def val_step(
 
             # Calculate and accumulate accuracy
             val_pred_labels = val_pred_logits.argmax(dim=1)
-            val_acc += (val_pred_labels == y).sum().item() / len(val_pred_labels)
+            # val_accuracy += (val_pred_labels == y).sum().item() / len(val_pred_labels)
+            val_accuracy += accuracy_score(y.cpu(), val_pred_labels.detach().cpu())
+            val_recall += recall_score(
+                y.cpu(), val_pred_labels.detach().cpu(), average="macro"
+            )
+            val_precision += precision_score(
+                y.cpu(), val_pred_labels.detach().cpu(), average="macro"
+            )
+            val_f1_score += f1_score(
+                y.cpu(), val_pred_labels.detach().cpu(), average="macro"
+            )
 
-    # Adjust metrics to get average loss and accuracy per batch
     val_loss = val_loss / len(dataloader)
-    val_acc = val_acc / len(dataloader)
-    return val_loss, val_acc
+    val_accuracy = val_accuracy / len(dataloader)
+    val_recall = val_recall / len(dataloader)
+    val_precision = val_precision / len(dataloader)
+    val_f1_score = val_f1_score / len(dataloader)
+    return val_loss, {
+        "val_accuracy": val_accuracy,
+        "val_recall": val_recall,
+        "val_precision": val_precision,
+        "val_f1_score": val_f1_score,
+    }
 
 
 def train(
@@ -156,32 +199,25 @@ def train(
 
     Returns:
         A dictionary of training and validating loss as well as training and
-        validating accuracy metrics. Each metric has a value in a list for
+        validating metrics. Each metric has a value in a list for
         each epoch.
         In the form:
                     {
                         train_loss: [...],
-                        train_acc: [...],
+                        train_metrics: [...],
                         val_loss: [...],
-                        val_acc: [...]
-                    }
-        For example if training for epochs=2:
-                    {
-                        train_loss: [2.0616, 1.0537],
-                        train_acc: [0.3945, 0.3945],
-                        val_loss: [1.2641, 1.5706],
-                        val_acc: [0.3400, 0.2973]
+                        val_metrics: [...]
                     }
     """
     # Create empty results dictionary
-    results = {"train_loss": [], "train_acc": [], "val_loss": [], "val_acc": []}
+    results = {"train_loss": [], "train_metrics": [], "val_loss": [], "val_metrics": []}
 
     # Make sure model on target device
     model.to(device)
 
     # Loop through training and validating steps for a number of epochs
     for epoch in tqdm(range(epochs), desc=f"Total Epochs", leave=True):
-        train_loss, train_acc = train_step(
+        train_loss, train_metrics = train_step(
             model=model,
             dataloader=train_dataloader,
             loss_fn=loss_fn,
@@ -189,7 +225,7 @@ def train(
             epoch=epoch,
             device=device,  # NOTE: 实际上这个device是用来迁移数据的
         )
-        val_loss, val_acc = val_step(
+        val_loss, val_metrics = val_step(
             model=model,
             dataloader=val_dataloader,
             loss_fn=loss_fn,
@@ -198,16 +234,20 @@ def train(
         )
 
         if verbose:
-            # Print out what's happening
+            print(f"Epoch {epoch+1}: ")
             print(
-                f"Epoch: {epoch+1}: train_loss: {train_loss:.4f} | train_acc: {train_acc:.4f} | val_loss: {val_loss:.4f} | val_acc: {val_acc:.4f}"
+                f"    loss => train_loss: {train_loss:.4f} | val_loss: {val_loss:.4f}"
             )
+            for metric in train_metrics:
+                print(
+                    f"    {metric} => train_{metric}: {train_metrics[metric]:.4f} | val_{metric}: {val_metrics[metric]:.4f}"
+                )
 
         # Update results dictionary
         results["train_loss"].append(train_loss)
-        results["train_acc"].append(train_acc)
+        results["train_metrics"].append(train_metrics)
         results["val_loss"].append(val_loss)
-        results["val_acc"].append(val_acc)
+        results["val_metrics"].append(val_metrics)
 
     # Return the filled results at the end of the epochs
     return results
