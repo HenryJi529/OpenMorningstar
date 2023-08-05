@@ -56,6 +56,7 @@
 - **部署**：Docker, Nginx, Fabric, Supervisor
 - **测试**：unittest(py), Coverage, Vitest
 - **集成**：Github Action
+- **AI**: PyTorch, TensorBoard
 
 ## 🚀 开发&部署
 
