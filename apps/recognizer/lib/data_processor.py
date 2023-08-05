@@ -1,15 +1,49 @@
 import json
 import re
+import os
 import math
 from pathlib import Path
 from typing import TypeVar, Tuple, Dict, List, Union
 
+from PIL import Image
+
+from torch import Tensor
+from torch.utils.data import Dataset
 from torchvision import datasets, transforms
 from torchvision.datasets.vision import VisionDataset
 from torch.utils.data import DataLoader
 from torch.utils.data import random_split
 
+
 BATCH_SIZE = 32
+
+
+# Make function to find classes in target directory
+def find_classes(directory: str) -> Tuple[List[str], Dict[str, int]]:
+    """Finds the class folder names in a target directory.
+
+    Assumes target directory is in standard image classification format.
+
+    Args:
+        directory (str): target directory to load classnames from.
+
+    Returns:
+        Tuple[List[str], Dict[str, int]]: (list_of_class_names, dict(class_name: idx...))
+
+    Example:
+        find_classes("food_images/train")
+        >>> (["class_1", "class_2"], {"class_1": 0, ...})
+    """
+    # 1. Get the class names by scanning the target directory
+    classes = sorted(entry.name for entry in os.scandir(directory) if entry.is_dir())
+
+    # 2. Raise an error if class names not found
+    if not classes:
+        raise FileNotFoundError(f"Couldn't find any classes in {directory}.")
+
+    # 3. Crearte a dictionary of index labels (computers prefer numerical rather than string labels)
+    class_to_idx = {cls_name: i for i, cls_name in enumerate(classes)}
+    return classes, class_to_idx
 
 
 def create_dataloaders(
@@ -139,6 +173,36 @@ def create_dataloaders(
     )
 
     return train_dataloader, val_dataloader, test_dataloader, categories
+
+
+class CustomImageFolder(Dataset):
+    def __init__(self, root, transforms=None, target_transforms=None):
+        super().__init__()
+        self.paths = list(Path(root).glob("*/*.jpg"))
+        self.classes, self.class_to_idx = find_classes(root)
+
+        self.transforms = transforms
+        self.target_transforms = target_transforms
+
+    def load_image(self, index: int) -> Image.Image:
+        "Open an image via a path and returns it."
+        image_path = self.paths[index]
+        image = Image.open(image_path)
+        return image
+
+    def __len__(self) -> int:
+        return len(self.paths)
+
+    def __getitem__(self, index: int) -> Tuple[Tensor, int]:
+        """Return one sample of data, data and label(X,y)"""
+        image = self.load_image(index)
+        class_name = self.paths[index].parent.name
+        class_idx = self.class_to_idx[class_name]
+        if self.transforms:
+            image = self.transforms(image)
+        if self.target_transforms:
+            class_idx = self.target_transforms(class_idx)
+        return image, class_idx
 
 
 if __name__ == "__main__":
