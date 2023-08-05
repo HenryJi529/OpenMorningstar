@@ -64,7 +64,7 @@ def main(args):
     (
         train_dataloader,
         val_dataloader,
-        _,
+        test_dataloader,
         categories,
     ) = data_processor.create_dataloaders(
         transformTuple=(transform, test_transform),
@@ -93,6 +93,15 @@ def main(args):
     print(results["val_loss"])
     print(results["val_metrics"])
 
+    # Evaluate model
+    results = engine.evaluate(
+        model,
+        test_dataloader,
+        len(categories),
+    )
+    print(results)
+
+    # Saving model
     if args.environment == "local":
         target_dir = "params"
     else:
