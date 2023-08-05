@@ -1,7 +1,20 @@
 from typing import Dict, List, Tuple
 from tqdm.auto import tqdm
 
-from sklearn.metrics import accuracy_score, recall_score, precision_score, f1_score
+from sklearn.metrics import (
+    accuracy_score,
+    recall_score,
+    precision_score,
+    f1_score,
+)
+from torchmetrics import (
+    Accuracy,
+    Precision,
+    Recall,
+    F1Score,
+    ConfusionMatrix,
+)
+
 import torch
 from torch.utils.data import DataLoader
 
@@ -260,3 +273,54 @@ def train(
 
     # Return the filled results at the end of the epochs
     return results
+
+
+def evaluate(
+    model: torch.nn.Module,
+    test_dataloader: DataLoader,
+    categoriesNum: int,
+    device: torch.device = DEVICE,
+):
+    """给出模型的最终评价"""
+    # Put model in eval mode
+    model.eval()
+
+    # Setup Metrics
+    metrics = [
+        Accuracy(task="multiclass", num_classes=categoriesNum),
+        Recall(task="multiclass", num_classes=categoriesNum),
+        Precision(task="multiclass", num_classes=categoriesNum),
+        F1Score(task="multiclass", num_classes=categoriesNum),
+        ConfusionMatrix(task="multiclass", num_classes=categoriesNum),
+    ]
+
+    # Turn on inference context manager
+    with torch.inference_mode():
+        # Loop through DataLoader batches
+        for batch in test_dataloader:
+            X, y = batch
+            # Send data to target device
+            X, y = X.to(device), y.to(device)
+
+            # Forward pass
+            pred_logits = model(X)
+
+            # Calculate and accumulate accuracy
+            pred_labels = pred_logits.argmax(dim=1)
+            for metric in metrics:
+                metric(pred_labels, y)
+
+    # Get accumulated metrics
+    accuracy = metrics[0].compute().item()
+    recall = metrics[1].compute().item()
+    precision = metrics[2].compute().item()
+    f1_score = metrics[3].compute().item()
+    confusion_matrix = metrics[4].compute().cpu().numpy()
+
+    return {
+        "accuracy": accuracy,
+        "recall": recall,
+        "precision": precision,
+        "f1_score": f1_score,
+        "confusion_matrix": confusion_matrix,
+    }
