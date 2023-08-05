@@ -1,7 +1,7 @@
 """
 Example running of train.py:
-1. python train.py --model_name TinyVGG --image_length 64 --hidden_units_num 128 --epochs_num 5 --batch_size 32 --learning_rate 0.001 --dataset_id 0 --environment colab
-2. python train.py --model_name NiceViTB16 --image_length 224 --hidden_units_num 128 --epochs_num 20 --batch_size 32 --learning_rate 0.001 --dataset_id 1 --environment colab
+1. python train.py --model_name TinyVGG --image_length 64 --hidden_units_num 128 --epochs_num 5 --batch_size 32 --learning_rate 0.001 --dataset_name CIFAR10 --environment colab
+2. python train.py --model_name NiceViTB16 --image_length 224 --hidden_units_num 128 --epochs_num 20 --batch_size 32 --learning_rate 0.001 --dataset_name Caltech256 --environment colab
 """
 
 import argparse
@@ -10,6 +10,7 @@ from pathlib import Path
 
 import torch
 import torchvision
+from torchvision import datasets
 
 import data_processor, engine, model_builder, utils
 from utils import time, set_seeds, DEVICE
@@ -19,20 +20,11 @@ set_seeds(42)
 
 @time
 def main(args):
-    # Setup hyperparameters
-    MODEL_NAME = args.model_name
-    HIDDEN_UNITS_NUM = args.hidden_units_num
-    IMAGE_LENGTH = args.image_length
-    EPOCHS_NUM = args.epochs_num
-    BATCH_SIZE = args.batch_size
-    LEARNING_RATE = args.learning_rate
-    DATASET_ID = args.dataset_id
-
     # 设置数据集
-    if DATASET_ID == 0:
-        datasetClass = torchvision.datasets.CIFAR10
-    else:
-        datasetClass = torchvision.datasets.Caltech256
+    try:
+        datasetClass = getattr(datasets, args.dataset_name)
+    except Exception as e:
+        raise ValueError("不支持的数据集")
 
     # 读取分类信息
     categories_path = (
@@ -42,18 +34,19 @@ def main(args):
         categories = json.load(json_file)
 
     # 设置模型
-    if MODEL_NAME == "TinyVGG":
+    if args.model_name == "TinyVGG":
         model = model_builder.TinyVGG(
-            hidden_units_num=HIDDEN_UNITS_NUM,
+            hidden_units_num=args.hidden_units_num,
             output_shape=len(categories),
-            image_length=IMAGE_LENGTH,
+            image_length=args.image_length,
         )
-    elif MODEL_NAME == "NiceViTB16":
+    elif args.model_name == "NiceViTB16":
         model = model_builder.NiceViTB16(
-            hidden_units_num=HIDDEN_UNITS_NUM,
+            hidden_units_num=args.hidden_units_num,
             output_shape=len(categories),
         )
-        IMAGE_LENGTH = model.origin_model.image_size  # NOTE: 原始模型上的设定
+        # NOTE: 由于原始模型上的设定，需要手动设置image_length
+        args.image_length = model.origin_model.image_size  # NOTE: 原始模型上的设定
     else:
         raise ValueError("不支持的模型")
 
@@ -70,47 +63,52 @@ def main(args):
         transformTuple=(transform, test_transform),
         datasetClass=datasetClass,
         pin_memory=False,
-        batch_size=BATCH_SIZE,
+        batch_size=args.batch_size,
     )
 
     # Set loss and optimizer
     loss_fn = torch.nn.CrossEntropyLoss()
-    optimizer = torch.optim.Adam(model.parameters(), lr=LEARNING_RATE)
+    optimizer = torch.optim.Adam(model.parameters(), lr=args.learning_rate)
 
     # Start training with help from engine.py
-    results = engine.train(
+    training_results = engine.train(
         model=model,
         train_dataloader=train_dataloader,
         val_dataloader=val_dataloader,
         loss_fn=loss_fn,
         optimizer=optimizer,
-        epochs=EPOCHS_NUM,
+        epochs=args.epochs_num,
         device=DEVICE,
     )
 
-    print(results["train_loss"])
-    print(results["train_metrics"])
-    print(results["val_loss"])
-    print(results["val_metrics"])
-
     # Evaluate model
-    results = engine.evaluate(
+    evaluation_results = engine.evaluate(
         model,
         test_dataloader,
         len(categories),
     )
-    print(results)
 
     # Saving model
     if args.environment == "local":
-        target_dir = "params"
+        target_dir = "models"
     else:
-        target_dir = "drive/MyDrive/params"
+        target_dir = "drive/MyDrive/models"
+
+    hyperparameters = {
+        "image_length": args.image_length,
+        "hidden_units_num": args.hidden_units_num,
+        "epochs_num": args.epochs_num,
+        "batch_size": args.batch_size,
+        "learning_rate": args.learning_rate,
+        "dataset_name": args.dataset_name,
+    }
 
     utils.save_model(
         model=model,
+        hyperparameters=hyperparameters,
+        evaluation_results=evaluation_results,
         target_dir=target_dir,
-        model_name=f"{type(model).__name__}_image{IMAGE_LENGTH}_hidden{HIDDEN_UNITS_NUM}_epochs{EPOCHS_NUM}_batch{BATCH_SIZE}_lr{LEARNING_RATE}_dataset{DATASET_ID}.pth",
+        model_filename=f"{type(model).__name__}_image{args.image_length}_hidden{args.hidden_units_num}_epochs{args.epochs_num}_batch{args.batch_size}_lr{args.learning_rate}_dataset{args.dataset_name}.pth",
     )
 
 
@@ -148,10 +146,10 @@ if __name__ == "__main__":
         help="设置learning_rate",
     )
     parser.add_argument(
-        "--dataset_id",
+        "--dataset_name",
         required=False,
-        type=int,
-        default=0,
+        type=str,
+        default="CIFAR10",
         help="选择dataset",
     )
     parser.add_argument(

@@ -29,7 +29,7 @@ def download_file_from_ftp(filename: str):
     ftp = FTP("ftp.morningstar369.com")
     ftp.login(user="ftp", passwd="1234asdw")
 
-    with open(Path(__file__).parent / "params" / filename, "wb") as file:
+    with open(Path(__file__).parent / "models" / filename, "wb") as file:
         ftp.retrbinary("RETR " + filename, file.write)
 
     ftp.quit()
@@ -140,7 +140,7 @@ class PretrainedModelHandler(ModelHandler):
 
     @cached_property
     def params(self):
-        params_path = Path(__file__).parent / "params" / self.WEIGHTS.url.split("/")[-1]
+        params_path = Path(__file__).parent / "models" / self.WEIGHTS.url.split("/")[-1]
         if not params_path.is_file():
             request = requests.get(self.WEIGHTS.url)
             with open(params_path, "wb") as f:
@@ -188,28 +188,33 @@ class AlexNetHandler(PretrainedModelHandler):
 
 
 class CustomModelHandler(ModelHandler):
-    WEIGHTS_FILENAME = None
+    MODEL_FILENAME = None
+
+    @cached_property
+    def info(self):
+        info_path = Path(__file__).parent / "models" / self.MODEL_FILENAME
+        if not (info_path).is_file():
+            download_file_from_ftp(self.WEIGHTS_FILENAME)
+        return load(f=info_path, map_location=self._device)
+
+    @cached_property
+    def params(self):
+        return self.info["model_state_dict"]
 
     @cached_property
     def hyperparameters(self):
-        def get_key_length(item: str):
-            for each in item:
-                if each.isdigit():
-                    return item.index(each)
+        return self.info["hyperparameters"]
 
-        hyperparameters = dict()
-        filename_without_ext = ".".join(self.WEIGHTS_FILENAME.split(".")[:-1])
-        hyperparameters["model"] = filename_without_ext.split("_")[0]
-        for item in filename_without_ext.split("_")[1:]:
-            key = item[: get_key_length(item)]
-            value = item[get_key_length(item) :]
-            hyperparameters[key] = value
-
-        return hyperparameters
+    def evaluate(self):
+        print(self.info["evaluation_results"])
 
     @cached_property
     def image_length(self):
-        return int(self.hyperparameters["image"])
+        return self.hyperparameters["image_length"]
+
+    @cached_property
+    def hidden_units_num(self):
+        return self.hyperparameters["hidden_units_num"]
 
     @cached_property
     def transform(self):
@@ -217,46 +222,35 @@ class CustomModelHandler(ModelHandler):
         return test_transform
 
     @cached_property
-    def params(self):
-        params_path = Path(__file__).parent / "params" / self.WEIGHTS_FILENAME
-        if not (params_path).is_file():
-            download_file_from_ftp(self.WEIGHTS_FILENAME)
-        return load(f=params_path, map_location=self._device)
-
-    @cached_property
     def categories(self):
-        if int(self.hyperparameters["dataset"]) == 0:
-            dataset = "CIFAR10"
-        else:
-            dataset = "Caltech256"
         with open(
-            Path(__file__).parent / "data" / f"categories_{dataset}.json", "r"
+            Path(__file__).parent
+            / f"data/categories_{self.hyperparameters['dataset_name']}.json",
+            "r",
         ) as json_file:
             loaded_data = json.load(json_file)
         return loaded_data
 
 
 class TinyVGGHandler(CustomModelHandler):
-    WEIGHTS_FILENAME = "TinyVGG_image64_hidden128_epochs20_batch32_lr0.001_dataset1.pth"
+    MODEL_FILENAME = "TinyVGG_latest.pth"
 
     @cached_property
     def blank_model(self) -> Module:
         return TinyVGG(
-            hidden_units_num=int(self.hyperparameters["hidden"]),
+            hidden_units_num=self.hidden_units_num,
             output_shape=len(self.categories),
-            image_length=int(self.hyperparameters["image"]),
+            image_length=self.image_length,
         )
 
 
 class NiceViTB16Handler(CustomModelHandler):
-    WEIGHTS_FILENAME = (
-        "NiceViTB16_image224_hidden128_epochs20_batch32_lr0.001_dataset1.pth"
-    )
+    MODEL_FILENAME = "NiceViTB16_latest.pth"
 
     @cached_property
     def blank_model(self) -> Module:
         return NiceViTB16(
-            hidden_units_num=int(self.hyperparameters["hidden"]),
+            hidden_units_num=self.hidden_units_num,
             output_shape=len(self.categories),
         )
 
