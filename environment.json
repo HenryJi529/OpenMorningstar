@@ -262,6 +262,9 @@
     "torchvision": {
         "version": "0.15.2"
     },
+    "torch-tb-profiler": {
+        "version": "0.4.1"
+    },
     "tensorboard": {
         "version": "2.13.0"
     },

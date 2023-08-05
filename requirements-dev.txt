@@ -58,6 +58,7 @@ simpy==4.0.2
 sqlite3-to-mysql==2.0.3
 tensorboard==2.13.0
 torch==2.0.1
+torch-tb-profiler==0.4.1
 torch_geometric==2.2.0
 torchinfo==1.8.0
 torchmetrics==1.0.2
