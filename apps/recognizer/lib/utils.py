@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import List, Tuple
+from typing import List, Tuple, Dict
 from timeit import default_timer as timer
 
 import torch
@@ -54,21 +54,22 @@ def set_seeds(seed: int = 42):
     torch.cuda.manual_seed(seed)
 
 
-def save_model(model: torch.nn.Module, target_dir: str, model_name: str):
+def save_model(
+    model: torch.nn.Module,
+    hyperparameters: Dict,
+    evaluation_results: Dict,
+    target_dir: str,
+    model_name: str,
+):
     """Saves a PyTorch model to a target directory.
 
     Args:
         model: A target PyTorch model to save.
+        hyperparameters: A dictionary of hyperparameters used to train the model.
+        evaluation_results: A dictionary of evaluation results from the model.
         target_dir: A directory for saving the model to.
         model_name: A filename for the saved model.
             Should include either ".pth" or ".pt" as the file extension.
-
-    Example usage:
-        save_model(
-                    model=model_0,
-                    target_dir="models",
-                    model_name="05_going_modular_tingvgg_model.pth"
-                )
     """
     # Create target directory
     target_dir_path = Path(target_dir)
@@ -80,9 +81,14 @@ def save_model(model: torch.nn.Module, target_dir: str, model_name: str):
     ), "model_name should end with '.pt' or '.pth'"
     model_save_path = target_dir_path / model_name
 
-    # Save the model state_dict()
+    # Save model
     print(f"[INFO] Saving model to: {model_save_path}")
-    torch.save(obj=model.state_dict(), f=model_save_path)
+    obj = {
+        "model_state_dict": model.state_dict(),
+        "hyperparameters": hyperparameters,
+        "evaluation_results": evaluation_results,
+    }
+    torch.save(obj=obj, f=model_save_path)
 
 
 def accuracy_fn(y_true, y_pred):
