@@ -17,7 +17,7 @@ from torchmetrics import (
 
 import torch
 from torch.utils.data import DataLoader
-
+from torch.utils.tensorboard import SummaryWriter
 
 from utils import DEVICE
 
@@ -199,6 +199,7 @@ def train(
     optimizer: torch.optim.Optimizer,
     loss_fn: torch.nn.Module,
     epochs: int,
+    writer: SummaryWriter,
     device: torch.device = DEVICE,
     verbose: bool = False,
 ) -> Dict[str, List]:
@@ -217,7 +218,9 @@ def train(
         optimizer: A PyTorch optimizer to help minimize the loss function.
         loss_fn: A PyTorch loss function to calculate loss on both datasets.
         epochs: An integer indicating how many epochs to train for.
+        writer: A SummaryWriter instance to write training and validation metrics to.
         device: A target device to compute on (e.g. "cuda", "mps", "cpu").
+        verbose: A boolean indicating whether to print training and validation metrics.
 
     Returns:
         A dictionary of training and validating loss as well as training and
@@ -270,6 +273,52 @@ def train(
         results["train_metrics"].append(train_metrics)
         results["val_loss"].append(val_loss)
         results["val_metrics"].append(val_metrics)
+
+        ### New: Experiment tracking ###
+        if writer:
+            # See SummaryWriter documentation
+            writer.add_graph(
+                model=model, input_to_model=torch.randn(32, 3, 224, 224).to(device)
+            )
+            writer.add_scalars(
+                main_tag="Loss",
+                tag_scalar_dict={"train_loss": train_loss, "val_loss": val_loss},
+                global_step=epoch,
+            )
+            writer.add_scalars(
+                main_tag="Accuracy",
+                tag_scalar_dict={
+                    "train_accuracy": train_metrics["train_accuracy"],
+                    "val_accuracy": val_metrics["val_accuracy"],
+                },
+                global_step=epoch,
+            )
+            writer.add_scalars(
+                main_tag="Recall",
+                tag_scalar_dict={
+                    "train_recall": train_metrics["train_recall"],
+                    "val_recall": val_metrics["val_recall"],
+                },
+                global_step=epoch,
+            )
+            writer.add_scalars(
+                main_tag="Precision",
+                tag_scalar_dict={
+                    "train_precision": train_metrics["train_precision"],
+                    "val_precision": val_metrics["val_precision"],
+                },
+                global_step=epoch,
+            )
+            writer.add_scalars(
+                main_tag="F1Score",
+                tag_scalar_dict={
+                    "train_f1_score": train_metrics["train_f1_score"],
+                    "val_f1_score": val_metrics["val_f1_score"],
+                },
+                global_step=epoch,
+            )
+            # Close the writer
+            writer.close()
 
     # Return the filled results at the end of the epochs
     return results

@@ -14,6 +14,7 @@ from torchvision import transforms
 
 from torch.cuda import is_available as is_cuda_available
 from torch.backends.mps import is_built as is_mps_built
+from torch.utils.tensorboard import SummaryWriter
 
 DEVICE = "cuda" if is_cuda_available() else "mps" if is_mps_built() else "cpu"
 
@@ -52,6 +53,20 @@ def set_seeds(seed: int = 42):
     torch.manual_seed(seed)
     # Set the seed for CUDA torch operations (ones that happen on the GPU)
     torch.cuda.manual_seed(seed)
+
+
+def create_writer(experiment_name: str):
+    """Creates a torch.utils.tensorboard.writer.SummaryWriter() instance tracking to a specific directory."""
+    from datetime import datetime
+    import os
+
+    # Get timestamp of current date in reverse order
+    timestamp = datetime.now().strftime("%Y-%m-%d")
+
+    # Create log directory path
+    log_dir = os.path.join("runs", timestamp, experiment_name)
+    print(f"[INFO] Created SummaryWriter saving to {log_dir}")
+    return SummaryWriter(log_dir=log_dir)
 
 
 def save_model(

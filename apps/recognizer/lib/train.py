@@ -12,12 +12,12 @@ import torch
 from torchvision import datasets
 
 import data_processor, engine, model_builder, utils
-from utils import time, set_seeds, DEVICE
+from utils import DEVICE
 
-set_seeds(42)
+utils.set_seeds(42)
 
 
-@time
+@utils.time
 def main(args):
     # 设置数据集
     try:
@@ -69,6 +69,14 @@ def main(args):
     loss_fn = torch.nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=args.learning_rate)
 
+    # Set default experiment name
+    experiment_name = f"{type(model).__name__}_image{args.image_length}_hidden{args.hidden_units_num}_epochs{args.epochs_num}_batch{args.batch_size}_lr{args.learning_rate}_dataset{args.dataset_name}"
+
+    # Set up a tensorboard writer
+    writer = utils.create_writer(
+        args.experiment_name if args.experiment_name else experiment_name
+    )
+
     # Start training with help from engine.py
     training_results = engine.train(
         model=model,
@@ -77,8 +85,10 @@ def main(args):
         loss_fn=loss_fn,
         optimizer=optimizer,
         epochs=args.epochs_num,
+        writer=writer,
         device=DEVICE,
     )
+    print(training_results)
 
     # Evaluate model
     evaluation_results = engine.evaluate(
@@ -87,12 +97,7 @@ def main(args):
         len(categories),
     )
 
-    # Saving model
-    if args.environment == "local":
-        target_dir = "models"
-    else:
-        target_dir = "drive/MyDrive/models"
-
+    # Hyperparameters to be saved
     hyperparameters = {
         "image_length": args.image_length,
         "hidden_units_num": args.hidden_units_num,
@@ -102,12 +107,18 @@ def main(args):
         "dataset_name": args.dataset_name,
     }
 
+    # Saving model
+    if args.environment == "local":
+        target_dir = "models"
+    else:
+        target_dir = "drive/MyDrive/models"
+
     utils.save_model(
         model=model,
         hyperparameters=hyperparameters,
         evaluation_results=evaluation_results,
         target_dir=target_dir,
-        model_filename=f"{type(model).__name__}_image{args.image_length}_hidden{args.hidden_units_num}_epochs{args.epochs_num}_batch{args.batch_size}_lr{args.learning_rate}_dataset{args.dataset_name}.pth",
+        model_filename=f"{experiment_name}.pth",
     )
 
 
@@ -157,6 +168,11 @@ if __name__ == "__main__":
         required=False,
         default="local",
         help="选择环境(支持local和colab)",
+    )
+    parser.add_argument(
+        "--experiment_name",
+        required=False,
+        help="设置实验名称(用于tensorboard)",
     )
 
     args = parser.parse_args()
