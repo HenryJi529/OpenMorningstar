@@ -35,5 +35,34 @@ clear_output()
 ```py
 # Let's view our experiments within TensorBoard from within the notebook
 %load_ext tensorboard
-%tensorboard --logdir runs 
+%tensorboard --logdir drive/MyDrive/runs
+# !pkill -f tensorboard # kill the tensorboard instance if it's still running
+```
+
+```py
+## 公开tensorboard到: http://server.morningstar369.com:16006
+
+# 获取frpc
+!wget -q -c https://github.com/fatedier/frp/releases/download/v0.51.2/frp_0.51.2_linux_amd64.tar.gz
+!tar -xf frp_*
+!rm frp_*.gz
+!mv frp_*/frpc ./
+
+# 配置frpc
+config = """
+[common]
+server_addr = server.morningstar369.com
+server_port = 7000
+token = myToken
+[tensorboard-colab]
+type = tcp
+local_ip = 0.0.0.0
+local_port = 6006
+remote_port = 16006
+"""
+with open("frpc.ini", "w") as file:
+    file.write(config)
+
+# 启动frpc
+!./frpc -c ./frpc.ini &
 ```
