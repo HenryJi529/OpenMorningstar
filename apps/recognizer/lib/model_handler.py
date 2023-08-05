@@ -1,3 +1,4 @@
+import argparse
 import json
 from typing import List
 from functools import cached_property
@@ -7,6 +8,9 @@ from ftplib import FTP
 
 import numpy as np
 from PIL import Image
+
+from mlxtend.plotting import plot_confusion_matrix
+from matplotlib import pyplot as plt
 
 from torch.nn import Module
 from torch import inference_mode, load, Tensor
@@ -156,6 +160,9 @@ class PretrainedModelHandler(ModelHandler):
     def categories(self):
         return self.WEIGHTS.meta["categories"]
 
+    def evaluate(self):
+        print("    该模型未提供性能评估结果...")
+
 
 class EfficientNetB2Handler(PretrainedModelHandler):
     """EfficientNet_B2"""
@@ -194,7 +201,7 @@ class CustomModelHandler(ModelHandler):
     def info(self):
         info_path = Path(__file__).parent / "models" / self.MODEL_FILENAME
         if not (info_path).is_file():
-            download_file_from_ftp(self.WEIGHTS_FILENAME)
+            download_file_from_ftp(self.MODEL_FILENAME)
         return load(f=info_path, map_location=self._device)
 
     @cached_property
@@ -204,9 +211,6 @@ class CustomModelHandler(ModelHandler):
     @cached_property
     def hyperparameters(self):
         return self.info["hyperparameters"]
-
-    def evaluate(self):
-        print(self.info["evaluation_results"])
 
     @cached_property
     def image_length(self):
@@ -230,6 +234,19 @@ class CustomModelHandler(ModelHandler):
         ) as json_file:
             loaded_data = json.load(json_file)
         return loaded_data
+
+    def evaluate(self):
+        print(f'    accuracy: {self.info["evaluation_results"]["accuracy"]*100:.2f}%')
+        print(f'    recall: {self.info["evaluation_results"]["recall"]*100:.2f}%')
+        print(f'    precision: {self.info["evaluation_results"]["precision"]*100:.2f}%')
+        print(f'    f1_score: {self.info["evaluation_results"]["f1_score"]*100:.2f}%')
+        plot_confusion_matrix(
+            conf_mat=self.info["evaluation_results"]["confusion_matrix"],
+            class_names=self.categories,
+            figsize=(10, 10),
+        )
+        plt.title(f"{type(self.model).__name__} Confusion Matrix")
+        plt.show()
 
 
 class TinyVGGHandler(CustomModelHandler):
@@ -256,6 +273,17 @@ class NiceViTB16Handler(CustomModelHandler):
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Handle model")
+    parser.add_argument(
+        "-v",
+        "--verbose",
+        action="store_true",
+        required=False,
+        default=False,
+        help="是否显示模型摘要和评估结果",
+    )
+    args = parser.parse_args()
+
     modelHandlerList: List[ModelHandler] = [
         EfficientNetB2Handler,
         GoogLeNetHandler,
@@ -266,14 +294,26 @@ if __name__ == "__main__":
     print("加载参数: ")
     for modelHandler in modelHandlerList:
         print(f"- 加载{modelHandler.__name__}参数...")
-        modelHandler().summary()
         _ = modelHandler().params
 
-    print("=============================")
+    if args.verbose:
+        print("=============================")
 
-    img = Image.open(Path(__file__).parent / "data/test.jpeg")
-    print("预测测试: ")
-    for modelHandler in modelHandlerList:
-        print(f"- 使用{modelHandler.__name__}预测...")
-        result = modelHandler().predict(img)
-        print(f"    {result['category']}: {100 * result['score']:.1f}%")
+        for modelHandler in modelHandlerList:
+            print(f"- 显示{modelHandler.__name__}摘要...")
+            modelHandler().summary()
+
+        print("=============================")
+
+        for modelHandler in modelHandlerList:
+            print(f"评估模型: {modelHandler.__name__}")
+            modelHandler().evaluate()
+
+        print("=============================")
+
+        img = Image.open(Path(__file__).parent / "data/test.jpeg")
+        print("单图测试: ")
+        for modelHandler in modelHandlerList:
+            print(f"- 使用{modelHandler.__name__}预测...")
+            result = modelHandler().predict(img)
+            print(f"    {result['category']}: {100 * result['score']:.1f}%")
