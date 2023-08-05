@@ -278,7 +278,13 @@ def train(
         if writer:
             # See SummaryWriter documentation
             writer.add_graph(
-                model=model, input_to_model=torch.randn(32, 3, 224, 224).to(device)
+                model=model,
+                input_to_model=torch.randn(
+                    train_dataloader.batch_size,
+                    3,
+                    next(iter(train_dataloader))[0].shape[2],
+                    next(iter(train_dataloader))[0].shape[3],
+                ).to(device),
             )
             writer.add_scalars(
                 main_tag="Loss",

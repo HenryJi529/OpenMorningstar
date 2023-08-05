@@ -31,3 +31,9 @@ drive.mount('/content/drive')
 from IPython.display import clear_output
 clear_output()
 ```
+
+```py
+# Let's view our experiments within TensorBoard from within the notebook
+%load_ext tensorboard
+%tensorboard --logdir runs 
+```
