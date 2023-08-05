@@ -303,7 +303,7 @@ def evaluate(
         F1Score(task="multiclass", num_classes=categoriesNum, average="macro").to(
             device
         ),
-        ConfusionMatrix(task="multiclass", num_classes=categoriesNum),
+        ConfusionMatrix(task="multiclass", num_classes=categoriesNum).to(device),
     ]
 
     # Turn on inference context manager
