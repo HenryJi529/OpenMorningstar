@@ -25,6 +25,14 @@ def main(args):
     except Exception as e:
         raise ValueError("不支持的数据集")
 
+    # 设置保存路径
+    if args.environment == "local":
+        model_save_dir = "models"
+        tensorboard_base_dir = "runs"
+    else:
+        model_save_dir = "drive/MyDrive/models"
+        tensorboard_base_dir = "drive/MyDrive/runs"
+
     # 读取分类信息
     categories_path = (
         Path(__file__).parent / f"data/categories_{datasetClass.__name__}.json"
@@ -74,7 +82,8 @@ def main(args):
 
     # Set up a tensorboard writer
     writer = utils.create_writer(
-        args.experiment_name if args.experiment_name else experiment_name
+        args.experiment_name if args.experiment_name else experiment_name,
+        base_dir=tensorboard_base_dir,
     )
 
     # Start training with help from engine.py
@@ -108,16 +117,11 @@ def main(args):
     }
 
     # Saving model
-    if args.environment == "local":
-        target_dir = "models"
-    else:
-        target_dir = "drive/MyDrive/models"
-
     utils.save_model(
         model=model,
         hyperparameters=hyperparameters,
         evaluation_results=evaluation_results,
-        target_dir=target_dir,
+        target_dir=model_save_dir,
         model_filename=f"{experiment_name}.pth",
     )
 

@@ -55,7 +55,7 @@ def set_seeds(seed: int = 42):
     torch.cuda.manual_seed(seed)
 
 
-def create_writer(experiment_name: str):
+def create_writer(experiment_name: str, base_dir: str = "runs"):
     """Creates a torch.utils.tensorboard.writer.SummaryWriter() instance tracking to a specific directory."""
     from datetime import datetime
     import os
@@ -64,7 +64,7 @@ def create_writer(experiment_name: str):
     timestamp = datetime.now().strftime("%Y-%m-%d")
 
     # Create log directory path
-    log_dir = os.path.join("runs", timestamp, experiment_name)
+    log_dir = os.path.join(base_dir, timestamp, experiment_name)
     print(f"[INFO] Created SummaryWriter saving to {log_dir}")
     return SummaryWriter(log_dir=log_dir)
 
