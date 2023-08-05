@@ -199,7 +199,7 @@ def train(
     optimizer: torch.optim.Optimizer,
     loss_fn: torch.nn.Module,
     epochs: int,
-    writer: SummaryWriter,
+    writer: SummaryWriter = None,
     device: torch.device = DEVICE,
     verbose: bool = False,
 ) -> Dict[str, List]:
@@ -274,7 +274,7 @@ def train(
         results["val_loss"].append(val_loss)
         results["val_metrics"].append(val_metrics)
 
-        ### New: Experiment tracking ###
+        ### Experiment tracking ###
         if writer:
             # See SummaryWriter documentation
             writer.add_graph(
