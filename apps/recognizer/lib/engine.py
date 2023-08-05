@@ -280,17 +280,29 @@ def evaluate(
     test_dataloader: DataLoader,
     categoriesNum: int,
     device: torch.device = DEVICE,
-):
-    """给出模型的最终评价"""
+) -> Dict:
+    """给出模型的最终评价(accuracy, recall, precision, f1_score, confusion_matrix)"""
+
+    # Make sure model on target device
+    model.to(device)
+
     # Put model in eval mode
     model.eval()
 
     # Setup Metrics
     metrics = [
-        Accuracy(task="multiclass", num_classes=categoriesNum),
-        Recall(task="multiclass", num_classes=categoriesNum),
-        Precision(task="multiclass", num_classes=categoriesNum),
-        F1Score(task="multiclass", num_classes=categoriesNum),
+        Accuracy(task="multiclass", num_classes=categoriesNum, average="macro").to(
+            device
+        ),
+        Recall(task="multiclass", num_classes=categoriesNum, average="macro").to(
+            device
+        ),
+        Precision(task="multiclass", num_classes=categoriesNum, average="macro").to(
+            device
+        ),
+        F1Score(task="multiclass", num_classes=categoriesNum, average="macro").to(
+            device
+        ),
         ConfusionMatrix(task="multiclass", num_classes=categoriesNum),
     ]
 
@@ -316,6 +328,10 @@ def evaluate(
     precision = metrics[2].compute().item()
     f1_score = metrics[3].compute().item()
     confusion_matrix = metrics[4].compute().cpu().numpy()
+
+    # Reset metrics
+    for metric in metrics:
+        metric.reset()
 
     return {
         "accuracy": accuracy,
