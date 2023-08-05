@@ -59,7 +59,7 @@ def save_model(
     hyperparameters: Dict,
     evaluation_results: Dict,
     target_dir: str,
-    model_name: str,
+    model_filename: str,
 ):
     """Saves a PyTorch model to a target directory.
 
@@ -68,7 +68,7 @@ def save_model(
         hyperparameters: A dictionary of hyperparameters used to train the model.
         evaluation_results: A dictionary of evaluation results from the model.
         target_dir: A directory for saving the model to.
-        model_name: A filename for the saved model.
+        model_filename: A filename for the saved model.
             Should include either ".pth" or ".pt" as the file extension.
     """
     # Create target directory
@@ -76,10 +76,10 @@ def save_model(
     target_dir_path.mkdir(parents=True, exist_ok=True)
 
     # Create model save path
-    assert model_name.endswith(".pth") or model_name.endswith(
+    assert model_filename.endswith(".pth") or model_filename.endswith(
         ".pt"
-    ), "model_name should end with '.pt' or '.pth'"
-    model_save_path = target_dir_path / model_name
+    ), "model_filename should end with '.pt' or '.pth'"
+    model_save_path = target_dir_path / model_filename
 
     # Save model
     print(f"[INFO] Saving model to: {model_save_path}")
