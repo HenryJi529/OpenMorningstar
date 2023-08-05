@@ -9,7 +9,6 @@ import json
 from pathlib import Path
 
 import torch
-import torchvision
 from torchvision import datasets
 
 import data_processor, engine, model_builder, utils
