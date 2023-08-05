@@ -68,7 +68,8 @@ class LinearReLURegressor(torch.nn.Module):
         super().__init__()
         self.layer1 = torch.nn.Linear(2, 8)
         self.layer2 = torch.nn.Linear(8, 4)
-        self.layer3 = torch.nn.Linear(4, 1)
+        self.layer3 = nn.LazyLinear(out_features=1)
+        # self.layer3 = torch.nn.Linear(4, 1)
         self.relu = torch.nn.ReLU()
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
@@ -186,3 +187,9 @@ class NiceViTB16(nn.Module):
         )
 
         return transform, transform  # NOTE: 分别看作train_transform和test_transform
+
+
+if __name__ == "__main__":
+    model1 = LinearReLURegressor()
+    tensor1 = torch.rand(10, 2)
+    print(model1(tensor1))
