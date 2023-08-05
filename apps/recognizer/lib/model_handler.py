@@ -240,13 +240,16 @@ class CustomModelHandler(ModelHandler):
         print(f'    recall: {self.info["evaluation_results"]["recall"]*100:.2f}%')
         print(f'    precision: {self.info["evaluation_results"]["precision"]*100:.2f}%')
         print(f'    f1_score: {self.info["evaluation_results"]["f1_score"]*100:.2f}%')
-        plot_confusion_matrix(
-            conf_mat=self.info["evaluation_results"]["confusion_matrix"],
-            class_names=self.categories,
-            figsize=(10, 10),
-        )
-        plt.title(f"{type(self.model).__name__} Confusion Matrix")
-        plt.show()
+        if len(self.categories) <= 20:
+            plot_confusion_matrix(
+                conf_mat=self.info["evaluation_results"]["confusion_matrix"],
+                class_names=self.categories,
+                figsize=(20, 20),
+            )
+            plt.title(f"{type(self.model).__name__} Confusion Matrix")
+            plt.show()
+        else:
+            print("    类别数大于20，不显示混淆矩阵。")
 
 
 class TinyVGGHandler(CustomModelHandler):
