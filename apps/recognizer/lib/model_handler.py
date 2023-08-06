@@ -13,7 +13,7 @@ from mlxtend.plotting import plot_confusion_matrix
 from matplotlib import pyplot as plt
 
 from torch.nn import Module
-from torch import inference_mode, load, Tensor
+from torch import inference_mode, load, Tensor, autocast
 from torchinfo import summary
 import torchvision
 
@@ -124,7 +124,11 @@ class ModelHandler:
         transformed_image = self.transform(image)
         batch = transformed_image.unsqueeze(0).to(self._device)
         with inference_mode():
-            pred: Tensor = self.model(batch)
+            with autocast(
+                device_type=self._device if self._device in ["cuda", "cpu"] else "cpu",
+                enabled=True,
+            ):  # 混合精度计算(mixed precision computation)
+                pred: Tensor = self.model(batch)
             pred_logits = pred.squeeze().cpu()
             pred_probs: Tensor = pred_logits.softmax(dim=0)
             label = pred_probs.argmax().item()
