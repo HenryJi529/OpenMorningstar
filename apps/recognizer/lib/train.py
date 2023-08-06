@@ -85,7 +85,6 @@ def main(args):
     )
 
     # Start training with help from engine.py
-    model = torch.compile(model)
     training_results = engine.train(
         model=model,
         train_dataloader=train_dataloader,
