@@ -162,6 +162,10 @@ class NiceViTB16(nn.Module):
         for param in origin_model.encoder.parameters():
             param.requires_grad = False
 
+        # NOTE: 其实也可以考虑全都设置requires_grad = False，然后替换掉heads
+        # for param in origin_model.parameters():
+        #     param.requires_grad = False
+
         origin_model.heads = nn.Sequential(
             nn.Linear(
                 in_features=768,
