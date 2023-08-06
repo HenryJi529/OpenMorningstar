@@ -14,11 +14,14 @@ from torchvision import datasets
 import data_processor, engine, model_builder, utils
 from utils import DEVICE
 
-utils.set_seeds(42)
-
 
 @utils.time
 def main(args):
+    # 设置随机种子
+    if args.random_seed:
+        print(f"设置随机种子为: {args.random_seed}")
+        utils.set_seeds(args.random_seed)
+
     # 设置数据集
     try:
         datasetClass = getattr(datasets, args.dataset_name)
@@ -175,6 +178,12 @@ if __name__ == "__main__":
         "--experiment_name",
         required=False,
         help="设置实验名称(用于tensorboard)",
+    )
+    parser.add_argument(
+        "--random_seed",
+        required=False,
+        type=int,
+        help="设置随机种子",
     )
 
     args = parser.parse_args()
