@@ -142,7 +142,7 @@ class TinyVGG(nn.Module):
         # x = self.classifier(x)
         # return x
         return self.classifier(
-            self.block_2(self.block_1(x))
+            self.conv_block_2(self.conv_block_1(x))
         )  # <- leverage the benefits of operator fusion
 
     @property
