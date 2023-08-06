@@ -27,11 +27,9 @@ def main(args):
 
     # 设置保存路径
     if args.environment == "local":
-        model_save_dir = "models"
-        tensorboard_base_dir = "runs"
+        base_dir = Path(".")
     else:
-        model_save_dir = "drive/MyDrive/models"
-        tensorboard_base_dir = "drive/MyDrive/runs"
+        base_dir = Path("./drive/MyDrive")
 
     # 读取分类信息
     categories_path = (
@@ -83,7 +81,7 @@ def main(args):
     # Set up a tensorboard writer
     writer = utils.create_writer(
         args.experiment_name if args.experiment_name else experiment_name,
-        base_dir=tensorboard_base_dir,
+        target_dir=base_dir / "runs",
     )
 
     # Start training with help from engine.py
@@ -121,7 +119,7 @@ def main(args):
         model=model,
         hyperparameters=hyperparameters,
         evaluation_results=evaluation_results,
-        target_dir=model_save_dir,
+        target_dir=base_dir / "models",
         model_filename=f"{experiment_name}.pth",
     )
 

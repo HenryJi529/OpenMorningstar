@@ -55,7 +55,7 @@ def set_seeds(seed: int = 42):
     torch.cuda.manual_seed(seed)
 
 
-def create_writer(experiment_name: str, base_dir: str = "runs"):
+def create_writer(experiment_name: str, target_dir: Path = Path("runs")):
     """Creates a torch.utils.tensorboard.writer.SummaryWriter() instance tracking to a specific directory."""
     from datetime import datetime
     import os
@@ -64,7 +64,7 @@ def create_writer(experiment_name: str, base_dir: str = "runs"):
     timestamp = datetime.now().strftime("%Y-%m-%d")
 
     # Create log directory path
-    log_dir = os.path.join(base_dir, timestamp, experiment_name)
+    log_dir = target_dir / timestamp / experiment_name
     print(f"[INFO] Created SummaryWriter saving to {log_dir}")
     return SummaryWriter(log_dir=log_dir)
 
@@ -73,7 +73,7 @@ def save_model(
     model: torch.nn.Module,
     hyperparameters: Dict,
     evaluation_results: Dict,
-    target_dir: str,
+    target_dir: Path,
     model_filename: str,
 ):
     """Saves a PyTorch model to a target directory.
@@ -87,14 +87,13 @@ def save_model(
             Should include either ".pth" or ".pt" as the file extension.
     """
     # Create target directory
-    target_dir_path = Path(target_dir)
-    target_dir_path.mkdir(parents=True, exist_ok=True)
+    target_dir.mkdir(parents=True, exist_ok=True)
 
     # Create model save path
     assert model_filename.endswith(".pth") or model_filename.endswith(
         ".pt"
     ), "model_filename should end with '.pt' or '.pth'"
-    model_save_path = target_dir_path / model_filename
+    model_save_path = target_dir / model_filename
 
     # Save model
     print(f"[INFO] Saving model to: {model_save_path}")
