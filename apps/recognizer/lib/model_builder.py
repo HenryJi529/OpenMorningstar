@@ -14,7 +14,8 @@ def create_transforms(
 ) -> Tuple[transforms.Compose, transforms.Compose]:
     transform = transforms.Compose(
         [
-            transforms.Grayscale(num_output_channels=3),
+            transforms.Lambda(lambda x: x.convert("RGB") if x.mode == "L" else x),
+            # transforms.Grayscale(num_output_channels=3),
             transforms.Resize((image_length, image_length)),
             transforms.TrivialAugmentWide(31),
             transforms.ToTensor(),
@@ -22,7 +23,8 @@ def create_transforms(
     )
     test_transform = transforms.Compose(
         [
-            transforms.Grayscale(num_output_channels=3),
+            transforms.Lambda(lambda x: x.convert("RGB") if x.mode == "L" else x),
+            # transforms.Grayscale(num_output_channels=3),
             transforms.Resize((image_length, image_length)),
             transforms.ToTensor(),
         ]
