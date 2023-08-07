@@ -119,14 +119,14 @@ class ModelHandler:
         model.load_state_dict(self.params)
         return model
 
-    def predict(self, image: Image.Image):
+    def predict(self, image: Image.Image, enable_autocast: bool = True):
         self.model.eval()
         transformed_image = self.transform(image)
         batch = transformed_image.unsqueeze(0).to(self._device)
         with inference_mode():
             with autocast(
                 device_type=self._device if self._device in ["cuda", "cpu"] else "cpu",
-                enabled=True,
+                enabled=enable_autocast,
             ):  # 混合精度计算(mixed precision computation)
                 pred: Tensor = self.model(batch)
             pred_logits = pred.squeeze().cpu()
@@ -277,6 +277,9 @@ class NiceViTB16Handler(CustomModelHandler):
             hidden_units_num=self.hidden_units_num,
             output_shape=len(self.categories),
         )
+
+    def predict(self, image: Image.Image, enable_autocast: bool = True):
+        return super().predict(image, enable_autocast=False)
 
 
 if __name__ == "__main__":
