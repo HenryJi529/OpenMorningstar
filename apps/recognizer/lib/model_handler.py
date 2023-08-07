@@ -278,7 +278,7 @@ class NiceViTB16Handler(CustomModelHandler):
             output_shape=len(self.categories),
         )
 
-    def predict(self, image: Image.Image, enable_autocast: bool = True):
+    def predict(self, image: Image.Image):
         return super().predict(image, enable_autocast=False)
 
 
