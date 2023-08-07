@@ -95,7 +95,7 @@ class ModelHandler:
     def summary(self):
         return summary(
             self.model,
-            input_size=[10, 3, self.image_length, self.image_length],
+            input_size=[10, 3, self.image_size, self.image_size],
             col_names=[
                 "input_size",
                 "output_size",
@@ -110,7 +110,7 @@ class ModelHandler:
         )
 
     @cached_property
-    def image_length(self):
+    def image_size(self):
         raise NotImplementedError
 
     @cached_property
@@ -156,7 +156,7 @@ class PretrainedModelHandler(ModelHandler):
         return load(f=params_path)
 
     @cached_property
-    def image_length(self):
+    def image_size(self):
         image = create_random_image()
         return self.transform(image).shape[-1]
 
@@ -217,8 +217,8 @@ class CustomModelHandler(ModelHandler):
         return self.info["hyperparameters"]
 
     @cached_property
-    def image_length(self):
-        return self.hyperparameters["image_length"]
+    def image_size(self):
+        return self.hyperparameters["image_size"]
 
     @cached_property
     def hidden_units_num(self):
@@ -264,7 +264,7 @@ class TinyVGGHandler(CustomModelHandler):
         return TinyVGG(
             hidden_units_num=self.hidden_units_num,
             output_shape=len(self.categories),
-            image_length=self.image_length,
+            image_size=self.image_size,
         )
 
 

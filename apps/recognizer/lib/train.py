@@ -1,7 +1,7 @@
 """
 Example running of train.py:
-1. python train.py --model_name TinyVGG --image_length 64 --hidden_units_num 128 --epochs_num 5 --batch_size 32 --learning_rate 0.001 --dataset_name CIFAR10 --environment colab
-2. python train.py --model_name NiceViTB16 --image_length 224 --hidden_units_num 128 --epochs_num 20 --batch_size 32 --learning_rate 0.001 --dataset_name Caltech256 --environment colab
+1. python train.py --model_name TinyVGG --image_size 64 --hidden_units_num 128 --epochs_num 5 --batch_size 32 --learning_rate 0.001 --dataset_name CIFAR10 --environment colab
+2. python train.py --model_name NiceViTB16 --image_size 224 --hidden_units_num 128 --epochs_num 20 --batch_size 32 --learning_rate 0.001 --dataset_name Caltech256 --environment colab
 """
 
 import argparse
@@ -46,16 +46,16 @@ def main(args):
         model = model_builder.TinyVGG(
             hidden_units_num=args.hidden_units_num,
             output_shape=len(categories),
-            image_length=args.image_length,
+            image_size=args.image_size,
         )
     elif args.model_name == "NiceViTB16":
         model = model_builder.NiceViTB16(
             hidden_units_num=args.hidden_units_num,
             output_shape=len(categories),
         )
-        # NOTE: 由于原始模型上的设定，需要手动设置image_length
-        args.image_length = model.origin_model.image_size  # NOTE: 原始模型上的设定
-        print("[INFO] 由于ViT的设定，image_length固定为224...")
+        # NOTE: 由于原始模型上的设定，需要手动设置image_size
+        args.image_size = model.origin_model.image_size  # NOTE: 原始模型上的设定
+        print("[INFO] 由于ViT的设定，image_size固定为224...")
     else:
         raise ValueError("不支持的模型")
 
@@ -80,7 +80,7 @@ def main(args):
     optimizer = torch.optim.Adam(model.parameters(), lr=args.learning_rate)
 
     # Set default experiment name
-    experiment_name = f"{type(model).__name__}_image{args.image_length}_hidden{args.hidden_units_num}_epochs{args.epochs_num}_batch{args.batch_size}_lr{args.learning_rate}_dataset{args.dataset_name}"
+    experiment_name = f"{type(model).__name__}_image{args.image_size}_hidden{args.hidden_units_num}_epochs{args.epochs_num}_batch{args.batch_size}_lr{args.learning_rate}_dataset{args.dataset_name}"
 
     # Set up a tensorboard writer
     writer = utils.create_writer(
@@ -110,7 +110,7 @@ def main(args):
 
     # Hyperparameters to be saved
     hyperparameters = {
-        "image_length": args.image_length,
+        "image_size": args.image_size,
         "hidden_units_num": args.hidden_units_num,
         "epochs_num": args.epochs_num,
         "batch_size": args.batch_size,
@@ -139,7 +139,7 @@ if __name__ == "__main__":
         help="选择模型(支持TinyVGG和NiceViTB16)",
     )
     parser.add_argument(
-        "--image_length", required=False, type=int, default=64, help="设置image_length"
+        "--image_size", required=False, type=int, default=64, help="设置image_size"
     )
     parser.add_argument(
         "--hidden_units_num",

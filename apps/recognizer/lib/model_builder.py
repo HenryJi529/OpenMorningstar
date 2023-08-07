@@ -5,18 +5,18 @@ from torch import nn
 
 from torchvision import datasets, transforms, models
 
-# IMAGE_LENGTH = 224  # NOTE: Table 3 in the ViT paper
-IMAGE_LENGTH = 64  # NOTE: TinyVGG default
+# IMAGE_SIZE = 224  # NOTE: Table 3 in the ViT paper
+IMAGE_SIZE = 64  # NOTE: TinyVGG default
 
 
 def create_transforms(
-    image_length: int = IMAGE_LENGTH,
+    image_size: int = IMAGE_SIZE,
 ) -> Tuple[transforms.Compose, transforms.Compose]:
     transform = transforms.Compose(
         [
             transforms.Lambda(lambda x: x.convert("RGB") if x.mode == "L" else x),
             # transforms.Grayscale(num_output_channels=3),
-            transforms.Resize((image_length, image_length)),
+            transforms.Resize((image_size, image_size)),
             transforms.TrivialAugmentWide(31),
             transforms.ToTensor(),
         ]
@@ -25,7 +25,7 @@ def create_transforms(
         [
             transforms.Lambda(lambda x: x.convert("RGB") if x.mode == "L" else x),
             # transforms.Grayscale(num_output_channels=3),
-            transforms.Resize((image_length, image_length)),
+            transforms.Resize((image_size, image_size)),
             transforms.ToTensor(),
         ]
     )
@@ -93,11 +93,11 @@ class TinyVGG(nn.Module):
         self,
         hidden_units_num: int,
         output_shape: int,
-        image_length: int,
+        image_size: int,
     ) -> None:
         super().__init__()
-        self.image_length = image_length
-        rows, cols = image_length, image_length
+        self.image_size = image_size
+        rows, cols = image_size, image_size
         self.conv_block_1 = nn.Sequential(
             nn.Conv2d(
                 in_channels=3,
@@ -150,7 +150,7 @@ class TinyVGG(nn.Module):
     @property
     def transforms(self):
         return create_transforms(
-            image_length=self.image_length,
+            image_size=self.image_size,
         )
 
 
