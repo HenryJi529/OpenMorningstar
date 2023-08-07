@@ -59,7 +59,7 @@ coverage() {
 updateDep() {
 	echo "JavaScript: 更新版本..."
 	npx ncu -u
-	npm update
+	yarn upgrade
 	echo "==================================="
 	echo "Python: 更新依赖..."
 	${PYTHON} scripts/dep/dependencyManager.py upgrade --verbose

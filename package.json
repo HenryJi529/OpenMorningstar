@@ -48,7 +48,7 @@
     "highlightjs-copy": "^1.0.4",
     "highlightjs-line-numbers.js": "^2.8.0",
     "localstorage-slim": "^2.4.0",
-    "marked": "^6.0.0",
+    "marked": "^7.0.0",
     "mathjax": "^3.2.2",
     "pace-js": "^1.2.4"
   }
