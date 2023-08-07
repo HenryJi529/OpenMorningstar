@@ -344,22 +344,15 @@ def evaluate(
     # Put model in eval mode
     model.eval()
 
-    # Setup Metrics
-    metrics = [
-        Accuracy(task="multiclass", num_classes=categoriesNum, average="macro").to(
-            device
-        ),
-        Recall(task="multiclass", num_classes=categoriesNum, average="macro").to(
-            device
-        ),
-        Precision(task="multiclass", num_classes=categoriesNum, average="macro").to(
-            device
-        ),
-        F1Score(task="multiclass", num_classes=categoriesNum, average="macro").to(
-            device
-        ),
-        ConfusionMatrix(task="multiclass", num_classes=categoriesNum).to(device),
-    ]
+    with torch.device(device):
+        # Setup Metrics
+        metrics = [
+            Accuracy(task="multiclass", num_classes=categoriesNum, average="macro"),
+            Recall(task="multiclass", num_classes=categoriesNum, average="macro"),
+            Precision(task="multiclass", num_classes=categoriesNum, average="macro"),
+            F1Score(task="multiclass", num_classes=categoriesNum, average="macro"),
+            ConfusionMatrix(task="multiclass", num_classes=categoriesNum),
+        ]
 
     # Turn on inference context manager
     with torch.inference_mode():
