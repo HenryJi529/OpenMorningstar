@@ -22,17 +22,17 @@ def main(args):
         print(f"设置随机种子为: {args.random_seed}")
         utils.set_seeds(args.random_seed)
 
-    # 设置数据集
-    try:
-        datasetClass = getattr(datasets, args.dataset_name)
-    except Exception as e:
-        raise ValueError("不支持的数据集")
-
     # 设置保存路径
     if args.environment == "local":
         base_dir = Path(".")
     else:
         base_dir = Path("./drive/MyDrive")
+
+    # 设置数据集
+    try:
+        datasetClass = getattr(datasets, args.dataset_name)
+    except Exception as e:
+        raise ValueError("不支持的数据集")
 
     # 读取分类信息
     categories_path = (
@@ -55,6 +55,7 @@ def main(args):
         )
         # NOTE: 由于原始模型上的设定，需要手动设置image_length
         args.image_length = model.origin_model.image_size  # NOTE: 原始模型上的设定
+        print("[INFO] 由于ViT的设定，image_length固定为224...")
     else:
         raise ValueError("不支持的模型")
 
