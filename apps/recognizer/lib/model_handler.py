@@ -106,7 +106,6 @@ class ModelHandler:
             depth=3,
             col_width=18,
             row_settings=["var_names"],
-            verbose=1,
         )
 
     @cached_property
