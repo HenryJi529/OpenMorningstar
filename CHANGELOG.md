@@ -1,5 +1,29 @@
 # 更新日志
 
+## v0.2.12:
+
+本次更新如下内容:
+
+1. 常规更新(UI, 依赖, 数据)
+1. apps:
+    - **recognizer**: 
+        - 合并测试代码
+        - 通过单例模式缓存模型
+        - 完成训练流程: 
+            - 支持不同环境的模型保存
+            - 支持多种metrics
+            - 支持超参数和评估结果保存
+            - 支持tensorboard记录
+            - 使用torch.device()优化代码
+        - 添加几个新模型【LinearRegression, NiceViTB16, CustomViT...】，并更新权重
+        - 更新colab_setup配置
+        - 完善预测流程:
+            - 启用mixed precision computation
+            - 启用operator fusion
+1. deploy:
+    - django:
+        - supervisor: 降低worker个数
+
 ## v0.2.11:
 
 本次更新如下内容:
