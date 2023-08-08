@@ -31,7 +31,7 @@ def time(func):
         result = func(*args, **kwargs)
         end_time = timer()
         execution_time = end_time - start_time
-        print(f"[INFO] Total training time: {execution_time:.3f} seconds")
+        print(f"[INFO] Total running time: {execution_time:.3f} seconds")
         return result
 
     return wrapper

@@ -19,9 +19,9 @@ import torchvision
 
 
 try:
-    from .utils import DEVICE
+    from .utils import DEVICE, time
 except ImportError:
-    from utils import DEVICE
+    from utils import DEVICE, time
 
 try:
     from .model_builder import TinyVGG, NiceViTB16
@@ -119,6 +119,7 @@ class ModelHandler:
         model.load_state_dict(self.params)
         return model
 
+    @time
     def predict(self, image: Image.Image, enable_autocast: bool = True):
         self.model.eval()
         transformed_image = self.transform(image)
