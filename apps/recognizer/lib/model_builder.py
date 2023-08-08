@@ -154,6 +154,201 @@ class TinyVGG(nn.Module):
         )
 
 
+class CustomViT(nn.Module):
+    class PatchAndPositionEmbeddingBlock(nn.Module):
+        """Turns a 2D input image into a 1D sequence learnable embedding vector.
+
+        Args:
+            patch_size (int): Size of patches to convert input image into. Defaults to 16.
+            embedding_dim (int): Size of embedding to turn image into. Defaults to 768.
+        """
+
+        def __init__(
+            self,
+            patch_size: int = 16,
+            image_size: int = 224,
+            embedding_dim: int = 768,
+            embedding_dropout: float = 0.1,
+        ):
+            super().__init__()
+
+            assert (
+                image_size % patch_size == 0
+            ), f"Input image size must be divisble by patch size, image shape: {image_size}, patch size: {patch_size}"
+            self.patch_num = int(image_size**2 / patch_size**2)
+
+            self.patcher = nn.Conv2d(
+                in_channels=3,
+                out_channels=embedding_dim,
+                kernel_size=patch_size,
+                stride=patch_size,
+                padding=0,
+            )
+
+            self.flatten = nn.Flatten(
+                start_dim=2,  # only flatten the feature map dimensions into a single vector
+                end_dim=3,
+            )
+
+            self.class_embedding = nn.Parameter(
+                torch.rand(
+                    1, embedding_dim
+                ),  # [batch_size, number_of_tokens, embedding_dimension]
+                requires_grad=True,
+            )
+
+            self.position_embedding = nn.Parameter(
+                torch.rand(self.patch_num + 1, embedding_dim), requires_grad=True
+            )
+
+            self.embedding_dropout = nn.Dropout(p=embedding_dropout)
+
+        def forward(self, x):
+            # LinearProjection of FlattenedPatche
+            x_patched = self.flatten(self.patcher(x)).permute(0, 2, 1)
+            # Prepend class_token for each image
+            x_patched_with_class_embedding = torch.cat(
+                (self.class_embedding.unsqueeze(0).repeat(x.shape[0], 1, 1), x_patched),
+                dim=1,
+            )
+            # Add position embeddings
+            patch_and_position_embedding = (
+                x_patched_with_class_embedding
+                + self.position_embedding.unsqueeze(0).repeat(x.shape[0], 1, 1)
+            )
+
+            return self.embedding_dropout(patch_and_position_embedding)
+
+    class TransformerEncoderBlock(nn.Module):
+        class MultiheadSelfAttentionBlock(nn.Module):
+            """Creates a multi-head self-attention block ("MSA block" for short)."""
+
+            def __init__(
+                self,
+                embedding_dim: int = 768,  # Hidden size D from Table 1 for ViT-Base
+                heads_num: int = 12,  # Heads from Table 1 for ViT-Base
+                attn_dropout: float = 0,
+            ):  # doesn't look like the paper uses any dropout in MSABlocks
+                super().__init__()
+
+                # Create the Norm layer (LN)
+                self.layer_norm = nn.LayerNorm(normalized_shape=embedding_dim)
+
+                # Create the Multi-Head Attention (MSA) layer
+                self.multihead_attn = nn.MultiheadAttention(
+                    embed_dim=embedding_dim,
+                    num_heads=heads_num,
+                    dropout=attn_dropout,
+                    batch_first=True,
+                )  # does our batch dimension come first?(batch, seq, feature)
+
+            def forward(self, x):
+                x = self.layer_norm(x)
+                attn_output, _ = self.multihead_attn(
+                    query=x,  # query embeddings
+                    key=x,  # key embeddings
+                    value=x,  # value embeddings
+                    need_weights=False,
+                )  # do we need the weights or just the layer outputs?
+                return attn_output
+
+        class MLPBlock(nn.Module):
+            def __init__(
+                self,
+                embedding_dim: int = 768,
+                mlp_size: int = 3072,
+                mlp_dropout: float = 0.1,
+            ):
+                super().__init__()
+
+                self.layer_norm = nn.LayerNorm(normalized_shape=embedding_dim)
+
+                self.mlp = nn.Sequential(
+                    nn.Linear(in_features=embedding_dim, out_features=mlp_size),
+                    nn.GELU(),
+                    nn.Dropout(p=mlp_dropout),
+                    nn.Linear(in_features=mlp_size, out_features=embedding_dim),
+                    nn.Dropout(p=mlp_dropout),
+                )
+
+            def forward(self, x):
+                return self.mlp(self.layer_norm(x))
+
+        def __init__(
+            self,
+            embedding_dim: int = 768,
+            heads_num: int = 12,
+            mlp_size=3072,
+            mlp_dropout: float = 0.1,
+            attn_dropout: float = 0,
+        ):
+            super().__init__()
+
+            self.msa_block = self.MultiheadSelfAttentionBlock(
+                embedding_dim=embedding_dim,
+                heads_num=heads_num,
+                attn_dropout=attn_dropout,
+            )
+
+            self.mlp_block = self.MLPBlock(
+                embedding_dim=embedding_dim, mlp_size=mlp_size, mlp_dropout=mlp_dropout
+            )
+
+        def forward(self, x):
+            x = self.msa_block(x) + x
+            x = self.mlp_block(x) + x
+            return x
+
+    def __init__(
+        self,
+        image_size: int = 224,
+        patch_size: int = 16,
+        tranformer_encoder_num: int = 12,
+        embedding_dim: int = 768,
+        mlp_size: int = 3072,
+        heads_num: int = 12,
+        attn_dropout: float = 0,
+        mlp_dropout: float = 0.1,
+        embedding_dropout: float = 0.1,
+        output_shape: int = 1000,
+    ):
+        super().__init__()
+
+        self.embed_block = self.PatchAndPositionEmbeddingBlock(
+            patch_size=patch_size,
+            image_size=image_size,
+            embedding_dim=embedding_dim,
+            embedding_dropout=embedding_dropout,
+        )
+
+        self.transformer_encoder = nn.ModuleList(
+            [
+                self.TransformerEncoderBlock(
+                    embedding_dim=embedding_dim,
+                    heads_num=heads_num,
+                    mlp_size=mlp_size,
+                    mlp_dropout=mlp_dropout,
+                    attn_dropout=attn_dropout,
+                )
+                for _ in range(tranformer_encoder_num)
+            ]
+        )
+
+        self.classifer = nn.Sequential(
+            nn.LayerNorm(normalized_shape=embedding_dim),
+            nn.Linear(in_features=embedding_dim, out_features=output_shape),
+        )
+
+    def forward(self, x):
+        x = self.embed_block(x)
+        for transformer_encoder_block in self.transformer_encoder:
+            x = transformer_encoder_block(x)
+
+        x = self.classifer(x[:, 0, :])
+
+        return x
+
+
 class NiceViTB16(nn.Module):
     WEIGHTS = models.ViT_B_16_Weights.IMAGENET1K_V1
 
@@ -198,6 +393,6 @@ class NiceViTB16(nn.Module):
 
 
 if __name__ == "__main__":
-    model1 = LinearReLURegressor()
-    tensor1 = torch.rand(10, 2)
-    print(model1(tensor1))
+    vit = CustomViT()
+    x = torch.rand(10, 3, 224, 224)
+    assert vit(x).shape == (10, 1000), "What??"
