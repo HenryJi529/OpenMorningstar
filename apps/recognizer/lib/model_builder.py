@@ -159,18 +159,17 @@ class NiceViTB16(nn.Module):
 
     def __init__(self, hidden_units_num: int, output_shape: int):
         super().__init__()
+
         origin_model = models.vit_b_16(weights=self.WEIGHTS)
 
-        for param in origin_model.conv_proj.parameters():
-            param.requires_grad = False
-        for param in origin_model.encoder.parameters():
-            param.requires_grad = False
+        # origin_model.conv_proj.requires_grad_(False)
+        # origin_model.encoder.requires_grad_(False)
 
         # NOTE: 其实也可以考虑全都设置requires_grad = False，然后替换掉heads
-        # for param in origin_model.parameters():
-        #     param.requires_grad = False
+        for param in origin_model.parameters():
+            param.requires_grad = False
 
-        origin_model.heads = nn.Sequential(
+        heads = [
             nn.Linear(
                 in_features=768,
                 out_features=hidden_units_num,
@@ -181,11 +180,12 @@ class NiceViTB16(nn.Module):
                 out_features=output_shape,
                 bias=True,
             ),
-        )
+        ]
+        origin_model.heads = nn.Sequential(*heads)
         self.origin_model = origin_model
 
     def forward(self, x: torch.Tensor):
-        return self.origin_model.forward(x)
+        return self.origin_model(x)
 
     @property
     def transforms(self):
