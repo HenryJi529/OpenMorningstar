@@ -114,6 +114,14 @@ class ModelHandler:
         raise NotImplementedError
 
     @cached_property
+    def model_path(self):
+        raise NotImplementedError
+
+    @cached_property
+    def model_size(self):
+        return round(self.model_path.stat().st_size / 1024 / 1024, 1)
+
+    @cached_property
     def model(self) -> Module:
         model = self.blank_model.to(self._device)
         model.load_state_dict(self.params)
@@ -148,8 +156,12 @@ class PretrainedModelHandler(ModelHandler):
         return self.WEIGHTS.transforms()
 
     @cached_property
+    def model_path(self):
+        return Path(__file__).parent / "models" / self.WEIGHTS.url.split("/")[-1]
+
+    @cached_property
     def params(self):
-        params_path = Path(__file__).parent / "models" / self.WEIGHTS.url.split("/")[-1]
+        params_path = self.model_path
         if not params_path.is_file():
             request = requests.get(self.WEIGHTS.url)
             with open(params_path, "wb") as f:
@@ -203,8 +215,12 @@ class CustomModelHandler(ModelHandler):
     MODEL_FILENAME = None
 
     @cached_property
+    def model_path(self):
+        return Path(__file__).parent / "models" / self.MODEL_FILENAME
+
+    @cached_property
     def info(self):
-        info_path = Path(__file__).parent / "models" / self.MODEL_FILENAME
+        info_path = self.model_path
         if not (info_path).is_file():
             download_file_from_ftp(self.MODEL_FILENAME)
         return load(f=info_path, map_location=self._device)
@@ -306,6 +322,7 @@ if __name__ == "__main__":
     for modelHandler in modelHandlerList:
         print(f"- 加载{modelHandler.__name__}参数...")
         _ = modelHandler().params
+        print(f"\t{modelHandler.__name__}模型大小为: {modelHandler().model_size}MB")
 
     if args.verbose:
         print("=============================")
