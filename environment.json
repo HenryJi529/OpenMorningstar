@@ -103,12 +103,12 @@
         "summary": "处理用户代理"
     },
     "fabric": {
-        "version": "3.1.0",
+        "version": "3.2.1",
         "summary": "自动化管理项目",
         "inDev": true
     },
     "Faker": {
-        "version": "19.2.0",
+        "version": "19.3.0",
         "summary": "测试数据生成",
         "inDev": true
     },
@@ -125,7 +125,7 @@
         "summary": "动态web服务器"
     },
     "ipykernel": {
-        "version": "6.25.0",
+        "version": "6.25.1",
         "summary": "用于支持ipynb笔记本",
         "inDev": true
     },
@@ -241,11 +241,11 @@
         "version": "4.0.2"
     },
     "sh": {
-        "version": "2.0.4",
+        "version": "2.0.5",
         "summary": "执行shell命令"
     },
     "tqdm": {
-        "version": "4.65.0",
+        "version": "4.65.1",
         "summary": "生成进度条"
     },
     "sqlite3-to-mysql": {
@@ -271,7 +271,7 @@
         "version": "2.2.0"
     },
     "torchmetrics": {
-        "version": "1.0.2"
+        "version": "1.0.3"
     },
     "torchinfo": {
         "version": "1.8.0"
