@@ -50,10 +50,11 @@
 		"./pipdeptree.txt",
 		"*.csv"
 	],
+	/****Python Formatter****/
 	"[python]": {
 		"editor.defaultFormatter": "ms-python.black-formatter"
 	},
-	"python.formatting.provider": "black",
+	/****Python Analysis****/
 	"python.analysis.extraPaths": [
 		"./apps"
 	],
