@@ -38,7 +38,7 @@
         "summary": "创建彩色字符串"
     },
     "coverage": {
-        "version": "7.2.7",
+        "version": "7.3.0",
         "summary": "计算测试覆盖率",
         "inDev": true
     },

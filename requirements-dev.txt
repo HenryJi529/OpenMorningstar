@@ -6,7 +6,7 @@ SciencePlots==2.1.0
 Whoosh==2.7.4
 beautifulsoup4==4.12.2
 colorama==0.4.6
-coverage==7.2.7
+coverage==7.3.0
 django-compressor==4.4
 django-cors-headers==4.2.0
 django-cors-middleware==1.5.0
