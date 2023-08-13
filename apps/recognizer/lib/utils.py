@@ -1,4 +1,5 @@
 from pathlib import Path
+from datetime import datetime
 from typing import List, Tuple, Dict
 from timeit import default_timer as timer
 import platform
@@ -63,8 +64,6 @@ def set_seeds(seed: int = 42):
 
 def create_writer(experiment_name: str, target_dir: Path = Path("runs")):
     """Creates a torch.utils.tensorboard.writer.SummaryWriter() instance tracking to a specific directory."""
-    from datetime import datetime
-    import os
 
     # Get timestamp of current date in reverse order
     timestamp = datetime.now().strftime("%Y-%m-%d")
