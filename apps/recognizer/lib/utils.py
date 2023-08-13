@@ -1,13 +1,15 @@
 from pathlib import Path
 from typing import List, Tuple, Dict
 from timeit import default_timer as timer
+import platform
+import random
 
 import torch
-
-import platform
 import matplotlib as mpl
 from matplotlib import pyplot as plt
 from matplotlib import ticker as mticker
+import numpy as np
+
 from PIL import Image
 import torchvision
 from torchvision import transforms
@@ -49,10 +51,14 @@ def set_seeds(seed: int = 42):
     Args:
         seed (int, optional): Random seed to set. Defaults to 42.
     """
+    # Set the seed for random Library
+    random.seed(seed)
     # Set the seed for general torch operations
     torch.manual_seed(seed)
     # Set the seed for CUDA torch operations (ones that happen on the GPU)
     torch.cuda.manual_seed(seed)
+    # Set the seed for Numpy
+    np.random.seed(seed)
 
 
 def create_writer(experiment_name: str, target_dir: Path = Path("runs")):
