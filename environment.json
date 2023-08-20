@@ -197,7 +197,7 @@
         "inDev": true
     },
     "pipdeptree": {
-        "version": "2.12.0",
+        "version": "2.13.0",
         "summary": "python依赖关系展示工具",
         "inDev": true
     },
@@ -229,13 +229,13 @@
         ]
     },
     "redis": {
-        "version": "4.6.0"
+        "version": "5.0.0"
     },
     "requests": {
         "version": "2.31.0"
     },
     "scipy": {
-        "version": "1.11.1"
+        "version": "1.11.2"
     },
     "simpy": {
         "version": "4.0.2"

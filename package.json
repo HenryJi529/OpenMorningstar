@@ -32,8 +32,8 @@
     "browserify": "^17.0.0",
     "concurrently": "^8.2.0",
     "daisyui": "^3.5.1",
-    "npm-check-updates": "^16.11.1",
-    "sass": "^1.65.1",
+    "npm-check-updates": "^16.12.2",
+    "sass": "^1.66.1",
     "tailwindcss": "~3.3.3",
     "terser": "^5.19.2",
     "typescript": "^5.1.6",
@@ -45,10 +45,10 @@
     "echarts": "^5.4.3",
     "github-corners": "^0.1.0",
     "highlight.js": "^11.8.0",
-    "highlightjs-copy": "^1.0.4",
+    "highlightjs-copy": "^1.0.5",
     "highlightjs-line-numbers.js": "^2.8.0",
     "localstorage-slim": "^2.4.0",
-    "marked": "^7.0.2",
+    "marked": "^7.0.4",
     "mathjax": "^3.2.2",
     "pace-js": "^1.2.4"
   }
