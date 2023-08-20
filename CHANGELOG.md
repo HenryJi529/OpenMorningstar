@@ -1,5 +1,22 @@
 # 更新日志
 
+## v0.2.13:
+
+本次更新如下内容:
+
+1. 常规更新(UI, 依赖, 数据)
+2. workflow:
+    - 更新vscode配置
+    - 更正yarn依赖管理
+3. apps:
+    - **game**:
+        - 放入维护列表
+    - **joke**:
+        - 更换图标
+    - **recognizer**:
+        - 更新`utils.py`
+        - 更新`colab_setup.ipynb`
+
 ## v0.2.12:
 
 本次更新如下内容:
