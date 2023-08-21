@@ -53,7 +53,7 @@ def runcmd2(command):
         print(error)
 
 
-def better_print(var):
+def colored_print(var):
     formatted_output = (
         colorama.Fore.YELLOW
         + colorama.Style.BRIGHT
@@ -67,9 +67,9 @@ def better_print(var):
 def check(c):
     home_path = "~/"
     with c.cd(home_path):
-        better_print("Let's Encrypt证书剩余时间: ")
+        colored_print("Let's Encrypt证书剩余时间: ")
         c.run("source ~/.zshrc && docker exec morningstar_nginx certbot certificates")
-        better_print("=======================================================")
+        colored_print("=======================================================")
     print("Done!!")
 
 
@@ -78,21 +78,21 @@ def updateDjango(c):
     project_root_path = "~/morningstar"
     home_path = "~/"
 
-    better_print("更新代码...")
+    colored_print("更新代码...")
     with c.cd(project_root_path):
         c.run("git fetch --all && git reset --hard origin/main")
 
     with c.cd(home_path):
-        better_print("转移媒体文件...")
+        colored_print("转移媒体文件...")
         c.run("docker cp ~/morningstar/media morningstar_django:/app")
 
-        better_print("运行更新脚本...")
+        colored_print("运行更新脚本...")
         c.run("docker exec -it morningstar_django bash /production.sh")
 
-        better_print("重启服务...")
+        colored_print("重启服务...")
         c.run("docker exec -it morningstar_django supervisorctl restart django")
 
-        better_print("更新HTTPS...")
+        colored_print("更新HTTPS...")
         commandTemplate = (
             "docker exec -it morningstar_nginx certbot --nginx --non-interactive"
         )
@@ -105,7 +105,7 @@ def updateAll(c):
     home_path = "~/"
     with c.cd(home_path):
         """更新项目"""
-        better_print("更新代码...")
+        colored_print("更新代码...")
         c.run("sudo rm -rf ~/morningstar/")
         c.run(
             "git clone https://github.com/HenryJi529/OpenMorningstar.git ~/morningstar"
@@ -122,36 +122,36 @@ def updateAll(c):
                 'source ~/.zshrc && sed -i "s/MORNINGSTAR_PASSWORD/${MORNINGSTAR_PASSWORD}/" ~/morningstar/scripts/deploy/_config/frp/frps.ini'
             )
 
-        better_print("添加密钥...")
+        colored_print("添加密钥...")
         update_file_with_secret()
 
-        better_print("清理docker(除volume)...")
+        colored_print("清理docker(除volume)...")
         try:
             c.run('docker rm -f $(docker ps -aq | tr "\\n" " ")')
         except:
             pass
         c.run("docker system prune -af")
 
-        better_print("部署容器...")
+        colored_print("部署容器...")
         c.run(
             "source ~/.zshrc && cd ~/morningstar/scripts/deploy; docker-compose build && docker-compose up -d"
         )
 
-        better_print("配置frps...")
+        colored_print("配置frps...")
         c.run(
             "docker cp ~/morningstar/scripts/deploy/_config/frp/frps.ini morningstar_frps:/etc/frp/frps.ini && docker restart morningstar_frps"
         )
 
-        better_print("转移媒体文件...")
+        colored_print("转移媒体文件...")
         c.run("docker cp ~/morningstar/media morningstar_django:/app")
 
-        better_print("启动supervisor管理Django进程...")
+        colored_print("启动supervisor管理Django进程...")
         c.run("docker exec -it morningstar_django service supervisor start")
         # NOTE: 重启Django确保数据库无连接错误
         c.run("docker exec -it morningstar_django bash /production.sh")
         c.run("docker exec -it morningstar_django supervisorctl start django")
 
-        better_print("配置HTTPS...")
+        colored_print("配置HTTPS...")
         c.run("docker exec morningstar_nginx bash /start.sh")
         # c.run('docker exec -it morningstar_nginx certbot --nginx -n --domains xxx.com')
         commandTemplate = (
@@ -242,13 +242,13 @@ def updatePackage(c):
 def syncLedger(c):
     home_path = "~/"
     with c.cd(home_path):
-        better_print("传递数据至文件夹...")
+        colored_print("传递数据至文件夹...")
         c.run(
             "sshpass -p "
             + DEV_PASSWORD
             + " scp -P 1022 -r henry529@server.morningstar369.com:~/Projects/OpenMorningstar/scripts/deploy/beancount  ~/morningstar/scripts/deploy/"
         )
-        better_print("传递数据至数据卷...")
+        colored_print("传递数据至数据卷...")
         c.run(
             "docker cp ~/morningstar/scripts/deploy/beancount morningstar_beancount:/root/"
         )
@@ -260,19 +260,19 @@ def syncLedger(c):
 def updateNginx(c):
     home_path = "~/"
     with c.cd(home_path):
-        better_print("同步配置文件...")
+        colored_print("同步配置文件...")
         c.run(
             "sshpass -p "
             + DEV_PASSWORD
             + " scp -P 1022 -r henry529@server.morningstar369.com:~/Projects/OpenMorningstar/scripts/deploy/nginx/conf  ~/morningstar/scripts/deploy/nginx/"
         )
-        better_print("同步前端页面...")
+        colored_print("同步前端页面...")
         c.run(
             "sshpass -p "
             + DEV_PASSWORD
             + " scp -P 1022 -r henry529@server.morningstar369.com:~/Projects/OpenMorningstar/scripts/deploy/nginx/www  ~/morningstar/scripts/deploy/nginx"
         )
-        better_print("加载新配置文件...")
+        colored_print("加载新配置文件...")
         c.run("docker exec -it morningstar_nginx nginx -s reload")
         commandTemplate = (
             "docker exec -it morningstar_nginx certbot --nginx --non-interactive"

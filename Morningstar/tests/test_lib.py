@@ -1,7 +1,7 @@
 from django.core import mail
 from django.test import TestCase
 from Morningstar.settings.common import EMAIL_HOST_USER
-from Morningstar.lib.print import better_print
+from Morningstar.lib.print import colored_format
 from Morningstar.lib.qrcoder import make_qrcode
 from Morningstar.lib.check import is_identity_belong_phone, is_identity_belong_email
 from Morningstar.lib.passwd import generate_password
@@ -45,8 +45,8 @@ class EmailTest(TestCase):
 
 
 class PrintTest(TestCase):
-    def test_better_print(self):
-        self.assertTrue("test" in better_print("test"))
+    def test_colored_format(self):
+        self.assertTrue("test" in colored_format("test"))
 
 
 class QrcodeTest(TestCase):

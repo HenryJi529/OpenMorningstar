@@ -13,7 +13,7 @@ from django.core.files.base import ContentFile, File
 from django.core.files.images import ImageFile
 
 
-def better_print(var):
+def colored_print(var):
     formatted_output = (
         colorama.Fore.YELLOW
         + colorama.Style.BRIGHT
@@ -253,25 +253,25 @@ def init_share():
 
 
 if __name__ == "__main__":
-    better_print("清空数据库...")
+    colored_print("清空数据库...")
     clean_database()
 
-    better_print("创建用户数据...")
+    colored_print("创建用户数据...")
     superuser = init_user()
 
-    better_print("创建博客数据...")
+    colored_print("创建博客数据...")
     init_blog()
 
-    better_print("创建书籍数据...")
+    colored_print("创建书籍数据...")
     init_book()
 
-    better_print("创建笑话数据...")
+    colored_print("创建笑话数据...")
     init_joke()
 
-    better_print("创建投票数据...")
+    colored_print("创建投票数据...")
     init_poll()
 
-    better_print("创建分享数据...")
+    colored_print("创建分享数据...")
     init_share()
 
-    better_print("DONE!!!!")
+    colored_print("DONE!!!!")
