@@ -32,6 +32,7 @@ except ImportError:
 def download_file_from_ftp(filename: str):
     ftp = FTP("ftp.morningstar369.com")
     ftp.login(user="ftp", passwd="1234asdw")
+    ftp.cwd("Morningstar")
 
     with open(Path(__file__).parent / "models" / filename, "wb") as file:
         ftp.retrbinary("RETR " + filename, file.write)
