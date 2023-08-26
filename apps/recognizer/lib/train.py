@@ -26,7 +26,7 @@ def main(args):
     if args.environment == "local":
         base_dir = Path(".")
     else:
-        base_dir = Path("./drive/MyDrive")
+        base_dir = Path("./drive/MyDrive/Morningstar")
 
     # 设置数据集
     try:
