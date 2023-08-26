@@ -53,14 +53,14 @@ def runcmd2(command):
         print(error)
 
 
-def colored_print(var):
+def colored_print(var, end: str = "\n"):
     formatted_output = (
         colorama.Fore.YELLOW
         + colorama.Style.BRIGHT
         + str(var)
         + colorama.Style.RESET_ALL
     )
-    print(formatted_output)
+    print(formatted_output, end=end)
 
 
 @task()

@@ -13,14 +13,14 @@ from django.core.files.base import ContentFile, File
 from django.core.files.images import ImageFile
 
 
-def colored_print(var):
+def colored_print(var, end: str = "\n"):
     formatted_output = (
         colorama.Fore.YELLOW
         + colorama.Style.BRIGHT
         + str(var)
         + colorama.Style.RESET_ALL
     )
-    print(formatted_output)
+    print(formatted_output, end=end)
 
 
 # 将项目根目录添加到 Python 的模块搜索路径中
