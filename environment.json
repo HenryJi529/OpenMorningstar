@@ -103,12 +103,12 @@
         "summary": "处理用户代理"
     },
     "fabric": {
-        "version": "3.2.1",
+        "version": "3.2.2",
         "summary": "自动化管理项目",
         "inDev": true
     },
     "Faker": {
-        "version": "19.3.0",
+        "version": "19.3.1",
         "summary": "测试数据生成",
         "inDev": true
     },
@@ -184,7 +184,7 @@
         "summary": "矩阵计算"
     },
     "pandas": {
-        "version": "2.0.3",
+        "version": "2.1.0",
         "summary": "表数据处理"
     },
     "Pillow": {
@@ -211,7 +211,7 @@
         "summary": "音频处理库"
     },
     "pymdown-extensions": {
-        "version": "10.1",
+        "version": "10.2.1",
         "summary": "实用的Python-Markdown扩展"
     },
     "python-dotenv": {
@@ -271,7 +271,7 @@
         "version": "2.2.0"
     },
     "torchmetrics": {
-        "version": "1.0.3"
+        "version": "1.1.1"
     },
     "torchinfo": {
         "version": "1.8.0"
