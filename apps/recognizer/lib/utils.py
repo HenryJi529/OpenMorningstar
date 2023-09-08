@@ -19,7 +19,9 @@ from torch.cuda import is_available as is_cuda_available
 from torch.backends.mps import is_built as is_mps_built
 from torch.utils.tensorboard import SummaryWriter
 
-DEVICE = "cuda" if is_cuda_available() else "mps" if is_mps_built() else "cpu"
+DEVICE = torch.device(
+    "cuda" if is_cuda_available() else "mps" if is_mps_built() else "cpu"
+)
 
 plt.rcParams[
     "font.family"
