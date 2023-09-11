@@ -219,10 +219,10 @@
   resolved "https://registry.npmmirror.com/@tailwindcss/line-clamp/-/line-clamp-0.4.4.tgz#767cf8e5d528a5d90c9740ca66eb079f5e87d423"
   integrity sha512-5U6SY5z8N42VtrCrKlsTAA35gy2VSyYtHWCsg1H87NU1SXnEfekTVlrga9fzUDrrHcGi2Lb5KenUWb4lRQT5/g==
 
-"@tailwindcss/typography@^0.5.9":
-  version "0.5.9"
-  resolved "https://registry.npmmirror.com/@tailwindcss/typography/-/typography-0.5.9.tgz#027e4b0674929daaf7c921c900beee80dbad93e8"
-  integrity sha512-t8Sg3DyynFysV9f4JDOVISGsjazNb48AeIYQwcL+Bsq5uf4RYL75C1giZ43KISjeDGBaTN3Kxh7Xj/vRSMJUUg==
+"@tailwindcss/typography@^0.5.10":
+  version "0.5.10"
+  resolved "https://registry.npmmirror.com/@tailwindcss/typography/-/typography-0.5.10.tgz#2abde4c6d5c797ab49cf47610830a301de4c1e0a"
+  integrity sha512-Pe8BuPJQJd3FfRnm6H0ulKIGoMEQS+Vq01R6M5aCrFB/ccR/shT+0kXLjouGC1gFLm9hopTFN+DMP0pfwRWzPw==
   dependencies:
     lodash.castarray "^4.4.0"
     lodash.isplainobject "^4.0.6"
@@ -977,10 +977,10 @@ cssesc@^3.0.0:
   resolved "https://registry.npmmirror.com/cssesc/-/cssesc-3.0.0.tgz#37741919903b868565e1c09ea747445cd18983ee"
   integrity sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==
 
-daisyui@^3.6.4:
-  version "3.6.4"
-  resolved "https://registry.npmmirror.com/daisyui/-/daisyui-3.6.4.tgz#c67fddddaf98dedec3aadb2c9d722ed4204511f4"
-  integrity sha512-8cFEkA2CaTKLUBvEU+9cTx6uvLSN2ZUq9fXxMkdiRS7QM79jBFv3klNkbUaPslmVh0eoeeCk0o98sjmfQ7/Cgg==
+daisyui@^3.7.3:
+  version "3.7.3"
+  resolved "https://registry.npmmirror.com/daisyui/-/daisyui-3.7.3.tgz#247cfefa0112c31679af9035eff65e1bd866f062"
+  integrity sha512-gKlz3RwfaukZxf8nQZsDAZ7quUSi7F8HjGGB34tkHruvfQB9cgVDQsmqUqSQtkAJYvzbrg/3dLUa9+5jF4iC1A==
   dependencies:
     colord "^2.9"
     css-selector-tokenizer "^0.8"
@@ -1904,10 +1904,10 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.npmmirror.com/lines-and-columns/-/lines-and-columns-1.2.4.tgz#eca284f75d2965079309dc0ad9255abb2ebc1632"
   integrity sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==
 
-localstorage-slim@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.npmmirror.com/localstorage-slim/-/localstorage-slim-2.4.0.tgz#85becbf80f53487b01db5b2d504a7af08310dba5"
-  integrity sha512-ILe6kS+TYRzpzEAHYKzGxSgtUOFlMyvnG6vu6TW+F6gV4TQI8wP67rmEB6TMZHmQayOQ9iicpcYEFV1Y68V2fA==
+localstorage-slim@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.npmmirror.com/localstorage-slim/-/localstorage-slim-2.5.0.tgz#b0c3609eae114125b1ff5871410f676ca22367aa"
+  integrity sha512-R6FC69uGPDNw/3sxVBwoA9l/4yZa7KhOAN/SpnTrgyfOcGH9vfElWyzNddCFGQpI8Z1TSxHooPpUEuRU4Vqhvw==
 
 locate-path@^6.0.0:
   version "6.0.0"
@@ -1984,10 +1984,10 @@ make-fetch-happen@^11.0.0, make-fetch-happen@^11.0.1, make-fetch-happen@^11.0.3,
     socks-proxy-agent "^7.0.0"
     ssri "^10.0.0"
 
-marked@^7.0.5:
-  version "7.0.5"
-  resolved "https://registry.npmmirror.com/marked/-/marked-7.0.5.tgz#8a9e4e3afb93b58fe9ee7608e67cc154eb15d508"
-  integrity sha512-lwNAFTfXgqpt/XvK17a/8wY9/q6fcSPZT1aP6QW0u74VwaJF/Z9KbRcX23sWE4tODM+AolJNcUtErTkgOeFP/Q==
+marked@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.npmmirror.com/marked/-/marked-9.0.0.tgz#d812a4a452d219330561f6e0e4b669b784889303"
+  integrity sha512-37yoTpjU+TSXb9OBYY5n78z/CqXh76KiQj9xsKxEdztzU9fRLmbWO5YqKxgCVGKlNdexppnbKTkwB3RipVri8w==
 
 mathjax@^3.2.2:
   version "3.2.2"
@@ -2251,10 +2251,10 @@ npm-bundled@^3.0.0:
   dependencies:
     npm-normalize-package-bin "^3.0.0"
 
-npm-check-updates@^16.13.2:
-  version "16.13.2"
-  resolved "https://registry.npmmirror.com/npm-check-updates/-/npm-check-updates-16.13.2.tgz#552e8223d83ae5ae2d48a11ac254cf0b231277b9"
-  integrity sha512-0pQI+k1y0JVwenB2gBc69tXFYfkckSVrNrlcn7TIrZfis4LnfdzakY/LYzZKt/lx37edN2isk3d2Zw4csptu/w==
+npm-check-updates@^16.13.3:
+  version "16.13.3"
+  resolved "https://registry.npmmirror.com/npm-check-updates/-/npm-check-updates-16.13.3.tgz#136f0e008b82c34be4b758260c3582214a07527e"
+  integrity sha512-l3FQtm+ZtDwqtK2r27vCuNdtnoDsXzk8D2WczvrAJy2bGPZJvRmuUa/Q9Gv+AbZV0IHSNJD2oHtQqUeqQRhEsw==
   dependencies:
     chalk "^5.3.0"
     cli-table3 "^0.6.3"
@@ -3296,10 +3296,10 @@ tar@^6.1.11, tar@^6.1.2:
     mkdirp "^1.0.3"
     yallist "^4.0.0"
 
-terser@^5.19.3:
-  version "5.19.3"
-  resolved "https://registry.npmmirror.com/terser/-/terser-5.19.3.tgz#359baeba615aef13db4b8c4d77a2aa0d8814aa9e"
-  integrity sha512-pQzJ9UJzM0IgmT4FAtYI6+VqFf0lj/to58AV0Xfgg0Up37RyPG7Al+1cepC6/BVuAxR9oNb41/DL4DEoHJvTdg==
+terser@^5.19.4:
+  version "5.19.4"
+  resolved "https://registry.npmmirror.com/terser/-/terser-5.19.4.tgz#941426fa482bf9b40a0308ab2b3cd0cf7c775ebd"
+  integrity sha512-6p1DjHeuluwxDXcuT9VR8p64klWJKo1ILiy19s6C9+0Bh2+NWTX6nD9EPppiER4ICkHDVB1RkVpin/YW2nQn/g==
   dependencies:
     "@jridgewell/source-map" "^0.3.3"
     acorn "^8.8.2"

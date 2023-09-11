@@ -1,4 +1,4 @@
-Django==4.2.4
+Django==4.2.5
 Markdown==3.4.4
 Pillow==10.0.0
 SciencePlots==2.1.0
@@ -23,7 +23,7 @@ fake-useragent==1.2.1
 fontawesomefree==6.4.2
 gunicorn==21.2.0
 igraph==0.10.6
-ipython==8.14.0
+ipython==8.15.0
 jieba==0.42.1
 matplotlib==3.7.2
 mlxtend==0.22.0
@@ -34,7 +34,7 @@ networkx==3.1
 numpy==1.25.2
 pandas==2.1.0
 pydub==0.25.1
-pymdown-extensions==10.2.1
+pymdown-extensions==10.3
 python-dotenv==1.0.0
 qcloudsms-py==0.1.4
 qrcode==7.4.2

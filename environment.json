@@ -38,12 +38,12 @@
         "summary": "创建彩色字符串"
     },
     "coverage": {
-        "version": "7.3.0",
+        "version": "7.3.1",
         "summary": "计算测试覆盖率",
         "inDev": true
     },
     "Django": {
-        "version": "4.2.4",
+        "version": "4.2.5",
         "summary": "提供web后端"
     },
     "djangorestframework": {
@@ -108,7 +108,7 @@
         "inDev": true
     },
     "Faker": {
-        "version": "19.3.1",
+        "version": "19.6.0",
         "summary": "测试数据生成",
         "inDev": true
     },
@@ -125,12 +125,12 @@
         "summary": "动态web服务器"
     },
     "ipykernel": {
-        "version": "6.25.1",
+        "version": "6.25.2",
         "summary": "用于支持ipynb笔记本",
         "inDev": true
     },
     "ipython": {
-        "version": "8.14.0",
+        "version": "8.15.0",
         "summary": "交互式python"
     },
     "jieba": {
@@ -211,7 +211,7 @@
         "summary": "音频处理库"
     },
     "pymdown-extensions": {
-        "version": "10.2.1",
+        "version": "10.3",
         "summary": "实用的Python-Markdown扩展"
     },
     "python-dotenv": {
