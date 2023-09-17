@@ -1,6 +1,6 @@
 Django==4.2.5
 Markdown==3.4.4
-Pillow==10.0.0
+Pillow==10.0.1
 SciencePlots==2.1.0
 Whoosh==2.7.4
 beautifulsoup4==4.12.2
@@ -12,7 +12,7 @@ django-crontab==0.7.1
 django-debug-toolbar==3.8.1
 django-filter==23.2
 django-haystack==3.2.1
-django-import-export==3.2.0
+django-import-export==3.3.1
 django-jazzmin==2.6.0
 django-matomo==0.1.6
 django-recaptcha==3.0.0
@@ -22,16 +22,16 @@ djangorestframework==3.14.0
 fake-useragent==1.2.1
 fontawesomefree==6.4.2
 gunicorn==21.2.0
-igraph==0.10.6
+igraph==0.10.8
 ipython==8.15.0
 jieba==0.42.1
-matplotlib==3.7.2
+matplotlib==3.8.0
 mlxtend==0.22.0
 mysql-connector-python==8.0.33
 mysql-to-sqlite3==2.0.3
 mysqlclient==2.1.1
 networkx==3.1
-numpy==1.25.2
+numpy==1.26.0
 pandas==2.1.0
 pydub==0.25.1
 pymdown-extensions==10.3
@@ -52,7 +52,7 @@ torch==2.0.1
 torch-tb-profiler==0.4.1
 torch_geometric==2.2.0
 torchinfo==1.8.0
-torchmetrics==1.1.1
+torchmetrics==1.1.2
 torchvision==0.15.2
 tqdm==4.66.1
 translate==3.6.1

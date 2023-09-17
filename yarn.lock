@@ -977,10 +977,10 @@ cssesc@^3.0.0:
   resolved "https://registry.npmmirror.com/cssesc/-/cssesc-3.0.0.tgz#37741919903b868565e1c09ea747445cd18983ee"
   integrity sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==
 
-daisyui@^3.7.3:
-  version "3.7.3"
-  resolved "https://registry.npmmirror.com/daisyui/-/daisyui-3.7.3.tgz#247cfefa0112c31679af9035eff65e1bd866f062"
-  integrity sha512-gKlz3RwfaukZxf8nQZsDAZ7quUSi7F8HjGGB34tkHruvfQB9cgVDQsmqUqSQtkAJYvzbrg/3dLUa9+5jF4iC1A==
+daisyui@^3.7.4:
+  version "3.7.4"
+  resolved "https://registry.npmmirror.com/daisyui/-/daisyui-3.7.4.tgz#5027d7be3d12cdd93c2aa911edac26abd1c3e12b"
+  integrity sha512-hAgTomIK8RDQ/RLH9Z2NxZiNVAO40w08FlhgYS/8CTFF+wggeHeNJ0qNBHWAJJzhjD8UU2u4PZ4nc4r9rwfTLw==
   dependencies:
     colord "^2.9"
     css-selector-tokenizer "^0.8"
@@ -1904,10 +1904,10 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.npmmirror.com/lines-and-columns/-/lines-and-columns-1.2.4.tgz#eca284f75d2965079309dc0ad9255abb2ebc1632"
   integrity sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==
 
-localstorage-slim@^2.5.0:
-  version "2.5.0"
-  resolved "https://registry.npmmirror.com/localstorage-slim/-/localstorage-slim-2.5.0.tgz#b0c3609eae114125b1ff5871410f676ca22367aa"
-  integrity sha512-R6FC69uGPDNw/3sxVBwoA9l/4yZa7KhOAN/SpnTrgyfOcGH9vfElWyzNddCFGQpI8Z1TSxHooPpUEuRU4Vqhvw==
+localstorage-slim@^2.6.0:
+  version "2.6.0"
+  resolved "https://registry.npmmirror.com/localstorage-slim/-/localstorage-slim-2.6.0.tgz#186d5a6eea85a5cbd7d4a055f7bf71638b88a635"
+  integrity sha512-IYL4sj+uvmhN1jDlPi6H7ucuDSOM/7o71Ib7jBytioN0jv2EdZ6TR2GGLDw5XAChq0LeVUpztkYTA4+Z5EJxLw==
 
 locate-path@^6.0.0:
   version "6.0.0"
@@ -1984,10 +1984,10 @@ make-fetch-happen@^11.0.0, make-fetch-happen@^11.0.1, make-fetch-happen@^11.0.3,
     socks-proxy-agent "^7.0.0"
     ssri "^10.0.0"
 
-marked@^9.0.0:
-  version "9.0.0"
-  resolved "https://registry.npmmirror.com/marked/-/marked-9.0.0.tgz#d812a4a452d219330561f6e0e4b669b784889303"
-  integrity sha512-37yoTpjU+TSXb9OBYY5n78z/CqXh76KiQj9xsKxEdztzU9fRLmbWO5YqKxgCVGKlNdexppnbKTkwB3RipVri8w==
+marked@^9.0.2:
+  version "9.0.2"
+  resolved "https://registry.npmmirror.com/marked/-/marked-9.0.2.tgz#e12365ecbd8e487c2405dd8b99bbf8194c7ad3e5"
+  integrity sha512-VRTR4AamWVw+wNl0PfT9zJpCHWIQZ4QLyiXVmpgrempuXeue883HH/97oVuY6uk7SSOJE6F73i62JrAIBAdc0Q==
 
 mathjax@^3.2.2:
   version "3.2.2"
@@ -2251,10 +2251,10 @@ npm-bundled@^3.0.0:
   dependencies:
     npm-normalize-package-bin "^3.0.0"
 
-npm-check-updates@^16.13.3:
-  version "16.13.3"
-  resolved "https://registry.npmmirror.com/npm-check-updates/-/npm-check-updates-16.13.3.tgz#136f0e008b82c34be4b758260c3582214a07527e"
-  integrity sha512-l3FQtm+ZtDwqtK2r27vCuNdtnoDsXzk8D2WczvrAJy2bGPZJvRmuUa/Q9Gv+AbZV0IHSNJD2oHtQqUeqQRhEsw==
+npm-check-updates@^16.14.3:
+  version "16.14.3"
+  resolved "https://registry.npmmirror.com/npm-check-updates/-/npm-check-updates-16.14.3.tgz#c2fdf1fe438a96e6258ceeb38f835024cf55d732"
+  integrity sha512-iviPM0LiTFGUtk+kMtcMVLNeGuSORThj9Cho7GV/Z2l5dMdXFrcgIarMSr6d6f1wYJJBIthuNdJWXZ4NH5VPEg==
   dependencies:
     chalk "^5.3.0"
     cli-table3 "^0.6.3"
@@ -2284,6 +2284,7 @@ npm-check-updates@^16.13.3:
     semver-utils "^1.1.4"
     source-map-support "^0.5.21"
     spawn-please "^2.0.1"
+    strip-ansi "^7.1.0"
     strip-json-comments "^5.0.1"
     untildify "^4.0.0"
     update-notifier "^6.0.2"
@@ -2916,10 +2917,10 @@ safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   resolved "https://registry.npmmirror.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
-sass@^1.66.1:
-  version "1.66.1"
-  resolved "https://registry.npmmirror.com/sass/-/sass-1.66.1.tgz#04b51c4671e4650aa393740e66a4e58b44d055b1"
-  integrity sha512-50c+zTsZOJVgFfTgwwEzkjA3/QACgdNsKueWPyAR0mRINIvLAStVQBbPg14iuqEQ74NPDbXzJARJ/O4SI1zftA==
+sass@^1.67.0:
+  version "1.67.0"
+  resolved "https://registry.npmmirror.com/sass/-/sass-1.67.0.tgz#fed84d74b9cd708db603b1380d6dc1f71bb24f6f"
+  integrity sha512-SVrO9ZeX/QQyEGtuZYCVxoeAL5vGlYjJ9p4i4HFuekWl8y/LtJ7tJc10Z+ck1c8xOuoBm2MYzcLfTAffD0pl/A==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
     immutable "^4.0.0"
@@ -3193,7 +3194,7 @@ string_decoder@~1.1.1:
   dependencies:
     ansi-regex "^5.0.1"
 
-strip-ansi@^7.0.1:
+strip-ansi@^7.0.1, strip-ansi@^7.1.0:
   version "7.1.0"
   resolved "https://registry.npmmirror.com/strip-ansi/-/strip-ansi-7.1.0.tgz#d5b6568ca689d8561370b0707685d22434faff45"
   integrity sha512-iq6eVVI64nQQTRYq2KtEg2d2uU7LElhTJwsH4YzIHZshxlgZms/wIc4VoDQTlG/IvVIrBKG06CrZnp0qv7hkcQ==
