@@ -54,7 +54,7 @@
 - **前端**：Sass, TailwindCSS, DaisyUI, Vue3, NaiveUI
 - **后端**：Django, DRF, Redis, MySQL
 - **部署**：Docker, Nginx, Fabric, Supervisor
-- **测试**：unittest(py), Coverage, Vitest
+- **测试**：Coverage, Vitest
 - **集成**：Github Action
 - **AI**: PyTorch, TensorBoard
 
