@@ -1,4 +1,5 @@
-from django.shortcuts import render, HttpResponse, reverse
+from django.shortcuts import render
+from django.urls import reverse
 
 from .lib import get_data, get_sources_num, get_title_from_index, get_link_from_index
 
