@@ -4,6 +4,7 @@
 
 import requests
 import re
+import datetime
 from urllib3 import disable_warnings
 from urllib3.exceptions import InsecureRequestWarning
 
@@ -61,6 +62,19 @@ def get_data(site_index):
     link = site["link"]
     description = site["description"]
     language = site["language"]
-    items = get_items(site)
-    lastBuildDate = items[0]["pubDate"]
+    try:
+        items = get_items(site)
+        lastBuildDate = items[0]["pubDate"]
+    except Exception:
+        currentDate = datetime.date.today().strftime("%Y-%m-%d")
+        items = [
+            {
+                "link": None,
+                "title": None,
+                "pubDate": currentDate,
+                "description": "原站点崩溃啦🥹~",
+            }
+        ]
+        lastBuildDate = currentDate
+
     return (title, link, description, language, items, lastBuildDate)
