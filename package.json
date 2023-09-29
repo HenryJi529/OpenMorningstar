@@ -31,11 +31,11 @@
     "@tailwindcss/typography": "^0.5.10",
     "browserify": "^17.0.0",
     "concurrently": "^8.2.1",
-    "daisyui": "^3.7.4",
-    "npm-check-updates": "^16.14.3",
-    "sass": "^1.67.0",
+    "daisyui": "^3.8.1",
+    "npm-check-updates": "^16.14.4",
+    "sass": "^1.68.0",
     "tailwindcss": "~3.3.3",
-    "terser": "^5.19.4",
+    "terser": "^5.20.0",
     "typescript": "^5.2.2",
     "watchify": "^4.0.0"
   },
@@ -48,7 +48,7 @@
     "highlightjs-copy": "^1.0.5",
     "highlightjs-line-numbers.js": "^2.8.0",
     "localstorage-slim": "^2.6.0",
-    "marked": "^9.0.2",
+    "marked": "^9.0.3",
     "mathjax": "^3.2.2",
     "pace-js": "^1.2.4"
   }
