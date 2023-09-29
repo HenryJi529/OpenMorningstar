@@ -4,6 +4,9 @@
 
 import requests
 import re
+from urllib3 import disable_warnings
+from urllib3.exceptions import InsecureRequestWarning
+
 
 from .config import SITES
 
@@ -23,10 +26,7 @@ def get_link_from_index(index):
 def get_items(site):
     def get_text(link):
         # 针对有些网站证书无效
-        from requests.packages.urllib3.exceptions import InsecureRequestWarning
-
-        requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
-
+        disable_warnings(InsecureRequestWarning)
         r = requests.get(link, timeout=120, verify=False)  # 针对反爬，需要增加timeout
         r.raise_for_status()
         r.encoding = r.apparent_encoding
