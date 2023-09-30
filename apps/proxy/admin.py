@@ -53,10 +53,7 @@ class NodeAdmin(ImportExportModelAdmin):
 
 @admin.register(SubscribeUrl)
 class SubscribeUrlAdmin(ImportExportModelAdmin):
-    list_display = (
-        "id",
-        "name",
-    )
+    list_display = ("id", "name", "link")
 
 
 @admin.register(Account)
