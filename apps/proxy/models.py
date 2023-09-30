@@ -15,6 +15,7 @@ class Node(models.Model):
         verbose_name = "节点"
         verbose_name_plural = verbose_name
         ordering = ["-updated"]
+        app_label = "proxy"
 
     def __str__(self):
         return self.name
@@ -29,6 +30,7 @@ class SubscribeUrl(models.Model):
         verbose_name = "订阅"
         verbose_name_plural = verbose_name
         ordering = ["-updated"]
+        app_label = "proxy"
 
     def __str__(self):
         return self.name
@@ -43,6 +45,7 @@ class Account(models.Model):
         verbose_name = "账户"
         verbose_name_plural = verbose_name
         ordering = ["-updated"]
+        app_label = "proxy"
 
     def __str__(self):
         return self.user.username
