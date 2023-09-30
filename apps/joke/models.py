@@ -24,7 +24,6 @@ class Photo(models.Model):
         verbose_name = "照片"
         verbose_name_plural = verbose_name
         ordering = ("-created",)
-        app_label = "joke"
 
 
 class Text(models.Model):
@@ -44,4 +43,3 @@ class Text(models.Model):
         verbose_name = "文本"
         verbose_name_plural = verbose_name
         ordering = ("-created",)
-        app_label = "joke"

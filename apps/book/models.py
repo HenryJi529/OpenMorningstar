@@ -8,7 +8,6 @@ class Category(models.Model):
     class Meta:
         verbose_name = "分类"
         verbose_name_plural = verbose_name
-        app_label = "book"
 
     def __str__(self):
         return self.name
@@ -20,7 +19,6 @@ class Author(models.Model):
     class Meta:
         verbose_name = "作者"
         verbose_name_plural = verbose_name
-        app_label = "book"
 
     def __str__(self):
         return self.name
@@ -32,7 +30,6 @@ class Translator(models.Model):
     class Meta:
         verbose_name = "译者"
         verbose_name_plural = verbose_name
-        app_label = "book"
 
     def __str__(self):
         return self.name
@@ -68,7 +65,6 @@ class Book(models.Model):
     class Meta:
         verbose_name = "书目"
         verbose_name_plural = verbose_name
-        app_label = "book"
 
     def __str__(self):
         return self.book_name

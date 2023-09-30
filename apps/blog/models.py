@@ -42,7 +42,6 @@ class Category(models.Model):
     class Meta:
         verbose_name = "分类"
         verbose_name_plural = verbose_name
-        app_label = "blog"
         ordering = ["name"]
 
     def __str__(self):
@@ -59,7 +58,6 @@ class Tag(models.Model):
     class Meta:
         verbose_name = "标签"
         verbose_name_plural = verbose_name
-        app_label = "blog"
         ordering = ["name"]
 
     def __str__(self):
@@ -123,7 +121,6 @@ class Post(models.Model):
         verbose_name = "文章"
         verbose_name_plural = verbose_name
         ordering = ["-updated", "-created", "title"]
-        app_label = "blog"
 
     def __str__(self):
         return self.title
@@ -151,7 +148,6 @@ class Comment(models.Model):
         verbose_name = "评论"
         verbose_name_plural = verbose_name
         ordering = ["-updated", "-created"]
-        app_label = "blog"
 
     @property
     def html(self):
