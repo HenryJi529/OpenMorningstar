@@ -69,10 +69,10 @@ def get_data(site_index):
         currentDate = datetime.date.today().strftime("%Y-%m-%d")
         items = [
             {
-                "link": None,
-                "title": None,
+                "link": link,
+                "title": "原站点崩溃啦🥹~",
                 "pubDate": currentDate,
-                "description": "原站点崩溃啦🥹~",
+                "description": None,
             }
         ]
         lastBuildDate = currentDate
