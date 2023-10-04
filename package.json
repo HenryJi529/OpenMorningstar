@@ -31,11 +31,11 @@
     "@tailwindcss/typography": "^0.5.10",
     "browserify": "^17.0.0",
     "concurrently": "^8.2.1",
-    "daisyui": "^3.8.1",
+    "daisyui": "^3.8.3",
     "npm-check-updates": "^16.14.4",
     "sass": "^1.68.0",
     "tailwindcss": "~3.3.3",
-    "terser": "^5.20.0",
+    "terser": "^5.21.0",
     "typescript": "^5.2.2",
     "watchify": "^4.0.0"
   },
