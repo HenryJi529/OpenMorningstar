@@ -43,7 +43,7 @@
         "inDev": true
     },
     "Django": {
-        "version": "4.2.5",
+        "version": "4.2.6",
         "summary": "提供web后端"
     },
     "djangorestframework": {
@@ -154,7 +154,7 @@
         "summary": "更高级的绘图工具"
     },
     "Markdown": {
-        "version": "3.4.4"
+        "version": "3.5"
     },
     "mdutils": {
         "version": "1.6.0",
@@ -256,13 +256,13 @@
         "summary": "实现站内搜索"
     },
     "torch": {
-        "version": "2.0.1"
+        "version": "2.1.0"
     },
     "torchvision": {
-        "version": "0.15.2"
+        "version": "0.16.0"
     },
     "torch-tb-profiler": {
-        "version": "0.4.1"
+        "version": "0.4.3"
     },
     "tensorboard": {
         "version": "2.14.1"

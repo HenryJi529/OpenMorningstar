@@ -1,6 +1,6 @@
-Django==4.2.5
+Django==4.2.6
 Faker==19.6.2
-Markdown==3.4.4
+Markdown==3.5
 Pillow==10.0.1
 SciencePlots==2.1.0
 Whoosh==2.7.4
@@ -57,11 +57,11 @@ sh==2.0.6
 simpy==4.0.2
 sqlite3-to-mysql==2.0.3
 tensorboard==2.14.1
-torch==2.0.1
-torch-tb-profiler==0.4.1
+torch==2.1.0
+torch-tb-profiler==0.4.3
 torch_geometric==2.2.0
 torchinfo==1.8.0
 torchmetrics==1.2.0
-torchvision==0.15.2
+torchvision==0.16.0
 tqdm==4.66.1
 translate==3.6.1
