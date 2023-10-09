@@ -1056,6 +1056,21 @@
 					]
 				},
 				{
+					"name": "阅读具",
+					"slug": "read",
+					"display": "modal",
+					"entries": [
+						{
+							"name": "电子书阅读",
+							"url": "https://www.neat-reader.cn/"
+						},
+						{
+							"name": "RSS阅读",
+							"link": "https://feeder.co/reader"
+						}
+					]
+				},
+				{
 					"name": "烹饪教程",
 					"slug": "cook",
 					"display": "modal",
