@@ -1374,6 +1374,10 @@
 						{
 							"name": "Google Colab",
 							"link": "https://colab.research.google.com/"
+						},
+						{
+							"name": "Code Ocean",
+							"link": "https://codeocean.com/dashboard"
 						}
 					]
 				},
