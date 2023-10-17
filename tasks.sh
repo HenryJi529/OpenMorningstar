@@ -61,6 +61,9 @@ updateDep() {
 	echo "- 更新base:"
 	npx ncu -u
 	yarn install
+	yarn upgrade
+	echo "- 更新extension:"
+	cd extension/popup/ && yarn upgrade && cd ../../
 	for app_dir in "./apps"/*; do
 		if [ -d "$app_dir" ]; then
 			if [ -d "$app_dir/frontend" ]; then
