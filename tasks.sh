@@ -58,8 +58,18 @@ coverage() {
 # 更新依赖
 updateDep() {
 	echo "JavaScript: 更新版本..."
+	echo "- 更新base:"
 	npx ncu -u
 	yarn install
+	for app_dir in "./apps"/*; do
+		if [ -d "$app_dir" ]; then
+			if [ -d "$app_dir/frontend" ]; then
+				app_name=${app_dir#*/}
+				echo "- 更新$app_name:"
+				cd $app_dir/frontend/ && yarn upgrade && cd ../../../
+			fi
+		fi
+	done
 	echo "==================================="
 	echo "Python: 更新依赖..."
 	${PYTHON} scripts/dep/dependencyManager.py upgrade --verbose
@@ -77,11 +87,14 @@ updateDjango() {
 # 更新nginx(配置及前端代码)
 updateNginx() {
 	# NOTE: rebuild All
-	apps=('formula' 'joke' 'notes' 'quiz' 'recognizer' 'share')
-	for app in "${apps[@]}"; do
-		cd apps/${app}/frontend/ && npm run build && cd ../../../
+	for app_dir in "./apps"/*; do
+		if [ -d "$app_dir" ]; then
+			if [ -d "$app_dir/frontend" ]; then
+				cd $app_dir/frontend/ && npm run build && cd ../../../
+			fi
+		fi
 	done
-	runRemoteCommand updateNginx
+	runRemoteCommand syncNginx
 }
 
 # 整体更新
@@ -125,14 +138,7 @@ publicArchive() {
 # 发布Docker Image
 publicPackage() {
 	echo "更新生产环境下的容器..."
-	runRemoteCommand updatePackage
-	read -s -n1 -p "按任意键继续..."
-	echo ""
-	echo "==================================="
-	echo "更新开发环境下的容器..."
-	docker compose -f scripts/deploy/example_dev.yml up --build -d
-	docker push henry529/dev
-	docker tag henry529/dev ghcr.io/henryji529/morningstar-dev && docker push ghcr.io/henryji529/morningstar-dev
+	runRemoteCommand publicPackage
 }
 
 # 同步账本

@@ -219,7 +219,7 @@ def restoreDockerVolume(c):
 
 
 @task()
-def updatePackage(c):
+def publicPackage(c):
     home_path = "~/"
     with c.cd(home_path):
         """发布包(dockerhub与ghcr)"""
@@ -257,7 +257,7 @@ def syncLedger(c):
 
 
 @task()
-def updateNginx(c):
+def syncNginx(c):
     home_path = "~/"
     with c.cd(home_path):
         colored_print("同步配置文件...")
