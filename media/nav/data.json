@@ -277,7 +277,7 @@
 				{
 					"name": "Markdown",
 					"url": "https://wangchujiang.com/reference/docs/markdown.html",
-					"image": "/media/nav/img/Manual/Markdown.png"
+					"image": "/media/nav/img/Manual/Markdown.svg"
 				},
 				{
 					"name": "LaTex",
@@ -292,7 +292,7 @@
 				{
 					"name": "Docker",
 					"url": "https://yeasy.gitbook.io/docker_practice/",
-					"image": "/media/nav/img/Manual/Docker.png"
+					"image": "/media/nav/img/Manual/Docker.svg"
 				},
 				{
 					"name": "Nginx",
@@ -348,6 +348,11 @@
 					"name": "JavaScript",
 					"url": "https://zh.javascript.info/",
 					"image": "/media/nav/img/Manual/JavaScript.png"
+				},
+				{
+					"name": "Java",
+					"url": "https://wangchujiang.com/reference/docs/java.html",
+					"image": "/media/nav/img/Manual/Java.svg"
 				},
 				{
 					"name": "Web API",
