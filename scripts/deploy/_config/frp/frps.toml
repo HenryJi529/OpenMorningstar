@@ -1,0 +1,3 @@
+webServer.port = 7500
+webServer.user = "{{ .Envs.MORNINGSTAR_USERNAME }}"
+webServer.password = "{{ .Envs.MORNINGSTAR_PASSWORD }}"

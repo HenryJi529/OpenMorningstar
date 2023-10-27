@@ -117,7 +117,7 @@ services:
     command: bash
 
   frps:
-    image: snowdreamtech/frps:0.51.0 # NOTE: 新版本中使用toml替换了ini
+    image: snowdreamtech/frps
     container_name: morningstar_frps
     working_dir: /root
     tty: true

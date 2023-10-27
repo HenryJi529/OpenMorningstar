@@ -115,12 +115,6 @@ def updateAll(c):
             c.run(
                 "source ~/.zshrc && echo \"\nenvironment=DJANGO_SECRET_KEY='${DJANGO_SECRET_KEY}',EMAIL_HOST_PASSWORD='${EMAIL_HOST_PASSWORD}',TENCENT_SMS_APP_KEY='${TENCENT_SMS_APP_KEY}',RECAPTCHA_PUBLIC_KEY='${RECAPTCHA_PUBLIC_KEY}',RECAPTCHA_PRIVATE_KEY='${RECAPTCHA_PRIVATE_KEY}',MYSQL_ROOT_PASSWORD='${MYSQL_ROOT_PASSWORD}',REDIS_PASSWORD='${REDIS_PASSWORD}'\" >> ~/morningstar/scripts/deploy/django/supervise.conf"
             )
-            c.run(
-                'source ~/.zshrc && sed -i "s/MORNINGSTAR_USERNAME/${MORNINGSTAR_USERNAME}/" ~/morningstar/scripts/deploy/_config/frp/frps.ini'
-            )
-            c.run(
-                'source ~/.zshrc && sed -i "s/MORNINGSTAR_PASSWORD/${MORNINGSTAR_PASSWORD}/" ~/morningstar/scripts/deploy/_config/frp/frps.ini'
-            )
 
         colored_print("添加密钥...")
         update_file_with_secret()
@@ -135,11 +129,6 @@ def updateAll(c):
         colored_print("部署容器...")
         c.run(
             "source ~/.zshrc && cd ~/morningstar/scripts/deploy; docker-compose build && docker-compose up -d"
-        )
-
-        colored_print("配置frps...")
-        c.run(
-            "docker cp ~/morningstar/scripts/deploy/_config/frp/frps.ini morningstar_frps:/etc/frp/frps.ini && docker restart morningstar_frps"
         )
 
         colored_print("转移媒体文件...")
