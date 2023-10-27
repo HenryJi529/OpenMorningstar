@@ -6,7 +6,7 @@ from Morningstar.lib.nickname_generator import get_random_nickname
 
 class User(AbstractUser):
     nickname = models.CharField(
-        unique=True, verbose_name="昵称", max_length=200, blank=True, null=True
+        verbose_name="昵称", max_length=200, blank=True, null=True
     )
     email = models.EmailField(
         unique=True, max_length=200, blank=True, null=True, verbose_name="邮箱"
