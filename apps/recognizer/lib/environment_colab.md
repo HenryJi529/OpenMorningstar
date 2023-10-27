@@ -54,15 +54,14 @@
 
     # 配置frpc
     config = """
-    [common]
-    server_addr = "server.morningstar369.com"
-    server_port = 7000
-    token = "myToken"
-    [tensorboard-colab]
+    serverAddr = "server.morningstar369.com"
+
+    [[proxies]]
+    name = "tensorboard-colab"
     type = "tcp"
-    local_ip = "0.0.0.0"
-    local_port = 6006
-    remote_port = 16006
+    localIP = "0.0.0.0"
+    localPort = 6006
+    remotePort = 16006
     """
     with open("frpc.toml", "w") as file:
         file.write(config)
