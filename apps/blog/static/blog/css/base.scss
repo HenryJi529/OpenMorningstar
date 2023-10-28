@@ -157,7 +157,7 @@ mjx-container {
 
     code {
         font-family: monospace;
-        font-size: 1.2rem;
+        font-size: 1rem;
         color: $post-inline-code-color;
         margin-left: 0.3rem;
         margin-right: 0.3rem;
@@ -319,9 +319,9 @@ mjx-container {
                 max-width: 100%;
                 // @extend .block;
                 display: block;
-                // @extend .text-lg;
-                font-size: 1.125rem;
-                line-height: 1.75rem;
+                // @extend .text-base;
+                font-size: 1rem;
+                line-height: 1.5rem;
 
                 // @extend .bg-transparent;
                 background-color: transparent;
@@ -419,9 +419,9 @@ mjx-container {
             max-width: 100%;
             // @extend .block;
             display: block;
-            // @extend .text-lg;
-            font-size: 1.125rem;
-            line-height: 1.75rem;
+            // @extend .text-base;
+            font-size: 1rem;
+            line-height: 1.5rem;
             // @extend .bg-transparent;
             background-color: transparent;
 
