@@ -648,6 +648,12 @@
 					"desc": "立党的润学笔记"
 				},
 				{
+					"name": "OI WIki",
+					"url": "https://oi-wiki.org/",
+					"image": "/media/nav/img/Learn/OI-Wiki.png",
+					"desc": "免费开放的编程竞赛知识整合站点"
+				},
+				{
 					"name": "The Algorithms",
 					"url": "https://the-algorithms.com/",
 					"image": "/media/nav/img/Learn/TheAlgorithms.svg",
