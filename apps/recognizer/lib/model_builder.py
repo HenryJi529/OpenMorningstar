@@ -171,10 +171,12 @@ class CustomViT(nn.Module):
             embedding_dropout: float = 0.1,
         ):
             super().__init__()
-
-            assert (
-                image_size % patch_size == 0
-            ), f"Input image size must be divisble by patch size, image shape: {image_size}, patch size: {patch_size}"
+            if image_size % patch_size == 0:
+                pass
+            else:
+                raise ValueError(
+                    f"Input image size must be divisble by patch size, image shape: {image_size}, patch size: {patch_size}"
+                )
             self.patch_num = int(image_size**2 / patch_size**2)
 
             self.patcher = nn.Conv2d(

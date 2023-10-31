@@ -97,9 +97,10 @@ def save_model(
     target_dir.mkdir(parents=True, exist_ok=True)
 
     # Create model save path
-    assert model_filename.endswith(".pth") or model_filename.endswith(
-        ".pt"
-    ), "model_filename should end with '.pt' or '.pth'"
+    if model_filename.endswith(".pth") or model_filename.endswith(".pt"):
+        pass
+    else:
+        raise ValueError("model_filename should end with '.pt' or '.pth'")
     model_save_path = target_dir / model_filename
 
     # Save model
