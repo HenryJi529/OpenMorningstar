@@ -1180,27 +1180,28 @@
 					"display": "modal",
 					"entries": [
 						{
-							"name": "Photopea(在线PS)",
+							"name": "在线修图",
 							"link": "https://www.photopea.com/"
 						},
 						{
-							"name": "图片处理(尺寸,裁剪,水印,转换)",
-							"link": "https://www.iloveimg.com/zh-cn"
+							"name": "图片水印",
+							"link": "https://www.iloveimg.com/zh-cn/watermark-image"
+						},
+						{
+							"name": "图片裁剪",
+							"link": "https://www.iloveimg.com/zh-cn/crop-image"
 						},
 						{
 							"name": "图像放大",
-							"link": "https://bigjpg.com/",
-							"class": "special"
+							"link": "https://bigjpg.com/"
 						},
 						{
 							"name": "图像压缩",
-							"link": "https://tinypng.com/",
-							"class": "special"
+							"link": "https://www.compress2go.com/zh/compress-image"
 						},
 						{
-							"name": "Favicon(ico)生成",
-							"link": "https://favicon.io/favicon-converter/",
-							"class": "special"
+							"name": "ICO生成",
+							"link": "https://favicon.io/favicon-converter/"
 						},
 						{
 							"name": "图片去底",
