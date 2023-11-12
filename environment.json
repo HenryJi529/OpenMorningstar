@@ -15,7 +15,7 @@
         "inDev": false
     },
     "mysql-connector-python": {
-        "version": "8.0.33",
+        "version": "8.2.0",
         "locked": true,
         "note": "被mysql-to-sqlite3, sqlite3-to-mysql依赖特定版本"
     },
@@ -43,7 +43,7 @@
         "inDev": true
     },
     "Django": {
-        "version": "4.2.6",
+        "version": "4.2.7",
         "summary": "提供web后端"
     },
     "djangorestframework": {
@@ -108,7 +108,7 @@
         "inDev": true
     },
     "Faker": {
-        "version": "19.10.0",
+        "version": "19.13.0",
         "summary": "测试数据生成",
         "inDev": true
     },
@@ -125,12 +125,12 @@
         "summary": "动态web服务器"
     },
     "ipykernel": {
-        "version": "6.25.2",
+        "version": "6.26.0",
         "summary": "用于支持ipynb笔记本",
         "inDev": true
     },
     "ipython": {
-        "version": "8.16.1",
+        "version": "8.17.2",
         "summary": "交互式python"
     },
     "jieba": {
@@ -142,7 +142,7 @@
         "summary": "离线翻译"
     },
     "matplotlib": {
-        "version": "3.8.0",
+        "version": "3.8.1",
         "summary": "绘图工具"
     },
     "SciencePlots": {
@@ -154,7 +154,7 @@
         "summary": "更高级的绘图工具"
     },
     "Markdown": {
-        "version": "3.5"
+        "version": "3.5.1"
     },
     "mdutils": {
         "version": "1.6.0",
@@ -172,11 +172,11 @@
         "locked": true
     },
     "mysql-to-sqlite3": {
-        "version": "2.1.0",
+        "version": "2.1.1",
         "summary": "mysql -> sqlite3"
     },
     "networkx": {
-        "version": "3.1",
+        "version": "3.2.1",
         "summary": "图和网络分析工具"
     },
     "numpy": {
@@ -184,7 +184,7 @@
         "summary": "矩阵计算"
     },
     "pandas": {
-        "version": "2.1.1",
+        "version": "2.1.2",
         "summary": "表数据处理"
     },
     "Pillow": {
@@ -192,7 +192,7 @@
         "summary": "图像处理"
     },
     "pip": {
-        "version": "23.3",
+        "version": "23.3.1",
         "summary": "包管理工具",
         "inDev": true
     },
@@ -211,7 +211,7 @@
         "summary": "音频处理库"
     },
     "pymdown-extensions": {
-        "version": "10.3",
+        "version": "10.3.1",
         "summary": "实用的Python-Markdown扩展"
     },
     "python-dotenv": {
@@ -249,7 +249,7 @@
         "summary": "生成进度条"
     },
     "sqlite3-to-mysql": {
-        "version": "2.1.0"
+        "version": "2.1.1"
     },
     "Whoosh": {
         "version": "2.7.4",
@@ -265,7 +265,7 @@
         "version": "0.4.3"
     },
     "tensorboard": {
-        "version": "2.14.1"
+        "version": "2.15.1"
     },
     "torch_geometric": {
         "version": "2.2.0"
@@ -277,7 +277,7 @@
         "version": "1.8.0"
     },
     "scikit-learn": {
-        "version": "1.3.1"
+        "version": "1.3.2"
     },
     "mlxtend": {
         "version": "0.23.0"

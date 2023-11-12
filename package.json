@@ -26,16 +26,16 @@
   },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",
-    "@tailwindcss/forms": "^0.5.6",
+    "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/line-clamp": "^0.4.4",
     "@tailwindcss/typography": "^0.5.10",
     "browserify": "^17.0.0",
     "concurrently": "^8.2.2",
-    "daisyui": "^3.9.3",
+    "daisyui": "^3.9.4",
     "npm-check-updates": "^16.14.6",
-    "sass": "^1.69.4",
-    "tailwindcss": "~3.3.3",
-    "terser": "^5.22.0",
+    "sass": "^1.69.5",
+    "tailwindcss": "~3.3.5",
+    "terser": "^5.24.0",
     "typescript": "^5.2.2",
     "watchify": "^4.0.0"
   },
@@ -47,8 +47,8 @@
     "highlight.js": "^11.9.0",
     "highlightjs-copy": "^1.0.5",
     "highlightjs-line-numbers.js": "^2.8.0",
-    "localstorage-slim": "^2.6.0",
-    "marked": "^9.1.2",
+    "localstorage-slim": "^2.7.0",
+    "marked": "^10.0.0",
     "mathjax": "^3.2.2",
     "pace-js": "^1.2.4"
   }
