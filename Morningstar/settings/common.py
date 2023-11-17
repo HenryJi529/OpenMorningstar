@@ -59,7 +59,7 @@ INSTALLED_APPS = [
     "apps.recognizer.apps.RecognizerConfig",  # 图像识别
     "apps.rss.apps.RssConfig",  # RSS
     "apps.share.apps.ShareConfig",  # 分享
-    "captcha",  # google recaptcha
+    "django_recaptcha",  # google recaptcha
     "compressor",  # 压缩js
     "corsheaders",  # 处理跨域访问
     "debug_toolbar",  # 调试工具

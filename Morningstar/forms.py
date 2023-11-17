@@ -1,9 +1,7 @@
 from django import forms
-from captcha.fields import ReCaptchaField
+from django_recaptcha.fields import ReCaptchaField
 from django.core.validators import RegexValidator
-from django.core.exceptions import ValidationError  # NOTE: 此方法可能导致引用未知字段的错误
 from django_redis import get_redis_connection
-import random
 import re
 
 from .models import User
