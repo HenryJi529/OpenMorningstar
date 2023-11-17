@@ -59,8 +59,7 @@ coverage() {
 updateDep() {
 	echo "JavaScript: 更新版本..."
 	echo "- 更新base:"
-	npx ncu -u
-	yarn install
+	npx ncu -u && yarn install # NOTE: 大版本更新
 	yarn upgrade
 	echo "- 更新extension:"
 	cd extension/popup/ && yarn upgrade && cd ../../
