@@ -435,7 +435,7 @@
 						<div class="flex justify-center p-2" id="contactButton" title="联系">
 							<a href="{% url 'blog:contact' %}" class="fa-solid text-2xl fa-paper-plane"></a>
 						</div>
-						<div class="dropdown dropdown-end" id="profileButton" title="档案">
+						<div class="dropdown" id="profileButton" title="档案">
 							<label tabindex="0" class="btn btn-ghost btn-circle avatar">
 								{% if user.is_authenticated %}
 								<div class="w-10 rounded-full">
