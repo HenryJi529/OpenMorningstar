@@ -165,7 +165,7 @@ mjx-container {
     }
 
     table:not(code table) {
-        width: 70%;
+        min-width: 70%;
 
         @media (max-width: 560px) {
             width: 95%;
