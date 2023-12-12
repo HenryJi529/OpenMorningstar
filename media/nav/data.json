@@ -1067,17 +1067,25 @@
 					]
 				},
 				{
-					"name": "阅读工具",
-					"slug": "read",
+					"name": "知识助理",
+					"slug": "knowledge-assistant",
 					"display": "modal",
 					"entries": [
 						{
-							"name": "电子书阅读",
-							"url": "https://www.neat-reader.cn/"
+							"name": "Poe",
+							"url": "https://poe.com/ChatGPT"
 						},
 						{
-							"name": "RSS阅读",
-							"link": "https://feeder.co/reader"
+							"name": "ChatGPT",
+							"url": "https://chat.openai.com/"
+						},
+						{
+							"name": "Chatbot UI",
+							"url": "https://chat.morningstar369.com/"
+						},
+						{
+							"name": "NiceGPT",
+							"url": "https://chat.hvvyxs.com/"
 						}
 					]
 				},
@@ -1156,10 +1164,14 @@
 					]
 				},
 				{
-					"name": "聚合阅读",
-					"slug": "aggregate-reading",
+					"name": "阅读工具",
+					"slug": "reading",
 					"display": "modal",
 					"entries": [
+						{
+							"name": "电子书阅读",
+							"url": "https://www.neat-reader.cn/"
+						},
 						{
 							"name": "RSS阅读器",
 							"link": "https://feeder.co/reader"
