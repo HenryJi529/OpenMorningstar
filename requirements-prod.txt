@@ -12,7 +12,7 @@ django-crontab==0.7.1
 django-debug-toolbar==3.8.1
 django-filter==23.5
 django-haystack==3.2.1
-django-import-export==3.3.4
+django-import-export==3.3.5
 django-jazzmin==2.6.0
 django-matomo==0.1.6
 django-recaptcha==4.0.0
@@ -34,7 +34,7 @@ networkx==3.2.1
 numpy==1.26.2
 pandas==2.1.4
 pydub==0.25.1
-pymdown-extensions==10.5
+pymdown-extensions==10.6
 python-dotenv==1.0.0
 qcloudsms-py==0.1.4
 qrcode==7.4.2

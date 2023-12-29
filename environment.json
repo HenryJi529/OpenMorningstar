@@ -48,7 +48,7 @@
         "summary": "创建彩色字符串"
     },
     "coverage": {
-        "version": "7.3.3",
+        "version": "7.4.0",
         "summary": "计算测试覆盖率",
         "inDev": true
     },
@@ -85,7 +85,7 @@
         "summary": "全局搜索"
     },
     "django-import-export": {
-        "version": "3.3.4",
+        "version": "3.3.5",
         "summary": "数据导入导出",
         "dependencies": [
             "xlrd",
@@ -135,7 +135,7 @@
         "summary": "动态web服务器"
     },
     "ipykernel": {
-        "version": "6.27.1",
+        "version": "6.28.0",
         "summary": "用于支持ipynb笔记本",
         "inDev": true
     },
@@ -216,7 +216,7 @@
         "summary": "音频处理库"
     },
     "pymdown-extensions": {
-        "version": "10.5",
+        "version": "10.6",
         "summary": "实用的Python-Markdown扩展"
     },
     "python-dotenv": {
