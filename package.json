@@ -31,10 +31,10 @@
     "@tailwindcss/typography": "^0.5.10",
     "browserify": "^17.0.0",
     "concurrently": "^8.2.2",
-    "daisyui": "^4.4.24",
+    "daisyui": "^4.5.0",
     "npm-check-updates": "^16.14.12",
-    "sass": "^1.69.6",
-    "tailwindcss": "~3.4.0",
+    "sass": "^1.69.7",
+    "tailwindcss": "~3.4.1",
     "terser": "^5.26.0",
     "typescript": "^5.3.3",
     "watchify": "^4.0.0"
@@ -48,7 +48,7 @@
     "highlightjs-copy": "^1.0.5",
     "highlightjs-line-numbers.js": "^2.8.0",
     "localstorage-slim": "^2.7.0",
-    "marked": "^11.1.0",
+    "marked": "^11.1.1",
     "mathjax": "^3.2.2",
     "pace-js": "^1.2.4"
   }
