@@ -101,7 +101,12 @@
 						<div class="neumorphism rounded-3xl">
 							<label for="modal-{{ item.slug }}"
 								class="modal-button cursor-pointer w-full block py-4 pl-8 font-bold text-lg">
-								{{ item.name}}
+								<div class="flex items-center">
+									{% if item.image %}
+									<img src="{{ item.image }}" alt="{{item.name}}的图片" class="rounded-full w-10 h-10">
+									{% endif %}
+									<div class="font-bold text-lg pl-2">{{item.name}}</div>
+								</div>
 							</label>
 							<input type="checkbox" id="modal-{{ item.slug }}" class="modal-toggle" />
 							<label for="modal-{{ item.slug }}" class="modal cursor-pointer">
