@@ -999,8 +999,19 @@
 				},
 				{
 					"name": "泰拉瑞亚",
-					"url": "https://terraria.wiki.gg/zh/wiki/Terraria_Wiki",
-					"image": "/media/nav/img/Recreation/Terraria.jpeg"
+					"slug": "terraria",
+					"image": "/media/nav/img/Recreation/Terraria.jpeg",
+					"display": "modal",
+					"entries": [
+						{
+							"name": "官方Wiki",
+							"url": "https://terraria.wiki.gg/zh/wiki/Terraria_Wiki"
+						},
+						{
+							"name": "灾厄Wiki",
+							"link": "https://terraria-calamity-mod.fandom.com/zh/wiki/Terraria_Calamity_Mod_中文_Wiki"
+						}
+					]
 				},
 				{
 					"name": "塞尔达传说",
