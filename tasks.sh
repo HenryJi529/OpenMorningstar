@@ -30,7 +30,7 @@ dev() {
 	# python manage.py crontab add
 	# echo "==================================="
 	echo "编译CSS/JS库..."
-	npm run build &
+	npm run build & # NOTE: 先结束sass编译插件，后结束task.sh
 	# bash scripts/build/build_sass.sh & # NOTE: 可用live-sass-compiler替换
 	echo "==================================="
 	# echo "获取静态文件..."
