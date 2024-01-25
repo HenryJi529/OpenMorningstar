@@ -9,7 +9,7 @@ COPY ./_mirror_cn/ustc-sources.list /etc/apt/sources.list
 # COPY ./_mirror_cn/pip.conf /root/.pip/pip.conf
 
 RUN apt-get update
-RUN apt-get install -y iputils-ping net-tools vim rsync curl
+RUN apt-get install -y net-tools vim rsync curl
 RUN apt-get install -y python${PYTHON_VERSION} python3-pip mysql-client libmysqlclient-dev
 RUN curl -sL https://deb.nodesource.com/setup_20.x | bash - 
 RUN apt-get install -y nodejs
