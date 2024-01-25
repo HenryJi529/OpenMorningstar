@@ -10,7 +10,7 @@ COPY ./_mirror_cn/ustc-sources.list /etc/apt/sources.list
 
 # 安装环境
 RUN apt-get update
-RUN apt-get install -y iputils-ping net-tools vim rsync curl git
+RUN apt-get install -y net-tools vim rsync curl git
 RUN curl -sL https://deb.nodesource.com/setup_20.x | bash - 
 RUN apt-get install -y nodejs
 
