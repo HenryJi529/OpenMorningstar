@@ -15,7 +15,7 @@
         "inDev": false
     },
     "mysql-connector-python": {
-        "version": "8.2.0",
+        "version": "8.3.0",
         "locked": true,
         "note": "被mysql-to-sqlite3, sqlite3-to-mysql依赖特定版本"
     },
@@ -30,7 +30,7 @@
         "locked": true
     },
     "beautifulsoup4": {
-        "version": "4.12.2",
+        "version": "4.12.3",
         "summary": "处理web页面信息",
         "dependencies": [
             "lxml"
@@ -85,7 +85,7 @@
         "summary": "全局搜索"
     },
     "django-import-export": {
-        "version": "3.3.5",
+        "version": "3.3.6",
         "summary": "数据导入导出",
         "dependencies": [
             "xlrd",
@@ -118,7 +118,7 @@
         "inDev": true
     },
     "Faker": {
-        "version": "22.0.0",
+        "version": "22.5.1",
         "summary": "测试数据生成",
         "inDev": true
     },
@@ -135,7 +135,7 @@
         "summary": "动态web服务器"
     },
     "ipykernel": {
-        "version": "6.28.0",
+        "version": "6.29.0",
         "summary": "用于支持ipynb笔记本",
         "inDev": true
     },
@@ -164,7 +164,7 @@
         "summary": "更高级的绘图工具"
     },
     "Markdown": {
-        "version": "3.5.1"
+        "version": "3.5.2"
     },
     "mdutils": {
         "version": "1.6.0",
@@ -177,7 +177,7 @@
         "inDev": true
     },
     "mysql-to-sqlite3": {
-        "version": "2.1.7",
+        "version": "2.1.9",
         "summary": "mysql -> sqlite3"
     },
     "networkx": {
@@ -189,7 +189,7 @@
         "summary": "矩阵计算"
     },
     "pandas": {
-        "version": "2.1.4",
+        "version": "2.2.0",
         "summary": "表数据处理"
     },
     "Pillow": {
@@ -202,7 +202,7 @@
         "inDev": true
     },
     "pipdeptree": {
-        "version": "2.13.1",
+        "version": "2.13.2",
         "summary": "python依赖关系展示工具",
         "inDev": true
     },
@@ -220,7 +220,7 @@
         "summary": "实用的Python-Markdown扩展"
     },
     "python-dotenv": {
-        "version": "1.0.0",
+        "version": "1.0.1",
         "summary": "环境变量获取"
     },
     "qrcode": {
@@ -240,7 +240,7 @@
         "version": "2.31.0"
     },
     "scipy": {
-        "version": "1.11.4"
+        "version": "1.12.0"
     },
     "simpy": {
         "version": "4.1.1"
@@ -254,7 +254,7 @@
         "summary": "生成进度条"
     },
     "sqlite3-to-mysql": {
-        "version": "2.1.6"
+        "version": "2.1.7"
     },
     "Whoosh": {
         "version": "2.7.4",
@@ -276,13 +276,13 @@
         "version": "2.2.0"
     },
     "torchmetrics": {
-        "version": "1.2.1"
+        "version": "1.3.0.post0"
     },
     "torchinfo": {
         "version": "1.8.0"
     },
     "scikit-learn": {
-        "version": "1.3.2"
+        "version": "1.4.0"
     },
     "mlxtend": {
         "version": "0.23.1"
