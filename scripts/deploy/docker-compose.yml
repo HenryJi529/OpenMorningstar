@@ -53,13 +53,11 @@ services:
       - 6000:8000
     depends_on:
       - db1
-    command: bash
 
   db1:
     image: mysql:latest
     container_name: morningstar_db1
     restart: always
-    command: --default-authentication-plugin=mysql_native_password --mysqlx=0
     environment:
       - MYSQL_HOST=localhost
       - MYSQL_PORT=3306
@@ -113,7 +111,6 @@ services:
       - morningstar_tshock_data:/root/.local/share/Terraria
     ports:
       - "6002:7777"
-    command: bash
 
   frps:
     image: snowdreamtech/frps
