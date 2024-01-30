@@ -14,8 +14,5 @@ RUN apt-get install -y net-tools vim rsync curl git
 RUN curl -sL https://deb.nodesource.com/setup_20.x | bash - 
 RUN apt-get install -y nodejs
 
-# 启动脚本
-COPY ./chatbot/start.sh /start.sh
-RUN chmod +x /start.sh
-
 EXPOSE 3000
+CMD git clone https://github.com/HenryJi529/chatbot-ui.git chatbot && cd chatbot && npm install && npm run build && npm run start

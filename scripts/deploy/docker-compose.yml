@@ -208,7 +208,6 @@ services:
     restart: unless-stopped
     ports:
       - "6005:3000"
-    command: bash /start.sh
 
   jellyfin:
     image: jellyfin/jellyfin
