@@ -141,8 +141,8 @@ def updateAll(c):
         c.run("docker exec -it morningstar_django supervisorctl start django")
 
         colored_print("配置HTTPS...")
-        c.run("docker exec morningstar_nginx bash /start.sh")
-        # c.run('docker exec -it morningstar_nginx certbot --nginx -n --domains xxx.com')
+        # c.run("certbot certonly --manual --preferred-challenge dns -d django.morningstar.com")  # NOTE: 手动配置
+        # c.run("docker exec -it morningstar_nginx certbot --nginx -n --domains xxx.com")
         commandTemplate = (
             "docker exec -it morningstar_nginx certbot --nginx --non-interactive"
         )
