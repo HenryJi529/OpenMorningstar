@@ -775,34 +775,22 @@
 					]
 				},
 				{
-					"name": "电子书",
+					"name": "电子书库",
 					"slug": "ebook",
 					"display": "modal",
 					"entries": [
 						{
-							"name": "mobi2epub",
+							"name": "xxx2epub",
 							"link": "https://mobi2epub.com/",
 							"class": "special"
-						},
-						{
-							"name": "ZLibrary",
-							"link": "https://singlelogin.me"
 						},
 						{
 							"name": "鸠摩搜书",
 							"link": "https://www.jiumodiary.com/"
 						},
 						{
-							"name": "三秋书屋",
-							"link": "https://www.sanqiu.cc/"
-						},
-						{
 							"name": "SoBook",
 							"link": "https://sobooks.cc/"
-						},
-						{
-							"name": "Academia",
-							"link": "https://www.academia.edu/"
 						}
 					]
 				},
