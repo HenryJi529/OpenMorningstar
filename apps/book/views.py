@@ -1,8 +1,9 @@
 import json
 import os
 
-from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
-from django.shortcuts import render, reverse
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse, HttpRequest
+from django.urls import reverse
+from django.shortcuts import render
 from django.views import View
 
 from rest_framework.decorators import api_view
@@ -13,7 +14,6 @@ from rest_framework import status
 from Morningstar.views.base import fix_fetched_post
 from .models import Book
 from .serializers import BookSerializer
-from .forms import VerifyForm
 
 
 class IndexView(View):
@@ -28,26 +28,21 @@ class IndexView(View):
             endpoint = protocol + request.get_host() + reverse("book:api")
             return endpoint
 
-        verify_form = VerifyForm()
         books = Book.objects.all()
         endpoint = get_endpoint(request)
         return render(request, "book/index.html", locals())
 
-    def post(self, request):
+    def post(self, request: HttpRequest):
         request = fix_fetched_post(request)
-        form = VerifyForm(request.POST)
-        if form.is_valid():
-            book = Book.objects.get(id=int(request.POST["bookId"]))
-            return JsonResponse(
-                {
-                    "status": "success",
-                    "book_name": book.book_name,
-                    "author": book.author.name,
-                    "uri": book.uri,
-                }
-            )
-        else:
-            return JsonResponse({"status": "failure"})
+        book = Book.objects.get(id=int(request.POST["bookId"]))
+        return JsonResponse(
+            {
+                "status": "success",
+                "book_name": book.book_name,
+                "author": book.author.name,
+                "uri": book.uri,
+            }
+        )
 
 
 class BookListView(APIView):

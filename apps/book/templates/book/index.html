@@ -25,26 +25,21 @@
 
 <body>
 	<div class="modals">
-		<div>
-			<input type="checkbox" id="my-modal" class="modal-toggle" />
-			<div class="modal">
-				<div class="modal-box relative p-8" id="myModalBox">
-					<label for="my-modal" class="btn btn-sm btn-circle absolute right-2 top-2"
-						id="myModalToggle">✕</label>
-					<div class="text-4xl text-center font-bold">下载</div>
-					<form action="{% url 'book:index' %}" method="POST" class="mt-5">
-						{% csrf_token %}
-						{{ verify_form.captcha }}
-						<style>
-							.g-recaptcha {
-								display: flex;
-								justify-content: center;
-							}
-						</style>
+		{% for book in books %}
+		<dialog id="my_modal_{{book.id}}" class="modal">
+			<div class="modal-box relative p-6">
+				<div class="modal-action">
+					<form method="dialog">
+						<!-- if there is a button in form, it will close the modal -->
+						<button class="myModalToggle btn btn-sm btn-circle absolute right-2 top-2">✕</button>
 					</form>
 				</div>
+				<div class="modal-content" data-bookId="{{book.id}}">
+					<div class="text-4xl text-center font-bold">下载</div>
+				</div>
 			</div>
-		</div>
+		</dialog>
+		{% endfor %}
 	</div>
 
 	<div class="min-h-screen container mx-auto">
@@ -79,13 +74,13 @@
 							{% endif %}
 						</td>
 						<th>
-							<label for="my-modal" class="modal-button" data-bookId="{{ book.id }}">
+							<button onclick="openModal('{{ book.id }}')">
 								{% if book.foreign_url %}
 								<div class="text-lime-500">外链下载</div>
 								{% else %}
 								<div class="text-red-500">站内下载</div>
 								{% endif %}
-							</label>
+							</button>
 						</th>
 					</tr>
 					{% endfor %}
