@@ -593,22 +593,10 @@
 			"icon": "fa-solid fa-graduation-cap",
 			"items": [
 				{
-					"name": "Coursera",
-					"url": "https://www.coursera.org/",
-					"image": "/media/nav/img/Learn/Coursera.png",
-					"desc": "最好的海外MOOC平台"
-				},
-				{
 					"name": "MIT公开课",
 					"url": "https://ocw.mit.edu/index.htm",
 					"image": "/media/nav/img/Learn/MIT.png",
 					"desc": "也算是上过MIT了"
-				},
-				{
-					"name": "Class Central",
-					"url": "https://www.classcentral.com/university/stanford",
-					"image": "/media/nav/img/Learn/ClassCentral.png",
-					"desc": "优质网课搜索平台"
 				},
 				{
 					"name": "中国大学MOOC",
@@ -617,22 +605,16 @@
 					"desc": "爱慕课+网易+教育部"
 				},
 				{
-					"name": "Vocabulary",
-					"url": "https://www.vocabulary.com/play/",
-					"image": "/media/nav/img/Learn/Vocabulary.ico",
-					"desc": "专业的英语词汇学习网站"
+					"name": "Udemy",
+					"url": "https://www.udemy.com/",
+					"image": "/media/nav/img/Learn/Udemy.svg",
+					"desc": "挺好的技术学习平台"
 				},
 				{
-					"name": "DeveloperRoadmap",
-					"url": "https://roadmap.sh/",
-					"image": "/media/nav/img/Learn/Roadmap.png",
-					"desc": "开发者学习路线图"
-				},
-				{
-					"name": "CS-Notes",
-					"url": "http://www.cyc2018.xyz/",
-					"image": "/media/nav/img/Learn/CS-Notes.png",
-					"desc": "综合性的CS学习笔记"
+					"name": "FreeCodeCamp",
+					"url": "https://chinese.freecodecamp.org/learn",
+					"image": "/media/nav/img/Learn/FreeCodeCamp.png",
+					"desc": "闯关形式学编程技术"
 				},
 				{
 					"name": "CS自学指南",
@@ -642,10 +624,16 @@
 					"level": "admin"
 				},
 				{
-					"name": "润学笔记",
-					"url": "https://github.com/lidangzzz/How-to-run",
-					"image": "/media/nav/img/Learn/润学笔记.png",
-					"desc": "立党的润学笔记"
+					"name": "CS-Notes",
+					"url": "http://www.cyc2018.xyz/",
+					"image": "/media/nav/img/Learn/CS-Notes.png",
+					"desc": "综合性的CS学习笔记"
+				},
+				{
+					"name": "Hello算法",
+					"url": "https://www.hello-algo.com/",
+					"image": "/media/nav/img/Learn/Hello算法.svg",
+					"desc": "动画图解、一键运行的数据结构与算法教程"
 				},
 				{
 					"name": "OI WIki",
@@ -654,28 +642,16 @@
 					"desc": "免费开放的编程竞赛知识整合站点"
 				},
 				{
-					"name": "The Algorithms",
-					"url": "https://the-algorithms.com/",
-					"image": "/media/nav/img/Learn/TheAlgorithms.svg",
-					"desc": "提供多语言的典型算法分析与实现"
-				},
-				{
-					"name": "FreeCodeCamp",
-					"url": "https://chinese.freecodecamp.org/learn",
-					"image": "/media/nav/img/Learn/FreeCodeCamp.png",
-					"desc": "闯关形式学编程"
-				},
-				{
-					"name": "Udemy",
-					"url": "https://www.udemy.com/",
-					"image": "/media/nav/img/Learn/Udemy.svg",
-					"desc": "挺好的技术学习平台"
-				},
-				{
 					"name": "LeetCode",
 					"url": "https://leetcode.com/",
 					"image": "/media/nav/img/Learn/LeetCode.png",
 					"desc": "笔试刷题"
+				},
+				{
+					"name": "Vocabulary",
+					"url": "https://www.vocabulary.com/play/",
+					"image": "/media/nav/img/Learn/Vocabulary.ico",
+					"desc": "专业的英语词汇学习网站"
 				}
 			]
 		},
