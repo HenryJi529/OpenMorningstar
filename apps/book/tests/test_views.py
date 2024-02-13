@@ -31,7 +31,11 @@ class ViewTestCase(TestCase):
                 "bookId": 1,
             },
         )
-        self.assertNotContains(response, "author1")
+        resultDict = eval(response.content.decode())
+        self.assertEqual(resultDict["status"], "success")
+        self.assertEqual(resultDict["book_name"], "book1")
+        self.assertEqual(resultDict["author"], "author1")
+        self.assertContains(response, "uri")
 
     def test_api(self):
         response = self.client.get(reverse("book:api"))
