@@ -771,33 +771,6 @@
 					]
 				},
 				{
-					"name": "数据集",
-					"slug": "dataset",
-					"display": "modal",
-					"entries": [
-						{
-							"name": "Index of Complex Networks",
-							"link": "https://icon.colorado.edu/#!/"
-						},
-						{
-							"name": "Heterogenous Networks",
-							"link": "https://networkrepository.com/heter.php"
-						},
-						{
-							"name": "Koblenz Network Collection",
-							"link": "http://konect.cc/networks/"
-						},
-						{
-							"name": "Umich NetData",
-							"link": "http://www-personal.umich.edu/~mejn/netdata/"
-						},
-						{
-							"name": "data.world",
-							"link": "https://data.world/"
-						}
-					]
-				},
-				{
 					"name": "开源图标",
 					"slug": "open-icon",
 					"display": "modal",
