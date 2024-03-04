@@ -818,6 +818,10 @@
 							"link": "https://turingplanet.org/2020/09/18/leetcode_planning_list/"
 						},
 						{
+							"name": "力扣加加",
+							"link": "https://leetcode-solution-leetcode-pp.gitbook.io/leetcode-solution"
+						},
+						{
 							"name": "代表随想录",
 							"link": "https://programmercarl.com/"
 						},
@@ -826,12 +830,12 @@
 							"link": "https://interview.poetries.top/"
 						},
 						{
-							"name": "力扣加加",
-							"link": "https://leetcode-solution-leetcode-pp.gitbook.io/leetcode-solution"
-						},
-						{
 							"name": "齐丶先丶森的前端面试秘籍",
 							"link": "https://github.com/yisainan/web-interview"
+						},
+						{
+							"name": "JavaGuide",
+							"link": "https://javaguide.cn/"
 						}
 					]
 				}
