@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     "apps.blog.apps.BlogConfig",  # 博客
     "apps.book.apps.BookConfig",  # 书籍
     "apps.formula.apps.FormulaConfig",  # 公式
-    "apps.game.apps.GameConfig",  # 游戏
     "apps.joke.apps.JokeConfig",  # 笑话
     "apps.lover.apps.LoverConfig",  # 爱人
     "apps.nav.apps.NavConfig",  # 导航
