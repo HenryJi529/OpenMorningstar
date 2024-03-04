@@ -37,7 +37,7 @@
         ]
     },
     "igraph": {
-        "version": "0.11.3",
+        "version": "0.11.4",
         "summary": "分析与绘制图和网络",
         "dependencies": [
             "cairocffi"
@@ -48,12 +48,12 @@
         "summary": "创建彩色字符串"
     },
     "coverage": {
-        "version": "7.4.0",
+        "version": "7.4.3",
         "summary": "计算测试覆盖率",
         "inDev": true
     },
     "Django": {
-        "version": "4.2.9",
+        "version": "4.2.11",
         "summary": "提供web后端"
     },
     "djangorestframework": {
@@ -85,7 +85,7 @@
         "summary": "全局搜索"
     },
     "django-import-export": {
-        "version": "3.3.6",
+        "version": "3.3.7",
         "summary": "数据导入导出",
         "dependencies": [
             "xlrd",
@@ -118,7 +118,7 @@
         "inDev": true
     },
     "Faker": {
-        "version": "22.5.1",
+        "version": "23.3.0",
         "summary": "测试数据生成",
         "inDev": true
     },
@@ -135,7 +135,7 @@
         "summary": "动态web服务器"
     },
     "ipykernel": {
-        "version": "6.29.0",
+        "version": "6.29.3",
         "summary": "用于支持ipynb笔记本",
         "inDev": true
     },
@@ -152,7 +152,7 @@
         "summary": "离线翻译"
     },
     "matplotlib": {
-        "version": "3.8.2",
+        "version": "3.8.3",
         "summary": "绘图工具"
     },
     "SciencePlots": {
@@ -160,7 +160,7 @@
         "summary": "mpl样式"
     },
     "seaborn": {
-        "version": "0.13.1",
+        "version": "0.13.2",
         "summary": "更高级的绘图工具"
     },
     "Markdown": {
@@ -177,7 +177,7 @@
         "inDev": true
     },
     "mysql-to-sqlite3": {
-        "version": "2.1.9",
+        "version": "2.1.10",
         "summary": "mysql -> sqlite3"
     },
     "networkx": {
@@ -185,11 +185,11 @@
         "summary": "图和网络分析工具"
     },
     "numpy": {
-        "version": "1.26.3",
+        "version": "1.26.4",
         "summary": "矩阵计算"
     },
     "pandas": {
-        "version": "2.2.0",
+        "version": "2.2.1",
         "summary": "表数据处理"
     },
     "Pillow": {
@@ -197,12 +197,12 @@
         "summary": "图像处理"
     },
     "pip": {
-        "version": "23.3.2",
+        "version": "24.0",
         "summary": "包管理工具",
         "inDev": true
     },
     "pipdeptree": {
-        "version": "2.13.2",
+        "version": "2.16.0",
         "summary": "python依赖关系展示工具",
         "inDev": true
     },
@@ -234,7 +234,7 @@
         ]
     },
     "redis": {
-        "version": "5.0.1"
+        "version": "5.0.2"
     },
     "requests": {
         "version": "2.31.0"
@@ -250,7 +250,7 @@
         "summary": "执行shell命令"
     },
     "tqdm": {
-        "version": "4.66.1",
+        "version": "4.66.2",
         "summary": "生成进度条"
     },
     "sqlite3-to-mysql": {
@@ -261,28 +261,28 @@
         "summary": "实现站内搜索"
     },
     "torch": {
-        "version": "2.1.2"
+        "version": "2.2.1"
     },
     "torchvision": {
-        "version": "0.16.2"
+        "version": "0.17.1"
     },
     "torch-tb-profiler": {
         "version": "0.4.3"
     },
     "tensorboard": {
-        "version": "2.15.1"
+        "version": "2.16.2"
     },
     "torch_geometric": {
         "version": "2.2.0"
     },
     "torchmetrics": {
-        "version": "1.3.0.post0"
+        "version": "1.3.1"
     },
     "torchinfo": {
         "version": "1.8.0"
     },
     "scikit-learn": {
-        "version": "1.4.0"
+        "version": "1.4.1.post1"
     },
     "mlxtend": {
         "version": "0.23.1"
