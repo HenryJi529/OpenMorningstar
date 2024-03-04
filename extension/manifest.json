@@ -29,8 +29,7 @@
         },
         "share": {
             "suggested_key": {
-                "default": "Alt+Shift+S",
-                "mac": "Alt+Shift+S"
+                "default": "Alt+Shift+S"
             },
             "description": "Open Morningstar Share"
         }

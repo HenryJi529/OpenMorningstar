@@ -17,7 +17,7 @@ CLOUD_USERNAME = os.getenv("CLOUD_USERNAME")
 DOMAIN_LIST = [
     "morningstar369.com",
     "beancount.morningstar369.com",
-    "chatbot.morningstar369.com",
+    # "chatbot.morningstar369.com",
     "code.morningstar369.com",
     "frps.morningstar369.com",
     "jellyfin.morningstar369.com",
@@ -96,7 +96,9 @@ def updateDjango(c):
         commandTemplate = (
             "docker exec -it morningstar_nginx certbot --nginx --non-interactive"
         )
-        c.run(commandTemplate + " -d " + " -d ".join(DOMAIN_LIST))  # NOTE:解决HTTPS失效问题
+        c.run(
+            commandTemplate + " -d " + " -d ".join(DOMAIN_LIST)
+        )  # NOTE:解决HTTPS失效问题
         print("Done!!")
 
 
@@ -266,6 +268,8 @@ def syncNginx(c):
         commandTemplate = (
             "docker exec -it morningstar_nginx certbot --nginx --non-interactive"
         )
-        c.run(commandTemplate + " -d " + " -d ".join(DOMAIN_LIST))  # NOTE:解决HTTPS失效问题
+        c.run(
+            commandTemplate + " -d " + " -d ".join(DOMAIN_LIST)
+        )  # NOTE:解决HTTPS失效问题
 
     print("Done!!")

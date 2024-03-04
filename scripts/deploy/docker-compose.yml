@@ -196,18 +196,18 @@ services:
   #     - "6004:3000"
   #     - "222:22"
 
-  chatbot:
-    build:
-      context: .
-      dockerfile: chatbot/Dockerfile
-    image: henry529/chatbot:latest
-    container_name: morningstar_chatbot
-    hostname: henry-chatbot
-    working_dir: /root
-    tty: true
-    restart: unless-stopped
-    ports:
-      - "6005:3000"
+  # chatbot:
+  #   build:
+  #     context: .
+  #     dockerfile: chatbot/Dockerfile
+  #   image: henry529/chatbot:latest
+  #   container_name: morningstar_chatbot
+  #   hostname: henry-chatbot
+  #   working_dir: /root
+  #   tty: true
+  #   restart: unless-stopped
+  #   ports:
+  #     - "6005:3000"
 
   jellyfin:
     image: jellyfin/jellyfin
