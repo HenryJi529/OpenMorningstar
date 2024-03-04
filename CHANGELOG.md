@@ -1,5 +1,33 @@
 # 更新日志
 
+## v0.2.14:
+
+本次更新如下内容:
+
+1. 常规更新(UI, 依赖, 数据, 测试)
+2. workflow:
+    - 更新tasks.sh
+    - 删除fleet配置文件
+3. apps:
+    - **book**: 
+        - 去除recaptcha验证
+    - **chatbot**: 停用
+    - **game**: 清除
+    - **lover**: 
+        - 统一数据格式
+    - **proxy**: 
+        - 更新国家编码
+    - **recongizer**:
+        - torch.device规范化
+        - 更新colab setup
+    - **rss**: 
+        - 解决源站点无法访问问题
+        - 更新失联网站的rss信息
+    - resume: 更新信息
+4. deploy:
+    - nginx: 更新部署脚本
+    - docker: 清理docker-compose
+
 ## v0.2.13:
 
 本次更新如下内容:
