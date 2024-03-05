@@ -37,20 +37,11 @@ $base-font-size: 10px;
     .item {
       margin-bottom: 0.3rem;
       padding: 0.2rem;
-      .name {
-        font-weight: bold;
-        font-size: 1.25rem;
-      }
+
       .time {
         float: right;
         font-weight: bold;
         color: gray;
-      }
-      .desc {
-        padding-left: 1rem;
-        .process {
-          padding-left: 1rem;
-        }
       }
     }
   }
