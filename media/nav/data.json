@@ -443,7 +443,7 @@
 			]
 		},
 		{
-			"name": "文献检索",
+			"name": "科研工具",
 			"slug": "paper",
 			"icon": "fa-solid fa-database",
 			"items": [
@@ -479,7 +479,7 @@
 			"icon": "fa-brands fa-blogger-b",
 			"items": [
 				{
-					"name": "廖雪峰官网",
+					"name": "廖雪峰的官网",
 					"url": "https://www.liaoxuefeng.com/",
 					"image": "/media/nav/img/TechBlog/廖雪峰官网.png"
 				},
@@ -492,11 +492,6 @@
 					"name": "WesBos Course",
 					"url": "https://wesbos.com/courses",
 					"image": "/media/nav/img/TechBlog/WesBos.png"
-				},
-				{
-					"name": "刘江的博客",
-					"url": "https://www.liujiangblog.com/blog/",
-					"image": "/media/nav/img/TechBlog/Blog.png"
 				},
 				{
 					"name": "杜赛说编程",
@@ -517,74 +512,6 @@
 					"name": "咕咕鸽的博客",
 					"url": "https://blog.laoda.de/",
 					"image": "/media/nav/img/TechBlog/咕咕鸽.webp"
-				}
-			]
-		},
-		{
-			"name": "学无止境",
-			"slug": "study",
-			"icon": "fa-solid fa-graduation-cap",
-			"items": [
-				{
-					"name": "MIT公开课",
-					"url": "https://ocw.mit.edu/index.htm",
-					"image": "/media/nav/img/Learn/MIT.png",
-					"desc": "也算是上过MIT了"
-				},
-				{
-					"name": "中国大学MOOC",
-					"url": "https://www.icourse163.org/",
-					"image": "/media/nav/img/Learn/中国大学MOOC.png",
-					"desc": "爱慕课+网易+教育部"
-				},
-				{
-					"name": "Udemy",
-					"url": "https://www.udemy.com/",
-					"image": "/media/nav/img/Learn/Udemy.svg",
-					"desc": "挺好的技术学习平台"
-				},
-				{
-					"name": "FreeCodeCamp",
-					"url": "https://chinese.freecodecamp.org/learn",
-					"image": "/media/nav/img/Learn/FreeCodeCamp.png",
-					"desc": "闯关形式学编程技术"
-				},
-				{
-					"name": "CS自学指南",
-					"url": "https://csdiy.wiki/",
-					"image": "/media/nav/img/Learn/CS自学指南.png",
-					"desc": "学习路径+网课推荐",
-					"level": "admin"
-				},
-				{
-					"name": "CS-Notes",
-					"url": "http://www.cyc2018.xyz/",
-					"image": "/media/nav/img/Learn/CS-Notes.png",
-					"desc": "综合性的CS学习笔记"
-				},
-				{
-					"name": "Hello算法",
-					"url": "https://www.hello-algo.com/",
-					"image": "/media/nav/img/Learn/Hello算法.svg",
-					"desc": "动画图解、一键运行的数据结构与算法教程"
-				},
-				{
-					"name": "OI WIki",
-					"url": "https://oi-wiki.org/",
-					"image": "/media/nav/img/Learn/OI-Wiki.png",
-					"desc": "免费开放的编程竞赛知识整合站点"
-				},
-				{
-					"name": "LeetCode",
-					"url": "https://leetcode.com/",
-					"image": "/media/nav/img/Learn/LeetCode.png",
-					"desc": "笔试刷题"
-				},
-				{
-					"name": "Vocabulary",
-					"url": "https://www.vocabulary.com/play/",
-					"image": "/media/nav/img/Learn/Vocabulary.ico",
-					"desc": "专业的英语词汇学习网站"
 				}
 			]
 		},
@@ -822,8 +749,16 @@
 							"link": "https://leetcode-solution-leetcode-pp.gitbook.io/leetcode-solution"
 						},
 						{
+							"name": "OI WIki",
+							"link": "https://oi-wiki.org/"
+						},
+						{
 							"name": "代表随想录",
 							"link": "https://programmercarl.com/"
+						},
+						{
+							"name": "Hello算法",
+							"link": "https://www.hello-algo.com/"
 						},
 						{
 							"name": "前端进阶之旅",
@@ -834,8 +769,16 @@
 							"link": "https://github.com/yisainan/web-interview"
 						},
 						{
+							"name": "二哥的Java进阶之路",
+							"link": "https://javabetter.cn/"
+						},
+						{
 							"name": "JavaGuide",
 							"link": "https://javaguide.cn/"
+						},
+						{
+							"name": "CS-Notes",
+							"link": "http://www.cyc2018.xyz/"
 						}
 					]
 				}
@@ -1012,37 +955,6 @@
 				{
 					"name": "PDF处理",
 					"url": "https://www.ilovepdf.com/zh-cn"
-				},
-				{
-					"name": "论文写作",
-					"slug": "paper-writing",
-					"display": "modal",
-					"entries": [
-						{
-							"name": "文献管理",
-							"link": "https://www.zotero.org/user/login"
-						},
-						{
-							"name": "论文排版",
-							"link": "https://cn.overleaf.com/"
-						},
-						{
-							"name": "专业翻译",
-							"link": "https://www.deepl.com/zh/translator"
-						},
-						{
-							"name": "表格生成",
-							"link": "https://www.tablesgenerator.com/"
-						},
-						{
-							"name": "占位图生成",
-							"link": "https://tool.lu/imageholder/"
-						},
-						{
-							"name": "Word插入代码",
-							"link": "http://codeinword.com/"
-						}
-					]
 				},
 				{
 					"name": "阅读工具",
