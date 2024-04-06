@@ -173,11 +173,6 @@
         "summary": "Markdown生成器",
         "inDev": true
     },
-    "nbformat": {
-        "version": "5.10.4",
-        "summary": "用于支持ipynb笔记本",
-        "inDev": true
-    },
     "mysql-to-sqlite3": {
         "version": "2.1.10",
         "summary": "mysql -> sqlite3"
