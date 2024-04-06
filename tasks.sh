@@ -75,8 +75,8 @@ updateDep() {
 	done
 	echo "==================================="
 	echo "Python: 更新依赖..."
-	${PYTHON} scripts/dep/dependencyManager.py upgrade --verbose
-	${PYTHON} scripts/dep/dependencyManager.py export --verbose
+	${PYTHON} scripts/dependency/dependencyManager.py upgrade --verbose
+	${PYTHON} scripts/dependency/dependencyManager.py export --verbose
 	${PIPDEPTREE} -fl >pipdeptree.txt
 	echo "==================================="
 	echo "DONE!!!"

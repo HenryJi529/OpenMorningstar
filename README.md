@@ -74,7 +74,7 @@ $ git clone git@github.com:HenryJi529/OpenMorningstar.git
 ```bash
 $ virtualenv VENV --python python3.9
 $ source VENV/bin/activate
-$ python scripts/dep/dependencyManager.py install --verbose
+$ python scripts/dependency/dependencyManager.py install --verbose
 $ python manage.py runserver 0:8000
 ```
 

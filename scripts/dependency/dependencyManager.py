@@ -11,8 +11,8 @@ from functools import cached_property, lru_cache
 ENVIRONMENT_PATH = "environment.json"
 DEV_REQUIREMENTS_PATH = "requirements-dev.txt"
 PROD_REQUIREMENTS_PATH = "requirements-prod.txt"
-PKL_PATH = "scripts/dep/dependencyManager.pkl"
-PACKAGES_INFO_PATH = "scripts/dep/packagesInfo.csv"
+PKL_PATH = "scripts/dependency/dependencyManager.pkl"
+PACKAGES_INFO_PATH = "scripts/dependency/packagesInfo.csv"
 
 EXPIRE_TIME = 24 * 60 * 60
 
