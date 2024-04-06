@@ -16,7 +16,6 @@
     - 6003: Matomo
     - 6006: Jellyfin
     - 6007: Portainer
-    - 6009: Send
     - 6010: Sshwifty
 - 内网穿透:
     - 1022: MacBookPro-HenryJi529的SSH

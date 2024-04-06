@@ -14,7 +14,6 @@ volumes:
   morningstar_jellyfin_cache: null
   morningstar_jellyfin_media: null
   morningstar_portainer_data: null
-  # morningstar_send_data: null
   morningstar_redis_data: null
 
 services:
@@ -198,24 +197,6 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - "6007:9000"
-
-  # send:
-  #   image: registry.gitlab.com/timvisee/send:latest
-  #   container_name: morningstar_send
-  #   tty: true
-  #   restart: unless-stopped
-  #   environment:
-  #     DETECT_BASE_URL: "true"
-  #     BASE_URL: https://send.morningstar369.com
-  #     MAX_EXPIRE_SECONDS: 157680000
-  #     DEFAULT_EXPIRE_SECONDS: 86400
-  #     MAX_FILE_SIZE: 10747904000
-  #     EXPIRE_TIMES_SECONDS: 86400,3600,86400,604800,2592000,31536000,157680000
-  #     DOWNLOAD_COUNTS: 1,2,5,10,15,25,50,100,1000,10000,100000,250000
-  #   volumes:
-  #     - morningstar_send_data:/uploads
-  #   ports:
-  #     - "6009:1443"
 
   sshwifty:
     image: niruix/sshwifty:latest
