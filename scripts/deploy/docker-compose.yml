@@ -10,7 +10,6 @@ volumes:
   morningstar_tshock_data: null
   morningstar_ftp_data: null
   morningstar_ftp_log: null
-  # morningstar_gitea_data: null
   morningstar_jellyfin_config: null
   morningstar_jellyfin_cache: null
   morningstar_jellyfin_media: null
@@ -173,28 +172,6 @@ services:
       - morningstar_beancount_data:/root/beancount
     ports:
       - "6001:5000"
-
-  # gitea:
-  #   image: gitea/gitea:latest
-  #   container_name: morningstar_gitea
-  #   environment:
-  #     - USER_UID=1000
-  #     - USER_GID=1000
-  #     - DOMAIN="gitea.morningstar369.com"
-  #     - ROOT_URL="https://gitea.morningstar369.com/"
-  #     - DB_TYPE="sqlite3"
-  #     - APP_NAME="Morningstar Gitea"
-  #     - DB_NAME="gitea"
-  #     - DB_USER="gitea"
-  #     - DB_PASSWD="gitea"
-  #   restart: always
-  #   volumes:
-  #     - morningstar_gitea_data:/data
-  #     - /etc/timezone:/etc/timezone:ro
-  #     - /etc/localtime:/etc/localtime:ro
-  #   ports:
-  #     - "6004:3000"
-  #     - "222:22"
 
   jellyfin:
     image: jellyfin/jellyfin

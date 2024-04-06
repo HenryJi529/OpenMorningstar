@@ -14,7 +14,6 @@
     - 6001: Beancount
     - 6002: TShock
     - 6003: Matomo
-    - 6004: Gitea
     - 6006: Jellyfin
     - 6007: Portainer
     - 6009: Send
