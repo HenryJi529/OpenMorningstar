@@ -17,7 +17,6 @@ CLOUD_USERNAME = os.getenv("CLOUD_USERNAME")
 DOMAIN_LIST = [
     "morningstar369.com",
     "beancount.morningstar369.com",
-    # "chatbot.morningstar369.com",
     "code.morningstar369.com",
     "frps.morningstar369.com",
     "jellyfin.morningstar369.com",
