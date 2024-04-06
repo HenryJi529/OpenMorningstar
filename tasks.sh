@@ -30,8 +30,7 @@ dev() {
 	# python manage.py crontab add
 	# echo "==================================="
 	echo "编译CSS/JS库..."
-	npm run build & # NOTE: 先结束sass编译插件，后结束task.sh
-	# bash scripts/build/build_sass.sh & # NOTE: 可用live-sass-compiler替换
+	npm run build & # TODO: 需按顺序开启/关闭live-sass-compiler插件【以后需用python线程替代】
 	echo "==================================="
 	# echo "获取静态文件..."
 	# python manage.py collectstatic --noinput
@@ -42,7 +41,7 @@ dev() {
 
 # 初始化数据
 initialize() {
-	python scripts/initialize/main.py
+	python scripts/task/initialize_data.py
 }
 
 # 代码测试
