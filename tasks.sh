@@ -1,3 +1,5 @@
+# TODO: 重构tasks.sh
+
 # 加载环境变量
 source .env
 
@@ -6,7 +8,7 @@ PYTHON=$(pwd)/VENV/bin/python
 PIPDEPTREE=$(pwd)/VENV/bin/pipdeptree
 
 runRemoteCommand() {
-	fab -H $CLOUD_USERNAME@${PUBLIC_IP} -r scripts/fabric -p $1
+	fab -H $CLOUD_USERNAME@${PUBLIC_IP} -r . -p $1
 }
 
 # 简单运行
@@ -41,7 +43,7 @@ dev() {
 
 # 初始化数据
 initialize() {
-	python scripts/task/initialize_data.py
+	python initialize.py
 }
 
 # 代码测试
