@@ -1,14 +1,11 @@
 import os
-import pathlib  # NOTE: read_text
 import random
 import sys
 from datetime import timedelta
-import json
+
 import faker
-import csv
 import django
 import colorama
-
 from django.core.files.base import ContentFile, File
 from django.core.files.images import ImageFile
 
@@ -94,7 +91,13 @@ def init_user():
 def init_blog():
     """创建分类和标签"""
     print("创建分类与标签...")
-    category_list = ["Python学习笔记", "开源项目", "工具资源", "程序员生活感悟", "test category"]
+    category_list = [
+        "Python学习笔记",
+        "开源项目",
+        "工具资源",
+        "程序员生活感悟",
+        "test category",
+    ]
     tag_list = [
         "django",
         "Python",
