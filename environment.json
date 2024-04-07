@@ -168,11 +168,6 @@
     "Markdown": {
         "version": "3.6"
     },
-    "mdutils": {
-        "version": "1.6.0",
-        "summary": "Markdown生成器",
-        "inDev": true
-    },
     "mysql-to-sqlite3": {
         "version": "2.1.10",
         "summary": "mysql -> sqlite3"

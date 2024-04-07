@@ -30,7 +30,6 @@ ipykernel==6.29.4
 ipython==8.18.1
 jieba==0.42.1
 matplotlib==3.8.4
-mdutils==1.6.0
 mlxtend==0.23.1
 mysql-connector-python==8.3.0
 mysql-to-sqlite3==2.1.10
