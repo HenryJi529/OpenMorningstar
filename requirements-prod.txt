@@ -12,7 +12,7 @@ django-crontab==0.7.1
 django-debug-toolbar==3.8.1
 django-filter==24.2
 django-haystack==3.2.1
-django-import-export==3.3.7
+django-import-export==3.3.8
 django-jazzmin==2.6.1
 django-matomo==0.1.6
 django-recaptcha==4.0.0
@@ -32,7 +32,7 @@ mysql-to-sqlite3==2.1.10
 mysqlclient==2.1.1
 networkx==3.2.1
 numpy==1.26.4
-pandas==2.2.1
+pandas==2.2.2
 pydub==0.25.1
 pymdown-extensions==10.7.1
 python-dotenv==1.0.1
@@ -41,7 +41,7 @@ qrcode==7.4.2
 readtime==3.0.0
 redis==5.0.3
 requests==2.31.0
-scikit-learn==1.4.1.post1
+scikit-learn==1.4.2
 scipy==1.13.0
 seaborn==0.13.2
 sh==2.0.6

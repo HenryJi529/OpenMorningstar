@@ -87,7 +87,7 @@
         "summary": "全局搜索"
     },
     "django-import-export": {
-        "version": "3.3.7",
+        "version": "3.3.8",
         "summary": "数据导入导出",
         "dependencies": [
             "xlrd",
@@ -120,7 +120,7 @@
         "inDev": true
     },
     "Faker": {
-        "version": "24.7.1",
+        "version": "24.8.0",
         "summary": "测试数据生成",
         "inDev": true
     },
@@ -181,7 +181,7 @@
         "summary": "矩阵计算"
     },
     "pandas": {
-        "version": "2.2.1",
+        "version": "2.2.2",
         "summary": "表数据处理"
     },
     "Pillow": {
@@ -194,7 +194,7 @@
         "inDev": true
     },
     "pipdeptree": {
-        "version": "2.17.0",
+        "version": "2.18.0",
         "summary": "python依赖关系展示工具",
         "inDev": true
     },
@@ -274,7 +274,7 @@
         "version": "1.8.0"
     },
     "scikit-learn": {
-        "version": "1.4.1.post1"
+        "version": "1.4.2"
     },
     "mlxtend": {
         "version": "0.23.1"
