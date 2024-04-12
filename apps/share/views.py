@@ -15,7 +15,7 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from Morningstar.lib import qrcoder
-from Morningstar.settings.common import BASE_DIR
+from Morningstar.settings.common import BASIC_STATICFILES_DIR
 
 from .models import Item
 
@@ -42,9 +42,8 @@ def get_qrcode(request):
     back_color = (255, 255, 255)
     center_color = (250, 200, 100)
     edge_color = (75, 150, 60)
-    icon_path = os.path.join(
-        BASE_DIR, "Morningstar", "static", "base", "img", "logo.png"
-    )
+    icon_path = BASIC_STATICFILES_DIR / "base/img/logo.png"
+
     qrcode_image = qrcoder.make_qrcode(
         data=link,
         image_size=(200, 200),

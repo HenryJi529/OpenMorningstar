@@ -5,7 +5,7 @@ import os
 import json
 from Morningstar.settings.common import MEDIA_ROOT
 
-JSON_FILE = os.path.join(MEDIA_ROOT, "nav/data.json")
+JSON_FILE = MEDIA_ROOT / "nav/data.json"
 
 
 def __get_data(json_file):

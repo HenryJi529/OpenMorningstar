@@ -34,7 +34,7 @@ load_dotenv(dotenv_path=env_path, verbose=True)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, os.path.join(BASE_DIR, "apps"))
+sys.path.insert(0, str(BASE_DIR / "apps"))
 
 AUTH_USER_MODEL = "Morningstar.User"
 ROOT_URLCONF = "Morningstar.urls"
@@ -110,8 +110,8 @@ CORS_ALLOW_ALL_ORIGINS = False
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [  # BASE_DIR / 'templates', 减少根目录文件夹数量?
-            os.path.join(BASE_DIR, "Morningstar", "templates"),
+        "DIRS": [
+            BASE_DIR / "Morningstar" / "templates",
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -171,9 +171,10 @@ USE_I18N = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")  # 收集静态
+STATIC_ROOT = BASE_DIR / "static"  # 收集静态
+BASIC_STATICFILES_DIR = str(BASE_DIR / "Morningstar" / "static")
 STATICFILES_DIRS = [  # NOTE: 除app/static/外的静态文件
-    os.path.join(BASE_DIR, "Morningstar", "static"),
+    str(BASIC_STATICFILES_DIR),
 ]
 
 
@@ -326,7 +327,7 @@ LOGGING = {
         "file": {
             "level": "INFO",
             "class": "logging.FileHandler",
-            "filename": os.path.join(BASE_DIR, "log/", "django.log"),
+            "filename": BASE_DIR / "log" / "django.log",
             "formatter": "file",
         },
         "mail_admins": {
@@ -384,7 +385,7 @@ CRONJOBS = [
 
 
 """媒体设置"""
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_ROOT = BASE_DIR / "media"
 MEDIA_URL = "/media/"
 
 """静态文件"""

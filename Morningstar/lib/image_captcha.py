@@ -4,13 +4,13 @@ import os
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 from urllib.request import urlopen
 
-from Morningstar.settings.common import BASE_DIR
+from Morningstar.settings.common import BASIC_STATICFILES_DIR
 
 
 def generate_image(width=120, height=40, char_length=5, font_size=30):
     code = []
     # font_file = urlopen(truetype_url)
-    font_file = os.path.join(BASE_DIR / "Morningstar" / "static", "font/MONACO.TTF")
+    font_file = BASIC_STATICFILES_DIR / "font/MONACO.TTF"
     img = Image.new(mode="RGB", size=(width, height), color=(255, 255, 255))
     draw = ImageDraw.Draw(img, mode="RGB")
 

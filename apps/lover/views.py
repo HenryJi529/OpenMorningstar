@@ -4,6 +4,7 @@ from PIL import Image
 import numpy as np
 import matplotlib
 from random import randint
+from pathlib import Path
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
@@ -13,17 +14,16 @@ from Morningstar.settings.common import MEDIA_ROOT
 
 
 def __get_random_image():
-    def get_image_list(image_dir):
-        items = os.listdir(image_dir)
+    def get_image_list(image_dir: Path):
         image_list = [
-            os.path.join(image_dir, item)
-            for item in items
-            if item.split(".")[1] in ["png", "jpg", "jpeg"]
+            file
+            for file in image_dir.glob("*")
+            if file.is_file()
+            and file.suffix.lower() in [".jpg", ".jpeg", ".png", ".gif", ".bmp"]
         ]
         return image_list
 
-    image_dir = os.path.join(MEDIA_ROOT, "lover", "photo")
-    image_list = get_image_list(image_dir)
+    image_list = get_image_list(MEDIA_ROOT / "lover" / "photo")
     image_num = len(image_list)
     image_ind = randint(0, image_num - 1)
     image = Image.open(image_list[image_ind])

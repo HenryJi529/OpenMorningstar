@@ -9,7 +9,7 @@ from rest_framework import status
 
 from Morningstar.settings.common import MEDIA_ROOT
 
-JSON_FILE = os.path.join(MEDIA_ROOT, "quiz/data.json")
+JSON_FILE = MEDIA_ROOT / "quiz/data.json"
 
 
 def __get_data(json_file):
