@@ -172,7 +172,7 @@ USE_I18N = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_ROOT = BASE_DIR / "static"  # 收集静态
-BASIC_STATICFILES_DIR = str(BASE_DIR / "Morningstar" / "static")
+BASIC_STATICFILES_DIR = BASE_DIR / "Morningstar" / "static"
 STATICFILES_DIRS = [  # NOTE: 除app/static/外的静态文件
     str(BASIC_STATICFILES_DIR),
 ]
