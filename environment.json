@@ -120,7 +120,7 @@
         "inDev": true
     },
     "Faker": {
-        "version": "24.8.0",
+        "version": "24.9.0",
         "summary": "测试数据生成",
         "inDev": true
     },
@@ -169,7 +169,7 @@
         "version": "3.6"
     },
     "mysql-to-sqlite3": {
-        "version": "2.1.10",
+        "version": "2.1.11",
         "summary": "mysql -> sqlite3"
     },
     "networkx": {
@@ -194,7 +194,7 @@
         "inDev": true
     },
     "pipdeptree": {
-        "version": "2.18.0",
+        "version": "2.18.1",
         "summary": "python依赖关系展示工具",
         "inDev": true
     },
@@ -246,7 +246,7 @@
         "summary": "生成进度条"
     },
     "sqlite3-to-mysql": {
-        "version": "2.1.7"
+        "version": "2.1.8"
     },
     "Whoosh": {
         "version": "2.7.4",
