@@ -71,7 +71,9 @@ class Post(models.Model):
 
     title = models.CharField("标题", max_length=50)
     body = models.TextField("正文")
-    created = models.DateTimeField("创建时间", auto_now_add=True)  # 比datetime增加时区处理
+    created = models.DateTimeField(
+        "创建时间", auto_now_add=True
+    )  # 比datetime增加时区处理
     updated = models.DateTimeField("修改时间", auto_now=True)
     excerpt = models.CharField("摘要", max_length=120, blank=True)
     category = models.ForeignKey(
