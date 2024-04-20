@@ -390,7 +390,7 @@
 				},
 				{
 					"name": "Django",
-					"url": "https://docs.djangoproject.com/en/4.0/py-modindex/",
+					"url": "https://docs.djangoproject.com/en/5.0/ref/",
 					"image": "/media/nav/img/Manual/Django.svg"
 				},
 				{
