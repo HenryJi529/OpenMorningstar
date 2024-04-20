@@ -350,9 +350,9 @@
 					"image": "/media/nav/img/Manual/JavaScript.png"
 				},
 				{
-					"name": "Java",
-					"url": "https://wangchujiang.com/reference/docs/java.html",
-					"image": "/media/nav/img/Manual/Java.svg"
+					"name": "W3school",
+					"url": "https://www.w3school.com.cn/jsref/index.asp",
+					"image": "/media/nav/img/Manual/W3school.png"
 				},
 				{
 					"name": "Web API",
@@ -385,14 +385,14 @@
 					"image": "/media/nav/img/Manual/MDN.png"
 				},
 				{
+					"name": "Java",
+					"url": "https://wangchujiang.com/reference/docs/java.html",
+					"image": "/media/nav/img/Manual/Java.svg"
+				},
+				{
 					"name": "Python",
 					"url": "https://python3-cookbook.readthedocs.io/zh_CN/latest/index.html",
 					"image": "/media/nav/img/Manual/Python.svg"
-				},
-				{
-					"name": "Requests",
-					"url": "https://requests.readthedocs.io/en/latest/#",
-					"image": "/media/nav/img/Manual/Requests.jpeg"
 				},
 				{
 					"name": "Django",
