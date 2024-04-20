@@ -61,12 +61,6 @@
 					"desc": "专注于WEB全栈,复杂网络的个人博客"
 				},
 				{
-					"name": "在线投票",
-					"url": "/poll/",
-					"image": "/media/nav/img/Work/poll.png",
-					"desc": "实现简单的投票与结果展示"
-				},
-				{
 					"name": "书单分享",
 					"url": "/book/",
 					"image": "/media/nav/img/Work/book.png",

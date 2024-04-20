@@ -52,7 +52,6 @@ INSTALLED_APPS = [
     "apps.lover.apps.LoverConfig",  # 爱人
     "apps.nav.apps.NavConfig",  # 导航
     "apps.notes.apps.NotesConfig",  # 笔记
-    "apps.poll.apps.PollConfig",  # 投票
     "apps.proxy.apps.ProxyConfig",  # 代理
     "apps.quiz.apps.QuizConfig",  # 测验
     "apps.recognizer.apps.RecognizerConfig",  # 图像识别

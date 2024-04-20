@@ -40,7 +40,6 @@ JAZZMIN_SETTINGS = {
         # App with dropdown menu to all its models pages (Permissions checked against models)
         {"app": "blog"},
         {"app": "joke"},
-        {"app": "poll"},
     ],
     #############
     # User Menu #
@@ -71,7 +70,6 @@ JAZZMIN_SETTINGS = {
         "blog",
         "joke",
         "book",
-        "poll",
         "proxy",
         "share",
     ],
@@ -107,9 +105,6 @@ JAZZMIN_SETTINGS = {
         "joke": "far fa-images",
         "joke.photo": "far fa-image",
         "joke.text": "fas fa-paragraph",
-        "poll": "fas fa-poll",
-        "poll.question": "fas fa-question",
-        "poll.choice": "fas fa-arrow-circle-right",
         "proxy": "fas fa-project-diagram",
         "proxy.account": "fas fa-user-circle",
         "proxy.node": "fas fa-link",

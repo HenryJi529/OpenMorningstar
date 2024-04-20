@@ -20,7 +20,7 @@ class PostAdmin(ImportExportModelAdmin):
     ]
     fields = ["title", "body", "category", "tags", "readtime", "requireLogin"]
     search_fields = ["title"]
-    list_filter = ["created", "updated"]
+    list_filter = ["category", "created", "updated"]
 
     def save_model(self, request, obj, form, change):
         try:

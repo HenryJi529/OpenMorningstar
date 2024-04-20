@@ -159,7 +159,7 @@ class Commands:
 
         from django.utils import timezone
         from Morningstar.models import User
-        import blog, book, joke, poll, share
+        import blog, book, joke, share
 
         def clean_database():
             # blog
@@ -175,9 +175,6 @@ class Commands:
             # joke
             joke.models.Photo.objects.all().delete()
             joke.models.Text.objects.all().delete()
-            # poll
-            poll.models.Choice.objects.all().delete()
-            poll.models.Question.objects.all().delete()
             # share
             share.models.Item.objects.all().delete()
             # user
@@ -367,20 +364,6 @@ class Commands:
                     ),
                 )
 
-        def init_poll():
-            fake = faker.Faker("zh_CN")
-            for _ in range(100):
-                question = poll.models.Question.objects.create(
-                    question_text=fake.text()[: random.randint(20, 24)]
-                )
-                answer_num = random.randint(2, 5)
-                for ind in range(answer_num):
-                    poll.models.Choice.objects.create(
-                        question=question,
-                        choice_text=fake.text()[: random.randint(15, 24)],
-                        votes=abs(fake.random_int()),
-                    )
-
         def init_share():
             fake = faker.Faker()
             for _ in range(100):
@@ -397,8 +380,6 @@ class Commands:
         init_book()
         colored_print("创建笑话数据...")
         init_joke()
-        colored_print("创建投票数据...")
-        init_poll()
         colored_print("创建分享数据...")
         init_share()
         colored_print("DONE!!!!")
