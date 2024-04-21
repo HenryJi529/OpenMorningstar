@@ -5,7 +5,7 @@ import MathJax, { initMathJax, renderByMathjax } from "mathjax-vue3";
 import App from './App.vue'
 
 function onMathJaxReady() {
-    const el = document.getElementById("elementId");
+    const el = document.getElementById("formulaDisplay");
     renderByMathjax(el);
 }
 
