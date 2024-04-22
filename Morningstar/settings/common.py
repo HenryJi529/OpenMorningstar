@@ -70,8 +70,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.sitemaps",  # 站点地图
-    # NOTE: 相当于在url中添加static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-    "django.contrib.staticfiles",
+    "django.contrib.staticfiles",  # 相当于在url中添加static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 ]
 
 """中间价"""
@@ -140,7 +139,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-"""Restful配置"""
+"""REST_FRAMEWORK配置"""
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.BasicAuthentication",

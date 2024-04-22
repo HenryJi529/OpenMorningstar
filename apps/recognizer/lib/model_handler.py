@@ -58,21 +58,6 @@ def create_random_image() -> Image.Image:
     return image
 
 
-class ModelhandlerLoader:
-    _modelHandlerDict = dict()
-
-    @classmethod
-    def loadModelHandler(cls, modelHandlerClass):
-        if cls._modelHandlerDict.get(modelHandlerClass.__name__) is None:
-            cls._modelHandlerDict[modelHandlerClass.__name__] = modelHandlerClass()
-
-    @classmethod
-    def getModelHandler(cls, modelHandlerClass) -> "ModelHandler":
-        if cls._modelHandlerDict.get(modelHandlerClass.__name__) is None:
-            cls.loadModelHandler(modelHandlerClass)
-        return cls._modelHandlerDict[modelHandlerClass.__name__]
-
-
 class ModelHandler:
     def __init__(self, device=DEVICE):
         self._device = device
@@ -181,36 +166,6 @@ class PretrainedModelHandler(ModelHandler):
         print("    该模型未提供性能评估结果...")
 
 
-class EfficientNetB2Handler(PretrainedModelHandler):
-    """EfficientNet_B2"""
-
-    WEIGHTS = torchvision.models.EfficientNet_B2_Weights.IMAGENET1K_V1
-
-    @cached_property
-    def blank_model(self) -> Module:
-        return torchvision.models.efficientnet_b2()
-
-
-class GoogLeNetHandler(PretrainedModelHandler):
-    """GoogLeNet"""
-
-    WEIGHTS = torchvision.models.GoogLeNet_Weights.IMAGENET1K_V1
-
-    @cached_property
-    def blank_model(self) -> Module:
-        return torchvision.models.googlenet(init_weights=True)
-
-
-class AlexNetHandler(PretrainedModelHandler):
-    """AlexNet"""
-
-    WEIGHTS = torchvision.models.AlexNet_Weights.IMAGENET1K_V1
-
-    @cached_property
-    def blank_model(self) -> Module:
-        return torchvision.models.alexnet()
-
-
 class CustomModelHandler(ModelHandler):
     MODEL_FILENAME = None
 
@@ -273,6 +228,36 @@ class CustomModelHandler(ModelHandler):
             print("    类别数大于20，不显示混淆矩阵。")
 
 
+class EfficientNetB2Handler(PretrainedModelHandler):
+    """EfficientNet_B2"""
+
+    WEIGHTS = torchvision.models.EfficientNet_B2_Weights.IMAGENET1K_V1
+
+    @cached_property
+    def blank_model(self) -> Module:
+        return torchvision.models.efficientnet_b2()
+
+
+class GoogLeNetHandler(PretrainedModelHandler):
+    """GoogLeNet"""
+
+    WEIGHTS = torchvision.models.GoogLeNet_Weights.IMAGENET1K_V1
+
+    @cached_property
+    def blank_model(self) -> Module:
+        return torchvision.models.googlenet(init_weights=True)
+
+
+class AlexNetHandler(PretrainedModelHandler):
+    """AlexNet"""
+
+    WEIGHTS = torchvision.models.AlexNet_Weights.IMAGENET1K_V1
+
+    @cached_property
+    def blank_model(self) -> Module:
+        return torchvision.models.alexnet()
+
+
 class TinyVGGHandler(CustomModelHandler):
     MODEL_FILENAME = "TinyVGG_latest.pth"
 
@@ -299,6 +284,35 @@ class NiceViTB16Handler(CustomModelHandler):
         return super().predict(image, enable_autocast=False)
 
 
+class ModelhandlerLoader:
+    _modelHandlerDict = dict()
+
+    SUPPORTED_MODEL_HANDLER = {
+        "EfficientNetB2": EfficientNetB2Handler,
+        "GoogLeNet": GoogLeNetHandler,
+        # "AlexNet": AlexNetHandler,
+        "TinyVGG": TinyVGGHandler,
+        "NiceViTB16": NiceViTB16Handler,
+    }
+
+    @classmethod
+    def __loadModelHandler(cls, modelHandlerClass):
+        if cls._modelHandlerDict.get(modelHandlerClass.__name__) is None:
+            cls._modelHandlerDict[modelHandlerClass.__name__] = modelHandlerClass()
+
+    @classmethod
+    def getModelHandler(cls, modelHandlerName: str) -> ModelHandler:
+        try:
+            modelHandlerClass = ModelhandlerLoader.SUPPORTED_MODEL_HANDLER[
+                modelHandlerName
+            ]
+        except KeyError:
+            raise Exception("不存在这样的modelHandler")
+        if cls._modelHandlerDict.get(modelHandlerClass.__name__) is None:
+            cls.__loadModelHandler(modelHandlerClass)
+        return cls._modelHandlerDict[modelHandlerClass.__name__]
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Handle model")
     parser.add_argument(
@@ -311,37 +325,21 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    modelHandlerList: List[ModelHandler] = [
-        EfficientNetB2Handler,
-        GoogLeNetHandler,
-        TinyVGGHandler,
-        NiceViTB16Handler,
-    ]
-
     print("加载参数: ")
-    for modelHandler in modelHandlerList:
-        print(f"- 加载{modelHandler.__name__}参数...")
-        _ = modelHandler().params
-        print(f"\t{modelHandler.__name__}模型大小为: {modelHandler().model_size}MB")
-
-    if args.verbose:
-        print("=============================")
-
-        for modelHandler in modelHandlerList:
-            print(f"- 显示{modelHandler.__name__}摘要...")
-            modelHandler().summary()
-
-        print("=============================")
-
-        for modelHandler in modelHandlerList:
-            print(f"评估模型: {modelHandler.__name__}")
-            modelHandler().evaluate()
-
-        print("=============================")
-
-        img = Image.open(Path(__file__).parent / "data/test.jpeg")
-        print("单图测试: ")
-        for modelHandler in modelHandlerList:
-            print(f"- 使用{modelHandler.__name__}预测...")
-            result = modelHandler().predict(img)
-            print(f"    {result['category']}: {100 * result['score']:.1f}%")
+    for modelHandlerName in ModelhandlerLoader.SUPPORTED_MODEL_HANDLER:
+        modelHandler = ModelhandlerLoader.getModelHandler(modelHandlerName)
+        modelHandlerName = modelHandler.__class__.__name__
+        print(f"- 加载{modelHandlerName}参数...")
+        _ = modelHandler.params
+        print(f"\t{modelHandlerName}模型大小为: {modelHandler.model_size}MB")
+        if args.verbose:
+            print(f"- 显示{modelHandlerName}摘要...")
+            modelHandler.summary()
+            print("=============================")
+            print(f"评估模型: {modelHandlerName}")
+            modelHandler.evaluate()
+            print("=============================")
+            img = Image.open(Path(__file__).parent / "data/test.jpeg")
+            print(f"- 使用{modelHandlerName}预测...")
+            result = modelHandler.predict(img)
+            print(f"单图测试: {result['category']}: {100 * result['score']:.1f}%")
