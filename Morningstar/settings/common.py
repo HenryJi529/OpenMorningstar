@@ -11,30 +11,24 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import sys
 from pathlib import Path
 import os
-import colorama
 import logging
 
-# NOTE：解决force_str不兼容问题
-import django
-from django.utils.encoding import force_str
-
-django.utils.encoding.force_text = force_str
+import colorama
+from dotenv import load_dotenv
 
 # 加载第三方配置文件
 from .jazzmin import *
 from .haystack import *
 
-# NOTE: 本项目的密钥保存方法如下
-# 1. 开发与部署环境密钥相同时，开发密钥通过.env加载，部署密钥通过环境变量加载
-# 2. 不相同时，开发密钥直接放入开发配置文件(dev.py)中，部署密钥仍通过环境变量加载
-from dotenv import load_dotenv
+"""
+NOTE: 本项目的密钥分为两部分: 开发(用)密钥、部署(用)密钥
+1. 所有的部署密钥都通过环境变量加载
+2. 和部署密钥相同的开发密钥用.env加载，不同的直接写入配置文件(dev.py)
+"""
 
-env_path = os.getcwd() + "/.env"
-load_dotenv(dotenv_path=env_path, verbose=True)
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(BASE_DIR / "apps"))
+load_dotenv(dotenv_path=BASE_DIR / ".env", verbose=True)
 
 AUTH_USER_MODEL = "Morningstar.User"
 ROOT_URLCONF = "Morningstar.urls"
@@ -186,10 +180,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 """邮件"""
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_HOST_USER = "morningstar1.gcp@gmail.com"
-try:
-    EMAIL_HOST_PASSWORD = os.environ["EMAIL_HOST_PASSWORD"]
-except KeyError:
-    EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = "morningstar1.gcp@gmail.com"
@@ -221,10 +212,7 @@ EMAIL_TEMPLATE_TEXT = {
 
 """腾讯云短信"""
 TENCENT_SMS_APP_ID = 1400623801
-try:
-    TENCENT_SMS_APP_KEY = os.environ["TENCENT_SMS_APP_KEY"]
-except KeyError:
-    TENCENT_SMS_APP_KEY = os.getenv(key="TENCENT_SMS_APP_KEY")
+TENCENT_SMS_APP_KEY = os.getenv("TENCENT_SMS_APP_KEY")
 TENCENT_SMS_SIGN = "嘉鱼居个人公众号"
 
 TENCENT_SMS_TEMPLATE = {
