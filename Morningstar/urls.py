@@ -20,18 +20,45 @@ from django.views.static import serve
 from django.views.generic.base import TemplateView
 from django.contrib.sitemaps.views import sitemap
 from django.views.decorators.cache import cache_page
+from rest_framework import routers
 
 from Morningstar.settings.common import CACHE_TIMEOUT
 from Morningstar.settings.common import MEDIA_ROOT
 
-
 from .views import dev, info, shortcut, tool
-
 from .sitemaps import Sitemaps
 
+router = routers.DefaultRouter()
 
-urlpatterns = [
-    # 工具
+
+infoUrls = [
+    path("favicon.ico", cache_page(CACHE_TIMEOUT)(info.get_favicon), name="favicon"),
+    path("qrcode/", cache_page(CACHE_TIMEOUT)(info.get_qrcode), name="qrcode"),
+    path("me/", cache_page(CACHE_TIMEOUT)(info.me), name="me"),
+    path("credits/", cache_page(CACHE_TIMEOUT)(info.credits), name="credits"),
+    path(
+        "sitemap.xml",
+        cache_page(CACHE_TIMEOUT)(sitemap),
+        {"sitemaps": Sitemaps},
+        name="sitemap",
+    ),
+    path("dev/", dev.index, name="dev_index"),
+    path(
+        "shortcut/<slug:name>/",
+        cache_page(CACHE_TIMEOUT)(shortcut.shortcut),
+        name="shortcut",
+    ),
+    path(
+        "robots.txt",
+        cache_page(CACHE_TIMEOUT)(
+            TemplateView.as_view(
+                template_name="base/robots.txt", content_type="text/plain"
+            )
+        ),
+    ),
+]
+
+authUrls = [
     path("get-image-captcha/", tool.get_image_captcha, name="get_image_captcha"),
     path("activate-by-email/", tool.activate_by_email, name="activate_by_email"),
     path(
@@ -44,52 +71,33 @@ urlpatterns = [
         "get-login-token/<slug:identity>/", tool.get_login_token, name="get_login_token"
     ),
     path("login-by-token/<str:token>/", tool.login_by_token, name="login_by_token"),
-    # 开发
-    path("dev/", dev.index, name="dev_index"),
-    # 信息
-    path("me/", cache_page(CACHE_TIMEOUT)(info.me), name="me"),
-    path(
-        "sitemap.xml",
-        cache_page(CACHE_TIMEOUT)(sitemap),
-        {"sitemaps": Sitemaps},
-        name="sitemap",
-    ),
-    path("credits/", cache_page(CACHE_TIMEOUT)(info.credits), name="credits"),
-    path("favicon.ico", cache_page(CACHE_TIMEOUT)(info.get_favicon), name="favicon"),
-    path("qrcode/", cache_page(CACHE_TIMEOUT)(info.get_qrcode), name="qrcode"),
-    path(
-        "robots.txt",
-        cache_page(CACHE_TIMEOUT)(
-            TemplateView.as_view(
-                template_name="base/robots.txt", content_type="text/plain"
-            )
-        ),
-    ),
-    # 应用
-    path("", include("blog.urls")),
-    path("book/", include("book.urls")),
-    path("api/formula/", include("formula.urls")),
-    path("api/joke/", include("joke.urls")),
-    path("lover/", include("lover.urls")),
-    path("nav/", include("nav.urls")),
-    path("api/notes/", include("notes.urls")),
-    path("proxy/", include("proxy.urls")),
-    path("api/quiz/", include("quiz.urls")),
-    path("api/recognizer/", include("recognizer.urls")),
-    path("rss/", include("rss.urls")),
-    path("api/share/", include("share.urls")),
-    # 快捷
-    path(
-        "shortcut/<slug:name>/",
-        cache_page(CACHE_TIMEOUT)(shortcut.shortcut),
-        name="shortcut",
-    ),
-    # 调试
-    path("debug/", include("debug_toolbar.urls")),
-    # 媒体
-    re_path(r"media/(?P<path>.*)$", serve, {"document_root": MEDIA_ROOT}),
-    # 管理
-    path("admin/", admin.site.urls, name="admin"),
-    # restful api
-    path("api-auth/", include("rest_framework.urls")),
 ]
+
+
+urlpatterns = (
+    infoUrls
+    + authUrls
+    + [
+        path("", include("blog.urls")),
+        path("api/book/", include("book.urls")),
+        path("api/formula/", include("formula.urls")),
+        path("api/joke/", include("joke.urls")),
+        path("lover/", include("lover.urls")),
+        path("nav/", include("nav.urls")),
+        path("api/notes/", include("notes.urls")),
+        path("proxy/", include("proxy.urls")),
+        path("api/quiz/", include("quiz.urls")),
+        path("api/recognizer/", include("recognizer.urls")),
+        path("rss/", include("rss.urls")),
+        path("api/share/", include("share.urls")),
+        # 调试
+        path("debug/", include("debug_toolbar.urls")),
+        # 媒体
+        re_path(r"media/(?P<path>.*)$", serve, {"document_root": MEDIA_ROOT}),
+        # 管理
+        path("admin/", admin.site.urls, name="admin"),
+        # restful api
+        # path("api/", include(router.urls)), # TODO: 未来需要更规范的使用
+        path("api/auth/", include("rest_framework.urls")),
+    ]
+)
