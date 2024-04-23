@@ -429,7 +429,7 @@ class Commands:
 
     @staticmethod
     def updateProd():
-        def updateDocker(c):
+        def updateDocker(c: Connection):
             home_path = "~/"
             with c.cd(home_path):
                 colored_print("更新代码...")
