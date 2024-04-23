@@ -418,11 +418,6 @@
 					"image": "/media/nav/img/Manual/Matplotlib.png"
 				},
 				{
-					"name": "Seaborn",
-					"url": "https://seaborn.pydata.org/",
-					"image": "/media/nav/img/Manual/Seaborn.svg"
-				},
-				{
 					"name": "Networkx",
 					"url": "https://networkx.org/documentation/stable/tutorial.html",
 					"image": "/media/nav/img/Manual/Networkx.svg"
