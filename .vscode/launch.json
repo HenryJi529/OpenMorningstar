@@ -3,14 +3,14 @@
 	"configurations": [
 		{
 			"name": "Python: 当前文件",
-			"type": "python",
+			"type": "debugpy",
 			"request": "launch",
 			"program": "${file}",
 			"console": "integratedTerminal"
 		},
 		{
 			"name": "Python: Django",
-			"type": "python",
+			"type": "debugpy",
 			"request": "launch",
 			"program": "${workspaceFolder}/manage.py",
 			"args": [
