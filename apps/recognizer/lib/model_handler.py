@@ -8,10 +8,8 @@ from ftplib import FTP
 
 import numpy as np
 from PIL import Image
-
 from mlxtend.plotting import plot_confusion_matrix
 from matplotlib import pyplot as plt
-
 from torch.nn import Module
 from torch import inference_mode, load, Tensor, autocast
 from torchinfo import summary
@@ -327,7 +325,9 @@ if __name__ == "__main__":
 
     print("加载参数: ")
     for modelHandlerName in ModelhandlerLoader.SUPPORTED_MODEL_HANDLER:
-        modelHandler = ModelhandlerLoader.getModelHandler(modelHandlerName)
+        modelHandler: ModelHandler = ModelhandlerLoader.getModelHandler(
+            modelHandlerName
+        )
         modelHandlerName = modelHandler.__class__.__name__
         print(f"- 加载{modelHandlerName}参数...")
         _ = modelHandler.params
