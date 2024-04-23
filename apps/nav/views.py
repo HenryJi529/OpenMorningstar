@@ -1,7 +1,6 @@
-from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.shortcuts import render
+from django.http import HttpRequest
 from django.contrib.auth.decorators import login_required
-import os
 import json
 from Morningstar.settings.common import MEDIA_ROOT
 
@@ -14,9 +13,9 @@ def __get_data(json_file):
     return data
 
 
-def index(request):
+def index(request: HttpRequest):
     data = __get_data(JSON_FILE)
-    categories = data["categories"]
+    categories: list[dict] = data["categories"]
     if not request.user.is_superuser:
         for category in categories:
             if category.get("level") == "admin":

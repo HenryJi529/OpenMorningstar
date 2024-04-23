@@ -1,8 +1,6 @@
-import os
 import json
 
-from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import HttpRequest
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
@@ -19,7 +17,7 @@ def __get_data(json_file):
 
 
 @api_view(["GET"])
-def quiz_list(request):
+def quiz_list(request: HttpRequest):
     data = __get_data(JSON_FILE)
     quizzes = data["quizzes"]
     limit = request.GET.get("limit", len(quizzes))
