@@ -33,9 +33,7 @@
     "django-crontab": {
         "version": "0.7.1",
         "homepage": "https://github.com/kraiz/django-crontab",
-        "locked": false,
-        "note": "已停止维护, 可正常使用",
-        "inDev": false
+        "note": "已停止维护, 可正常使用"
     },
     "django-debug-toolbar": {
         "version": "3.8.1",
@@ -107,7 +105,8 @@
     },
     "ipython": {
         "version": "8.18.1",
-        "summary": "交互式python"
+        "summary": "交互式python",
+        "inDev": true
     },
     "jieba": {
         "version": "0.42.1",
@@ -118,8 +117,7 @@
     },
     "matplotlib": {
         "version": "3.8.4",
-        "summary": "绘图工具",
-        "inDev": true
+        "summary": "绘图工具"
     },
     "mlxtend": {
         "version": "0.23.1"
@@ -173,8 +171,7 @@
         "summary": "提供腾讯云短信API",
         "homepage": "https://github.com/qcloudsms/qcloudsms_py",
         "locked": true,
-        "note": "已停止维护, 需手动适配py3.9(json encoding错误)",
-        "inDev": false
+        "note": "已停止维护, 需手动适配py3.9(json encoding错误)"
     },
     "qrcode": {
         "version": "7.4.2"
@@ -216,8 +213,7 @@
         "summary": "sqlite3 -> mysql"
     },
     "tensorboard": {
-        "version": "2.16.2",
-        "inDev": true
+        "version": "2.16.2"
     },
     "torch": {
         "version": "2.2.2"
@@ -230,10 +226,6 @@
     },
     "torchvision": {
         "version": "0.17.2"
-    },
-    "torch-tb-profiler": {
-        "version": "0.4.3",
-        "inDev": true
     },
     "tqdm": {
         "version": "4.66.2",
