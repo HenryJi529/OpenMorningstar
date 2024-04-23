@@ -1,54 +1,4 @@
 {
-    "qcloudsms-py": {
-        "version": "0.1.4",
-        "summary": "提供腾讯云短信API",
-        "homepage": "https://github.com/qcloudsms/qcloudsms_py",
-        "locked": true,
-        "note": "已停止维护, 需手动适配py3.9(json encoding错误)",
-        "inDev": false
-    },
-    "django-crontab": {
-        "version": "0.7.1",
-        "homepage": "https://github.com/kraiz/django-crontab",
-        "locked": false,
-        "note": "已停止维护, 可正常使用",
-        "inDev": false
-    },
-    "mysql-connector-python": {
-        "version": "8.3.0",
-        "locked": true,
-        "note": "被mysql-to-sqlite3, sqlite3-to-mysql依赖特定版本"
-    },
-    "mysqlclient": {
-        "version": "2.1.1",
-        "summary": "mysql的pythonAPI",
-        "locked": true
-    },
-    "urllib3": {
-        "version": "1.26.18",
-        "note": "urllib3 v2.0 只支持OpenSSL1.1.1+，不支持Mac上的LibreSSL【参考: https://github.com/urllib3/urllib3/issues/3020】",
-        "locked": true
-    },
-    "Django": {
-        "version": "4.2.11",
-        "summary": "提供web后端",
-        "note": "4.2为LTS",
-        "locked": true
-    },
-    "beautifulsoup4": {
-        "version": "4.12.3",
-        "summary": "处理web页面信息",
-        "dependencies": [
-            "lxml"
-        ]
-    },
-    "igraph": {
-        "version": "0.11.4",
-        "summary": "分析与绘制图和网络",
-        "dependencies": [
-            "cairocffi"
-        ]
-    },
     "colorama": {
         "version": "0.4.6",
         "summary": "创建彩色字符串"
@@ -57,6 +7,12 @@
         "version": "7.4.4",
         "summary": "计算测试覆盖率",
         "inDev": true
+    },
+    "Django": {
+        "version": "4.2.11",
+        "summary": "提供web后端",
+        "note": "4.2为LTS",
+        "locked": true
     },
     "djangorestframework": {
         "version": "3.15.1",
@@ -73,6 +29,13 @@
     "django-cors-middleware": {
         "version": "1.5.0",
         "summary": "跨域访问之middleware"
+    },
+    "django-crontab": {
+        "version": "0.7.1",
+        "homepage": "https://github.com/kraiz/django-crontab",
+        "locked": false,
+        "note": "已停止维护, 可正常使用",
+        "inDev": false
     },
     "django-debug-toolbar": {
         "version": "3.8.1",
@@ -95,7 +58,7 @@
         ]
     },
     "django-jazzmin": {
-        "version": "2.6.1",
+        "version": "3.0.0",
         "summary": "非常美观的django-adminUI库"
     },
     "django-matomo": {
@@ -120,7 +83,7 @@
         "inDev": true
     },
     "Faker": {
-        "version": "24.9.0",
+        "version": "24.11.0",
         "summary": "测试数据生成",
         "inDev": true
     },
@@ -133,8 +96,9 @@
         "summary": "fontawesome free字体管理"
     },
     "gunicorn": {
-        "version": "21.2.0",
-        "summary": "动态web服务器"
+        "version": "22.0.0",
+        "summary": "动态web服务器",
+        "inDev": true
     },
     "ipykernel": {
         "version": "6.29.4",
@@ -149,32 +113,25 @@
         "version": "0.42.1",
         "summary": "中文分词"
     },
-    "translate": {
-        "version": "3.6.1",
-        "summary": "离线翻译"
+    "Markdown": {
+        "version": "3.6"
     },
     "matplotlib": {
         "version": "3.8.4",
-        "summary": "绘图工具"
+        "summary": "绘图工具",
+        "inDev": true
     },
-    "SciencePlots": {
+    "mlxtend": {
+        "version": "0.23.1"
+    },
+    "mysqlclient": {
         "version": "2.1.1",
-        "summary": "mpl样式"
-    },
-    "seaborn": {
-        "version": "0.13.2",
-        "summary": "更高级的绘图工具"
-    },
-    "Markdown": {
-        "version": "3.6"
+        "summary": "mysql的pythonAPI",
+        "locked": true
     },
     "mysql-to-sqlite3": {
         "version": "2.1.11",
         "summary": "mysql -> sqlite3"
-    },
-    "networkx": {
-        "version": "3.2.1",
-        "summary": "图和网络分析工具"
     },
     "numpy": {
         "version": "1.26.4",
@@ -203,17 +160,21 @@
         "summary": "第三方包升级工具",
         "inDev": true
     },
-    "pydub": {
-        "version": "0.25.1",
-        "summary": "音频处理库"
-    },
     "pymdown-extensions": {
-        "version": "10.7.1",
+        "version": "10.8",
         "summary": "实用的Python-Markdown扩展"
     },
     "python-dotenv": {
         "version": "1.0.1",
         "summary": "环境变量获取"
+    },
+    "qcloudsms-py": {
+        "version": "0.1.4",
+        "summary": "提供腾讯云短信API",
+        "homepage": "https://github.com/qcloudsms/qcloudsms_py",
+        "locked": true,
+        "note": "已停止维护, 需手动适配py3.9(json encoding错误)",
+        "inDev": false
     },
     "qrcode": {
         "version": "7.4.2"
@@ -231,41 +192,35 @@
     "requests": {
         "version": "2.31.0"
     },
+    "SciencePlots": {
+        "version": "2.1.1",
+        "summary": "mpl样式",
+        "inDev": true
+    },
+    "scikit-learn": {
+        "version": "1.4.2"
+    },
     "scipy": {
         "version": "1.13.0"
+    },
+    "seaborn": {
+        "version": "0.13.2",
+        "summary": "更高级的绘图工具",
+        "inDev": true
     },
     "simpy": {
         "version": "4.1.1"
     },
-    "sh": {
-        "version": "2.0.6",
-        "summary": "执行shell命令"
-    },
-    "tqdm": {
-        "version": "4.66.2",
-        "summary": "生成进度条"
-    },
     "sqlite3-to-mysql": {
-        "version": "2.1.8"
+        "version": "2.1.9",
+        "summary": "sqlite3 -> mysql"
     },
-    "Whoosh": {
-        "version": "2.7.4",
-        "summary": "实现站内搜索"
+    "tensorboard": {
+        "version": "2.16.2",
+        "inDev": true
     },
     "torch": {
         "version": "2.2.2"
-    },
-    "torchvision": {
-        "version": "0.17.2"
-    },
-    "torch-tb-profiler": {
-        "version": "0.4.3"
-    },
-    "tensorboard": {
-        "version": "2.16.2"
-    },
-    "torch_geometric": {
-        "version": "2.2.0"
     },
     "torchmetrics": {
         "version": "1.3.2"
@@ -273,10 +228,28 @@
     "torchinfo": {
         "version": "1.8.0"
     },
-    "scikit-learn": {
-        "version": "1.4.2"
+    "torchvision": {
+        "version": "0.17.2"
     },
-    "mlxtend": {
-        "version": "0.23.1"
+    "torch-tb-profiler": {
+        "version": "0.4.3",
+        "inDev": true
+    },
+    "tqdm": {
+        "version": "4.66.2",
+        "summary": "生成进度条"
+    },
+    "translate": {
+        "version": "3.6.1",
+        "summary": "离线翻译"
+    },
+    "urllib3": {
+        "version": "1.26.18",
+        "note": "urllib3 v2.0 只支持OpenSSL1.1.1+，不支持Mac上的LibreSSL【参考: https://github.com/urllib3/urllib3/issues/3020】",
+        "locked": true
+    },
+    "Whoosh": {
+        "version": "2.7.4",
+        "summary": "实现站内搜索"
     }
 }
