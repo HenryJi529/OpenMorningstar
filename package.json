@@ -9,9 +9,6 @@
     "build_js_blog_highlightjs_bundle_watch": "npx watchify apps/blog/static/blog/js/highlight.js -vo 'npx terser --compress --mangle > apps/blog/static/blog/dist/highlight.bundle.js'",
     "build_js_blog_highlightjs_bundle": "npx browserify apps/blog/static/blog/js/highlight.js | npx terser --compress --mangle > apps/blog/static/blog/dist/highlight.bundle.js",
     "build_js_blog": "npx concurrently 'npm run build_js_blog_highlightjs_bundle_watch'",
-    "build_css_book_tailwind": "npx tailwindcss -c apps/book/tailwind.config.js -i apps/book/static/book/css/_build.css -o apps/book/static/book/css/_tailwind.css --watch --minify",
-    "build_css_book_base": "while true; do npx sass apps/book/static/book/css/base.scss apps/book/static/book/css/base.css --no-source-map --style compressed && echo '✔︎ build book/base.css'; sleep 5; done;",
-    "build_css_book": "npx concurrently 'npm run build_css_book_tailwind' 'npm run build_css_book_base'",
     "build_css_lover_tailwind": "npx tailwindcss -c apps/lover/tailwind.config.js -i apps/lover/static/lover/css/_build.css -o apps/lover/static/lover/css/_tailwind.css --watch --minify",
     "build_css_lover_style": "while true; do npx sass apps/lover/static/lover/css/style.scss apps/lover/static/lover/css/style.css --no-source-map --style compressed && echo '✔︎ build lover/style.css'; sleep 5; done;",
     "build_css_lover": "npx concurrently 'npm run build_css_lover_tailwind' 'npm run build_css_lover_style'",
@@ -20,7 +17,7 @@
     "build_css_nav": "npx concurrently 'npm run build_css_nav_tailwind' 'npm run build_css_nav_style'",
     "build_css_rss_tailwind": "npx tailwindcss -c apps/rss/tailwind.config.js -i apps/rss/static/rss/css/_build.css -o apps/rss/static/rss/css/_tailwind.css --watch --minify",
     "build_css_rss": "npx concurrently 'npm run build_css_rss_tailwind'",
-    "build_css": "npx concurrently \"npm run build_css_base\" \"npm run build_css_blog\" \"npm run build_css_book\" \"npm run build_css_lover\" \"npm run build_css_nav\" \"npm run build_css_rss\"",
+    "build_css": "npx concurrently \"npm run build_css_base\" \"npm run build_css_blog\" \"npm run build_css_lover\" \"npm run build_css_nav\" \"npm run build_css_rss\"",
     "build_js": "npx concurrently \"npm run build_js_blog\"",
     "build": "npx concurrently \"npm run build_css\" \"npm run build_js\""
   },

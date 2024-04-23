@@ -40,7 +40,6 @@ DOMAIN = "morningstar369.com"
 INSTALLED_APPS = [
     "Morningstar.apps.BaseConfig",  # 基本
     "apps.blog.apps.BlogConfig",  # 博客
-    "apps.book.apps.BookConfig",  # 书籍
     "apps.formula.apps.FormulaConfig",  # 公式
     "apps.joke.apps.JokeConfig",  # 笑话
     "apps.lover.apps.LoverConfig",  # 爱人

@@ -79,7 +79,6 @@ urlpatterns = (
     + authUrls
     + [
         path("", include("blog.urls")),
-        path("api/book/", include("book.urls")),
         path("api/formula/", include("formula.urls")),
         path("api/joke/", include("joke.urls")),
         path("lover/", include("lover.urls")),

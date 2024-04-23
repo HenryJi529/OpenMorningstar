@@ -19,17 +19,6 @@ class BlogSitemap(Sitemap):
     #     return obj.get_absolute_url()
 
 
-class BookSitemap(Sitemap):
-    priority = 1
-    changefreq = "monthly"
-
-    def items(self):
-        return ["book:index"]
-
-    def location(self, item):
-        return reverse(item)
-
-
 class LoverSitemap(Sitemap):
     priority = 1
     changefreq = "monthly"
@@ -65,7 +54,6 @@ class RssSitemap(Sitemap):
 
 Sitemaps = {
     "blog": BlogSitemap,
-    "book": BookSitemap,
     "lover": LoverSitemap,
     "nav": NavSitemap,
     "rss": RssSitemap,

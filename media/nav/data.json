@@ -61,12 +61,6 @@
 					"desc": "专注于WEB全栈,复杂网络的个人博客"
 				},
 				{
-					"name": "书单分享",
-					"url": "/book/",
-					"image": "/media/nav/img/Work/book.png",
-					"desc": "只提供检索与下载功能"
-				},
-				{
 					"name": "聚合阅读",
 					"url": "/rss/",
 					"image": "/media/nav/img/Work/rss.png",

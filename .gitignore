@@ -42,8 +42,6 @@ release/
 # media
 /media/avatar/*
 !/media/avatar/default.svg
-/media/book/*
-!/media/book/default.pdf
 /media/joke/photo/*
 !/media/joke/photo/default.png
 

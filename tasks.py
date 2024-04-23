@@ -159,7 +159,7 @@ class Commands:
 
         from django.utils import timezone
         from Morningstar.models import User
-        import blog, book, joke, share
+        import blog, joke, share
 
         def clean_database():
             # blog
@@ -167,11 +167,6 @@ class Commands:
             blog.models.Category.objects.all().delete()
             blog.models.Tag.objects.all().delete()
             blog.models.Comment.objects.all().delete()
-            # book
-            book.models.Book.objects.all().delete()
-            book.models.Category.objects.all().delete()
-            book.models.Author.objects.all().delete()
-            book.models.Translator.objects.all().delete()
             # joke
             joke.models.Photo.objects.all().delete()
             joke.models.Text.objects.all().delete()
@@ -303,48 +298,6 @@ class Commands:
                         comment1.thumbs_down.add(User.objects.order_by("?").first())
                     comment1.save()
 
-        def init_book():
-            fake = faker.Faker("zh_CN")
-            for _ in range(100):
-                try:
-                    book.models.Category.objects.create(
-                        name=fake.text()[: random.randint(5, 10)]
-                    )
-                except:
-                    pass
-            for _ in range(100):
-                try:
-                    book.models.Author.objects.create(name=fake.name())
-                except:
-                    pass
-            for _ in range(100):
-                try:
-                    book.models.Translator.objects.create(name=fake.name())
-                except:
-                    pass
-            for _ in range(100):
-                if round(random.random()):
-                    book.models.Book.objects.create(
-                        book_name=fake.text()[: random.randint(5, 10)],
-                        category=book.models.Category.objects.order_by("?").first(),
-                        author=book.models.Author.objects.order_by("?").first(),
-                        translator=book.models.Translator.objects.order_by("?").first(),
-                        file=ContentFile(
-                            "It is a file",
-                            name=fake.text()[: random.randint(5, 10)] + ".epub",
-                        ),
-                    )
-                else:
-                    book.models.Book.objects.create(
-                        book_name=fake.text()[: random.randint(5, 10)],
-                        category=book.models.Category.objects.order_by("?").first(),
-                        author=book.models.Author.objects.order_by("?").first(),
-                        file=ContentFile(
-                            "It is a file",
-                            name=fake.text()[: random.randint(5, 10)] + ".epub",
-                        ),
-                    )
-
         def init_joke():
             fake = faker.Faker("zh_CN")
             for _ in range(100):
@@ -376,8 +329,6 @@ class Commands:
         superuser = init_user()
         colored_print("创建博客数据...")
         init_blog()
-        colored_print("创建书籍数据...")
-        init_book()
         colored_print("创建笑话数据...")
         init_joke()
         colored_print("创建分享数据...")
