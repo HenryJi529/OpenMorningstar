@@ -95,8 +95,7 @@
     },
     "gunicorn": {
         "version": "22.0.0",
-        "summary": "动态web服务器",
-        "inDev": true
+        "summary": "动态web服务器"
     },
     "ipykernel": {
         "version": "6.29.4",
@@ -145,8 +144,7 @@
     },
     "pip": {
         "version": "24.0",
-        "summary": "包管理工具",
-        "inDev": true
+        "summary": "包管理工具"
     },
     "pipdeptree": {
         "version": "2.18.1",
@@ -189,24 +187,8 @@
     "requests": {
         "version": "2.31.0"
     },
-    "SciencePlots": {
-        "version": "2.1.1",
-        "summary": "mpl样式",
-        "inDev": true
-    },
     "scikit-learn": {
         "version": "1.4.2"
-    },
-    "scipy": {
-        "version": "1.13.0"
-    },
-    "seaborn": {
-        "version": "0.13.2",
-        "summary": "更高级的绘图工具",
-        "inDev": true
-    },
-    "simpy": {
-        "version": "4.1.1"
     },
     "sqlite3-to-mysql": {
         "version": "2.1.9",

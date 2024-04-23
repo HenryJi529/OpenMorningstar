@@ -19,6 +19,7 @@ django-user-agents==0.4.0
 djangorestframework==3.15.1
 fake-useragent==1.5.1
 fontawesomefree==6.5.1
+gunicorn==22.0.0
 jieba==0.42.1
 matplotlib==3.8.4
 mlxtend==0.23.1
@@ -26,6 +27,7 @@ mysql-to-sqlite3==2.1.11
 mysqlclient==2.1.1
 numpy==1.26.4
 pandas==2.2.2
+pip==24.0
 pymdown-extensions==10.8
 python-dotenv==1.0.1
 qcloudsms-py==0.1.4
@@ -34,8 +36,6 @@ readtime==3.0.0
 redis==5.0.3
 requests==2.31.0
 scikit-learn==1.4.2
-scipy==1.13.0
-simpy==4.1.1
 sqlite3-to-mysql==2.1.9
 tensorboard==2.16.2
 torch==2.2.2
