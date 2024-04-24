@@ -31,7 +31,7 @@ const onRefreshData = async () => {
     console.log("Start Refreshing...")
     load.isLoading = true
     const response = await axios.get(endpoint);
-    items.value = response.data.status === "ok" ? response.data.objects : [];
+    items.value = response.status === 200 ? response.data.objects : [];
     load.isLoading = false
     console.log("Finish Refreshing...")
 }
@@ -40,7 +40,7 @@ const onUpdateData = async () => {
     console.log("Start Updating...")
     load.isLoading = true;
     const response = await axios.get(endpoint);
-    items.value = items.value.concat(response.data.status === "ok" ? response.data.objects : []);
+    items.value = items.value.concat(response.status === 200 ? response.data.objects : []);
     load.isLoading = false
     console.log("Finish Updating...")
 }

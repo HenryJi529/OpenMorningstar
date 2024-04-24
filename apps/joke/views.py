@@ -1,7 +1,10 @@
 import random
 
+from django.http import HttpRequest
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework.request import Request
+from rest_framework import status
 
 from Morningstar.lib.cors import add_cors_header
 from .models import Photo, Text
@@ -9,16 +12,22 @@ from .models import Photo, Text
 
 @add_cors_header
 @api_view(["GET"])
-def getRandomJokes(request):
+def getRandomJokes(request: HttpRequest):
     if request.method == "GET":
         try:
             numRandomAll = int(request.GET.get("n", 20))
             if numRandomAll > 100:
                 raise Exception("{n} is too large")
         except ValueError:
-            return Response({"status": "error", "message": "{n} should be an integer"})
+            return Response(
+                {"message": "{n} should be an integer"},
+                status=status.HTTP_404_NOT_FOUND,
+            )
         except Exception as e:
-            return Response({"status": "error", "message": str(e)})
+            return Response(
+                {"message": str(e)},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
         numPhoto = Photo.objects.count()
         numText = Text.objects.count()
         numRandomPhoto = int(numPhoto / (numPhoto + numText) * numRandomAll)
@@ -49,7 +58,7 @@ def getRandomJokes(request):
 
 @add_cors_header
 @api_view(["GET"])
-def getRandomImages(request):
+def getRandomImages(request: HttpRequest):
     if request.method == "GET":
         try:
             num = int(request.GET.get("n", 1))
@@ -73,7 +82,7 @@ def getRandomImages(request):
 
 @add_cors_header
 @api_view(["GET"])
-def getRandomTexts(request):
+def getRandomTexts(request: HttpRequest):
     if request.method == "GET":
         try:
             num = int(request.GET.get("n", 1))
