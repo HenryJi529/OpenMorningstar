@@ -3,7 +3,7 @@ import os
 import random
 import logging
 
-from django.http import HttpResponse, JsonResponse, Http404
+from django.http import HttpResponse, JsonResponse, Http404, HttpRequest
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.hashers import make_password
 from django.contrib.sessions.models import Session
@@ -19,7 +19,7 @@ from ..lib.mail import send_mail_from_host
 logger = logging.getLogger("django")
 
 
-def fix_fetched_post(request):
+def fix_fetched_post(request: HttpRequest):
     try:
         # fetch请求
         post_data = json.loads(request.body.decode("utf-8"))
@@ -33,7 +33,7 @@ def fix_fetched_post(request):
     return request
 
 
-def handle_register(request, is_api=True):
+def handle_register(request: HttpRequest, is_api=True):
     def create_activate_message(username, host):
         code = random.randint(10000, 99999)
         conn = get_redis_connection("default")
@@ -113,7 +113,9 @@ def handle_login(request, is_api=False):
                 return redirect(next if next else "/")
         else:
             if is_api:
-                return JsonResponse({"status": "error", "message": "账号不存在或密码错误..."})
+                return JsonResponse(
+                    {"status": "error", "message": "账号不存在或密码错误..."}
+                )
             else:
                 messages.add_message(request, messages.ERROR, "账号不存在或密码错误...")
                 return redirect("/")

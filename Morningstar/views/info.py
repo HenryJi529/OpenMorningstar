@@ -2,7 +2,7 @@ import os
 import io
 from PIL import Image
 
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpRequest
 from django.shortcuts import render
 
 from Morningstar.settings.common import BASIC_STATICFILES_DIR
@@ -10,18 +10,18 @@ from Morningstar.settings.common import BASIC_STATICFILES_DIR
 from ..lib import qrcoder
 
 
-def me(request):
+def me(request: HttpRequest):
     return HttpResponseRedirect("https://linktr.ee/Henry529")
 
 
-def get_favicon(request):
+def get_favicon(request: HttpRequest):
     image = Image.open(BASIC_STATICFILES_DIR / "base/img/favicon.ico")
     stream = io.BytesIO()
     image.save(stream, "ico")
     return HttpResponse(stream.getvalue(), "image/ico")
 
 
-def get_qrcode(request):
+def get_qrcode(request: HttpRequest):
     url = "https://morningstar369.com/"
     back_color = (255, 255, 255)
     center_color = (255, 0, 255)
@@ -42,7 +42,7 @@ def get_qrcode(request):
     return HttpResponse(stream.getvalue(), "image/png")
 
 
-def credits(request):
+def credits(request: HttpRequest):
     items = [
         {
             "name": "django",

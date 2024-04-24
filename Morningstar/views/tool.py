@@ -4,7 +4,7 @@ import re
 import os
 import html
 
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, HttpRequest
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.contrib import auth
@@ -22,7 +22,7 @@ from ..lib.check import is_identity_belong_phone, is_identity_belong_email
 from ..models import User
 
 
-def get_image_captcha(request):
+def get_image_captcha(request: HttpRequest):
     """生成图片验证码"""
     image_object, code = generate_image()
     session_key = request.session._session_key
@@ -35,7 +35,7 @@ def get_image_captcha(request):
     return HttpResponse(stream.getvalue(), "image/png")
 
 
-def activate_by_email(request):
+def activate_by_email(request: HttpRequest):
     if request.method == "GET":
         username = request.GET["username"]
         code = request.GET["code"]
@@ -59,7 +59,7 @@ def activate_by_email(request):
 
 
 @require_POST
-def send_phone_code(request, template):
+def send_phone_code(request: HttpRequest, template):
     request = fix_fetched_post(request)
     identity = request.POST.get("identity")
     if not identity or not re.match(r"^(1[3|4|5|6|7|8|9])\d{9}$", identity):
@@ -126,7 +126,7 @@ def send_email_code(request, template):
         return JsonResponse({"status": "error", "msg": "错误的模板名称"})
 
 
-def get_login_token(request, identity):
+def get_login_token(request: HttpRequest, identity):
     if not request.user.is_superuser:
         return HttpResponse("你不是超级管理员，无权使用此功能")
     if is_identity_belong_phone(identity):
