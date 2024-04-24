@@ -10,7 +10,7 @@ const showLoading = ref(true)
 
 onMounted(async () => {
     const response = await axios.get(endpoint);
-    imageUrl.value = response.data.status==="ok" ? response.data.objects[0].link : "";
+    imageUrl.value = response.status === 200 ? response.data.objects[0].link : "";
 })
 
 </script>
