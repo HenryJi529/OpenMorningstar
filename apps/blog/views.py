@@ -2,7 +2,13 @@ import re
 import json
 
 from django.shortcuts import get_object_or_404, redirect, render, reverse
-from django.http import HttpResponseRedirect, HttpResponse, Http404, JsonResponse
+from django.http import (
+    HttpResponseRedirect,
+    HttpResponse,
+    Http404,
+    JsonResponse,
+    HttpRequest,
+)
 from django.urls import reverse
 from django.views import generic
 from django.views.decorators.http import require_POST
@@ -118,7 +124,7 @@ class PostDetailView(CustomDetailView):
         return response
 
 
-def contact(request):
+def contact(request: HttpRequest):
     if request.method == "POST":
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -153,7 +159,9 @@ def comment(request, post_pk):
         comment.save()
         # 重定向到 post 的详情页，实际上当 redirect 函数接收一个模型的实例时，它会调用这个模型实例的 get_absolute_url 方法，
         # 然后重定向到 get_absolute_url 方法返回的 URL。
-        messages.add_message(request, messages.SUCCESS, "评论发表成功！", extra_tags="success")
+        messages.add_message(
+            request, messages.SUCCESS, "评论发表成功！", extra_tags="success"
+        )
 
         # 检测是否有回复他人
         pattern = re.compile(r"\[@[\w-]*?\]\(#comment-\d*?\)", re.M)
@@ -181,13 +189,16 @@ def comment(request, post_pk):
         "form": form,
     }
     messages.add_message(
-        request, messages.ERROR, "评论发表失败！请修改表单中的错误后重新提交。", extra_tags="danger"
+        request,
+        messages.ERROR,
+        "评论发表失败！请修改表单中的错误后重新提交。",
+        extra_tags="danger",
     )
     return render(request, "blog/comment_preview.html", context=context)
 
 
 @require_POST
-def thumbs(request):
+def thumbs(request: HttpRequest):
     try:
         request = fix_fetched_post(request)
         action = request.POST["action"]
@@ -218,21 +229,21 @@ def thumbs(request):
 
 @login_required(login_url="/")
 # @login_required(login_url=reverse("blog:index")) # NOTE: 别！！！
-def logout(request):
+def logout(request: HttpRequest):
     auth.logout(request)
     return redirect(reverse("blog:index"))
 
 
-def register(request):
+def register(request: HttpRequest):
     return handle_register(request, is_api=False)
 
 
-def login(request):
+def login(request: HttpRequest):
     return handle_login(request, is_api=False)
 
 
 @require_POST
-def updateInfo(request):
+def updateInfo(request: HttpRequest):
     info_form = InfoForm(request.POST, request.FILES)
     if info_form.is_valid():
         request.user.nickname = info_form.cleaned_data["nickname"]
@@ -248,7 +259,7 @@ def updateInfo(request):
 
 
 @require_POST
-def updatePassword(request):
+def updatePassword(request: HttpRequest):
     update_password_form = UpdatePasswordForm(request.POST)
     if update_password_form.is_valid():
         password = update_password_form.cleaned_data["confirm_password"]
@@ -265,7 +276,7 @@ def updatePassword(request):
 
 
 @require_POST
-def updateEmail(request):
+def updateEmail(request: HttpRequest):
     update_email_form = UpdateEmailForm(request.POST)
     if update_email_form.is_valid():
         request.user.email = update_email_form.cleaned_data["email"]
@@ -279,7 +290,7 @@ def updateEmail(request):
 
 
 @require_POST
-def updatePhone(request):
+def updatePhone(request: HttpRequest):
     update_phone_form = UpdatePhoneForm(request.POST)
     if update_phone_form.is_valid():
         request.user.phone = update_phone_form.cleaned_data["phone"]
