@@ -3,7 +3,7 @@ import { onMounted, ref } from "vue";
 
 import axios from "axios";
 axios.defaults.baseURL = process.env.BASE_URL
-const endpoint = "/joke/images/?n=1"
+const endpoint = "/joke/photos/?n=1"
 
 const host = process.env.BASE_URL.split('/').slice(0, 3).join('/')
 const imageUrl = ref("")
