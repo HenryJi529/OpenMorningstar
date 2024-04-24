@@ -15,12 +15,12 @@ class Photo(models.Model):
     created = models.DateTimeField("添加时间", auto_now_add=True)
 
     @property
-    def uri(self):
+    def link(self):
         return unquote(self.foreign_url if self.foreign_url else self.image.url)
 
     @property
     def 链接(self):
-        return self.uri
+        return self.link
 
     def __str__(self):
         return self.image.name
