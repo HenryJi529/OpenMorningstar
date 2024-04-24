@@ -3,7 +3,7 @@ import base64
 
 from translate import Translator
 
-from django.http import JsonResponse
+from django.http import HttpRequest
 from django.middleware.csrf import get_token
 
 from rest_framework.decorators import api_view
@@ -36,6 +36,6 @@ def index(request: Request):
 
 
 @api_view(["get"])
-def get_csrf_token(request):
+def get_csrf_token(request: Request):
     csrf_token = get_token(request)
     return Response({"csrfToken": csrf_token}, status=status.HTTP_200_OK)
