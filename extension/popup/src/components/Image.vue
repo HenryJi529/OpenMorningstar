@@ -3,14 +3,16 @@ import { onMounted, ref } from "vue";
 
 import axios from "axios";
 axios.defaults.baseURL = process.env.BASE_URL
-const endpoint = "/joke/images/random?n=1"
+const endpoint = "/joke/images/?n=1"
 
+const host = process.env.BASE_URL.split('/').slice(0, 3).join('/')
 const imageUrl = ref("")
 const showLoading = ref(true)
 
 onMounted(async () => {
     const response = await axios.get(endpoint);
-    imageUrl.value = response.status === 200 ? response.data.objects[0].link : "";
+    imageUrl.value = response.status === 200 ? response.data[0].link : "";
+    imageUrl.value = imageUrl.value.startsWith('http') ? imageUrl.value : host + imageUrl.value;
 })
 
 </script>

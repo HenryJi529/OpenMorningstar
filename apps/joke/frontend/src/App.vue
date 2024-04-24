@@ -6,7 +6,7 @@ import GithubCorners from '@uivjs/vue-github-corners';
 
 import axios from "axios";
 axios.defaults.baseURL = process.env.BASE_URL
-const endpoint = "/jokes/random?n=30"
+const endpoint = "/jokes/?n=30"
 
 import Nav from "./components/Nav.vue"
 import Footer from "./components/Footer.vue"
@@ -31,7 +31,7 @@ const onRefreshData = async () => {
     console.log("Start Refreshing...")
     load.isLoading = true
     const response = await axios.get(endpoint);
-    items.value = response.status === 200 ? response.data.objects : [];
+    items.value = response.status === 200 ? response.data : [];
     load.isLoading = false
     console.log("Finish Refreshing...")
 }
@@ -40,7 +40,7 @@ const onUpdateData = async () => {
     console.log("Start Updating...")
     load.isLoading = true;
     const response = await axios.get(endpoint);
-    items.value = items.value.concat(response.status === 200 ? response.data.objects : []);
+    items.value = items.value.concat(response.status === 200 ? response.data : []);
     load.isLoading = false
     console.log("Finish Updating...")
 }
