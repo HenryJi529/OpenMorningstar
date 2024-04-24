@@ -7,7 +7,7 @@ from random import randint
 from pathlib import Path
 
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, HttpRequest
 from django.views.decorators.http import require_GET
 
 from Morningstar.settings.common import MEDIA_ROOT
@@ -30,7 +30,7 @@ def __get_random_image():
     return image
 
 
-def show(request):
+def show(request: HttpRequest):
     image = __get_random_image()
     stream = io.BytesIO()
     image.save(stream, "png")
@@ -38,20 +38,11 @@ def show(request):
 
 
 @require_GET
-def api(request):
-    # 读取客户端参数
-    is_mobile = request.GET.get("isMobile")
-
+def api(request: HttpRequest):
     # 生成适配客户端的图片
     # 适配图片：1280x1706 600x800 3456x4608 1080x1440
     origin_image = __get_random_image()
 
-    # if is_mobile == 'true':
-    # 	image_width = 768
-    # 	image_height = 1024
-    # else:
-    # 	image_width = 384
-    # 	image_height = 512
     image_width = 384
     image_height = 512
     new_image = origin_image.resize((image_width, image_height))  # (width, height)
@@ -70,9 +61,9 @@ def api(request):
     return JsonResponse(result)
 
 
-def index(request):
+def index(request: HttpRequest):
     return render(request, "lover/index.html")
 
 
-def origin(request):
+def origin(request: HttpRequest):
     return redirect("http://www.koalastothemax.com/")
