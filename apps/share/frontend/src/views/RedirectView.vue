@@ -12,7 +12,7 @@ const errorMessage = ref("")
 
 onMounted(async ()=>{
     const response = await axios.get(endpoint)
-    if(response.data.status==="ok"){
+    if(response.status===200){
         url.value = response.data.url
     }
     else{

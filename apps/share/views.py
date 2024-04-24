@@ -1,8 +1,8 @@
 import os
 import io
 
-from django.shortcuts import render, HttpResponse
-from django.http import JsonResponse
+from django.shortcuts import render
+from django.http import JsonResponse, HttpRequest, HttpResponse
 from django.urls import reverse
 from django_redis import get_redis_connection
 
@@ -20,22 +20,25 @@ from Morningstar.settings.common import BASIC_STATICFILES_DIR
 from .models import Item
 
 
-def get_csrf_token(request):
+def get_csrf_token(request: HttpRequest):
     if request.method == "GET":
         csrf_token = get_token(request)
         return JsonResponse({"csrfToken": csrf_token})
 
 
 @api_view(["GET"])
-def route(request, id):
+def route(request: HttpRequest, id):
     try:
         url = Item.objects.get(id=id).url
-        return Response({"status": "ok", "url": url})
+        return Response({"url": url}, status=status.HTTP_200_OK)
     except Item.DoesNotExist:
-        return Response({"status": "error", "message": "此链接不存在"})
+        return Response(
+            {"message": "此链接不存在"},
+            status=status.HTTP_404_NOT_FOUND,
+        )
 
 
-def get_qrcode(request):
+def get_qrcode(request: HttpRequest):
     session_key = request.session._session_key
     conn = get_redis_connection("default")
     link = conn.get(f"{session_key}-share-qrcode")
@@ -59,7 +62,7 @@ def get_qrcode(request):
 
 
 @api_view(["POST"])
-def submit(request):
+def submit(request: HttpRequest):
     if request.method == "POST":
         item = Item(url=request.data["url"])
         item.save()
