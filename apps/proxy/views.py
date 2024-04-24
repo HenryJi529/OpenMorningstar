@@ -22,7 +22,7 @@ def index(request: HttpRequest):
     return HttpResponse(data)
 
 
-def config(request):
+def config(request: HttpRequest):
     return redirect(
         "https://cdn.jsdelivr.net/gh/HenryJi529/Shadowrocket-ADBlock-Rules@master/sr_banlist.conf"
     )
