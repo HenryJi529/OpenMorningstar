@@ -3,6 +3,7 @@ Markdown==3.6
 Pillow==10.2.0
 Whoosh==2.7.4
 colorama==0.4.6
+coreapi==2.3.3
 django-compressor==4.4
 django-cors-headers==4.3.1
 django-cors-middleware==1.5.0
@@ -33,7 +34,7 @@ python-dotenv==1.0.1
 qcloudsms-py==0.1.4
 qrcode==7.4.2
 readtime==3.0.0
-redis==5.0.3
+redis==5.0.4
 requests==2.31.0
 scikit-learn==1.4.2
 sqlite3-to-mysql==2.1.9

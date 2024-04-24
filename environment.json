@@ -3,8 +3,12 @@
         "version": "0.4.6",
         "summary": "创建彩色字符串"
     },
+    "coreapi": {
+        "version": "2.3.3",
+        "summary": "为DRF创建文档"
+    },
     "coverage": {
-        "version": "7.4.4",
+        "version": "7.5.0",
         "summary": "计算测试覆盖率",
         "inDev": true
     },
@@ -41,7 +45,7 @@
     },
     "django-filter": {
         "version": "24.2",
-        "summary": "django filtering support"
+        "summary": "为django提供过滤"
     },
     "django-haystack": {
         "version": "3.2.1",
@@ -112,7 +116,8 @@
         "summary": "中文分词"
     },
     "Markdown": {
-        "version": "3.6"
+        "version": "3.6",
+        "summary": "用于支持drf文档的markdown化"
     },
     "matplotlib": {
         "version": "3.8.4",
@@ -182,7 +187,7 @@
         ]
     },
     "redis": {
-        "version": "5.0.3"
+        "version": "5.0.4"
     },
     "requests": {
         "version": "2.31.0"
