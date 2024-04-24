@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     "jazzmin",  # UI定制
     "matomo",  # 网站分析
     "rest_framework",  # restful api
+    "rest_framework.authtoken",  # DRF自带的token认证
     "django.contrib.humanize",  # {% load humanize %}
     "django.contrib.admin",
     "django.contrib.auth",
@@ -140,10 +141,29 @@ AUTH_PASSWORD_VALIDATORS = [
 
 """REST_FRAMEWORK配置"""
 REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
+    # "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 50,
+    "DATETIME_FORMAT": "%Y-%m-%d %H:%M:%S",
+    "DEFAULT_RENDERER_CLASSES": [
+        "rest_framework.renderers.JSONRenderer",
+        "rest_framework.renderers.BrowsableAPIRenderer",
+    ],
+    "DEFAULT_PARSER_CLASSES": [  # 解析request.data
+        "rest_framework.parsers.JSONParser",
+        "rest_framework.parsers.FormParser",
+        "rest_framework.parsers.MultiPartParser",
+    ],
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly",
+    ],
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.BasicAuthentication",
         "rest_framework.authentication.SessionAuthentication",
-    ]
+        "rest_framework.authentication.TokenAuthentication",
+    ],
 }
 
 
@@ -157,16 +177,6 @@ TIME_ZONE = "Asia/Shanghai"
 
 USE_I18N = True
 # USE_L10N = True  # NOTE: Django5.0起, 此设置移除
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
-
-STATIC_ROOT = BASE_DIR / "static"  # 收集静态
-BASIC_STATICFILES_DIR = BASE_DIR / "Morningstar" / "static"
-STATICFILES_DIRS = [  # NOTE: 除app/static/外的静态文件
-    str(BASIC_STATICFILES_DIR),
-]
 
 
 # Default primary key field type
@@ -374,7 +384,15 @@ MEDIA_ROOT = BASE_DIR / "media"
 MEDIA_URL = "/media/"
 
 """静态文件"""
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.2/howto/static-files/
+
 STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "static"
+BASIC_STATICFILES_DIR = BASE_DIR / "Morningstar" / "static"
+STATICFILES_DIRS = [  # NOTE: 除app/static/外的静态文件
+    str(BASIC_STATICFILES_DIR),
+]
 COMPRESS_ROOT = BASE_DIR / "static"  # 压缩css/js
 STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.FileSystemFinder",
