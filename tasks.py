@@ -91,10 +91,32 @@ class Tool:
 
 
 class Env:
+    GHCR_USERANME = os.getenv("GHCR_USERANME")
+    GHCR_PAT = os.getenv("GHCR_PAT")
     CLOUD_USERNAME = os.getenv("CLOUD_USERNAME")
     CLOUD_PASSWORD = os.getenv("CLOUD_PASSWORD")
     PUBLIC_IP = os.getenv("PUBLIC_IP")
     DEV_PASSWORD = os.getenv("DEV_PASSWORD")
+    DJANGO_SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
+    EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+    TENCENT_SMS_APP_KEY = os.getenv("TENCENT_SMS_APP_KEY")
+    RECAPTCHA_PUBLIC_KEY = os.getenv("RECAPTCHA_PUBLIC_KEY")
+    RECAPTCHA_PRIVATE_KEY = os.getenv("RECAPTCHA_PRIVATE_KEY")
+    REDIS_PASSWORD = os.getenv("REDIS_PASSWORD")
+    MYSQL_ROOT_PASSWORD = os.getenv("MYSQL_ROOT_PASSWORD")
+    MORNINGSTAR_USERNAME = os.getenv("MORNINGSTAR_USERNAME")
+    MORNINGSTAR_PASSWORD = os.getenv("MORNINGSTAR_PASSWORD")
+
+
+ENV_DICT = {
+    key: value for key, value in Env.__dict__.items() if not key.startswith("__")
+}
+
+ENV_COMMA_ROW = ",".join([f"{key}='{value}'" for key, value in ENV_DICT.items()])
+
+ENV_EXPORT_ROW = " && ".join(
+    [f"export {key}='{value}'" for key, value in ENV_DICT.items()]
+)
 
 
 class MorningstarConnection(Connection):
@@ -102,7 +124,9 @@ class MorningstarConnection(Connection):
         super().__init__(
             host=Env.PUBLIC_IP,
             user=Env.CLOUD_USERNAME,
-            connect_kwargs={"password": Env.CLOUD_PASSWORD},
+            connect_kwargs={
+                "password": Env.CLOUD_PASSWORD,
+            },
         )
 
 
@@ -438,13 +462,10 @@ class Commands:
                     "git clone https://github.com/HenryJi529/OpenMorningstar.git ~/morningstar"
                 )
 
-                def update_file_with_secret():
-                    c.run(
-                        "source ~/.zshrc && echo \"\nenvironment=DJANGO_SECRET_KEY='${DJANGO_SECRET_KEY}',EMAIL_HOST_PASSWORD='${EMAIL_HOST_PASSWORD}',TENCENT_SMS_APP_KEY='${TENCENT_SMS_APP_KEY}',RECAPTCHA_PUBLIC_KEY='${RECAPTCHA_PUBLIC_KEY}',RECAPTCHA_PRIVATE_KEY='${RECAPTCHA_PRIVATE_KEY}',MYSQL_ROOT_PASSWORD='${MYSQL_ROOT_PASSWORD}',REDIS_PASSWORD='${REDIS_PASSWORD}'\" >> ~/morningstar/scripts/deploy/django/supervise.conf"
-                    )
-
                 colored_print("添加密钥...")
-                update_file_with_secret()
+                c.run(
+                    f'echo "\nenvironment={ENV_COMMA_ROW}" >> ~/morningstar/scripts/deploy/django/supervise.conf'
+                )
 
                 colored_print("清理docker(除volume)...")
                 try:
@@ -455,7 +476,7 @@ class Commands:
 
                 colored_print("部署容器...")
                 c.run(
-                    "source ~/.zshrc && cd ~/morningstar/scripts/deploy; docker-compose build && docker-compose up -d"
+                    f"{ENV_EXPORT_ROW} && cd ~/morningstar/scripts/deploy; docker-compose build && docker-compose up -d"
                 )
 
                 colored_print("转移媒体文件...")
@@ -573,9 +594,13 @@ class Commands:
     def checkCert():
         conn = MorningstarConnection()
         colored_print("Let's Encrypt证书剩余时间: ")
-        conn.run(
-            "source ~/.zshrc && docker exec morningstar_nginx certbot certificates"
-        )
+        conn.run("docker exec morningstar_nginx certbot certificates")
+
+    @staticmethod
+    def updateCert():
+        conn = MorningstarConnection()
+        colored_print("更新Let's Encrypt证书: ")
+        conn.run("docker exec morningstar_nginx certbot renew")
 
     @staticmethod
     def syncLedger():
@@ -592,6 +617,11 @@ class Commands:
             conn.run(
                 "docker cp ~/morningstar/scripts/deploy/beancount morningstar_beancount:/root/"
             )
+
+    @staticmethod
+    def loginGHCR():
+        conn = MorningstarConnection()
+        conn.run(f"docker login ghcr.io -u {Env.GHCR_USERANME} -p {Env.GHCR_PAT}")
 
     @staticmethod
     def _test():
@@ -618,7 +648,9 @@ if __name__ == "__main__":
             "publicArchive",
             "publicPackage",
             "checkCert",
+            "updateCert",
             "syncLedger",
+            "loginGHCR",
             "_test",
         ],
     )
