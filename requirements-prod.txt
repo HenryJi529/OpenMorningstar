@@ -28,7 +28,6 @@ mysql-to-sqlite3==2.1.11
 mysqlclient==2.1.1
 numpy==1.26.4
 pandas==2.2.2
-pip==24.0
 pymdown-extensions==10.8
 python-dotenv==1.0.1
 qcloudsms-py==0.1.4

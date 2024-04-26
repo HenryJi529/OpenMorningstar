@@ -85,7 +85,7 @@
         "inDev": true
     },
     "Faker": {
-        "version": "24.11.0",
+        "version": "24.14.0",
         "summary": "测试数据生成",
         "inDev": true
     },
@@ -149,7 +149,8 @@
     },
     "pip": {
         "version": "24.0",
-        "summary": "包管理工具"
+        "summary": "包管理工具",
+        "inDev": true
     },
     "pipdeptree": {
         "version": "2.18.1",
