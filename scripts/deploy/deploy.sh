@@ -64,23 +64,6 @@ config_shell() {
   }
   config_bash
   config_zsh
-  echo "export IP_ADDRESS='$(curl ifconfig.me)'
-export DJANGO_SECRET_KEY='${DJANGO_SECRET_KEY}'
-export EMAIL_HOST_PASSWORD='${EMAIL_HOST_PASSWORD}'
-export TENCENT_SMS_APP_KEY='${TENCENT_SMS_APP_KEY}'
-export RECAPTCHA_PUBLIC_KEY='${RECAPTCHA_PUBLIC_KEY}'
-export RECAPTCHA_PRIVATE_KEY='${RECAPTCHA_PRIVATE_KEY}'
-export REDIS_PASSWORD='${REDIS_PASSWORD}'
-export MYSQL_ROOT_PASSWORD='${MYSQL_ROOT_PASSWORD}'
-export MORNINGSTAR_USERNAME='${MORNINGSTAR_USERNAME}'
-export MORNINGSTAR_PASSWORD='${MORNINGSTAR_PASSWORD}'
-export CR_PAT='${CR_PAT}'
-
-alias clone_morningstar='git clone https://github.com/HenryJi529/OpenMorningstar.git ~/morningstar'
-alias login_ghcr='echo $CR_PAT | docker login ghcr.io -u HenryJi529 --password-stdin'
-alias certbot_remain='docker exec morningstar_nginx certbot certificates'
-alias certbot_renew='docker exec morningstar_nginx certbot renew'
-" >>~/.zshrc
 }
 
 config_git() {
