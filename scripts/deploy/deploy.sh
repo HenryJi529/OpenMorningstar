@@ -197,29 +197,6 @@ cert: false
   echo "DONE!"
 }
 
-backup_docker_volumes() {
-  # 全面备份
-  # docker run --rm -v some_volume:/volume -v ~/backup/docker_volume:/backup alpine sh -c "tar -C /volume -cvzf /backup/${volume_name}.tar.gz ./"
-  sudo rm /home/$CLOUD_USERNAME/backup/docker_volume/*
-  docker_volume_list_=($(docker volume ls | awk '{print $2}' | tr '\n' ' '))
-  docker_volume_list=${docker_volume_list_[@]:1:${#docker_volume_list_[@]}}
-  for volume in $(echo ${docker_volume_list}); do
-    volume_name=${volume[@]:7:${#volume}}
-    docker run --rm -v deploy_${volume_name}:/volume -v ~/backup/docker_volume:/backup alpine sh -c "tar -C /volume -cvzf /backup/${volume_name}.tar.gz ./" # 在/volume下完成压缩
-  done
-}
-
-restore_docker_volumes() {
-  # 全面还原
-  # docker run --rm -v some_volume:/volume -v ~/backup/docker_volume:/backup alpine sh -c "rm -rf /volume/* ; tar -C /volume/ -xzvf /backup/some_archive.tar.gz"
-  docker_volume_list_=($(docker volume ls | awk '{print $2}' | tr '\n' ' '))
-  docker_volume_list=${docker_volume_list_[@]:1:${#docker_volume_list_[@]}}
-  for volume in $(echo ${docker_volume_list}); do
-    volume_name=${volume[@]:7:${#volume}}
-    docker run --rm -v deploy_${volume_name}:/volume -v ~/backup/docker_volume:/backup alpine sh -c "rm -rf /volume/* ; tar -C /volume/ -xzvf /backup/${volume_name}.tar.gz"
-  done
-}
-
 update_myself() {
   rm ~/deploy.sh
   wget https://raw.githubusercontent.com/HenryJi529/OpenMorningstar/main/scripts/deploy/deploy.sh -P ~/
@@ -262,11 +239,8 @@ full_process() {
 main() {
   echo "执行操作: 
 {{持续维护相关：}}
-a. 备份数据...;
-b. 还原数据...;
-c. 更新脚本...;
+u. 更新脚本...;
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
-{{初次部署相关：}}
 0. 完整流程...;
 1. 修改密码...;
 2. 切换中国镜像...;
@@ -283,11 +257,9 @@ c. 更新脚本...;
 13.安装VScode...;
 ===============================
 "
-  read -p "输入序号(a-c | 0-13): " order
+  read -p "输入序号(u | 0-13): " order
   case $order in
-  a) backup_docker_volumes ;;
-  b) restore_docker_volumes ;;
-  c) update_myself ;;
+  u) update_myself ;;
   0) full_process ;;
   1) change_password ;;
   2) change_cn_source ;;
@@ -306,13 +278,7 @@ c. 更新脚本...;
   esac
 }
 if [ $# -eq 1 ]; then
-  if [ $1 == "a" ]; then
-    echo "备份数据..."
-    backup_docker_volumes
-  elif [ $1 == "b" ]; then
-    echo "还原数据..."
-    restore_docker_volumes
-  elif [ $1 == "c" ]; then
+  if [ $1 == "u" ]; then
     echo "更新脚本..."
     update_myself
   else

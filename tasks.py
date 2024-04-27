@@ -66,8 +66,6 @@ def runcmd(command, pipe: bool = True):
         # 逐行读取输出
         for line in process.stdout:
             print(line, end="")
-        # 等待子进程结束
-        process.wait()
     else:
         ret = subprocess.run(
             command,
@@ -516,7 +514,14 @@ class Commands:
         def backupDockerVolume(c: Connection):
             home_path = "~/"
             with c.cd(home_path):
-                c.run("bash ~/deploy.sh a")
+                dockerVolumeNameList: list[str] = c.run(
+                    "docker volume ls | awk '{print $2}' | tr '\n' ' '", hide=True
+                ).stdout.split(" ")[1:-1]
+                for dockerVolumeName in dockerVolumeNameList:
+                    shortName = dockerVolumeName[7:]
+                    colored_print(f"备份{shortName}:")
+                    command = f'docker run --rm -v deploy_{shortName}:/volume -v ~/backup/docker_volume:/backup alpine sh -c "tar -C /volume -cvzf /backup/{shortName}.tar.gz ./"'
+                    c.run(command)
 
         conn = MorningstarConnection()
         colored_print("数据库备份...")
@@ -544,7 +549,14 @@ class Commands:
         def restoreDockerVolume(c: Connection):
             home_path = "~/"
             with c.cd(home_path):
-                c.run("bash ~/deploy.sh b")
+                dockerVolumeNameList: list[str] = c.run(
+                    "docker volume ls | awk '{print $2}' | tr '\n' ' '", hide=True
+                ).stdout.split(" ")[1:-1]
+                for dockerVolumeName in dockerVolumeNameList:
+                    shortName = dockerVolumeName[7:]
+                    colored_print(f"还原{shortName}:")
+                    command = f'docker run --rm -v deploy_${shortName}:/volume -v ~/backup/docker_volume:/backup alpine sh -c "rm -rf /volume/* ; tar -C /volume/ -xzvf /backup/${shortName}.tar.gz"'
+                    c.run(command)
 
         conn = MorningstarConnection()
         colored_print("同步数据库到远处...")
