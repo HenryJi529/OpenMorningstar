@@ -16,7 +16,8 @@ import django
 from django.core.files.base import ContentFile, File
 from django.core.files.images import ImageFile
 
-load_dotenv(dotenv_path=Path(__file__).parent / ".env", verbose=True)
+BASE_DIR = Path(__file__).resolve().parent
+load_dotenv(dotenv_path=BASE_DIR / ".env", verbose=True)
 
 DOMAIN_LIST = [
     "morningstar369.com",
@@ -82,10 +83,10 @@ def runcmd(command, pipe: bool = True):
 
 
 class Tool:
-    PYTHON = Path(__file__).parent / "VENV/bin/python"
-    PIPDEPTREE = Path(__file__).parent / "VENV/bin/pipdeptree"
-    PIP = Path(__file__).parent / "VENV/bin/pip"
-    COVERAGE = Path(__file__).parent / "VENV/bin/coverage"
+    PYTHON = BASE_DIR / "VENV/bin/python"
+    PIPDEPTREE = BASE_DIR / "VENV/bin/pipdeptree"
+    PIP = BASE_DIR / "VENV/bin/pip"
+    COVERAGE = BASE_DIR / "VENV/bin/coverage"
 
 
 class Env:
@@ -136,10 +137,12 @@ class Commands:
     @staticmethod
     def dev():
         colored_print("同步JavaScript模块...")
-        runcmd("rsync -a ./node_modules ./Morningstar/static")
+        runcmd(f"rsync -a node_modules Morningstar/static")
         colored_print("=" * 40)
         colored_print("迁移模型到数据库...")
-        runcmd(f"{Tool.PYTHON} manage.py makemigrations && python manage.py migrate")
+        runcmd(
+            f"{Tool.PYTHON} manage.py makemigrations && {Tool.PYTHON} manage.py migrate"
+        )
         colored_print("=" * 40)
         colored_print("重建索引...")
         runcmd(f"{Tool.PYTHON} manage.py rebuild_index --noinput")
@@ -173,7 +176,6 @@ class Commands:
     @staticmethod
     def initialize():
         # 将项目根目录添加到 Python 的模块搜索路径中
-        BASE_DIR = Path(__file__).parent
         sys.path.append(BASE_DIR)
 
         os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Morningstar.settings.dev")
@@ -364,11 +366,9 @@ class Commands:
         runcmd("npx ncu -u && yarn install")  # NOTE: 大版本更新
         runcmd("yarn upgrade")
         colored_print("- 更新extension:")
-        runcmd("cd extension/popup/ && yarn upgrade && cd ../../")
+        runcmd(f"cd extension/popup/ && yarn upgrade && cd ../../")
         for subdir in [
-            subdir
-            for subdir in (Path(__file__).parent / "apps").iterdir()
-            if subdir.is_dir()
+            subdir for subdir in (BASE_DIR / "apps").iterdir() if subdir.is_dir()
         ]:
             if not (subdir / "frontend").is_dir():
                 continue
@@ -420,13 +420,13 @@ class Commands:
                 c.run(
                     "sshpass -p "
                     + Env.DEV_PASSWORD
-                    + " scp -P 1022 -r henry529@server.morningstar369.com:~/Projects/OpenMorningstar/scripts/deploy/nginx/conf  ~/morningstar/scripts/deploy/nginx/"
+                    + f" scp -P 1022 -r henry529@server.morningstar369.com:{BASE_DIR}/scripts/deploy/nginx/conf  ~/morningstar/scripts/deploy/nginx/"
                 )
                 colored_print("同步前端页面...")
                 c.run(
                     "sshpass -p "
                     + Env.DEV_PASSWORD
-                    + " scp -P 1022 -r henry529@server.morningstar369.com:~/Projects/OpenMorningstar/scripts/deploy/nginx/www  ~/morningstar/scripts/deploy/nginx"
+                    + f" scp -P 1022 -r henry529@server.morningstar369.com:{BASE_DIR}/scripts/deploy/nginx/www  ~/morningstar/scripts/deploy/nginx"
                 )
                 colored_print("加载新配置文件...")
                 c.run("docker exec -i morningstar_nginx nginx -s reload")
@@ -528,13 +528,13 @@ class Commands:
         backupDatabase(conn)
         colored_print("同步数据库到本地...")
         runcmd(
-            f"scp -P 22 {Env.CLOUD_USERNAME}@server.morningstar369.com:~/morningstar/database/all.json ~/Projects/OpenMorningstar/database"
+            f"scp -P 22 {Env.CLOUD_USERNAME}@server.morningstar369.com:~/morningstar/database/all.json {BASE_DIR}/database"
         )
         colored_print("备份volume为压缩包...")
         backupDockerVolume(conn)
         colored_print("同步压缩包到本地...")
         runcmd(
-            f"rsync -avz {Env.CLOUD_USERNAME}@server.morningstar369.com:~/backup/docker_volume ./database/"
+            f"rsync -avz {Env.CLOUD_USERNAME}@server.morningstar369.com:~/backup/docker_volume {BASE_DIR}/database/"
         )
 
     @staticmethod
@@ -561,13 +561,13 @@ class Commands:
         conn = MorningstarConnection()
         colored_print("同步数据库到远处...")
         runcmd(
-            f"scp -P 22 ~/Projects/OpenMorningstar/database/all.json {Env.CLOUD_USERNAME}@server.morningstar369.com:~/morningstar/database"
+            f"scp -P 22 {BASE_DIR}/database/all.json {Env.CLOUD_USERNAME}@server.morningstar369.com:~/morningstar/database"
         )
         colored_print("数据库还原...")
         restoreDatabase(conn)
         colored_print("同步压缩包到远处...")
         runcmd(
-            f"rsync -avz ./database/docker_volume {Env.CLOUD_USERNAME}@server.morningstar369.com:~/backup/"
+            f"rsync -avz {BASE_DIR}/database/docker_volume {Env.CLOUD_USERNAME}@server.morningstar369.com:~/backup/"
         )
         colored_print("复原压缩包为volume...")
         restoreDockerVolume(conn)
@@ -623,7 +623,7 @@ class Commands:
             conn.run(
                 "sshpass -p "
                 + Env.DEV_PASSWORD
-                + " scp -P 1022 -r henry529@server.morningstar369.com:~/Projects/OpenMorningstar/scripts/deploy/beancount  ~/morningstar/scripts/deploy/"
+                + f" scp -P 1022 -r henry529@server.morningstar369.com:{BASE_DIR}/scripts/deploy/beancount  ~/morningstar/scripts/deploy/"
             )
             colored_print("传递数据至数据卷...")
             conn.run(
