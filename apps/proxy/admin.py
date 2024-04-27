@@ -1,7 +1,6 @@
 import base64
 import json
-import hashlib
-import uuid
+import secrets
 
 from django.contrib import admin
 
@@ -22,13 +21,13 @@ class NodeAdmin(ImportExportModelAdmin):
     )
 
     def save_model(self, request, obj, form, change):
-        def decode_str(str_encoded):
+        def decode_str(str_encoded: str):
             str_encoded_bytes = str_encoded.encode("utf-8")
             str_decoded_bytes = base64.b64decode(str_encoded_bytes)
             str_decoded = str_decoded_bytes.decode("utf-8")
             return str_decoded
 
-        def encode_str(str_decoded):
+        def encode_str(str_decoded: str):
             str_decoded_bytes = str_decoded.encode("utf-8")
             str_encoded_bytes = base64.b64encode(str_decoded_bytes)
             str_encoded = str_encoded_bytes.decode("utf-8")
@@ -61,14 +60,5 @@ class AccountAdmin(ImportExportModelAdmin):
     list_display = ("id", "user", "token")
 
     def save_model(self, request, obj, form, change):
-        def generate_token(id):
-            # 使用 uuid4 生成一个随机字符串
-            salt = uuid.uuid4().hex
-            # 将 salt 和 id 拼接，然后计算其 SHA-256 哈希值
-            hashed = hashlib.sha256(salt.encode() + str(id).encode()).hexdigest()
-            # 将 salt 和 hashed 值拼接，作为最终的 token
-            return (salt + hashed)[:16]
-
-        obj.token = generate_token(obj.user.id) if not obj.token else obj.token
-        print(generate_token(obj.user.id))
+        obj.token = secrets.token_hex()[:32] if not obj.token else obj.token
         super().save_model(request, obj, form, change)
