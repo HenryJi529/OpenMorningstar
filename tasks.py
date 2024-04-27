@@ -111,12 +111,6 @@ ENV_DICT = {
     key: value for key, value in Env.__dict__.items() if not key.startswith("__")
 }
 
-ENV_COMMA_ROW = ",".join([f"{key}='{value}'" for key, value in ENV_DICT.items()])
-
-ENV_EXPORT_ROW = " && ".join(
-    [f"export {key}='{value}'" for key, value in ENV_DICT.items()]
-)
-
 
 class MorningstarConnection(Connection):
     def __init__(self):
@@ -127,6 +121,12 @@ class MorningstarConnection(Connection):
                 "password": Env.CLOUD_PASSWORD,
             },
         )
+
+    def run(self, command: str):
+        exportEnv = " && ".join(
+            [f"export {key}='{value}'" for key, value in ENV_DICT.items()]
+        )
+        super().run(f"{exportEnv} && {command}")
 
 
 class Commands:
@@ -461,8 +461,11 @@ class Commands:
                 )
 
                 colored_print("添加密钥...")
+                envRow = ",".join(
+                    [f"{key}='{value}'" for key, value in ENV_DICT.items()]
+                )
                 c.run(
-                    f'echo "\nenvironment={ENV_COMMA_ROW}" >> ~/morningstar/scripts/deploy/django/supervise.conf'
+                    f'echo "\nenvironment={envRow}" >> ~/morningstar/scripts/deploy/django/supervise.conf'
                 )
 
                 colored_print("清理docker(除volume)...")
@@ -474,7 +477,7 @@ class Commands:
 
                 colored_print("部署容器...")
                 c.run(
-                    f"{ENV_EXPORT_ROW} && cd ~/morningstar/scripts/deploy; docker-compose build && docker-compose up -d"
+                    f"cd ~/morningstar/scripts/deploy; docker-compose build && docker-compose up -d"
                 )
 
                 colored_print("转移媒体文件...")
