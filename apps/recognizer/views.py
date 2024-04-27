@@ -37,5 +37,6 @@ def index(request: Request):
 
 @api_view(["get"])
 def get_csrf_token(request: Request):
-    csrf_token = get_token(request)
-    return Response({"csrfToken": csrf_token}, status=status.HTTP_200_OK)
+    response = Response()
+    response.set_cookie("csrftoken", get_token(request))
+    return response

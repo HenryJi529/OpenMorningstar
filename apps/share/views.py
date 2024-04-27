@@ -20,10 +20,11 @@ from Morningstar.settings.common import BASIC_STATICFILES_DIR
 from .models import Item
 
 
+@api_view(["GET"])
 def get_csrf_token(request: HttpRequest):
-    if request.method == "GET":
-        csrf_token = get_token(request)
-        return JsonResponse({"csrfToken": csrf_token})
+    response = Response()
+    response.set_cookie("csrftoken", get_token(request))
+    return response
 
 
 @api_view(["GET"])

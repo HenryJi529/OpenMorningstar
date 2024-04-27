@@ -1,9 +1,9 @@
 <script setup>
-import { ref } from "vue"
+import {onMounted, ref } from "vue"
 
 import axios from "axios";
+import Cookies from "js-cookie"
 axios.defaults.baseURL = process.env.BASE_URL
-const endpoint = "/"
 
 import Header from "./components/Header.vue"
 import Footer from "./components/Footer.vue"
@@ -14,6 +14,11 @@ const imageDataURL = ref(null);
 const category = ref("");
 const score = ref(0);
 const isLoading = ref(false);
+
+onMounted(async()=> {
+  await axios.get('csrf-token/')
+  axios.defaults.headers.common['X-CSRFToken'] = Cookies.get('csrftoken');
+})
 
 const handleFileChange = (event) => {
   const selectedFile = event.target.files[0];
@@ -37,9 +42,7 @@ const clearImage = (event) => {
 
 const uploadImage = async () => {
   isLoading.value = true
-  const { data: { csrfToken } } = await axios.get('csrf-token/')
-  axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
-  const response = await axios.post(endpoint, {
+  const response = await axios.post("/", {
     "imageDataURL": imageDataURL.value,
     "modelName": selectedModelName.value
   })

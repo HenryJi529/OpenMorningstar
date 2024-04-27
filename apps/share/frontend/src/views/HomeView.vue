@@ -1,20 +1,23 @@
 <script setup>
-import {ref} from 'vue'
+import {onMounted, ref} from 'vue'
 import axios from 'axios';
 import {useRoute} from 'vue-router'
+import Cookies from 'js-cookie'
 const baseURL = process.env.BASE_URL
 axios.defaults.baseURL = baseURL
 
-
 const route = useRoute()
 const currentPath = ref(window.location.href)
-
 
 const endpoint = "/submit/"
 
 const url = ref("")  // NOTE: 提交的信息
 const link = ref("") // NOTE: 返回的加密链接
 
+onMounted(async()=> {
+  await axios.get('csrf-token/')
+  axios.defaults.headers.common['X-CSRFToken'] = Cookies.get('csrftoken');
+})
 
 const handleSubmit = async ()=>{
   if(url.value.length > 1000 || url.value.startsWith("http") == false){
@@ -22,8 +25,6 @@ const handleSubmit = async ()=>{
     return
   }
 
-  const { data: { csrfToken } } = await axios.get('csrf-token/')
-  axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
   const response = await axios.post(endpoint,{
     "url": url.value,
   })
