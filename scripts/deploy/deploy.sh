@@ -126,7 +126,8 @@ config_docker() {
   sudo systemctl restart docker
   sudo chmod a+rw /var/run/docker.sock
   sudo apt install -y docker-compose
-  echo "alias docker_clean='docker system prune --volumes'" >>~/.zshrc
+  # NOTE: 设置备份路径
+  test -d "/home/${CLOUD_USERNAME}/backup/docker_volume/" || mkdir /home/${CLOUD_USERNAME}/backup/docker_volume/
 }
 
 config_supervisor() {
