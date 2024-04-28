@@ -114,7 +114,6 @@ services:
     image: snowdreamtech/frps
     container_name: morningstar_frps
     working_dir: /root
-    tty: true
     restart: always
     volumes:
       - ./_config/frp:/etc/frp
@@ -129,7 +128,6 @@ services:
       PASV_MIN_PORT: 21100
       PASV_MAX_PORT: 21110
       PASV_ADDRESS: 43.154.26.218
-    tty: true
     restart: always
     volumes:
       - morningstar_ftp_data:/home/vsftpd
@@ -144,7 +142,6 @@ services:
       context: .
       dockerfile: nginx/Dockerfile
     image: henry529/nginx
-    tty: true
     container_name: morningstar_nginx
     volumes:
       - morningstar_nginx_data:/etc/letsencrypt
@@ -165,7 +162,6 @@ services:
     container_name: morningstar_beancount
     hostname: henry-beancount
     working_dir: /root
-    tty: true
     restart: unless-stopped
     volumes:
       - morningstar_beancount_data:/root/beancount
@@ -190,7 +186,6 @@ services:
     image: portainer/portainer:latest
     container_name: morningstar_portainer
     working_dir: /root
-    tty: true
     restart: unless-stopped
     volumes:
       - morningstar_portainer_data:/data
@@ -201,7 +196,6 @@ services:
   sshwifty:
     image: niruix/sshwifty:latest
     container_name: morningstar_sshwifty
-    tty: true
     restart: always
     ports:
       - "6010:8182"
