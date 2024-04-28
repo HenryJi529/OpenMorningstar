@@ -32,5 +32,4 @@ RUN mkdir -p /root/.local/share/Terraria
 RUN chmod 777 /root/.local/share/Terraria
 
 COPY tshock/start.sh /start.sh
-RUN chmod +x /start.sh
 EXPOSE 7777

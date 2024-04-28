@@ -201,7 +201,6 @@ cert: false
 update_myself() {
   rm ~/deploy.sh
   wget https://raw.githubusercontent.com/HenryJi529/OpenMorningstar/main/scripts/deploy/deploy.sh -P ~/
-  chmod +x ~/deploy.sh
 }
 
 full_process() {
