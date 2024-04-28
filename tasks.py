@@ -475,7 +475,7 @@ class Commands:
                     pass
                 c.run("docker system prune -af")
 
-                colored_print("部署容器...")
+                colored_print("容器编排与启动...")
                 c.run(
                     f"cd ~/morningstar/scripts/deploy; docker-compose build && docker-compose up -d"
                 )
@@ -483,11 +483,11 @@ class Commands:
                 colored_print("转移媒体文件...")
                 c.run("docker cp ~/morningstar/media morningstar_django:/app")
 
-                colored_print("启动supervisor管理Django进程...")
-                c.run("docker exec -i morningstar_django service supervisor start")
-                # NOTE: 重启Django确保数据库无连接错误
+                colored_print("生产环境部署...")
                 c.run("docker exec -i morningstar_django bash /production.sh")
-                c.run("docker exec -i morningstar_django supervisorctl start django")
+
+                colored_print("通过supervisor启动Django进程...")
+                c.run("docker exec -i morningstar_django service supervisor start")
 
                 colored_print("配置HTTPS...")
                 # certbot certonly --manual --preferred-challenge dns -d django.morningstar.com  # NOTE: 手动配置
