@@ -23,9 +23,8 @@ RUN apt-get install -y supervisor
 # 解决timezone依赖
 RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y tzdata && ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
 
-RUN mkdir static && mkdir appdata && chmod +777 -R appdata/
+RUN test -d static || mkdir static
+RUN test -d log || mkdir log && touch log/cron.log 
 
 COPY ./django/production.sh /production.sh
-RUN chmod +x /production.sh
-
 COPY ./django/supervise.conf /etc/supervisor/conf.d/django.conf
