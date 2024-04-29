@@ -16,7 +16,7 @@ from .serializers import PhotoSerializer, TextSerializer
 
 @add_cors_header
 @api_view(["GET"])
-def getRandomJokes(request: HttpRequest):
+def getRandomJokes(request: Request):
     def getRandomNums(num: int):
         photoNum = Photo.objects.count()
         textNum = Text.objects.count()
@@ -26,7 +26,7 @@ def getRandomJokes(request: HttpRequest):
 
     if request.method == "GET":
         try:
-            num = int(request.GET.get("n", 20))
+            num = int(request.data.get("n", 20))
             if num > 100:
                 return Response(
                     {"message": "{n} is too large"},
@@ -55,10 +55,10 @@ def getRandomJokes(request: HttpRequest):
 
 @add_cors_header
 @api_view(["GET"])
-def getRandomPhotos(request: HttpRequest):
+def getRandomPhotos(request: Request):
     if request.method == "GET":
         try:
-            num = int(request.GET.get("n", 1))
+            num = int(request.data.get("n", 1))
             if num > Photo.objects.count():
                 return Response({"message": "{n} is to large"})
         except ValueError:
@@ -77,10 +77,10 @@ def getRandomPhotos(request: HttpRequest):
 
 @add_cors_header
 @api_view(["GET"])
-def getRandomTexts(request: HttpRequest):
+def getRandomTexts(request: Request):
     if request.method == "GET":
         try:
-            num = int(request.GET.get("n", 1))
+            num = int(request.data.get("n", 1))
             if num > Text.objects.count():
                 return Response({"message": "{n} is to large"})
         except ValueError:
