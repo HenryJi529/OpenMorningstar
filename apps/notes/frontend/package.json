@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build --outDir ../../../scripts/deploy/nginx/www/notes --emptyOutDir",
-    "preview": "vite preview"
+    "preview": "vite preview --outDir ../../../scripts/deploy/nginx/www/notes"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",

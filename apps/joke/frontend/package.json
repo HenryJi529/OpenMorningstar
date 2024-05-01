@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build --outDir ../../../scripts/deploy/nginx/www/joke --emptyOutDir",
-    "preview": "vite preview",
+    "preview": "vite preview --outDir ../../../scripts/deploy/nginx/www/joke",
     "test:unit": "vitest"
   },
   "dependencies": {
