@@ -21,6 +21,7 @@ from django.views.generic.base import TemplateView
 from django.contrib.sitemaps.views import sitemap
 from django.views.decorators.cache import cache_page
 from rest_framework import routers
+from rest_framework.documentation import include_docs_urls
 
 from Morningstar.settings.common import CACHE_TIMEOUT
 from Morningstar.settings.common import MEDIA_ROOT
@@ -97,6 +98,6 @@ urlpatterns = (
         path("admin/", admin.site.urls, name="admin"),
         # restful api
         # path("api/", include(router.urls)), # TODO: 未来需要更规范的使用
-        path("api/auth/", include("rest_framework.urls")),
+        path("docs/", include_docs_urls(title="API文档", description="hiahiahia")),
     ]
 )
