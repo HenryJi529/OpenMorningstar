@@ -810,7 +810,7 @@
 					"entries": [
 						{
 							"name": "官方Wiki",
-							"url": "https://terraria.wiki.gg/zh/wiki/Terraria_Wiki"
+							"link": "https://terraria.wiki.gg/zh/wiki/Terraria_Wiki"
 						},
 						{
 							"name": "灾厄Wiki",
@@ -870,7 +870,7 @@
 					"entries": [
 						{
 							"name": "口红选购",
-							"url": "http://www.tianlefirstweb.fun/"
+							"link": "http://www.tianlefirstweb.fun/"
 						},
 						{
 							"name": "口红色号",
@@ -885,15 +885,19 @@
 					"entries": [
 						{
 							"name": "Poe",
-							"url": "https://poe.com/ChatGPT"
+							"link": "https://poe.com/ChatGPT"
+						},
+						{
+							"name": "Kimi.ai",
+							"link": "https://kimi.moonshot.cn/"
 						},
 						{
 							"name": "ChatGPT",
-							"url": "https://chat.openai.com/"
+							"link": "https://chat.openai.com/"
 						},
 						{
 							"name": "NiceGPT",
-							"url": "https://chat.hvvyxs.com/"
+							"link": "https://chat.hvvyxs.com/"
 						}
 					]
 				},
@@ -904,7 +908,7 @@
 					"entries": [
 						{
 							"name": "程沛权的菜谱",
-							"url": "https://chengpeiquan.com/cookbook"
+							"link": "https://chengpeiquan.com/cookbook"
 						},
 						{
 							"name": "程序员做饭指南",
@@ -947,7 +951,7 @@
 					"entries": [
 						{
 							"name": "电子书阅读",
-							"url": "https://www.neat-reader.cn/"
+							"link": "https://www.neat-reader.cn/"
 						},
 						{
 							"name": "RSS阅读器",
