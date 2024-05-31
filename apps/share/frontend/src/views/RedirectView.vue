@@ -2,8 +2,6 @@
 import {ref, onMounted} from 'vue'
 import {useRoute} from 'vue-router'
 import axios from 'axios';
-const baseURL = process.env.BASE_URL
-axios.defaults.baseURL = baseURL
 
 const route = useRoute()
 const endpoint = `/route/${route.params.id}/`

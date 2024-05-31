@@ -1,7 +1,5 @@
 <script setup>
 import axios from "axios";
-axios.defaults.baseURL = process.env.BASE_URL
-
 import { ref, watch, onMounted } from 'vue'
 import gsap from 'gsap'
 import NSpin from 'naive-ui'

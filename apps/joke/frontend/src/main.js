@@ -5,6 +5,9 @@ import { createPinia } from 'pinia'
 
 import MasonryWall from '@yeger/vue-masonry-wall'
 
+import axios from "axios";
+axios.defaults.baseURL = process.env.BASE_URL
+
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
 /* import font awesome icon component */

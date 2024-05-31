@@ -3,7 +3,6 @@ import {onMounted, ref } from "vue"
 
 import axios from "axios";
 import Cookies from "js-cookie"
-axios.defaults.baseURL = process.env.BASE_URL
 
 import Header from "./components/Header.vue"
 import Footer from "./components/Footer.vue"

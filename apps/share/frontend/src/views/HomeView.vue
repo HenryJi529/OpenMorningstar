@@ -3,8 +3,6 @@ import {onMounted, ref} from 'vue'
 import axios from 'axios';
 import {useRoute} from 'vue-router'
 import Cookies from 'js-cookie'
-const baseURL = process.env.BASE_URL
-axios.defaults.baseURL = baseURL
 
 const route = useRoute()
 const currentPath = ref(window.location.href)

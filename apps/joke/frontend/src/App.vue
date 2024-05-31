@@ -5,7 +5,6 @@ import { RouterLink, RouterView } from 'vue-router'
 import GithubCorners from '@uivjs/vue-github-corners';
 
 import axios from "axios";
-axios.defaults.baseURL = process.env.BASE_URL
 const endpoint = "/jokes/?n=30"
 
 import Nav from "./components/Nav.vue"
