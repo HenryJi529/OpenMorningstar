@@ -1,6 +1,7 @@
 from django import forms
 from django_recaptcha.fields import ReCaptchaField
 from django.core.validators import RegexValidator
+from django.http import HttpRequest
 from django_redis import get_redis_connection
 import re
 
@@ -16,7 +17,9 @@ class LoginForm(forms.Form):
         label="账户",
         initial="",
         required=True,
-        widget=forms.TextInput(attrs={"placeholder": "用户名/邮箱/手机号", "class": "w-full"}),
+        widget=forms.TextInput(
+            attrs={"placeholder": "用户名/邮箱/手机号", "class": "w-full"}
+        ),
     )
     password = forms.CharField(
         label="密码",
@@ -56,9 +59,9 @@ class LoginForm(forms.Form):
 
     def clean_image_captcha(self):
         image_captcha = self.cleaned_data["image_captcha"]
-        request = self.request
+        request: HttpRequest = self.request
 
-        session_key = request.session._session_key
+        session_key = request.session.session_key
 
         conn = get_redis_connection("default")
         redis_image_captcha = conn.get(f"{session_key}-image-captcha")
@@ -84,7 +87,9 @@ class RegisterForm(forms.Form):
         required=True,
         widget=forms.EmailInput(attrs={"placeholder": FAKE_EMAIL, "class": "w-full"}),
         validators=[
-            RegexValidator(r"^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", "邮箱格式错误"),
+            RegexValidator(
+                r"^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", "邮箱格式错误"
+            ),
         ],
     )
 
@@ -99,7 +104,10 @@ class RegisterForm(forms.Form):
         ],
         min_length=6,
         max_length=16,
-        error_messages={"min_length": "密码长度不能小于6个字符", "max_length": "密码长度不能大于16个字符"},
+        error_messages={
+            "min_length": "密码长度不能小于6个字符",
+            "max_length": "密码长度不能大于16个字符",
+        },
     )
 
     confirm_password = forms.CharField(
@@ -110,7 +118,10 @@ class RegisterForm(forms.Form):
         ),
         min_length=6,
         max_length=16,
-        error_messages={"min_length": "密码长度不能小于6个字符", "max_length": "密码长度不能大于16个字符"},
+        error_messages={
+            "min_length": "密码长度不能小于6个字符",
+            "max_length": "密码长度不能大于16个字符",
+        },
     )
 
     captcha = ReCaptchaField(label="人机验证")
@@ -182,7 +193,9 @@ class UpdateEmailForm(forms.Form):
     email = forms.EmailField(
         label="邮箱",
         validators=[
-            RegexValidator(r"^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", "邮箱格式错误"),
+            RegexValidator(
+                r"^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", "邮箱格式错误"
+            ),
         ],
     )
     email_code = forms.CharField(
@@ -246,7 +259,10 @@ class UpdatePasswordForm(forms.Form):
         ],
         min_length=6,
         max_length=16,
-        error_messages={"min_length": "密码长度不能小于6个字符", "max_length": "密码长度不能大于16个字符"},
+        error_messages={
+            "min_length": "密码长度不能小于6个字符",
+            "max_length": "密码长度不能大于16个字符",
+        },
     )
 
     confirm_password = forms.CharField(
@@ -257,7 +273,10 @@ class UpdatePasswordForm(forms.Form):
         ),
         min_length=6,
         max_length=16,
-        error_messages={"min_length": "密码长度不能小于6个字符", "max_length": "密码长度不能大于16个字符"},
+        error_messages={
+            "min_length": "密码长度不能小于6个字符",
+            "max_length": "密码长度不能大于16个字符",
+        },
     )
 
     def clean_confirm_password(self):

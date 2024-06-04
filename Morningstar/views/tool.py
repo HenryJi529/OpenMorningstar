@@ -25,8 +25,8 @@ from ..models import User
 def get_image_captcha(request: HttpRequest):
     """生成图片验证码"""
     image_object, code = generate_image()
-    session_key = request.session._session_key
-
+    request.session.cycle_key()
+    session_key = request.session.session_key
     conn = get_redis_connection("default")
     conn.set(f"{session_key}-image-captcha", code, ex=60)
 

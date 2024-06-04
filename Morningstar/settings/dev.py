@@ -18,7 +18,6 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 
 """缓存"""
-CACHE_TIMEOUT = 5
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
@@ -26,6 +25,7 @@ CACHES = {
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
             "CONNECTION_POOL_KWARGS": {"max_connections": 1000, "encoding": "utf-8"},
+            "PASSWORD": "1234asdw",
         },
     }
 }

@@ -40,9 +40,7 @@ def route(request: HttpRequest, id):
 
 
 def get_qrcode(request: HttpRequest):
-    session_key = request.session._session_key
-    conn = get_redis_connection("default")
-    link = conn.get(f"{session_key}-share-qrcode")
+    link = request.session.get("share-qrcode")
     back_color = (255, 255, 255)
     center_color = (250, 200, 100)
     edge_color = (75, 150, 60)
@@ -50,7 +48,7 @@ def get_qrcode(request: HttpRequest):
 
     qrcode_image = qrcoder.make_qrcode(
         data=link,
-        image_size=(200, 200),
+        image_size=(400, 400),
         box_radius_ratio=0.5,
         icon_path=icon_path,
         back_color=back_color,
@@ -69,11 +67,5 @@ def submit(request: HttpRequest):
         item.save()
         id = item.id
         link = f"redirect/{id}/"
-        session_key = request.session._session_key
-        conn = get_redis_connection("default")
-        conn.set(
-            f"{session_key}-share-qrcode",
-            "https://morningstar369.com/share/" + link,
-            ex=60 * 10,
-        )
+        request.session["share-qrcode"] = "https://morningstar369.com/share/" + link
         return Response({"link": link})

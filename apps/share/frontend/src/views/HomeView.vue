@@ -5,6 +5,7 @@ import {useRoute} from 'vue-router'
 import Cookies from 'js-cookie'
 
 const route = useRoute()
+const BASE_URL = process.env.BASE_URL
 const currentPath = ref(window.location.href)
 
 const endpoint = "/submit/"
@@ -51,7 +52,7 @@ const handleSubmit = async ()=>{
       </a>
     </div>
     <div class="flex justify-center">
-        <img :src="`${baseURL}qrcode/`" alt="链接二维码" class="h-[8rem] md:h-[16rem]">
+        <img :src="`${BASE_URL}qrcode/`" alt="链接二维码" class="h-[8rem] md:h-[16rem]">
     </div>
   </div>
 </template>

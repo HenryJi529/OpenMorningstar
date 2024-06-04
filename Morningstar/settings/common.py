@@ -412,6 +412,11 @@ CACHE_TIMEOUT = (
     else 5
 )
 
+"""会话"""
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_CACHE_ALIAS = "default"
+SESSION_SERIALIZER = "django.contrib.sessions.serializers.JSONSerializer"
+
 """Matomo"""
 MATOMO_SITE_ID = 1
 MATOMO_URL = "https://matomo.morningstar369.com/"
