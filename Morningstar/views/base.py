@@ -42,13 +42,7 @@ def handle_register(request: HttpRequest, is_api=True):
         except:
             pass
         conn.set(f"{username}-activate", code, ex=60 * 10)
-
-        protocol = (
-            "https://"
-            if os.environ.get("DJANGO_SETTINGS_MODULE", "Morningstar.settings.dev")
-            == "Morningstar.settings.production"
-            else "http://"
-        )
+        protocol = "https://" if request.is_secure() else "http://"
         link = (
             protocol
             + host

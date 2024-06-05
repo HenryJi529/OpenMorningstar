@@ -65,7 +65,7 @@ def submit(request: HttpRequest):
     if request.method == "POST":
         item = Item(url=request.data["url"])
         item.save()
-        id = item.id
-        link = f"redirect/{id}/"
-        request.session["share-qrcode"] = "https://morningstar369.com/share/" + link
+        protocol = "https://" if request.is_secure() else "http://"
+        link = protocol + request.META["HTTP_HOST"] + f"/share/redirect/{item.id}/"
+        request.session["share-qrcode"] = link
         return Response({"link": link})

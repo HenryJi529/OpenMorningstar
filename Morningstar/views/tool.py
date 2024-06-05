@@ -139,12 +139,7 @@ def get_login_token(request: HttpRequest, identity):
         username = user.username
         password = user.password
         token = html.escape(password[-20:])
-        protocol = (
-            "https://"
-            if os.environ.get("DJANGO_SETTINGS_MODULE", "Morningstar.settings.dev")
-            == "Morningstar.settings.production"
-            else "http://"
-        )
+        protocol = "https://" if request.is_secure() else "http://"
         link = (
             protocol
             + request.get_host()

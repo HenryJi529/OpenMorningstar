@@ -6,9 +6,6 @@ import Cookies from 'js-cookie'
 
 const route = useRoute()
 const BASE_URL = process.env.BASE_URL
-const currentPath = ref(window.location.href)
-
-const endpoint = "/submit/"
 
 const url = ref("")  // NOTE: 提交的信息
 const link = ref("") // NOTE: 返回的加密链接
@@ -24,7 +21,7 @@ const handleSubmit = async ()=>{
     return
   }
 
-  const response = await axios.post(endpoint,{
+  const response = await axios.post("/submit/",{
     "url": url.value,
   })
 
@@ -47,8 +44,8 @@ const handleSubmit = async ()=>{
   </div>
   <div v-else class="max-w-[100vw] overflow-hidden p-4">
     <div class="text-base md:text-2xl my-10 text-lime-600 break-words">
-      <a :href="`${currentPath}${link}`">
-        {{ currentPath + link }}
+      <a :href="`${link}`">
+        {{ link }}
       </a>
     </div>
     <div class="flex justify-center">
