@@ -131,10 +131,6 @@ class MorningstarConnection(Connection):
 
 class Commands:
     @staticmethod
-    def serve():
-        runcmd(f"{Tool.PYTHON} manage.py runserver 127.0.0.1:8000")
-
-    @staticmethod
     def dev():
         colored_print("同步JavaScript模块...")
         runcmd(f"rsync -a node_modules Morningstar/static")
@@ -650,7 +646,6 @@ if __name__ == "__main__":
         nargs=1,
         help="操作",
         choices=[
-            "serve",
             "dev",
             "coverage",
             "initialize",
