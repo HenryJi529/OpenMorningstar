@@ -288,6 +288,11 @@
 					"image": "/media/nav/img/Manual/MySQL.svg"
 				},
 				{
+					"name": "Redis",
+					"url": "https://www.redis.net.cn/",
+					"image": "/media/nav/img/Manual/Redis.svg"
+				},
+				{
 					"name": "HTML",
 					"url": "https://man.ilovefishc.com/html5/",
 					"image": "/media/nav/img/Manual/HTML.png"
