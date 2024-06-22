@@ -378,6 +378,11 @@
 					"image": "/media/nav/img/Manual/Java.svg"
 				},
 				{
+					"name": "Spring",
+					"url": "https://spring.io/projects/spring-boot",
+					"image": "/media/nav/img/Manual/Spring.svg"
+				},
+				{
 					"name": "Python",
 					"url": "https://python3-cookbook.readthedocs.io/zh_CN/latest/index.html",
 					"image": "/media/nav/img/Manual/Python.svg"
