@@ -25,15 +25,15 @@
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/line-clamp": "^0.4.4",
-    "@tailwindcss/typography": "^0.5.12",
+    "@tailwindcss/typography": "^0.5.13",
     "browserify": "^17.0.0",
     "concurrently": "^8.2.2",
-    "daisyui": "^4.10.2",
+    "daisyui": "^4.12.8",
     "npm-check-updates": "^16.14.20",
-    "sass": "^1.75.0",
-    "tailwindcss": "~3.4.3",
-    "terser": "^5.30.4",
-    "typescript": "^5.4.5",
+    "sass": "^1.77.6",
+    "tailwindcss": "~3.4.4",
+    "terser": "^5.31.1",
+    "typescript": "^5.5.2",
     "watchify": "^4.0.0"
   },
   "dependencies": {
@@ -45,7 +45,7 @@
     "highlightjs-copy": "^1.0.5",
     "highlightjs-line-numbers.js": "^2.8.0",
     "localstorage-slim": "^2.7.1",
-    "marked": "^12.0.2",
+    "marked": "^13.0.1",
     "mathjax": "^3.2.2",
     "pace-js": "^1.2.4"
   }
