@@ -1,16 +1,9 @@
-FROM ubuntu:jammy
-ARG PYTHON_VERSION=3.9
+FROM python:3.9
 WORKDIR /app
 
 RUN apt-get update
-RUN apt-get install -y ca-certificates
-RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak
-COPY ./_mirror_cn/ustc-sources.list /etc/apt/sources.list
-# COPY ./_mirror_cn/pip.conf /root/.pip/pip.conf
-
-RUN apt-get update
 RUN apt-get install -y net-tools vim rsync curl
-RUN apt-get install -y python${PYTHON_VERSION} python3-pip mysql-client libmysqlclient-dev
+RUN apt-get install -y default-mysql-client
 RUN curl -sL https://deb.nodesource.com/setup_20.x | bash - 
 RUN apt-get install -y nodejs
 RUN npm install -g yarn

@@ -12,7 +12,6 @@
     - 7500: Frps
     - 6000: Django(main)
     - 6001: Beancount
-    - 6002: TShock
     - 6003: Matomo
     - 6006: Jellyfin
     - 6007: Portainer

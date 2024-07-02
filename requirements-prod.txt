@@ -11,7 +11,7 @@ django-crontab==0.7.1
 django-debug-toolbar==3.8.1
 django-filter==24.2
 django-haystack==3.3.0
-django-import-export==4.0.9
+django-import-export==4.1.0
 django-jazzmin==3.0.0
 django-matomo==0.1.6
 django-recaptcha==4.0.0
@@ -24,10 +24,9 @@ gunicorn==22.0.0
 jieba==0.42.1
 matplotlib==3.9.0
 mlxtend==0.23.1
-mysql-to-sqlite3==2.2.0
+mysql-to-sqlite3==2.2.1
 mysqlclient==2.1.1
-numpy==2.0.0
-pandas==2.2.2
+numpy==1.26.4
 pymdown-extensions==10.8.1
 python-dotenv==1.0.1
 qcloudsms-py==0.1.4

@@ -589,7 +589,7 @@ class Commands:
         home_path = "~/"
         with conn.cd(home_path):
             """发布包(dockerhub与ghcr)"""
-            packages = ["beancount", "tshock"]
+            packages = ["beancount"]
             for package in packages:
                 try:
                     conn.run(f"docker rmi ghcr.io/henryji529/morningstar-{package}")

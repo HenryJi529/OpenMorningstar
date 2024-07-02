@@ -11,7 +11,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: echo "${{secrets.DOCKER_PASSWORD}}" | docker login -u henry529 --password-stdin
-      - run: docker build ./scripts/deploy -f ./scripts/deploy/tshock/Dockerfile -t henry529/tshock:latest
-      - run: docker push henry529/tshock:latest
       - run: docker build ./scripts/deploy -f ./scripts/deploy/beancount/Dockerfile -t henry529/beancount:latest
       - run: docker push henry529/beancount:latest

@@ -7,7 +7,6 @@ volumes:
   morningstar_db2_data: null
   morningstar_matomo_data: null
   morningstar_beancount_data: null
-  morningstar_tshock_data: null
   morningstar_ftp_data: null
   morningstar_ftp_log: null
   morningstar_jellyfin_config: null
@@ -53,9 +52,10 @@ services:
       - db1
 
   db1:
-    image: mysql:latest
+    image: mysql:8.4.0
     container_name: morningstar_db1
     restart: always
+    command: ["mysqld", "--mysql-native-password=ON"]
     environment:
       - MYSQL_HOST=localhost
       - MYSQL_PORT=3306
@@ -93,22 +93,6 @@ services:
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
     volumes:
       - morningstar_db2_data:/var/lib/mysql
-
-  tshock:
-    build:
-      context: .
-      dockerfile: tshock/Dockerfile
-    image: henry529/tshock:latest
-    container_name: morningstar_tshock
-    hostname: morningstar_tshock
-    working_dir: /root
-    privileged: true
-    tty: true
-    restart: unless-stopped
-    volumes:
-      - morningstar_tshock_data:/root/.local/share/Terraria
-    ports:
-      - "6002:7777"
 
   frps:
     image: snowdreamtech/frps

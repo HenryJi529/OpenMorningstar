@@ -1,6 +1,7 @@
 cd /app
 
 # 更新Python依赖...
+python3 -m pip install -U pip
 python3 -m pip install -r /app/requirements-prod.txt
 # 更新并迁移JavaScript依赖...
 yarn install --production

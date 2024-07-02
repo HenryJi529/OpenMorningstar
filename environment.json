@@ -52,7 +52,7 @@
         "summary": "全局搜索"
     },
     "django-import-export": {
-        "version": "4.0.9",
+        "version": "4.1.0",
         "summary": "数据导入导出",
         "dependencies": [
             "xlrd",
@@ -85,7 +85,7 @@
         "inDev": true
     },
     "Faker": {
-        "version": "25.9.1",
+        "version": "26.0.0",
         "summary": "测试数据生成",
         "inDev": true
     },
@@ -102,7 +102,7 @@
         "summary": "动态web服务器"
     },
     "ipykernel": {
-        "version": "6.29.4",
+        "version": "6.29.5",
         "summary": "用于支持ipynb笔记本",
         "inDev": true
     },
@@ -123,6 +123,11 @@
         "version": "3.9.0",
         "summary": "绘图工具"
     },
+    "numpy": {
+        "version": "1.26.4",
+        "note": "2.0目前支持还不够",
+        "locked": true
+    },
     "mlxtend": {
         "version": "0.23.1"
     },
@@ -132,23 +137,15 @@
         "locked": true
     },
     "mysql-to-sqlite3": {
-        "version": "2.2.0",
+        "version": "2.2.1",
         "summary": "mysql -> sqlite3"
-    },
-    "numpy": {
-        "version": "2.0.0",
-        "summary": "矩阵计算"
-    },
-    "pandas": {
-        "version": "2.2.2",
-        "summary": "表数据处理"
     },
     "Pillow": {
         "version": "10.2.0",
         "summary": "图像处理"
     },
     "pip": {
-        "version": "24.1",
+        "version": "24.1.1",
         "summary": "包管理工具",
         "inDev": true
     },

@@ -1,16 +1,6 @@
-FROM ubuntu:jammy
+FROM python:3.9-slim
 LABEL maintainer="jeep.jipu@gmail.com" version="1.0"
 WORKDIR /root/
-
-# 换源
-RUN apt-get update
-RUN apt-get install -y ca-certificates
-RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak
-COPY ./_mirror_cn/ustc-sources.list /etc/apt/sources.list
-# COPY ./_mirror_cn/pip.conf /root/.pip/pip.conf
-
-# 安装python3.9和对应pip
-RUN apt-get update && apt-get install -y python3-pip && pip install --upgrade pip
 
 # 安装 beancount
 RUN pip install beancount fava
