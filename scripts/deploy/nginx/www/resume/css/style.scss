@@ -2,13 +2,12 @@ $base-font-size: 10px;
 
 * {
   font-size: $base-font-size;
-  font-family: monospace;
+  font-family: monospace, sans-serif;
 }
 
 /* 一寸照片 */
 .photo {
-  width: 25mm;
-  height: 35mm;
+  width: 25.4mm;
 }
 
 /* 打印页面 */
@@ -28,20 +27,16 @@ $base-font-size: 10px;
   margin: 0.3rem 0;
   padding: 0.5rem;
 
-  .title {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-
   .items {
     .item {
       margin-bottom: 0.3rem;
-      padding: 0.2rem;
+      padding: 0.2rem 1rem;
 
       .time {
         float: right;
         font-weight: bold;
         color: gray;
+        font-family: monospace;
       }
     }
   }
