@@ -122,11 +122,11 @@ class MorningstarConnection(Connection):
             },
         )
 
-    def run(self, command: str):
+    def run(self, command: str, **kwargs):
         exportEnv = " && ".join(
             [f"export {key}='{value}'" for key, value in ENV_DICT.items()]
         )
-        super().run(f"{exportEnv} && {command}")
+        return super().run(f"{exportEnv} && {command}", **kwargs)
 
 
 class Commands:
@@ -502,10 +502,10 @@ class Commands:
         def backupDatabase(c: Connection):
             project_root_path = "~/morningstar"
             with c.cd(project_root_path):
-                try:
-                    c.run(f"mkdir /home/{Env.CLOUD_USERNAME}/morningstar/database/")
-                except:
-                    pass
+                remote_database_path = (
+                    f"/home/{Env.CLOUD_USERNAME}/morningstar/database/"
+                )
+                c.run(f"test -d {remote_database_path} || mkdir {remote_database_path}")
                 c.run(
                     'docker exec -i morningstar_django bash -c "python3 manage.py dumpdata --settings=Morningstar.settings.production > database/all.json"'
                 )
@@ -518,9 +518,9 @@ class Commands:
                 ).stdout.split(" ")[1:-1]
                 for dockerVolumeName in dockerVolumeNameList:
                     shortName = dockerVolumeName[7:]
-                    colored_print(f"备份{shortName}:")
+                    print(f"- 备份{shortName}")
                     command = f'docker run --rm -v deploy_{shortName}:/volume -v ~/backup/docker_volume:/backup alpine sh -c "tar -C /volume -cvzf /backup/{shortName}.tar.gz ./"'
-                    c.run(command)
+                    c.run(command, hide=True)
 
         conn = MorningstarConnection()
         colored_print("数据库备份...")
@@ -553,9 +553,9 @@ class Commands:
                 ).stdout.split(" ")[1:-1]
                 for dockerVolumeName in dockerVolumeNameList:
                     shortName = dockerVolumeName[7:]
-                    colored_print(f"还原{shortName}:")
+                    print(f"- 还原{shortName}")
                     command = f'docker run --rm -v deploy_${shortName}:/volume -v ~/backup/docker_volume:/backup alpine sh -c "rm -rf /volume/* ; tar -C /volume/ -xzvf /backup/${shortName}.tar.gz"'
-                    c.run(command)
+                    c.run(command, hide=True)
 
         conn = MorningstarConnection()
         colored_print("同步数据库到远处...")
