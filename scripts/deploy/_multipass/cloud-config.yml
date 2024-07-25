@@ -19,6 +19,7 @@ packages:
   - python3-pip
   - virtualenv
   - nginx
+  - net-tools
 
 write_files:
   - path: /home/ubuntu/.pip/pip.conf
@@ -33,7 +34,7 @@ runcmd:
   - apt-get -qq upgrade
   - apt-get -qq -y autoremove
   # node
-  - curl -sL https://deb.nodesource.com/setup_20.x | bash - 
+  - curl -sL https://deb.nodesource.com/setup_20.x | bash -
   - apt-get install -y nodejs
   # ssh
   - sed -i "s/PasswordAuthentication no/PasswordAuthentication yes/" /etc/ssh/sshd_config
