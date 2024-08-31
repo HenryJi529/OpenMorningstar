@@ -28,7 +28,8 @@
     },
     "django-cors-headers": {
         "version": "4.4.0",
-        "summary": "跨域访问之headers"
+        "summary": "跨域访问之headers",
+        "note": "版本存在潜在问题"
     },
     "django-cors-middleware": {
         "version": "1.5.0",
