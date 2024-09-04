@@ -55,7 +55,7 @@ RECAPTCHA_PRIVATE_KEY = os.getenv("RECAPTCHA_PRIVATE_KEY")
 
 """维护中站点列表"""
 MAINTENANCE_URL_LIST = [
-    "/dev/",
+    # "/dev/",
 ]
 
 """压缩css/js"""
