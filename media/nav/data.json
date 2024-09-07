@@ -353,11 +353,6 @@
 					"image": "/media/nav/img/Manual/Vue.png"
 				},
 				{
-					"name": "ElementPlus",
-					"url": "https://element-plus.org/zh-CN/component/overview.html",
-					"image": "/media/nav/img/Manual/ElementPlus.png"
-				},
-				{
 					"name": "NaiveUI",
 					"url": "https://www.naiveui.com/zh-CN/os-theme",
 					"image": "/media/nav/img/Manual/NaiveUI.png"
