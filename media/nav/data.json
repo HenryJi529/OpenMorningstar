@@ -500,7 +500,7 @@
 			"items": [
 				{
 					"name": "免费图片",
-					"slug": "picture",
+					"slug": "free-picture",
 					"display": "modal",
 					"entries": [
 						{
@@ -536,7 +536,7 @@
 				},
 				{
 					"name": "免费字体",
-					"slug": "font",
+					"slug": "free-font",
 					"display": "modal",
 					"entries": [
 						{
@@ -550,12 +550,12 @@
 					]
 				},
 				{
-					"name": "软件分享",
-					"slug": "software",
+					"name": "正版软件",
+					"slug": "genuine-software",
 					"display": "modal",
 					"entries": [
 						{
-							"name": "AlternativeTo",
+							"name": "AlternativeTo(检索替代品)",
 							"link": "https://alternativeto.net/"
 						},
 						{
@@ -581,16 +581,12 @@
 						{
 							"name": "麦软",
 							"link": "https://www.mairuan.com/"
-						},
-						{
-							"name": "KMS激活工具",
-							"link": "https://github.com/zbezj/HEU_KMS_Activator/releases"
 						}
 					]
 				},
 				{
 					"name": "电子书库",
-					"slug": "ebook",
+					"slug": "free-ebook",
 					"display": "modal",
 					"entries": [
 						{
@@ -609,8 +605,8 @@
 					]
 				},
 				{
-					"name": "开源图标",
-					"slug": "open-icon",
+					"name": "免费图标",
+					"slug": "free-icon",
 					"display": "modal",
 					"entries": [
 						{
@@ -624,6 +620,10 @@
 						{
 							"name": "fontawesome",
 							"link": "https://fontawesome.com/v6.0/icons/"
+						},
+						{
+							"name": "xicons",
+							"link": "https://www.xicons.org/#/"
 						},
 						{
 							"name": "Simple Icons(品牌图标)",
