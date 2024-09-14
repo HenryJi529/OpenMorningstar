@@ -416,13 +416,13 @@ class Commands:
                 c.run(
                     "sshpass -p "
                     + Env.DEV_PASSWORD
-                    + f" scp -P 1022 -r henry529@server.morningstar369.com:{BASE_DIR}/scripts/deploy/nginx/conf  ~/morningstar/scripts/deploy/nginx/"
+                    + f" scp -P 1022 -r henry@server.morningstar369.com:{BASE_DIR}/scripts/deploy/nginx/conf  ~/morningstar/scripts/deploy/nginx/"
                 )
                 colored_print("同步前端页面...")
                 c.run(
                     "sshpass -p "
                     + Env.DEV_PASSWORD
-                    + f" scp -P 1022 -r henry529@server.morningstar369.com:{BASE_DIR}/scripts/deploy/nginx/www  ~/morningstar/scripts/deploy/nginx"
+                    + f" scp -P 1022 -r henry@server.morningstar369.com:{BASE_DIR}/scripts/deploy/nginx/www  ~/morningstar/scripts/deploy/nginx"
                 )
                 colored_print("加载新配置文件...")
                 c.run("docker exec -i morningstar_nginx nginx -s reload")
@@ -622,7 +622,7 @@ class Commands:
             conn.run(
                 "sshpass -p "
                 + Env.DEV_PASSWORD
-                + f" scp -P 1022 -r henry529@server.morningstar369.com:{BASE_DIR}/scripts/deploy/beancount  ~/morningstar/scripts/deploy/"
+                + f" scp -P 1022 -r henry@server.morningstar369.com:{BASE_DIR}/scripts/deploy/beancount  ~/morningstar/scripts/deploy/"
             )
             colored_print("传递数据至数据卷...")
             conn.run(
