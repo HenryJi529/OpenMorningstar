@@ -26,8 +26,10 @@ pipdeptree.txt
 # Vercel
 .vercel/
 
-# Node
+# Node(需要考虑到开发时使用的是Arm版本的依赖)
 node_modules/
+yarn.lock
+package-lock.json
 
 # database
 /database/
