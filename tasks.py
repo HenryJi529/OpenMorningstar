@@ -381,6 +381,11 @@ class Commands:
         runcmd(f"{Tool.PIPDEPTREE} -fl >pipdeptree.txt")
 
     @staticmethod
+    def restartDjango():
+        conn = MorningstarConnection()
+        conn.run("docker exec -i morningstar_django supervisorctl restart django")
+
+    @staticmethod
     def updateDjango():
         conn = MorningstarConnection()
         project_root_path = "~/morningstar"
@@ -650,6 +655,7 @@ if __name__ == "__main__":
             "coverage",
             "initialize",
             "updateDep",
+            "restartDjango",
             "updateDjango",
             "updateNginx",
             "updateProd",
