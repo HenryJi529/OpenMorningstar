@@ -8,6 +8,7 @@
     "preview": "vite preview --outDir ../../../scripts/deploy/nginx/www/formula"
   },
   "dependencies": {
+    "axios": "^1.7.7",
     "mathjax-vue3": "^1.0.1",
     "sass": "^1.63.6",
     "vue": "^3.3.4"
