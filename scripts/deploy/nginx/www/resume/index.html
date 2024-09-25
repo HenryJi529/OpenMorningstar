@@ -115,26 +115,6 @@
 		<div class="text-2xl font-bold fa-solid fa-diagram-project"> 项目经历</div>
 		<div class="items">
 			<div class="item">
-				<div class="time">2019.9 - 2019.10</div>
-				<div>
-					<i class="fa-solid fa-star text-xl"></i>
-					<span class="font-bold text-xl">基于Arduino平台的3D打印机系统设计</span>|<span>项目参与者</span>
-				</div>
-				<div class="pl-8">
-					<div><span class="font-bold">主要工作: </span>
-						<ol class="ml-8 list-disc">
-							<li>掌握马林固件(Marlin)在Arduino上的使用</li>
-							<li>搭建打印机的机械结构，通过QT搭建控制界面</li>
-							<li>软硬件联合调试</li>
-						</ol>
-					</div>
-					<div>
-						<span class="font-bold">项目成果: </span>
-						完成了打印机的设计，并实现了基础的打印功能。
-					</div>
-				</div>
-			</div>
-			<div class="item">
 				<div class="time">2022.7 至今</div>
 				<div>
 					<span class="fa-solid fa-star font-bold text-xl"> 个人网站</span>|<span>独立负责人</span>
@@ -187,7 +167,28 @@
 					</div>
 				</div>
 			</div>
-
+			<div class="item">
+				<div class="time">2024.7 - 2024.9</div>
+				<div>
+					<i class="fa-solid fa-star text-xl"></i>
+					<span class="font-bold text-xl">基于Github的开放图床平台</span>|<span>独立负责人</span>
+				</div>
+				<div class="pl-8">
+					<div><span class="font-bold">主要工作: </span>
+						<ol class="ml-8 list-disc">
+							<li>从用户注册时提供的Personal Access Token获取用户在Github中的相关信息</li>
+							<li>将新Bucket的创建转换为Github仓库的创建，平台数据库中只需存储PAT和BucketId与RepoName映射表</li>
+							<li>将图片的上传与更新转换为仓库中commit的提交，响应的文件路径通过jsDelivr封装，无缝提供CDN支持</li>
+							<li>Web端加载仓库的文件结构缓存，便于用户的可视化操作</li>
+							<li>Java SDK提供核心的认证、建桶、上传、更新、删除功能</li>
+						</ol>
+					</div>
+					<div>
+						<span class="font-bold">项目成果: </span>
+						实现了图床服务Web端的搭建，并提供了相关的Java SDK，可以为用户提供简便、专业且零成本的图床服务
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -226,7 +227,7 @@
 			</li>
 			<li>
 				<span class="font-bold">Web前端开发: </span>
-				TailwindCSS, DaisyUI, JavaScript, Vue, Element<sup>+</sup>
+				TailwindCSS, DaisyUI, JavaScript, TypeScript, Vue3, Pinia
 			</li>
 			<li>
 				<span class="font-bold">机器学习: </span>
