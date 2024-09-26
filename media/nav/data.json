@@ -7,30 +7,6 @@
 			"icon": "fa-solid fa-rocket",
 			"items": [
 				{
-					"name": "在线画板",
-					"url": "/canvas/",
-					"image": "/media/nav/img/Work/在线画板.png",
-					"desc": "一个简易的绘画玩具"
-				},
-				{
-					"name": "架子鼓",
-					"url": "/drumkit/",
-					"image": "/media/nav/img/Work/架子鼓.png",
-					"desc": "在线架子鼓～"
-				},
-				{
-					"name": "致敬页",
-					"url": "/tribute/",
-					"image": "/media/nav/img/Work/致敬页.png",
-					"desc": "致敬那些伟大的同类～"
-				},
-				{
-					"name": "在线测验",
-					"url": "/quiz/",
-					"image": "/media/nav/img/Work/在线测验.png",
-					"desc": "简易的测验应用～"
-				},
-				{
 					"name": "神兔笑话",
 					"url": "/joke/",
 					"image": "/media/nav/img/Work/joke.jpeg",
@@ -65,18 +41,6 @@
 					"url": "/rss/",
 					"image": "/media/nav/img/Work/rss.png",
 					"desc": "仿照Feed43生成RSS源"
-				},
-				{
-					"name": "在线便签",
-					"url": "/notes/",
-					"image": "/media/nav/img/Work/在线便签.png",
-					"desc": "简易的便签应用～"
-				},
-				{
-					"name": "公式转换",
-					"url": "/formula/",
-					"image": "/media/nav/img/Work/formula.jpeg",
-					"desc": "提供实时的LaTex公式转换"
 				}
 			]
 		},

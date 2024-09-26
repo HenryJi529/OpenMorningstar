@@ -5,7 +5,7 @@ SITES = [
         "description": "河海大学信息学院学生活动, 通过晨星小站抓取",
         "language": "zh-Hans",
         "feed": {
-            "pattern": r"<td align=\"left\"><a href='(/\d{4}/\d{4}/\w*/page\.htm)' target='_blank' title='([^(font)]*)'>.*</a></td>\s*<td align=\"left\" width=\"30px\"><div style=\"white-space:nowrap\">(\d{4}-\d{2}-\d{2})</div></td>",
+            "pattern": r"<li class=\"list_item i\d{1,2}\">\s*<div class=\"fields pr_fields\">\s*<span class='Article_Index'>\d{1,2}<\/span>\s*<span class='Article_Title'><a href='(\/\d{4}\/\d{4}\/c4093a\d{6}\/page\.htm)' target='_blank' title='(.*)'>\2<\/a><\/span>\s*<\/div>\s*<div class=\"fields ex_fields\">\s*<span class='Article_PublishDate'>(\d{4}-\d{2}-\d{2})<\/span>\s*<\/div>\s*<\/li>",
             "link_index": 1,
             "title_index": 2,
             "pubDate_index": 3,

@@ -80,13 +80,10 @@ urlpatterns = (
     + authUrls
     + [
         path("", include("blog.urls")),
-        path("api/formula/", include("formula.urls")),
         path("api/joke/", include("joke.urls")),
         path("lover/", include("lover.urls")),
         path("nav/", include("nav.urls")),
-        path("api/notes/", include("notes.urls")),
         path("proxy/", include("proxy.urls")),
-        path("api/quiz/", include("quiz.urls")),
         path("api/recognizer/", include("recognizer.urls")),
         path("rss/", include("rss.urls")),
         path("api/share/", include("share.urls")),
