@@ -20,7 +20,7 @@ jobs:
         uses: supercharge/redis-github-action@1.7.0
         with:
           redis-version: ${{ matrix.redis-version }}
-          redis-password: '1234asdw'
+          redis-password: "1234asdw"
           redis-port: 6379
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
@@ -34,4 +34,4 @@ jobs:
           EMAIL_HOST_PASSWORD: ${{ secrets.EMAIL_HOST_PASSWORD }}
           TENCENT_SMS_APP_KEY: ${{ secrets.TENCENT_SMS_APP_KEY }}
         run: |
-          python manage.py test Morningstar apps
+          python manage.py makemigrations && python manage.py migrate && python manage.py test Morningstar apps

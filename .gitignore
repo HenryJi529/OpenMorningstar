@@ -32,7 +32,10 @@ yarn.lock
 package-lock.json
 
 # database
-/database/
+**/migrations/**
+!**/migrations/__init__.py
+/database/**
+!/database/dir.txt
 /whoosh_index/
 
 # release
