@@ -49,6 +49,8 @@
 	</a>
 </div>
 
+**本项目已开始重构，新地址为[HenryJi529/NextMorningstar](https://github.com/HenryJi529/NextMorningstar)**
+
 ## ✨ 技术栈:
 
 - **前端**：Sass, TailwindCSS, DaisyUI, Vue3, Vite
