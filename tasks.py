@@ -92,6 +92,7 @@ class Tool:
 class Env:
     GHCR_USERANME = os.getenv("GHCR_USERANME")
     GHCR_PAT = os.getenv("GHCR_PAT")
+    LOCAL_USERNAME = os.getenv("LOCAL_USERNAME")
     CLOUD_USERNAME = os.getenv("CLOUD_USERNAME")
     CLOUD_PASSWORD = os.getenv("CLOUD_PASSWORD")
     PUBLIC_IP = os.getenv("PUBLIC_IP")
@@ -405,12 +406,12 @@ class Commands:
             colored_print("重启服务...")
             conn.run("docker exec -i morningstar_django supervisorctl restart django")
 
-            colored_print("更新HTTPS...")
-            conn.run(
-                "docker exec -i morningstar_nginx certbot --nginx --non-interactive"
-                + " -d "
-                + " -d ".join(DOMAIN_LIST)
-            )  # NOTE:解决HTTPS失效问题
+            # colored_print("更新HTTPS...")
+            # conn.run(
+            #     "docker exec -i morningstar_nginx certbot --nginx --non-interactive"
+            #     + " -d "
+            #     + " -d ".join(DOMAIN_LIST)
+            # )  # NOTE:解决HTTPS失效问题
 
     @staticmethod
     def updateNginx():
@@ -421,22 +422,22 @@ class Commands:
                 c.run(
                     "sshpass -p "
                     + Env.DEV_PASSWORD
-                    + f" scp -P 1022 -r henry@server.morningstar369.com:{BASE_DIR}/scripts/deploy/nginx/conf  ~/morningstar/scripts/deploy/nginx/"
+                    + f" scp -P 1022 -r {Env.LOCAL_USERNAME}@server.morningstar369.com:{BASE_DIR}/scripts/deploy/nginx/conf  ~/morningstar/scripts/deploy/nginx/"
                 )
                 colored_print("同步前端页面...")
                 c.run(
                     "sshpass -p "
                     + Env.DEV_PASSWORD
-                    + f" scp -P 1022 -r henry@server.morningstar369.com:{BASE_DIR}/scripts/deploy/nginx/www  ~/morningstar/scripts/deploy/nginx"
+                    + f" scp -P 1022 -r {Env.LOCAL_USERNAME}@server.morningstar369.com:{BASE_DIR}/scripts/deploy/nginx/www  ~/morningstar/scripts/deploy/nginx"
                 )
                 colored_print("加载新配置文件...")
                 c.run("docker exec -i morningstar_nginx nginx -s reload")
-                commandTemplate = (
-                    "docker exec -i morningstar_nginx certbot --nginx --non-interactive"
-                )
-                c.run(
-                    commandTemplate + " -d " + " -d ".join(DOMAIN_LIST)
-                )  # NOTE:解决HTTPS失效问题
+                # commandTemplate = (
+                #     "docker exec -i morningstar_nginx certbot --nginx --non-interactive"
+                # )
+                # c.run(
+                #     commandTemplate + " -d " + " -d ".join(DOMAIN_LIST)
+                # )  # NOTE:解决HTTPS失效问题
 
         colored_print("编译前端代码...")
         for subdir in [
@@ -490,12 +491,12 @@ class Commands:
                 colored_print("通过supervisor启动Django进程...")
                 c.run("docker exec -i morningstar_django service supervisor start")
 
-                colored_print("配置HTTPS...")
-                # certbot certonly --manual --preferred-challenge dns -d django.morningstar.com  # NOTE: 手动配置
-                commandTemplate = (
-                    "docker exec -i morningstar_nginx certbot --nginx --non-interactive"
-                )
-                c.run(commandTemplate + " -d " + " -d ".join(DOMAIN_LIST))
+                # colored_print("配置HTTPS...")
+                # # certbot certonly --manual --preferred-challenge dns -d django.morningstar.com  # NOTE: 手动配置
+                # commandTemplate = (
+                #     "docker exec -i morningstar_nginx certbot --nginx --non-interactive"
+                # )
+                # c.run(commandTemplate + " -d " + " -d ".join(DOMAIN_LIST))
 
         colored_print("更新Docker...")
         updateDocker(MorningstarConnection())
@@ -627,7 +628,7 @@ class Commands:
             conn.run(
                 "sshpass -p "
                 + Env.DEV_PASSWORD
-                + f" scp -P 1022 -r henry@server.morningstar369.com:{BASE_DIR}/scripts/deploy/beancount  ~/morningstar/scripts/deploy/"
+                + f" scp -P 1022 -r {Env.LOCAL_USERNAME}@server.morningstar369.com:{BASE_DIR}/scripts/deploy/beancount  ~/morningstar/scripts/deploy/"
             )
             colored_print("传递数据至数据卷...")
             conn.run(
@@ -663,8 +664,8 @@ if __name__ == "__main__":
             "restoreProd",
             "publicArchive",
             "publicPackage",
-            "checkCert",
-            "updateCert",
+            # "checkCert",
+            # "updateCert",
             "syncLedger",
             "loginGHCR",
             "_test",
